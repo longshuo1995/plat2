@@ -7,7 +7,7 @@ def get_mysql_conn(db_name):
     return conn
 
 
-def select_from_tiku(db_name, sql):
+def select_from_tiku(sql, db_name):
     conn = get_mysql_conn(db_name)
     cur = conn.cursor()
     cur.execute(sql)

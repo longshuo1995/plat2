@@ -6,7 +6,6 @@ Page({
         remind: '加载中',
         angle: 0,
         userInfo: {},
-        regFlag:true
     },
     goToIndex: function () {
         wx.switchTab({
@@ -17,7 +16,7 @@ Page({
         wx.setNavigationBarTitle({
             title: app.globalData.shopName
         });
-        // this.checkLogin();
+        this.checkLogin();
     },
     onShow: function () {
 
@@ -45,7 +44,9 @@ Page({
         });
     },
     checkLogin:function(){
-        var that = this;
+        console.log('ready check login')
+
+         var that = this;
          wx.login({
              success:function( res ){
                  if( !res.code ){
@@ -58,14 +59,11 @@ Page({
                     method:'POST',
                     data:{ code:res.code },
                     success:function( res ){
-                        if( res.data.code != 200 ){
-                            that.setData({
-                                regFlag:false
-                            });
-                            return;
+                        var resp = res.data
+                        if(resp.is_register){
+                            goToIndex()
                         }
-
-                        app.setCache( "token",res.data.data.token );
+                        // app.setCache( "token",res.data.data.token );
                         //that.goToIndex();
                     }
                 });

@@ -1,7 +1,7 @@
 import requests
 from flask import request, jsonify
 from application import app
-from common.libs import db_sql
+from common.libs import db_sql, db_mongo
 from common.libs.member import MemberService
 from web.controllers.api import route_api
 
@@ -22,7 +22,7 @@ def login():
     # jo = requests.get(url).json()
     openid = MemberService.getWechatOpenId(req['code'])
     query_sql = 'select * from oauth_member_bind where openid={openid} and type=1'.format(openid=jo['openid'])
-    bind_infos = db_sql.select_from_tiku('food_db', query_sql)
+    bind_infos = db_sql.select_from_tiku(query_sql, 'food_db')
     if bind_infos:
         query_mem_sql = 'select nickname from member where id="{openid}"'.format(openid=jo['openid'])
         member_info = db_sql.select_from_tiku('food_db', query_mem_sql)[0]
@@ -49,5 +49,9 @@ def checkReg():
         resp['msg'] = "需要code"
         return jsonify(resp)
     openid = MemberService.getWechatOpenId(req['code'])
+    if db_mongo.get_table('plat2', 'member').find_one({"openid": openid}):
+        resp['data']['is_register'] = True
+    else:
+        resp['data']['is_register'] = False
     return jsonify(resp)
 
