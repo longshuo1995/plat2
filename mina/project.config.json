@@ -37,14 +37,21 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 0,
+			"current": 1,
 			"list": [
 				{
 					"id": 0,
 					"name": "page_index",
-					"pathName": "pages/food/index",
+					"pathName": "pages/index/index",
 					"query": "scene=hahah",
 					"scene": 1001
+				},
+				{
+					"id": -1,
+					"name": "food_index",
+					"pathName": "pages/food/index",
+					"query": "scene=hahah",
+					"scene": null
 				}
 			]
 		}

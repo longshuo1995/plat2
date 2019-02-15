@@ -2,85 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="90c5a1c2-4d5a-4226-a25a-acbdeab51f01" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/common/libs/db_mongo.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/controllers/upload/Upload.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/controllers/upload/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application.py" beforeDir="false" afterPath="$PROJECT_DIR$/application.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/libs/db_sql.py" beforeDir="false" afterPath="$PROJECT_DIR$/common/libs/db_sql.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mina/app.json" beforeDir="false" afterPath="$PROJECT_DIR$/mina/app.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mina/pages/food/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/mina/pages/food/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mina/pages/food/index.json" beforeDir="false" afterPath="$PROJECT_DIR$/mina/pages/food/index.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mina/pages/food/index.wxml" beforeDir="false" afterPath="$PROJECT_DIR$/mina/pages/food/index.wxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mina/pages/food/index.wxss" beforeDir="false" afterPath="$PROJECT_DIR$/mina/pages/food/index.wxss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mina/pages/index/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/mina/pages/index/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mina/pages/order/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/mina/pages/order/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mina/pages/order/index.json" beforeDir="false" afterPath="$PROJECT_DIR$/mina/pages/order/index.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mina/pages/order/index.wxml" beforeDir="false" afterPath="$PROJECT_DIR$/mina/pages/order/index.wxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mina/pages/order/index.wxss" beforeDir="false" afterPath="$PROJECT_DIR$/mina/pages/order/index.wxss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mina/wxParse/htmlparser.js" beforeDir="false" afterPath="$PROJECT_DIR$/mina/wxParse/htmlparser.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mina_row/pages/food/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/mina_row/pages/food/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mina_row/pages/food/index.json" beforeDir="false" afterPath="$PROJECT_DIR$/mina_row/pages/food/index.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mina_row/pages/food/index.wxml" beforeDir="false" afterPath="$PROJECT_DIR$/mina_row/pages/food/index.wxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mina_row/pages/food/index.wxss" beforeDir="false" afterPath="$PROJECT_DIR$/mina_row/pages/food/index.wxss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mina_row/pages/order/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/mina_row/pages/order/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mina_row/pages/order/index.json" beforeDir="false" afterPath="$PROJECT_DIR$/mina_row/pages/order/index.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mina_row/pages/order/index.wxml" beforeDir="false" afterPath="$PROJECT_DIR$/mina_row/pages/order/index.wxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mina_row/pages/order/index.wxss" beforeDir="false" afterPath="$PROJECT_DIR$/mina_row/pages/order/index.wxss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mina_row/wxParse/htmlparser.js" beforeDir="false" afterPath="$PROJECT_DIR$/mina_row/wxParse/htmlparser.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/controllers/api/Member.py" beforeDir="false" afterPath="$PROJECT_DIR$/web/controllers/api/Member.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/static/plugins/ueditor/dialogs/anchor/anchor.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/static/plugins/ueditor/dialogs/anchor/anchor.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/static/plugins/ueditor/dialogs/attachment/attachment.css" beforeDir="false" afterPath="$PROJECT_DIR$/web/static/plugins/ueditor/dialogs/attachment/attachment.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/static/plugins/ueditor/dialogs/attachment/attachment.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/static/plugins/ueditor/dialogs/attachment/attachment.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/static/plugins/ueditor/dialogs/background/background.css" beforeDir="false" afterPath="$PROJECT_DIR$/web/static/plugins/ueditor/dialogs/background/background.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/static/plugins/ueditor/dialogs/background/background.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/static/plugins/ueditor/dialogs/background/background.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/static/plugins/ueditor/dialogs/background/background.js" beforeDir="false" afterPath="$PROJECT_DIR$/web/static/plugins/ueditor/dialogs/background/background.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/static/plugins/ueditor/dialogs/charts/charts.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/static/plugins/ueditor/dialogs/charts/charts.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/static/plugins/ueditor/dialogs/emotion/emotion.css" beforeDir="false" afterPath="$PROJECT_DIR$/web/static/plugins/ueditor/dialogs/emotion/emotion.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/static/plugins/ueditor/dialogs/emotion/emotion.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/static/plugins/ueditor/dialogs/emotion/emotion.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/static/plugins/ueditor/dialogs/emotion/emotion.js" beforeDir="false" afterPath="$PROJECT_DIR$/web/static/plugins/ueditor/dialogs/emotion/emotion.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/static/plugins/ueditor/dialogs/gmap/gmap.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/static/plugins/ueditor/dialogs/gmap/gmap.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/static/plugins/ueditor/dialogs/help/help.css" beforeDir="false" afterPath="$PROJECT_DIR$/web/static/plugins/ueditor/dialogs/help/help.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/static/plugins/ueditor/dialogs/help/help.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/static/plugins/ueditor/dialogs/help/help.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/static/plugins/ueditor/dialogs/help/help.js" beforeDir="false" afterPath="$PROJECT_DIR$/web/static/plugins/ueditor/dialogs/help/help.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/static/plugins/ueditor/dialogs/image/image.css" beforeDir="false" afterPath="$PROJECT_DIR$/web/static/plugins/ueditor/dialogs/image/image.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/static/plugins/ueditor/dialogs/image/image.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/static/plugins/ueditor/dialogs/image/image.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/static/plugins/ueditor/dialogs/image/image.js" beforeDir="false" afterPath="$PROJECT_DIR$/web/static/plugins/ueditor/dialogs/image/image.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/static/plugins/ueditor/dialogs/insertframe/insertframe.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/static/plugins/ueditor/dialogs/insertframe/insertframe.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/static/plugins/ueditor/dialogs/internal.js" beforeDir="false" afterPath="$PROJECT_DIR$/web/static/plugins/ueditor/dialogs/internal.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/static/plugins/ueditor/dialogs/link/link.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/static/plugins/ueditor/dialogs/link/link.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/static/plugins/ueditor/dialogs/map/map.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/static/plugins/ueditor/dialogs/map/map.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/static/plugins/ueditor/dialogs/music/music.css" beforeDir="false" afterPath="$PROJECT_DIR$/web/static/plugins/ueditor/dialogs/music/music.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/static/plugins/ueditor/dialogs/music/music.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/static/plugins/ueditor/dialogs/music/music.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/static/plugins/ueditor/dialogs/music/music.js" beforeDir="false" afterPath="$PROJECT_DIR$/web/static/plugins/ueditor/dialogs/music/music.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/static/plugins/ueditor/dialogs/scrawl/scrawl.css" beforeDir="false" afterPath="$PROJECT_DIR$/web/static/plugins/ueditor/dialogs/scrawl/scrawl.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/static/plugins/ueditor/dialogs/scrawl/scrawl.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/static/plugins/ueditor/dialogs/scrawl/scrawl.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/static/plugins/ueditor/dialogs/scrawl/scrawl.js" beforeDir="false" afterPath="$PROJECT_DIR$/web/static/plugins/ueditor/dialogs/scrawl/scrawl.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/static/plugins/ueditor/dialogs/searchreplace/searchreplace.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/static/plugins/ueditor/dialogs/searchreplace/searchreplace.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/static/plugins/ueditor/dialogs/searchreplace/searchreplace.js" beforeDir="false" afterPath="$PROJECT_DIR$/web/static/plugins/ueditor/dialogs/searchreplace/searchreplace.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/static/plugins/ueditor/dialogs/snapscreen/snapscreen.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/static/plugins/ueditor/dialogs/snapscreen/snapscreen.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/static/plugins/ueditor/dialogs/spechars/spechars.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/static/plugins/ueditor/dialogs/spechars/spechars.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/static/plugins/ueditor/dialogs/spechars/spechars.js" beforeDir="false" afterPath="$PROJECT_DIR$/web/static/plugins/ueditor/dialogs/spechars/spechars.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/static/plugins/ueditor/dialogs/template/config.js" beforeDir="false" afterPath="$PROJECT_DIR$/web/static/plugins/ueditor/dialogs/template/config.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/static/plugins/ueditor/dialogs/template/template.css" beforeDir="false" afterPath="$PROJECT_DIR$/web/static/plugins/ueditor/dialogs/template/template.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/static/plugins/ueditor/dialogs/template/template.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/static/plugins/ueditor/dialogs/template/template.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/static/plugins/ueditor/dialogs/template/template.js" beforeDir="false" afterPath="$PROJECT_DIR$/web/static/plugins/ueditor/dialogs/template/template.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/static/plugins/ueditor/dialogs/video/video.css" beforeDir="false" afterPath="$PROJECT_DIR$/web/static/plugins/ueditor/dialogs/video/video.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/static/plugins/ueditor/dialogs/video/video.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/static/plugins/ueditor/dialogs/video/video.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/static/plugins/ueditor/dialogs/video/video.js" beforeDir="false" afterPath="$PROJECT_DIR$/web/static/plugins/ueditor/dialogs/video/video.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/static/plugins/ueditor/dialogs/webapp/webapp.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/static/plugins/ueditor/dialogs/webapp/webapp.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/static/plugins/ueditor/dialogs/wordimage/wordimage.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/static/plugins/ueditor/dialogs/wordimage/wordimage.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/static/plugins/ueditor/dialogs/wordimage/wordimage.js" beforeDir="false" afterPath="$PROJECT_DIR$/web/static/plugins/ueditor/dialogs/wordimage/wordimage.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/static/plugins/ueditor/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/static/plugins/ueditor/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/static/plugins/ueditor/lang/en/en.js" beforeDir="false" afterPath="$PROJECT_DIR$/web/static/plugins/ueditor/lang/en/en.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/static/plugins/ueditor/lang/zh-cn/zh-cn.js" beforeDir="false" afterPath="$PROJECT_DIR$/web/static/plugins/ueditor/lang/zh-cn/zh-cn.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/static/plugins/ueditor/php/Uploader.class.php" beforeDir="false" afterPath="$PROJECT_DIR$/web/static/plugins/ueditor/php/Uploader.class.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/static/plugins/ueditor/themes/default/css/ueditor.css" beforeDir="false" afterPath="$PROJECT_DIR$/web/static/plugins/ueditor/themes/default/css/ueditor.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/static/plugins/ueditor/themes/default/dialogbase.css" beforeDir="false" afterPath="$PROJECT_DIR$/web/static/plugins/ueditor/themes/default/dialogbase.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/static/plugins/ueditor/themes/iframe.css" beforeDir="false" afterPath="$PROJECT_DIR$/web/static/plugins/ueditor/themes/iframe.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/static/plugins/ueditor/third-party/codemirror/codemirror.js" beforeDir="false" afterPath="$PROJECT_DIR$/web/static/plugins/ueditor/third-party/codemirror/codemirror.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/static/plugins/ueditor/ueditor.all.js" beforeDir="false" afterPath="$PROJECT_DIR$/web/static/plugins/ueditor/ueditor.all.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/static/plugins/ueditor/ueditor.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/web/static/plugins/ueditor/ueditor.config.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/www.py" beforeDir="false" afterPath="$PROJECT_DIR$/www.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mina/project.config.json" beforeDir="false" afterPath="$PROJECT_DIR$/mina/project.config.json" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -100,7 +22,7 @@
         <counts>
           <entry key="js" value="5" />
           <entry key="json" value="1" />
-          <entry key="py" value="17" />
+          <entry key="py" value="18" />
           <entry key="sample" value="1" />
           <entry key="sh" value="1" />
           <entry key="wxml" value="1" />
@@ -112,7 +34,7 @@
           <entry key="JSON" value="1" />
           <entry key="JavaScript" value="5" />
           <entry key="PLAIN_TEXT" value="2" />
-          <entry key="Python" value="17" />
+          <entry key="Python" value="18" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
@@ -120,7 +42,7 @@
           <entry key="dummy" value="7" />
           <entry key="js" value="237" />
           <entry key="json" value="15" />
-          <entry key="py" value="2519" />
+          <entry key="py" value="2765" />
           <entry key="sh" value="4" />
           <entry key="txt" value="9" />
         </counts>
@@ -130,7 +52,7 @@
           <entry key="JSON" value="15" />
           <entry key="JavaScript" value="237" />
           <entry key="PLAIN_TEXT" value="20" />
-          <entry key="Python" value="2519" />
+          <entry key="Python" value="2765" />
         </counts>
       </usages-collector>
     </session>
@@ -185,11 +107,23 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/www.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="5" column="54" selection-start-line="5" selection-start-column="54" selection-end-line="5" selection-end-column="54" />
+            <state relative-caret-position="216">
+              <caret line="13" selection-start-line="13" selection-end-line="13" />
+              <folding>
+                <element signature="e#0#27#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/config/base_setting.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="108">
+              <caret line="3" selection-start-line="3" selection-end-line="3" />
             </state>
           </provider>
         </entry>
@@ -257,6 +191,11 @@
             <path>
               <item name="plat2_bak" type="b2602c69:ProjectViewProjectNode" />
               <item name="plat2_bak" type="462c0819:PsiDirectoryNode" />
+              <item name="config" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="plat2_bak" type="b2602c69:ProjectViewProjectNode" />
+              <item name="plat2_bak" type="462c0819:PsiDirectoryNode" />
               <item name="mina" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -278,24 +217,6 @@
               <item name="mina" type="462c0819:PsiDirectoryNode" />
               <item name="pages" type="462c0819:PsiDirectoryNode" />
               <item name="index" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="plat2_bak" type="b2602c69:ProjectViewProjectNode" />
-              <item name="plat2_bak" type="462c0819:PsiDirectoryNode" />
-              <item name="web" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="plat2_bak" type="b2602c69:ProjectViewProjectNode" />
-              <item name="plat2_bak" type="462c0819:PsiDirectoryNode" />
-              <item name="web" type="462c0819:PsiDirectoryNode" />
-              <item name="controllers" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="plat2_bak" type="b2602c69:ProjectViewProjectNode" />
-              <item name="plat2_bak" type="462c0819:PsiDirectoryNode" />
-              <item name="web" type="462c0819:PsiDirectoryNode" />
-              <item name="controllers" type="462c0819:PsiDirectoryNode" />
-              <item name="api" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -351,6 +272,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="46" y="23" width="1440" height="828" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info id="Favorites" side_tool="true" />
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2191582" />
@@ -359,7 +281,7 @@
       <window_info anchor="bottom" id="Database Changes" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" show_stripe_button="false" />
       <window_info anchor="bottom" id="Python Console" />
-      <window_info active="true" anchor="bottom" id="Terminal" visible="true" weight="0.3366762" />
+      <window_info active="true" anchor="bottom" id="Terminal" visible="true" weight="0.29512894" />
       <window_info anchor="bottom" id="Event Log" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
@@ -535,8 +457,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/www.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="5" column="54" selection-start-line="5" selection-start-column="54" selection-end-line="5" selection-end-column="54" />
+        <state relative-caret-position="216">
+          <caret line="13" selection-start-line="13" selection-end-line="13" />
+          <folding>
+            <element signature="e#0#27#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/base_setting.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="108">
+          <caret line="3" selection-start-line="3" selection-end-line="3" />
         </state>
       </provider>
     </entry>
