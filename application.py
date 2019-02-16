@@ -1,6 +1,5 @@
 import os
 from flask import Flask
-from flask_sqlalchemy import SQLAlchemy
 from flask_script import Manager
 from common.libs.UrlManager import UrlManager
 
@@ -12,10 +11,8 @@ class Application(Flask):
         self.config.from_pyfile('config/base_setting.py')
         if "ops_config" in os.environ:
             self.config.from_pyfile('config/%s_setting.py' % os.environ['ops_config'])
-        db.init_app(self)
 
 
-db = SQLAlchemy()
 app = Application(__name__, template_folder=os.getcwd()+'/web/templates', root_path=os.getcwd(), static_folder=None)
 manager = Manager(app)
 
