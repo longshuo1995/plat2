@@ -16,7 +16,7 @@ Page({
         wx.setNavigationBarTitle({
             title: app.globalData.shopName
         });
-        this.checkLogin();
+        // this.checkLogin();
     },
     onShow: function () {
 
@@ -95,6 +95,7 @@ Page({
 
                     success:function (res) {
                         console.log(res)
+                        app.goto_cache()
                     }
                 })
             }

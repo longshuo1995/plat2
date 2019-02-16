@@ -6,10 +6,71 @@ App({
         userInfo: null,
         version: "1.0",
         shopName: "爱尚免单",
+        isLogin: false,
+        cache_path: '',
         //sdomain:"http://192.168.0.119:8999/api",
         // domain:"https://food.54php.cn/api",
         domain:"http://127.0.0.1:8811/api",
         sdomain:"http://127.0.0.1:8811/api"
+    },
+    goto_cache:function(){
+        console.log(this.globalData.cache_path)
+        wx.switchTab({
+            url: this.globalData.cache_path,
+        });
+    },
+    goto_login:function () {
+        var url = '/pages/index/index'
+        console.log('goto_login')
+        console.log(url)
+        wx.navigateTo({
+            url: '/pages/index/index',
+        });
+    },
+    buildUrl:function( path,params ){
+        var url = this.globalData.domain + path;
+        var _paramUrl = "";
+        if(  params ){
+            _paramUrl = Object.keys( params ).map( function( k ){
+                return [ encodeURIComponent( k ),encodeURIComponent( params[ k ] ) ].join("=");
+            }).join("&");
+            _paramUrl = "?" + _paramUrl;
+        }
+        return url + _paramUrl;
+    },
+    check_login: function(){
+        console.log('this is app running...')
+        console.log(this.globalData.cache_path)
+        if(this.globalData.isLogin){
+            return
+        }
+        var that = this
+        wx.login({
+             success:function( res ){
+                 if( !res.code ){
+                    that.alert( { 'content':'登录失败，请再次点击~~' } );
+                    return;
+                 }
+
+                 wx.request({
+                    url:that.buildUrl( '/member/check-reg' ),
+                    header:that.getRequestHeader(),
+                    method:'POST',
+                    data:{ code:res.code },
+                    success:function( res ){
+                        var resp = res.data
+                        if(!resp.is_register){
+                            that.goto_login()
+                            // wx.switchTab({
+                            //     url: '/pages/index/index',
+                            // });
+                        }else{
+                            that.globalData.isLogin=true
+                        }
+                    }
+                });
+             }
+         });
     },
     tip:function( params ){
         var that = this;
@@ -60,17 +121,7 @@ App({
             // 'Authorization': this.getCache( "token" )
         }
     },
-    buildUrl:function( path,params ){
-        var url = this.globalData.domain + path;
-        var _paramUrl = "";
-        if(  params ){
-            _paramUrl = Object.keys( params ).map( function( k ){
-                return [ encodeURIComponent( k ),encodeURIComponent( params[ k ] ) ].join("=");
-            }).join("&");
-            _paramUrl = "?" + _paramUrl;
-        }
-        return url + _paramUrl;
-    },
+
     getCache:function( key ){
         var value = undefined;
         try {

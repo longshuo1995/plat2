@@ -3,7 +3,9 @@ var app = getApp();
 Page({
     data: {},
     onLoad() {
-
+        app.globalData.cache_path=this.route
+        console.log(this.route)
+        app.check_login()
     },
     onShow() {
         this.getInfo();
