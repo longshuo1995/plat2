@@ -19,10 +19,9 @@ Page({
         processing:false
     },
     onLoad: function (options) {
-        var that = this;
-        var scene = decodeURIComponent(options.scene)
-        console.log()
         console.log(options.scene)
+        app.globalData['scene'] = '***xxx***scene'
+        console.log(app.globalData['scene'])
         wx.setNavigationBarTitle({
             title: app.globalData.shopName
         });
