@@ -37,7 +37,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 1,
+			"current": 0,
 			"list": [
 				{
 					"id": 0,
@@ -47,11 +47,11 @@
 					"scene": 1001
 				},
 				{
-					"id": -1,
+					"id": 1,
 					"name": "food_index",
 					"pathName": "pages/food/index",
 					"query": "scene=hahah",
-					"scene": null
+					"scene": 1001
 				}
 			]
 		}

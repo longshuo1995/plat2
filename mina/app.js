@@ -10,19 +10,17 @@ App({
         cache_path: '',
         //sdomain:"http://192.168.0.119:8999/api",
         // domain:"https://food.54php.cn/api",
-        domain:"http://127.0.0.1:8811/api",
-        sdomain:"http://127.0.0.1:8811/api"
+        domain:"http://140.143.163.73:8811/api",
+        sdomain:"http://140.143.163.73:8811/api"
     },
     goto_cache:function(){
         console.log(this.globalData.cache_path)
+        console.log('ready swith')
         wx.switchTab({
             url: this.globalData.cache_path,
         });
     },
     goto_login:function () {
-        var url = '/pages/index/index'
-        console.log('goto_login')
-        console.log(url)
         wx.navigateTo({
             url: '/pages/index/index',
         });
@@ -39,8 +37,6 @@ App({
         return url + _paramUrl;
     },
     check_login: function(){
-        console.log('this is app running...')
-        console.log(this.globalData.cache_path)
         if(this.globalData.isLogin){
             return
         }

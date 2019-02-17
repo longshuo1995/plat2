@@ -53,8 +53,8 @@ def checkReg():
         return jsonify(resp)
     openid = MemberService.getWechatOpenId(req['code'])
     print(openid)
-    # info = db_mongo.get_table('plat2', 'member').find_one({"openid": openid})
-    info = None
+    info = db_mongo.get_table('plat2', 'member').find_one({"openid": openid})
+    # info = None
     if info:
         resp['data']['is_register'] = True
     else:
