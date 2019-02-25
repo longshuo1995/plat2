@@ -2,6 +2,7 @@
     "pages": [
         "pages/index/index",
         "pages/food/index",
+        "pages/group/index",
         "pages/food/info",
         "pages/order/index",
         "pages/cart/index",
@@ -33,10 +34,10 @@
                 "text": "首页"
             },
             {
-                "pagePath": "pages/cart/index",
+                "pagePath": "pages/group/index",
                 "iconPath": "images/nav/cart-off.png",
                 "selectedIconPath": "images/nav/cart-on.png",
-                "text": "购物车"
+                "text": "团队"
             },
             {
                 "pagePath": "pages/my/index",

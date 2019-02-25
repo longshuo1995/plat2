@@ -10,14 +10,14 @@ def foodIndex():
     # 所有类
     data_cat_list = [{'id': 0, 'name': '全部'}]
     # TODO 需要修改成查询数据库
-    cat_list = [(1, 'cat_list1'), (2, 'cat_list2')]
+    cat_list = [(1, '免单商品'), (2, '高佣商品'), (3, '排行榜')]
     if cat_list:
         for item in cat_list:
             data_cat_list.append({'id': item[0], 'name': item[1]})
     resp['data']['cat_list'] = data_cat_list
 
     # food list
-    food_list = [(1, 'food_1'), (2, 'food_2')]
+    food_list = [(1, '免单商品'), (2, '高佣商品'), (3, '排行榜')]
     data_food_list = []
     if food_list:
         for item in food_list:
@@ -33,7 +33,6 @@ def foodIndex():
 def foodSearch():
     page_size = 10
     resp = {'code': 200, 'msg': '操作成功', 'data': {}}
-
     req = request.values
     cat_id = req.get('cat_id', 0)
     mix_kw = req.get('mix_kw', '')

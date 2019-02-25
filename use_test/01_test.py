@@ -1,38 +1,16 @@
-import json
+from common.libs import db_mongo
 
-from flask import Flask
-
-
-app = Flask(__name__)
-
-
-@app.route('/dema/list')
-def get_data():
-    app.logger.warn('warn....')
-    app.logger.debug('debug....')
-    data = {
-        'arealist': [
-            {
-                'areaId': 1,
-                'areaName': "西苑",
-                'priority': 1,
-            },
-            {
-                'areaId': 1,
-                'areaName': "北苑",
-                'priority': 1,
-            }
-
-        ]
-    }
-    return json.dumps(data)
-
-
-@app.errorhandler(404)
-def pg_not_found(error):
-    app.logger.error(str(error))
-    return "这个页面找不到呀。。。"
-
-
-if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=8082, debug=True)
+db_mongo.get_table('plat2', 'member').insert_one({
+    "_id": "test",
+    "nick_name": "test",
+    "refer_id": "refer_test",
+    "refer_nickname": "refer_test",
+    "count_vip": 11,
+    "count_leader": 12,
+    "count_group": 10,
+    "earn_vip": 100.11,
+    "earn_leader": 200,
+    "earn_group": 300,
+    "current_money": 1000,
+    "checking_money": 2000
+})

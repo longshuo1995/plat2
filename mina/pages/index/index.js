@@ -74,7 +74,7 @@ Page({
         if(!e.detail.userInfo){
             app.alert({
                 "content": "登录失败,请再次点击"
-            })
+            });
             return;
         }
         var data = e.detail.userInfo

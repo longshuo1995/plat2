@@ -1,0 +1,21 @@
+/**start.wxss**/
+page{
+  font-family: -apple-system-font, Helvetica Neue, Helvetica, sans-serif;
+  font-size: 10pt;
+  line-height: 150%;
+  min-height: 100%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.box_item {
+  width: 100%;
+    /*background: no-repeat 750rpx center;*/
+    background-size: 16rpx auto,750rpx auto;
+    margin: 20rpx 0;
+    border-bottom: 1px solid #eee;
+    line-height: 100rpx;
+    padding-left: 50rpx;
+}

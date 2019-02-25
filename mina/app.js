@@ -2,28 +2,24 @@
 App({
     onLaunch: function () {
     },
+    pre_load: function(){
+        if(this.globalData.isLogin){
+            return
+        }
+        console.log('ready login')
+        this.check_login()
+    },
     globalData: {
+        isLogin: false,
         userInfo: null,
         version: "1.0",
         shopName: "爱尚免单",
-        isLogin: false,
-        cache_path: '',
+        refer_openid: '',
+        domain:"http://0.0.0.0:8811/api",
         //sdomain:"http://192.168.0.119:8999/api",
         // domain:"https://food.54php.cn/api",
-        domain:"http://140.143.163.73:8811/api",
-        sdomain:"http://140.143.163.73:8811/api"
-    },
-    goto_cache:function(){
-        console.log(this.globalData.cache_path)
-        console.log('ready swith')
-        wx.switchTab({
-            url: this.globalData.cache_path,
-        });
-    },
-    goto_login:function () {
-        wx.navigateTo({
-            url: '/pages/index/index',
-        });
+        // domain:"http://140.143.163.73:8811/api",
+        // sdomain:"http://140.143.163.73:8811/api"
     },
     buildUrl:function( path,params ){
         var url = this.globalData.domain + path;
@@ -40,29 +36,25 @@ App({
         if(this.globalData.isLogin){
             return
         }
-        var that = this
+        var that = this;
         wx.login({
              success:function( res ){
                  if( !res.code ){
                     that.alert( { 'content':'登录失败，请再次点击~~' } );
                     return;
                  }
-
                  wx.request({
                     url:that.buildUrl( '/member/check-reg' ),
                     header:that.getRequestHeader(),
                     method:'POST',
-                    data:{ code:res.code },
+                    data:{
+                        code:res.code,
+                        'refer_openid':that.globalData.refer_openid,
+                    },
                     success:function( res ){
-                        var resp = res.data
-                        if(!resp.is_register){
-                            that.goto_login()
-                            // wx.switchTab({
-                            //     url: '/pages/index/index',
-                            // });
-                        }else{
-                            that.globalData.isLogin=true
-                        }
+                        var resp = res.data;
+                        that.globalData.userInfo = resp;
+                        that.globalData.isLogin = true;
                     }
                 });
              }

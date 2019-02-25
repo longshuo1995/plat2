@@ -19,9 +19,11 @@ Page({
         processing:false
     },
     onLoad: function (options) {
-        console.log(options.scene)
-        app.globalData['scene'] = '***xxx***scene'
-        console.log(app.globalData['scene'])
+        // console.log(options.scene)
+        // console.log('onload index...')
+        // app.globalData['scene'] = '***xxx***scene'
+        // console.log(app.globalData['scene'])
+        app.pre_load();
         wx.setNavigationBarTitle({
             title: app.globalData.shopName
         });
@@ -146,7 +148,6 @@ Page({
                         loadingMoreHidden: false
                     });
                 }
-
             }
         });
     }

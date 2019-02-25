@@ -1,0 +1,35 @@
+<!--start.wxml-->
+<view class="container">
+  <view class="line_layout">
+    <view class="box_item">
+        <view class="box_name">
+          下级队长人数: 10
+        </view>
+        <view class="box_money">
+          累计佣金: ￥934.19
+        </view>
+    </view>
+  </view>
+
+    <view class="line_layout">
+        <view class="box_item">
+            <view class="box_name">
+              下级会员人数: 100
+            </view>
+            <view class="box_money">
+              累计佣金: ￥934.87
+            </view>
+        </view>
+    </view>
+
+    <view class="line_layout">
+        <view class="box_item">
+            <view class="box_name">
+              分红团队数: 8
+            </view>
+            <view class="box_money">
+              累计分红: ￥912.11
+            </view>
+        </view>
+    </view>
+</view>
