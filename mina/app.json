@@ -3,6 +3,7 @@
         "pages/index/index",
         "pages/food/index",
         "pages/group/index",
+        "pages/group_item_detail/group_item_detail",
         "pages/food/info",
         "pages/order/index",
         "pages/cart/index",

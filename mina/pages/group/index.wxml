@@ -1,5 +1,45 @@
-<!--start.wxml-->
-<view class="container">
+ <!-- start.wxml -->
+<view class='user_info'>
+  <view class='img_border'><image class='user_img' src='{{user_icon}}'></image></view>
+  <view class='user_name'>{{user_name}}</view>
+</view>
+
+<view class='box_team'>
+ <view class="team_item item_first" bindtap='go_detail' data-level="1">
+    <view class="team_name">
+      <view class='team_name_top'>下级队长人数</view>
+      <view class='team_name_bottom'>10</view>
+    </view>
+    <view class="team_money" >
+      <view class='team_money_top'>累计佣金</view>
+      <view class='team_money_bottom'>￥934.19</view>
+    </view>
+  </view>
+  <view class='team_line'></view>
+  <view class="team_item" bindtap='go_detail' data-level="2">
+    <view class="team_name">
+      <view class='team_name_top'>下级会员人数</view>
+      <view class='team_name_bottom'>100</view>
+    </view>
+    <view class="team_money">
+      <view class='team_money_top'>累计佣金</view>
+      <view class='team_money_bottom'>￥934.87</view>
+    </view>
+  </view>
+  <view class='team_line'></view>
+  <view class="team_item" bindtap='go_detail' data-level="3">
+   <view class="team_name" >
+      <view class='team_name_top'>分红团队数</view>
+      <view class='team_name_bottom'>8</view>
+    </view>
+    <view class="team_money">
+      <view class='team_money_top'>累计分红</view>
+      <view class='team_money_bottom'>￥912.11</view>
+    </view>
+  </view>
+</view>
+
+<!-- <view class="container">
   <view class="line_layout">
     <view class="box_item">
         <view class="box_name">
@@ -32,4 +72,4 @@
             </view>
         </view>
     </view>
-</view>
+</view>  -->

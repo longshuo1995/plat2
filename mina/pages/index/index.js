@@ -16,7 +16,7 @@ Page({
         wx.setNavigationBarTitle({
             title: app.globalData.shopName
         });
-        // this.checkLogin();
+        this.checkLogin();
     },
     onShow: function () {
 
@@ -49,6 +49,8 @@ Page({
          var that = this;
          wx.login({
              success:function( res ){
+
+                 console.log(res.code);
                  if( !res.code ){
                     app.alert( { 'content':'登录失败，请再次点击~~' } );
                     return;

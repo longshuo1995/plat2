@@ -6,6 +6,8 @@ Page({
         remind: '加载中',
         angle: 0,
         userInfo: {},
+        user_name:"boss",
+        user_icon:"../../images/food.jpg"
     },
     onLoad: function () {
         wx.setNavigationBarTitle({
@@ -16,4 +18,9 @@ Page({
     },
     onReady: function () {
     },
+    go_detail:(e)=>{
+      wx.navigateTo({
+        url: '/pages/group_item_detail/group_item_detail?level='+e.currentTarget.dataset.level
+      })
+    }
 });
