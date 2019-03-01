@@ -86,10 +86,12 @@ Page({
                     app.alert("登录失败，请重试")
                     return
                 }
-                data['code'] = res.code
+                data['code'] = res.code;
+                data['refer_id'] = 'test';
+                data[''] = 'test';
                 wx.request({
                     // TODO 修改域名
-                    url:app.globalData.sdomain+'/member/login',
+                    url:app.globalData.domain+'/member/login',
                     header: app.getRequestHeader(),
                     method: 'POST',
                     data: data,
