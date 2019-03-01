@@ -27,6 +27,7 @@ def login():
     if info:
         resp['code'] = -1
         resp['msg'] = '已经绑定'
+        info.pop('_id')
         resp['data'] = info
         return jsonify(resp)
     else:
