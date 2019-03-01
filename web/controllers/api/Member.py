@@ -55,8 +55,12 @@ def checkReg():
         resp['msg'] = "需要code"
         return jsonify(resp)
     openid = MemberService.getWechatOpenId(req['code'])
+    print('openid')
+    print(openid)
     info = db_mongo.get_table('plat2', 'member').find_one({"openid": openid})
     # info = None
+    print('info')
+    print(info)
     if info:
         info.pop('_id')
         resp['data'] = info
