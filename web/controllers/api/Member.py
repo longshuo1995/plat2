@@ -57,10 +57,10 @@ def checkReg():
     info = db_mongo.get_table('plat2', 'member').find_one({"openid": openid})
     # info = None
     if info:
-        resp['data']['is_register'] = True
-    else:
         info.pop('_id')
         resp['data'] = info
+        resp['data']['is_register'] = True
+    else:
         resp['data']['is_register'] = False
     return jsonify(resp)
 
