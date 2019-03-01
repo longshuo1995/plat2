@@ -62,6 +62,7 @@ Page({
                     data:{ code:res.code },
                     success:function( res ){
                         var resp = res.data
+                        console.log(resp)
                         if(resp.is_register){
                             goToIndex()
                         }
