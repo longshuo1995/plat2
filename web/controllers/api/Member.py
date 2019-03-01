@@ -1,3 +1,5 @@
+import json
+
 from flask import request, jsonify
 from application import app
 from common.libs import db_mongo
@@ -39,7 +41,7 @@ def login():
                 }
         db_mongo.get_table('plat2', 'member').insert_one(info)
         resp['data'] = info
-        return jsonify(resp)
+        return json.dumps(resp)
 
 
 @route_api.route('/member/check-reg', methods=['GET', 'POST'])
