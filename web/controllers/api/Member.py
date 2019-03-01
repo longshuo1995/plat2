@@ -57,7 +57,7 @@ def checkReg():
     openid = MemberService.getWechatOpenId(req['code'])
     print('openid')
     print(openid)
-    info = db_mongo.get_table('plat2', 'member').find_one({"openid": openid})
+    info = db_mongo.get_table('plat2', 'member').find_one({"open_id": openid})
     # info = None
     print('info')
     print(info)
