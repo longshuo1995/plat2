@@ -64,8 +64,8 @@ def checkReg():
     if info:
         info.pop('_id')
         resp['data'] = info
-        resp['data']['is_register'] = True
+        resp['is_register'] = True
     else:
-        resp['data']['is_register'] = False
+        resp['is_register'] = False
     return jsonify(resp)
 
