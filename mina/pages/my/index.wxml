@@ -6,19 +6,17 @@
   <view style="height:20rpx;background: #eee;width:100%;"></view>
 
   <view class="my-item">
-    <navigator url="/pages/my/commentList" hover-class="navigator-hover">我的收益</navigator>
+    <navigator url="/pages/group/index" hover-class="navigator-hover">我的收益</navigator>
   </view>
   <view class="my-item">
     <navigator url="/pages/my/order_list" hover-class="navigator-hover">订单详情</navigator>
   </view>
   <view class="my-item">
-    <navigator url="/pages/my/order_list" hover-class="navigator-hover">奇遇分享</navigator>
-  </view>
-  <view class="my-item">
     <navigator url="/pages/my/order_list" hover-class="navigator-hover">我的收藏</navigator>
   </view>
-
-
+  <view class="my-item">
+    <navigator url="/pages/my/order_list" hover-class="navigator-hover">奇遇分享</navigator>
+  </view>
   <view class="my-item">
     <navigator url="/pages/my/commentList" hover-class="navigator-hover">联系我们</navigator>
   </view>

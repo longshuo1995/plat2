@@ -1,0 +1,184 @@
+/* pages/hot_sell/hot_sell.wxss */
+.clearfix:after{
+content:"";
+display:block;
+visibility:hidden;
+clear:both;
+height:0;
+}
+.clearfix{ /* 为了照顾ie6浏览器*/
+zoom:1;
+}
+.time_quantum{
+  height: 80rpx;
+  width: 90%;
+  margin:10rpx auto 20rpx;
+  border-radius: 40rpx;
+  border:1rpx solid #EAD55D;
+  display:flex;
+}
+.time_item{
+  flex: 1;
+  height: 100%;
+  box-sizing: border-box;
+  border-radius: 40rpx;
+  font-size: 30rpx;
+  color: #EAD55D;
+  line-height: 80rpx;
+  text-align: center
+}
+.time_item_active{
+  background: linear-gradient(#FCCA01, #FF9900); 
+  color: white;
+}
+.item_box{
+  height: 240rpx;
+  border-bottom: 1px solid #EFEFED;
+}
+.item_index{
+  width:120rpx;
+  height: 100%;
+  position: relative;
+}
+.item_index_number{
+  width: 60rpx;
+  height: 60rpx;
+  position: absolute;
+  transform: translate(-50%,-50%); 
+  left: 50%;
+  top: 50%;
+  line-height: 60rpx;
+  text-align: center;
+  background: #B3B1B2;
+  border-radius: 30rpx;
+  color: white;
+  box-shadow: 2px 2px 5px #B3B1B2;
+}
+.item_first{
+  background: #FFC806;
+  box-shadow: 2px 2px 5px #E4A53F;
+}
+.item_second{
+  background: #BAC1CF;
+  box-shadow: 2px 2px 5px #9E9BB1;
+}
+.item_three{
+  background: #E2B57C;
+  box-shadow: 2px 2px 5px #C78D4A;
+}
+.item_img{
+  width:200rpx;
+  height: 200rpx;
+  margin-top:20rpx;
+  border-radius: 20rpx;
+}
+.item_info_box{
+  height: 100%;
+  min-width: 200rpx;
+  max-width:400rpx;
+}
+.item_img,.item_index,.item_info_box{
+  float: left;
+}
+.item_name{
+  margin-top:20rpx;
+  text-overflow: -o-ellipsis-lastline;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+  font-size: 32rpx;
+}
+.sell_box{
+  position: relative;
+}
+.quan_img{
+  width: 100%;
+  height: 60rpx;
+  position: absolute;
+  z-index: -2;
+}
+.item_discount{
+  float: left;
+  font-size: 24rpx;
+  line-height: 60rpx;
+  color: white;
+  position: relative;
+  letter-spacing:0rpx;
+}
+.quan_text{
+  margin:0 20rpx;
+}
+.item_sale{
+  float: right;
+  font-size: 32rpx;
+  color: #D4D2D3;
+  margin-top: 10rpx;
+}
+.price_box{
+  margin-top:20rpx;
+}
+.item_price{
+  float: left;
+  color: #CA3954;
+  font-size: 36rpx;
+}
+.item_buy{
+  float: right;
+  background: #FECB05;
+  border-radius: 25rpx;
+  color: #F3613D;
+  padding: 5rpx 20rpx;
+  font-size:30rpx;
+}
+
+/*上划加载*/
+.comment-loadmore{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  padding:20rpx 0;
+  /* border-top: 2rpx solid #eeeeee; */
+  background: #fff;
+}
+.comment-loadmore-tips{
+  font-size: 30rpx;
+  color: #999999;
+}
+.comment-loading {
+  margin: 0 10rpx;
+  width: 40rpx;
+  height: 40rpx;
+  display: inline-block;
+  vertical-align: middle;
+  -webkit-animation: Loading 1s steps(12, end) infinite;
+          animation: Loading 1s steps(12, end) infinite;
+  background: transparent url(data:image/svg+xml;base64,PHN2ZyBjbGFzcz0iciIgd2lkdGg9JzEyMHB4JyBoZWlnaHQ9JzEyMHB4JyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj4KICAgIDxyZWN0IHg9IjAiIHk9IjAiIHdpZHRoPSIxMDAiIGhlaWdodD0iMTAwIiBmaWxsPSJub25lIiBjbGFzcz0iYmsiPjwvcmVjdD4KICAgIDxyZWN0IHg9JzQ2LjUnIHk9JzQwJyB3aWR0aD0nNycgaGVpZ2h0PScyMCcgcng9JzUnIHJ5PSc1JyBmaWxsPScjRTlFOUU5JwogICAgICAgICAgdHJhbnNmb3JtPSdyb3RhdGUoMCA1MCA1MCkgdHJhbnNsYXRlKDAgLTMwKSc+CiAgICA8L3JlY3Q+CiAgICA8cmVjdCB4PSc0Ni41JyB5PSc0MCcgd2lkdGg9JzcnIGhlaWdodD0nMjAnIHJ4PSc1JyByeT0nNScgZmlsbD0nIzk4OTY5NycKICAgICAgICAgIHRyYW5zZm9ybT0ncm90YXRlKDMwIDUwIDUwKSB0cmFuc2xhdGUoMCAtMzApJz4KICAgICAgICAgICAgICAgICByZXBlYXRDb3VudD0naW5kZWZpbml0ZScvPgogICAgPC9yZWN0PgogICAgPHJlY3QgeD0nNDYuNScgeT0nNDAnIHdpZHRoPSc3JyBoZWlnaHQ9JzIwJyByeD0nNScgcnk9JzUnIGZpbGw9JyM5Qjk5OUEnCiAgICAgICAgICB0cmFuc2Zvcm09J3JvdGF0ZSg2MCA1MCA1MCkgdHJhbnNsYXRlKDAgLTMwKSc+CiAgICAgICAgICAgICAgICAgcmVwZWF0Q291bnQ9J2luZGVmaW5pdGUnLz4KICAgIDwvcmVjdD4KICAgIDxyZWN0IHg9JzQ2LjUnIHk9JzQwJyB3aWR0aD0nNycgaGVpZ2h0PScyMCcgcng9JzUnIHJ5PSc1JyBmaWxsPScjQTNBMUEyJwogICAgICAgICAgdHJhbnNmb3JtPSdyb3RhdGUoOTAgNTAgNTApIHRyYW5zbGF0ZSgwIC0zMCknPgogICAgPC9yZWN0PgogICAgPHJlY3QgeD0nNDYuNScgeT0nNDAnIHdpZHRoPSc3JyBoZWlnaHQ9JzIwJyByeD0nNScgcnk9JzUnIGZpbGw9JyNBQkE5QUEnCiAgICAgICAgICB0cmFuc2Zvcm09J3JvdGF0ZSgxMjAgNTAgNTApIHRyYW5zbGF0ZSgwIC0zMCknPgogICAgPC9yZWN0PgogICAgPHJlY3QgeD0nNDYuNScgeT0nNDAnIHdpZHRoPSc3JyBoZWlnaHQ9JzIwJyByeD0nNScgcnk9JzUnIGZpbGw9JyNCMkIyQjInCiAgICAgICAgICB0cmFuc2Zvcm09J3JvdGF0ZSgxNTAgNTAgNTApIHRyYW5zbGF0ZSgwIC0zMCknPgogICAgPC9yZWN0PgogICAgPHJlY3QgeD0nNDYuNScgeT0nNDAnIHdpZHRoPSc3JyBoZWlnaHQ9JzIwJyByeD0nNScgcnk9JzUnIGZpbGw9JyNCQUI4QjknCiAgICAgICAgICB0cmFuc2Zvcm09J3JvdGF0ZSgxODAgNTAgNTApIHRyYW5zbGF0ZSgwIC0zMCknPgogICAgPC9yZWN0PgogICAgPHJlY3QgeD0nNDYuNScgeT0nNDAnIHdpZHRoPSc3JyBoZWlnaHQ9JzIwJyByeD0nNScgcnk9JzUnIGZpbGw9JyNDMkMwQzEnCiAgICAgICAgICB0cmFuc2Zvcm09J3JvdGF0ZSgyMTAgNTAgNTApIHRyYW5zbGF0ZSgwIC0zMCknPgogICAgPC9yZWN0PgogICAgPHJlY3QgeD0nNDYuNScgeT0nNDAnIHdpZHRoPSc3JyBoZWlnaHQ9JzIwJyByeD0nNScgcnk9JzUnIGZpbGw9JyNDQkNCQ0InCiAgICAgICAgICB0cmFuc2Zvcm09J3JvdGF0ZSgyNDAgNTAgNTApIHRyYW5zbGF0ZSgwIC0zMCknPgogICAgPC9yZWN0PgogICAgPHJlY3QgeD0nNDYuNScgeT0nNDAnIHdpZHRoPSc3JyBoZWlnaHQ9JzIwJyByeD0nNScgcnk9JzUnIGZpbGw9JyNEMkQyRDInCiAgICAgICAgICB0cmFuc2Zvcm09J3JvdGF0ZSgyNzAgNTAgNTApIHRyYW5zbGF0ZSgwIC0zMCknPgogICAgPC9yZWN0PgogICAgPHJlY3QgeD0nNDYuNScgeT0nNDAnIHdpZHRoPSc3JyBoZWlnaHQ9JzIwJyByeD0nNScgcnk9JzUnIGZpbGw9JyNEQURBREEnCiAgICAgICAgICB0cmFuc2Zvcm09J3JvdGF0ZSgzMDAgNTAgNTApIHRyYW5zbGF0ZSgwIC0zMCknPgogICAgPC9yZWN0PgogICAgPHJlY3QgeD0nNDYuNScgeT0nNDAnIHdpZHRoPSc3JyBoZWlnaHQ9JzIwJyByeD0nNScgcnk9JzUnIGZpbGw9JyNFMkUyRTInCiAgICAgICAgICB0cmFuc2Zvcm09J3JvdGF0ZSgzMzAgNTAgNTApIHRyYW5zbGF0ZSgwIC0zMCknPgogICAgPC9yZWN0Pgo8L3N2Zz4=) no-repeat;
+  background-size: 100%;
+}
+@-webkit-keyframes Loading {
+  0% {
+    -webkit-transform: rotate3d(0, 0, 1, 0deg);
+            transform: rotate3d(0, 0, 1, 0deg);
+  }
+  100% {
+    -webkit-transform: rotate3d(0, 0, 1, 360deg);
+            transform: rotate3d(0, 0, 1, 360deg);
+  }
+}
+@keyframes Loading {
+  0% {
+    -webkit-transform: rotate3d(0, 0, 1, 0deg);
+            transform: rotate3d(0, 0, 1, 0deg);
+  }
+  100% {
+    -webkit-transform: rotate3d(0, 0, 1, 360deg);
+            transform: rotate3d(0, 0, 1, 360deg);
+  }
+}
+.no-more{
+  text-align: center;
+  color: #999;
+}

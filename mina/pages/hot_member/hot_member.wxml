@@ -1,0 +1,40 @@
+<!--pages/hot_sell/hot_sell.wxml-->
+<!-- 热销时间段 -->
+<view class='time_quantum'>
+  <view class="time_item {{tp==0?'time_item_active':''}}" bindtap='selectTab' data-tp='0'>
+    佣金排名
+  </view>
+  <view class="time_item {{tp==1?'time_item_active':''}}" data-tp='1' bindtap='selectTab'>
+   粉丝排名
+  </view>
+
+</view>
+
+<!-- 商品列表 -->
+<block wx:for="{{data_list}}" wx:key="{{index}}">
+  <view class='item_box'>
+    <view class='item_index'>
+      <view class="item_index_number {{index==0?'item_first':''}} {{index==1?'item_second':''}} {{index==2?'item_three':''}}">{{index+1}}</view>
+    </view>
+    <image src="{{item.icon}}"  lazy-load="true" class="item_img" mode='aspectFill' ></image>
+    <view class='item_info_box'>
+      <view class='item_name'>{{item.nick_name}}</view>
+      <view class='clearfix'>
+        <view class='item_discount'>
+        <image src='../../images/quan.png' class='quan_img'></image>
+
+        </view>
+        <view class='item_sale'>{{item.title}}:{{item.value}}</view>
+      </view>
+
+    </view>
+  </view>
+</block>
+
+ <view class="no-more" hidden='{{noMore}}'>--没有更多商品了--</view>
+<view hidden='{{show_model}}'>
+  <view class="comment-loadmore" hidden='{{!noMore}}'>
+    <view class="comment-loading"></view>
+    <view class="comment-loadmore-tips">正在加载</view>
+  </view>
+</view> 

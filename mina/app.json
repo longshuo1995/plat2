@@ -1,52 +1,62 @@
 {
-    "pages": [
-        "pages/index/index",
-        "pages/food/index",
-        "pages/group/index",
-        "pages/group_item_detail/group_item_detail",
-        "pages/food/info",
-        "pages/order/index",
-        "pages/cart/index",
-        "pages/my/order_list",
-        "pages/my/order_info",
-        "pages/my/addressList",
-        "pages/my/addressSet",
-        "pages/my/comment",
-        "pages/my/commentList",
-        "pages/my/index"
-    ],
-    "window": {
-        "backgroundTextStyle": "light",
-        "navigationBarBackgroundColor": "#fff",
-        "navigationBarTitleText": "WeChat",
-        "navigationBarTextStyle": "black"
-    },
-    "tabBar": {
-        "color": "#6e6d6b",
-        "selectedColor": "#e64340",
-        "borderStyle": "white",
-        "backgroundColor": "#fff",
-        "box-shadow": "0 0 6px 0",
-        "list": [
-            {
-                "pagePath": "pages/food/index",
-                "iconPath": "images/nav/home-off.png",
-                "selectedIconPath": "images/nav/home-on.png",
-                "text": "首页"
-            },
-            {
-                "pagePath": "pages/group/index",
-                "iconPath": "images/nav/cart-off.png",
-                "selectedIconPath": "images/nav/cart-on.png",
-                "text": "团队"
-            },
-            {
-                "pagePath": "pages/my/index",
-                "iconPath": "images/nav/my-off.png",
-                "selectedIconPath": "images/nav/my-on.png",
-                "text": "我的"
-            }
-        ]
-    },
-    "navigateToMiniProgramAppIdList": ["wx32540bd863b27570"]
+  "pages": [
+    "pages/index/index",
+    "pages/food/index",
+    "pages/group/index",
+    "pages/food/info",
+    "pages/order/index",
+    "pages/cart/index",
+    "pages/my/order_list",
+    "pages/my/order_info",
+    "pages/my/addressList",
+    "pages/my/addressSet",
+    "pages/my/comment",
+    "pages/my/commentList",
+    "pages/my/index",
+    "pages/group_item_detail/group_item_detail",
+    "pages/hot_sell/hot_sell",
+    "pages/hot_member/hot_member"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "WeChat",
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "color": "#6e6d6b",
+    "selectedColor": "#e64340",
+    "borderStyle": "white",
+    "backgroundColor": "#fff",
+    "box-shadow": "0 0 6px 0",
+    "list": [
+      {
+        "pagePath": "pages/food/index",
+        "iconPath": "images/nav/home-off.png",
+        "selectedIconPath": "images/nav/home-on.png",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/hot_sell/hot_sell",
+        "iconPath": "images/nav/order-off.png",
+        "selectedIconPath": "images/nav/order-on.png",
+        "text": "奇遇排名"
+      },
+      {
+        "pagePath": "pages/hot_member/hot_member",
+        "iconPath": "images/nav/cart-off.png",
+        "selectedIconPath": "images/nav/cart-on.png",
+        "text": "高佣会员"
+      },
+      {
+        "pagePath": "pages/my/index",
+        "iconPath": "images/nav/my-off.png",
+        "selectedIconPath": "images/nav/my-on.png",
+        "text": "我的"
+      }
+    ]
+  },
+  "navigateToMiniProgramAppIdList": [
+    "wx32540bd863b27570"
+  ]
 }
