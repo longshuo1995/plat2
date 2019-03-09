@@ -5,7 +5,7 @@ from web.controllers.api import route_api
 
 
 @route_api.route('/my/order', methods=['GET', 'POST'])
-def hot_goods():
+def my_order():
 
     resp = {'code': 200, 'msg': '操作成功~', 'data': {}}
     req = request.values
