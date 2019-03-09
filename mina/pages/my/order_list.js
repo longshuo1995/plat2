@@ -2,10 +2,10 @@ var app = getApp();
 Page({
     data: {
         order_list:[],
-        statusType: ["待付款", "待发货", "待确认", "待评价", "已完成","已关闭"],
-        status:[ "-8","-7","-6","-5","1","0" ],
+        statusType: ["已成团", "已确认收货", "审核成功", "审核失败"],
+        status:[ "0","1","2","3" ],
         currentType: 0,
-        tabClass: ["", "", "", "", "", ""]
+        tabClass: ["", "", "", ""]
     },
     statusTap: function (e) {
         var curType = e.currentTarget.dataset.index;

@@ -3,7 +3,9 @@
   <view class='img_border'><image class='user_img' src='{{user_icon}}'></image></view>
   <view class='user_name'>{{user_info.nick_name}}</view>
 </view>
-
+<view class='my_monye'>
+  <view>可提现余额</view><view>{{user_info.useable_money}}</view> <view>提现</view>
+</view>
 <view class='box_team'>
  <view class="team_item item_first" bindtap='go_detail' data-level="1">
     <view class="team_name">

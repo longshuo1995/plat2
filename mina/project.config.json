@@ -49,7 +49,7 @@
 				{
 					"id": 1,
 					"name": "food_index",
-					"pathName": "pages/index/index",
+					"pathName": "pages/food/index",
 					"query": "scene=hahah",
 					"scene": 1001
 				}

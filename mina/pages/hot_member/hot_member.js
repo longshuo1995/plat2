@@ -83,7 +83,7 @@ Page({
     if (lay_load) {
       lay_load = false
       wx.request({
-        url: 'http://140.143.163.73:8811/api/goods/hot_goods',
+        url: 'http://140.143.163.73:8811/api/member/hot_member',
         data: {
           tp: that.data.tp,
           pages: that.data.pages+1
@@ -133,7 +133,7 @@ Page({
       let tp = e.currentTarget.dataset.tp;
       let that = this;
       wx.request({
-        url: 'http://140.143.163.73:8811/api/goods/hot_goods', // 仅为示例，并非真实的接口地址
+        url: 'http://140.143.163.73:8811/api/member/hot_member', // 仅为示例，并非真实的接口地址
         data: {
           tp: tp,
           pages:0
