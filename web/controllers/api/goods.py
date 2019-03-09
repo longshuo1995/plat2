@@ -8,7 +8,7 @@ from web.controllers.api import route_api
 
 
 @route_api.route('/goods/hot_goods', methods=['GET', 'POST'])
-def login():
+def hot_goods():
     req = request.values
     tp = req.get('tp')
     resp = {'code': 200, 'msg': '成功', 'data': []}
