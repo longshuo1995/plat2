@@ -1,7 +1,7 @@
  <!-- start.wxml -->
 <view class='user_info'>
   <view class='img_border'><image class='user_img' src='{{user_icon}}'></image></view>
-  <view class='user_name'>{{user_name}}</view>
+  <view class='user_name'>{{user_info.nick_name}}</view>
 </view>
 
 <view class='box_team'>
@@ -11,7 +11,7 @@
       <view class='team_name_bottom'>10</view>
     </view>
     <view class="team_money" >
-      <view class='team_money_top'>累计佣金</view>
+      <view class='team_money_top'>{{test}}</view>
       <view class='team_money_bottom'>￥934.19</view>
     </view>
   </view>
@@ -38,38 +38,3 @@
     </view>
   </view>
 </view>
-
-<!-- <view class="container">
-  <view class="line_layout">
-    <view class="box_item">
-        <view class="box_name">
-          下级队长人数: 10
-        </view>
-        <view class="box_money">
-          累计佣金: ￥934.19
-        </view>
-    </view>
-  </view>
-
-    <view class="line_layout">
-        <view class="box_item">
-            <view class="box_name">
-              下级会员人数: 100
-            </view>
-            <view class="box_money">
-              累计佣金: ￥934.87
-            </view>
-        </view>
-    </view>
-
-    <view class="line_layout">
-        <view class="box_item">
-            <view class="box_name">
-              分红团队数: 8
-            </view>
-            <view class="box_money">
-              累计分红: ￥912.11
-            </view>
-        </view>
-    </view>
-</view>  -->

@@ -41,6 +41,7 @@ def login():
                 "create_time": "2018-01-29", "level": 0,
                 }
         db_mongo.get_table('plat2', 'member').insert_one(info)
+        info.pop('_id')
         resp['data'] = info
         return json.dumps(resp)
 

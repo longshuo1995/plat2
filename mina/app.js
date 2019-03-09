@@ -9,6 +9,9 @@ App({
         console.log('ready login')
         this.check_login()
     },
+    data:{
+        'test': 'test'
+    },
     globalData: {
         isLogin: false,
         userInfo: null,

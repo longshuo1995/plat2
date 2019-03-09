@@ -5,7 +5,6 @@ Page({
     data: {
         remind: '加载中',
         angle: 0,
-        userInfo: {},
     },
     goToIndex: function () {
         wx.switchTab({
@@ -64,7 +63,9 @@ Page({
                         var resp = res.data
                         console.log(resp)
                         if(resp.is_register){
-                            goToIndex()
+                            app.globalData.userInfo = resp.data;
+                            console.log(resp);
+                            that.goToIndex()
                         }
                         // app.setCache( "token",res.data.data.token );
                         //that.goToIndex();
@@ -99,8 +100,8 @@ Page({
                     // openid获取
 
                     success:function (res) {
-                        console.log(res)
-                        app.goto_cache()
+                        console.log(res);
+                        app.goToIndex();
                     }
                 })
             }
