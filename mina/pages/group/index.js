@@ -11,11 +11,10 @@ Page({
     },
     onLoad: function () {
         console.log(app.globalData.userInfo);
-        this.data.userInfo = app.globalData.userInfo;
-        console.log(this.data.userInfo);
         wx.setNavigationBarTitle({
             title: '我的团队'
         });
+        app.pre_load(this)
     },
     onShow: function () {
     },

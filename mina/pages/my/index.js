@@ -3,7 +3,7 @@ var app = getApp();
 Page({
     data: {},
     onLoad() {
-        app.pre_load();
+        app.pre_load(this);
     },
     onShow() {
         this.getInfo();

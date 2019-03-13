@@ -10,7 +10,8 @@ Page({
     data_list:[],
     noMore: true,
     show_model: true,
-    pages: 0
+    pages: 0,
+    team_index:0,
   },
 
   /**
@@ -149,5 +150,12 @@ Page({
           })
         }
       })
-  } 
+  },
+  teamSelete:function(e){
+    let index = e.currentTarget.dataset.index;
+    let that = this;
+    that.setData({
+      team_index: index
+    })
+  }
 })

@@ -2,12 +2,18 @@
 App({
     onLaunch: function () {
     },
-    pre_load: function(){
-        if(this.globalData.isLogin){
-            return
+    pre_load: function(page_ctx){
+        console.log(this.globalData.isLogin);
+        if(!this.globalData.isLogin){
+            this.check_login();
         }
-        console.log('ready login')
-        this.check_login()
+
+        console.log('set data....');
+        console.log(this.globalData.userInfo);
+        page_ctx.setData({
+            userInfo:this.globalData.userInfo,
+        });
+
     },
     data:{
         'test': 'test'
@@ -18,6 +24,7 @@ App({
         version: "1.0",
         shopName: "爱尚免单",
         refer_openid: '',
+        nickName: '',
         // domain:"http://0.0.0.0:8811/api",
         //sdomain:"http://192.168.0.119:8999/api",
         // domain:"https://food.54php.cn/api",
@@ -56,8 +63,14 @@ App({
                     },
                     success:function( res ){
                         var resp = res.data;
-                        that.globalData.userInfo = resp;
-                        that.globalData.isLogin = true;
+                        console.log('*****');
+                        that.globalData.userInfo = resp.data;
+                        console.log(resp.data);
+                        that.globalData.isLogin = resp.is_register;
+                        if(!that.globalData.isLogin){
+                        //    跳转到登录页面。
+                            that.goToLogin()
+                        }
                     }
                 });
              }
@@ -126,5 +139,15 @@ App({
              key:key,
             data:value
         });
-    }
+    },
+    goToIndex: function() {
+        wx.switchTab({
+            url: '/pages/food/index',
+        });
+    },
+    goToLogin: function() {
+        wx.switchTab({
+            url: '/pages/index/index',
+        });
+    },
 });

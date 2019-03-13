@@ -14,7 +14,7 @@ zoom:1;
   width: 90%;
   margin:10rpx auto 20rpx;
   border-radius: 40rpx;
-  border:1rpx solid #EAD55D;
+  border:1rpx solid #E85654;
   display:flex;
 }
 .time_item{
@@ -23,12 +23,12 @@ zoom:1;
   box-sizing: border-box;
   border-radius: 40rpx;
   font-size: 30rpx;
-  color: #EAD55D;
+  color: #E85654;
   line-height: 80rpx;
   text-align: center
 }
 .time_item_active{
-  background: linear-gradient(#FCCA01, #FF9900); 
+  background: linear-gradient(#E15654, #EE5654);
   color: white;
 }
 .item_box{
@@ -127,9 +127,9 @@ zoom:1;
 }
 .item_buy{
   float: right;
-  background: #FECB05;
+  background: #E85654;
   border-radius: 25rpx;
-  color: #F3613D;
+  color: #FFFFFF;
   padding: 5rpx 20rpx;
   font-size:30rpx;
 }

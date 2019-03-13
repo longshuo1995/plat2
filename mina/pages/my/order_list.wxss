@@ -153,3 +153,113 @@
     border:1px solid #e64340;
     color: #e64340;
 }
+
+.status-box .new_order_list{
+  height:68rpx !important;
+  margin:10rpx 20rpx;
+  border-radius:30rpx;
+  line-height:68rpx;
+  background:white;
+}
+.status-box  .new_active{
+  color: #e64340;
+}
+.new_bg{
+  background: #F2f2f2;
+}
+.own_icon{
+  width:50rpx;
+  height:50rpx;
+  border-radius:25rpx;
+}
+.order_state{
+  flex:10;
+  text-align:right;
+}
+.state_font{
+  padding:10rpx;
+  border:1rpx solid #D4D4D4;
+  border-radius:20rpx;
+  color:#D4D4D4;
+
+}
+.goods_info{
+
+}
+.goods_img{
+  width: 200rpx;
+  height: 200rpx;
+  float: left;
+  border-radius: 20rpx;
+  margin:20rpx 10rpx;
+
+}
+.good_box{
+  height: 240rpx;
+  position: relative;
+}
+.good_name{
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow:ellipsis;
+  text-indent:2em;
+}
+.good_code{
+  color: #ACACAC;
+  font-size:34rpx;
+  margin-top:30rpx;
+}
+.good_copy{
+  margin-left: 10rpx;
+}
+.good_number{
+  position:absolute;
+  right:10rpx;
+}
+.good_point{
+  position:absolute;
+  bottom:20rpx;
+  left:240rpx;
+  background:#66CDAA;
+  color:white;
+  border-radius:40rpx;
+  padding:10rpx;
+  font-size:30rpx;
+}
+
+.order_time{
+  height:60rpx;
+  line-height:60rpx;
+  font-size:24rpx;
+  color:#BABABA;
+  margin: 0 10rpx;
+}
+.order_time_start{
+  float: left;
+}
+.order_time_end{
+  float: right;
+}
+
+.price_box_item{
+  width:200rpx;
+  float:left;
+  text-align:center;
+  font-size:32rpx;
+}
+.price_box_text{
+  margin:10rpx;
+}
+.price_box_text_bolder{
+  font-weight:bolder;
+}
+.clearfix:after{
+content:"";
+display:block;
+visibility:hidden;
+clear:both;
+height:0;
+}
+.clearfix{ /* 为了照顾ie6浏览器*/
+zoom:1;
+}

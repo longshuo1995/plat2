@@ -15,7 +15,8 @@
     "pages/my/index",
     "pages/group_item_detail/group_item_detail",
     "pages/hot_sell/hot_sell",
-    "pages/hot_member/hot_member"
+    "pages/hot_member/hot_member",
+    "pages/my/partner"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -40,13 +41,13 @@
         "pagePath": "pages/hot_sell/hot_sell",
         "iconPath": "images/nav/order-off.png",
         "selectedIconPath": "images/nav/order-on.png",
-        "text": "奇遇排名"
+        "text": "奇遇榜"
       },
       {
         "pagePath": "pages/hot_member/hot_member",
-        "iconPath": "images/nav/cart-off.png",
-        "selectedIconPath": "images/nav/cart-on.png",
-        "text": "高佣会员"
+        "iconPath": "images/nav/order-off.png",
+        "selectedIconPath": "images/nav/order-on.png",
+        "text": "风云榜"
       },
       {
         "pagePath": "pages/my/index",

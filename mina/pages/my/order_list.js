@@ -2,10 +2,18 @@ var app = getApp();
 Page({
     data: {
         order_list:[],
+        orderState:["所有订单","有效订单","失效订单","可提现订单"],
         statusType: ["已成团", "已确认收货", "审核成功", "审核失败"],
         status:[ "0","1","2","3" ],
         currentType: 0,
-        tabClass: ["", "", "", ""]
+        currentOrderType:0,
+        tabClass: ["", "", "", ""],
+    },
+    orderStatusTap: function (e) {
+      var curType = e.currentTarget.dataset.index;
+      this.setData({
+        currentOrderType: curType
+      });
     },
     statusTap: function (e) {
         var curType = e.currentTarget.dataset.index;

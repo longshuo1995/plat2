@@ -44,3 +44,70 @@
     line-height: 100rpx;
     padding-left: 100rpx;
 }
+
+/* 收益信息 */
+.earnings_box{
+  width: 96%;
+  height: 260rpx;
+  margin: 10rpx auto 10rpx;
+  box-shadow: 2rpx 2rpx 5rpx #8F8F8F;
+}
+.balance{
+  height: 100rpx;
+  position: relative;
+}
+.earnings_box_line{
+    width: 90%;
+    height: 4rpx;
+    margin: 0 auto;
+    background: #f3f3f3;
+}
+.price_info{
+  height: 140rpx;
+}
+.balance_info{
+  position: absolute;
+  height: 80rpx;
+  margin-top:10rpx;
+  line-height: 80rpx;
+  left:5%;
+}
+
+.balance_get{
+  position:absolute;
+  border:2rpx solid #E64340;
+  border-radius:20rpx;
+  right:5%;
+  height:60rpx;
+  line-height:60rpx;
+  font-size:30rpx;
+  padding:0 20rpx;
+  margin-top:20rpx;
+  color:#e64340;
+}
+.balance_info_price{
+  color: #e64340;
+  font-weight: bolder;
+}
+
+.price_info_item{
+  float:left;
+  box-sizing:border-box;
+  width:30%;
+  text-align:center;
+  height:100rpx;
+  margin-top:20rpx;
+  color: #CECECE;
+  font-size:36rpx;
+  
+  
+}
+.item_first{
+  margin-left:5%;
+}
+.item_line{
+  border-right:2rpx solid #f2f2f2;
+}
+.price_item{
+  color: #e64340;
+}

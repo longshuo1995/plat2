@@ -27,6 +27,7 @@ Page({
         wx.setNavigationBarTitle({
             title: app.globalData.shopName
         });
+        this.getFoodList();
     },
     //解决切换不刷新维内托，每次展示都会调用这个方法
     onShow:function(){

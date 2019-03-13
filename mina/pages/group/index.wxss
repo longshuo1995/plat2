@@ -29,7 +29,7 @@ page{
 .img_border{
   width: 100px;
   height: 100px;
-  border-radius: 50px;
+  border-radius: 30px;
   background: white;
   float: left;
   margin:10px 0 0 10px;
@@ -43,7 +43,7 @@ page{
 }
 .user_name{
   float: left;
-  font-size: 30px;
+  font-size: 20px;
   font-weight: bolder;
   margin-top:45px;
   margin-left: 30px;

@@ -6,21 +6,32 @@
 </view>
 
 
-<block wx:for="{{res_data}}" wx:key="{{index}}">
+<view class='box_header' >
+  <view class='time'>{{time_number}}</view>
+  <view class='type'>收入</view>
+</view>
+
+<view class='order_number'>共收入26笔，合计</view>
+<view class='price_number'>￥{{price_number}}</view>
+
+<view class="container">
+  <ff-canvas id="column-dom" canvas-id="column" opts="{{ opts }}"></ff-canvas>
+</view>
+
+<!-- <block wx:for="{{res_data}}" wx:key="{{index}}">
   <view class='item_box'>
     <image src="../../images/food.jpg"  lazy-load="true" class="goods-img" mode='aspectFill' ></image>
-        <!-- <image src="{{item.nick_icon}}"  lazy-load="true" class="goods-img" mode='aspectFill' ></image> -->
     <view class='item-name'>{{item.nick_name}}</view>
     <view class='item-msg'>{{item.msg}}</view>
     <view class='level_name'>{{item.level_name}}</view>
   </view>
-</block>
+</block> -->
 
- <view class="no-more" hidden='{{noMore}}'>--没有更多商品了--</view>
+ <!-- <view class="no-more" hidden='{{noMore}}'>--没有更多商品了--</view>
 <view hidden='{{show_model}}'>
   <view class="comment-loadmore" hidden='{{!noMore}}'>
     <view class="comment-loading"></view>
     <view class="comment-loadmore-tips">正在加载</view>
   </view>
-</view> 
+</view>  -->
 

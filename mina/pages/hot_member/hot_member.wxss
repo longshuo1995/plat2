@@ -182,3 +182,20 @@ zoom:1;
   text-align: center;
   color: #999;
 }
+
+
+
+.team_box{
+  height: 80rpx
+}
+.myself,.team{
+  float: left;
+  width: 50%;
+  line-height: 80rpx;
+  text-align: center;
+  box-sizing: border-box;
+}
+.team_active{
+  border-bottom: 2rpx solid #EE5654;
+  color: #EE5654;
+}

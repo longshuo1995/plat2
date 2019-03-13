@@ -1,11 +1,9 @@
  <!-- start.wxml -->
 <view class='user_info'>
-  <view class='img_border'><image class='user_img' src='{{user_icon}}'></image></view>
-  <view class='user_name'>{{user_info.nick_name}}</view>
+  <view class='img_border'><image class='user_img' src='{{userInfo.icon_url}}'></image></view>
+  <view class='user_name'>{{userInfo.nick_name}}</view>
 </view>
-<view class='my_monye'>
-  <view>可提现余额</view><view>{{user_info.useable_money}}</view> <view>提现</view>
-</view>
+
 <view class='box_team'>
  <view class="team_item item_first" bindtap='go_detail' data-level="1">
     <view class="team_name">
@@ -13,7 +11,7 @@
       <view class='team_name_bottom'>10</view>
     </view>
     <view class="team_money" >
-      <view class='team_money_top'>{{test}}</view>
+      <view class='team_money_top'>累计佣金</view>
       <view class='team_money_bottom'>￥934.19</view>
     </view>
   </view>

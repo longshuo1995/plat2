@@ -1,4 +1,8 @@
 <!--pages/hot_sell/hot_sell.wxml-->
+<view class='team_box'>
+  <view class='myself {{team_index==0?"team_active":""}}' bindtap='teamSelete' data-index='0'>个人</view>
+  <view class='team {{team_index==1?"team_active":""}}'  bindtap='teamSelete' data-index='1'>团队</view>
+</view>
 <!-- 热销时间段 -->
 <view class='time_quantum'>
   <view class="time_item {{tp==0?'time_item_active':''}}" bindtap='selectTab' data-tp='0'>
