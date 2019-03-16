@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>商品列表</title>
+</head>
+<body>
+        <a href="/good/add_good">添加商品</a>
+        {% for tp_item in data.food_tp_list %}
+            <a href="/good/good_list?tp={{tp_item._id}}">{{tp_item.name}}</a>
+        {% endfor %}
+
+        {% for item in data.food_list %}
+            <p>
+                <img src="{{item.imgurl}}"/>
+                <a href="/good/good_detail?good={{tp_item._id}}">{{item.name}}</a>
+            </p>
+        {% endfor %}
+</body>
+</html>

@@ -45,8 +45,8 @@
       },
       {
         "pagePath": "pages/hot_member/hot_member",
-        "iconPath": "images/nav/order-off.png",
-        "selectedIconPath": "images/nav/order-on.png",
+        "iconPath": "images/nav/range-off.png",
+        "selectedIconPath": "images/nav/range-on.png",
         "text": "风云榜"
       },
       {
