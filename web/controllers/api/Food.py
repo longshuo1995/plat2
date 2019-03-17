@@ -41,7 +41,7 @@ def foodSearch():
     if cat_id and cat_id != '0':
         query['type'] = cat_id
     if mix_kw:
-        query['name'] = {"name": {"$regex": '.*'.join(mix_kw)}}
+        query['name'] = {"$regex": '.*'.join(mix_kw)}
     print(query)
 
     offset = (p-1) * page_size
