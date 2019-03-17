@@ -23,7 +23,7 @@ def good_list():
 @route_good.route('/good_detail', methods=['GET'])
 def good_detail():
     req = request.values
-    _id = int(req.get('_id', 0))
+    _id = int(float(req.get('_id', 0)))
     good_tp_list = list(db_mongo.get_table('plat2', 'good_type_list').find())
     good = {}
     if _id:
