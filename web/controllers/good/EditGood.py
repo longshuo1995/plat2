@@ -44,6 +44,7 @@ def good_detail():
 @route_good.route('/submit_edit', methods=['GET', 'POST'])
 def good_submit_edit():
     req = request.values
+    req = dict(req)
     _id = req.get('_id', 0)
     req['_id'] = _id
     if not _id:
