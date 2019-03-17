@@ -8,13 +8,14 @@
         <a href="/good/good_list">返回列表</a>
         <br/>
         <form action="/good/submit_edit">
+            _id<input type="text" name="_id" value="{{data.good._id}}"/><br>
             名称<input type="text" name="name" value="{{data.good.name}}"/><br>
             图片<input type="text" name="imgurl" value="{{data.good.imgurl}}"/><br>
             价格<input type="number" name="price" value="{{data.good.price}}"/><br>
             折扣券<input type="number" name="dis_price" value="{{data.good.dis_price}}"/><br>
             类型<select name="type">
                     {% for tp_item in data.good_tp_list %}
-                        <option value="tp_item._id">tp_item.name</option>
+                        <option value="tp_item._id">{{tp_item.name}}</option>
                     {% endfor %}
                 </select>
         </form>
