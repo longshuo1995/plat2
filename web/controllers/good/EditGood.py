@@ -63,6 +63,6 @@ def add_good_tp():
     name = req.get('name')
     if not name:
         return "需要填入name"
-    db_mongo.get_table('plat2', 'good_tp').insert_one({"_id": db_mongo.getNextValue("good_tp_id")})
+    db_mongo.get_table('plat2', 'good_tp').insert_one({"_id": db_mongo.getNextValue("good_tp_id"), "name": name})
     return redirect("/good/good_list")
 
