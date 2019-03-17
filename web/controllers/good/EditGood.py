@@ -10,8 +10,8 @@ def good_list():
     req = request.values
     pages = req.get('page', 0)
     skip_count = pages * PAGER_PER_COUNT
-    good_tp_list = list(db_mongo.get_table('plat2', 'good_type_list').find())
-    good_list = list(db_mongo.get_table('plat2', 'good_list').find().skip(skip_count).limit(PAGER_PER_COUNT))
+    good_tp_list = list(db_mongo.get_table('plat2', 'good_type').find())
+    good_list = list(db_mongo.get_table('plat2', 'good').find().skip(skip_count).limit(PAGER_PER_COUNT))
     data = {
         "good_tp_list": good_tp_list,
         "good_list": good_list,
@@ -28,10 +28,10 @@ def good_detail():
         _id = 0
     else:
         _id = int(float(_id))
-    good_tp_list = list(db_mongo.get_table('plat2', 'good_type_list').find())
+    good_tp_list = list(db_mongo.get_table('plat2', 'good_type').find())
     good = {}
     if _id:
-        good = list(db_mongo.get_table('plat2', 'good_list').find({'_id': _id}))
+        good = list(db_mongo.get_table('plat2', 'good').find({'_id': _id}))
         good = good[0] if good else {}
 
     data = {
@@ -41,20 +41,28 @@ def good_detail():
     return render_template('good/good_detail.html', data=data)
 
 
-@route_good.route('/submit_edit', methods=['GET'])
+@route_good.route('/submit_edit', methods=['GET', 'POST'])
 def good_submit_edit():
     req = request.values
     _id = req.get('_id', 0)
     req['_id'] = _id
     if not _id:
-        _id = 0
+        _id = db_mongo.getNextValue('good_id')
     else:
         _id = int(float(_id))
     if not _id:
-        db_mongo.get_table('plat2', 'good_type_list').insert_one(req)
+        db_mongo.get_table('plat2', 'good').insert_one(req)
     else:
-        db_mongo.get_table('plat2', 'good_type_list').update({"_id": _id}, req)
+        db_mongo.get_table('plat2', 'good').update({"_id": _id}, req)
     return redirect('/good/good_list')
 
 
+@route_good.route('/add_good_tp', methods=['GET', 'POST'])
+def add_good_tp():
+    req = request.values
+    name = req.get('name')
+    if not name:
+        return "需要填入name"
+    db_mongo.get_table('plat2', 'good_type').insert_one({"_id": db_mongo.getNextValue("good_tp_id")})
+    return redirect("/good/good_list")
 
