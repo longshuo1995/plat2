@@ -25,7 +25,6 @@ def good_list():
     req = request.values
     _id = int(req.get('_id', 0))
     good_tp_list = list(db_mongo.get_table('plat2', 'good_type_list').find())
-
     good = {}
     if _id:
         good = list(db_mongo.get_table('plat2', 'good_list').find({'_id': _id}).skip())
