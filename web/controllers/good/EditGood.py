@@ -51,14 +51,12 @@ def good_submit_edit():
     req['_id'] = _id
     if not _id:
         _id = db_mongo.getNextValue('good_id')
-    else:
-        _id = int(float(_id))
-    print("***id")
-    print(_id)
-    if not _id:
         db_mongo.get_table('plat2', 'good').insert_one(req)
     else:
+        _id = int(float(_id))
         db_mongo.get_table('plat2', 'good').update({"_id": _id}, req)
+    print("***id")
+    print(_id)
     return redirect('/good/good_list')
 
 
