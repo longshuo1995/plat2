@@ -8,14 +8,13 @@
         <a href="/good/add_good">添加商品</a>
         <br/>
         {% for tp_item in data.good_tp_list %}
-            {{ tp_item }}
-            <!--<a href="/good/good_list?tp={{tp_item._id}}">{{tp_item.name}}</a>-->
+            <a href="/good/good_list?tp={{tp_item._id}}">{{tp_item.name}}</a>
         {% endfor %}
 
         {% for item in data.good_list %}
             <p>
                 <img src="{{item.imgurl}}"/>
-                <a href="/good/good_detail?good={{tp_item._id}}">{{item.name}}</a>
+                <a href="/good/good_detail?good={{item._id}}">{{item.name}}</a>
             </p>
         {% endfor %}
 </body>
