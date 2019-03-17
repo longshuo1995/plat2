@@ -6,5 +6,5 @@ new = tb.find_and_modify(
         {"$inc": {"seq": 1}},
         safe=True, new=True
 )
-print(new['seq'])
+print(new)
 
