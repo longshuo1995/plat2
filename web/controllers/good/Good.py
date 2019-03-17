@@ -11,9 +11,9 @@ def good_list():
     pages = req.get('page', 0)
     skip_count = pages * PAGER_PER_COUNT
     good_tp_list = db_mongo.get_table('plat2', 'good_type_list').find()
-    print(good_tp_list)
+    print(list(good_tp_list))
     good_list = db_mongo.get_table('plat2', 'good_list').find().skip(skip_count).limit(PAGER_PER_COUNT)
-    print(good_list)
+    print(list(good_list))
     data = {
         "good_tp_list": good_tp_list,
         "good_list": good_list
