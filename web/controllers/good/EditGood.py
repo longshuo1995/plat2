@@ -45,12 +45,16 @@ def good_detail():
 def good_submit_edit():
     req = request.values
     req = dict(req)
+    print("*" * 11)
+    print(req)
     _id = req.get('_id', 0)
     req['_id'] = _id
     if not _id:
         _id = db_mongo.getNextValue('good_id')
     else:
         _id = int(float(_id))
+    print("***id")
+    print(_id)
     if not _id:
         db_mongo.get_table('plat2', 'good').insert_one(req)
     else:
