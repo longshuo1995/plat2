@@ -38,7 +38,7 @@ def foodSearch():
     p = int(req.get('p', 1))
     query = {}
     mix_kw = req.get('mix_kw', '').split()
-    if cat_id:
+    if cat_id and cat_id != '0':
         query['type'] = cat_id
     if mix_kw:
         query['name'] = {"name": '.*'.join(mix_kw)}
