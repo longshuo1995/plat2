@@ -1,4 +1,4 @@
-from flask import request, render_template
+from flask import request, render_template, redirect
 
 from common.libs import db_mongo
 from web.controllers.good import route_good
@@ -23,14 +23,38 @@ def good_list():
 @route_good.route('/good_detail', methods=['GET'])
 def good_detail():
     req = request.values
-    _id = int(float(req.get('_id', 0)))
+    _id = req.get('_id', 0)
+    if not _id:
+        _id = 0
+    else:
+        _id = int(float(_id))
     good_tp_list = list(db_mongo.get_table('plat2', 'good_type_list').find())
     good = {}
     if _id:
         good = list(db_mongo.get_table('plat2', 'good_list').find({'_id': _id}))
         good = good[0] if good else {}
+
     data = {
         "good_tp_list": good_tp_list,
         "good": good,
     }
     return render_template('good/good_detail.html', data=data)
+
+
+@route_good.route('/submit_edit', methods=['GET'])
+def good_submit_edit():
+    req = request.values
+    _id = req.get('_id', 0)
+    req['_id'] = _id
+    if not _id:
+        _id = 0
+    else:
+        _id = int(float(_id))
+    if not _id:
+        db_mongo.get_table('plat2', 'good_type_list').insert_one(req)
+    else:
+        db_mongo.get_table('plat2', 'good_type_list').update({"_id": _id}, req)
+    return redirect('/good/good_list')
+
+
+
