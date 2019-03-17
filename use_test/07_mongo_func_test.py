@@ -1,7 +1,12 @@
 from common.libs import db_mongo
 
-db_mongo.get_table('plat2', 'test').insert_one({
-    "_id": {"$where": 'getNextSequence("userid")'}
-})
+
+def getNextValue(user_Name):
+    ret = db_mongo.get_table('plat2', 'counter').find_and_modify({"_id": user_Name}, {"$inc": {"req": 1}}, safe=True, new=True)
+    new = ret["sequence_value"]
+    return new
+
+
+print(getNextValue("userid"))
 
 
