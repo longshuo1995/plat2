@@ -19,3 +19,18 @@ def good_list():
     }
     return render_template('good/good_list.html', data=data)
 
+
+@route_good.route('/good_detail', methods=['GET'])
+def good_list():
+    req = request.values
+    _id = int(req.get('_id', 0))
+    good_tp_list = list(db_mongo.get_table('plat2', 'good_type_list').find())
+
+    good = {}
+    if _id:
+        good = list(db_mongo.get_table('plat2', 'good_list').find({'_id': _id}).skip())
+    data = {
+        "good_tp_list": good_tp_list,
+        "good": good,
+    }
+    return render_template('good/good_detail.html', data=data)
