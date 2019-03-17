@@ -6,6 +6,8 @@
 </head>
 <body>
         <a href="/good/add_good">添加商品</a>
+        <br/>
+        ......{{data.test}}
         {% for tp_item in data.food_tp_list %}
             <a href="/good/good_list?tp={{tp_item._id}}">{{tp_item.name}}</a>
         {% endfor %}
