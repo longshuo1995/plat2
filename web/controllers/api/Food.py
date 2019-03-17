@@ -36,24 +36,23 @@ def foodSearch():
     req = request.values
     cat_id = req.get('cat_id', 0)
     query = {}
-    mix_kw = req.get('mix_kw', '')
+    mix_kw = req.get('mix_kw', '').split()
     if cat_id:
         query['_id'] = int(cat_id)
     if mix_kw:
-        query['name'] = {"name": ""}
+        query['name'] = {"name": '.*'.join(mix_kw)}
+
     p = int(req.get('p', 1))
     offset = (p-1) * page_size
-
-    # TODO 根据query  查询
-    food_list = [(1, 'fdname1', '10', '8', test_url)]
+    items = db_mongo.get_table('plat2', 'good').find(query).skip(offset).limit(page_size)
     data_food_list = []
-    for item in food_list:
+    for item in items:
         temp_data = {
-            'id': item[0],
-            'name': item[1],
-            'price': item[2],
-            'min_price': item[3],
-            'pic_url': item[4],
+            'id': item['_id'],
+            'name': item['name'],
+            'price': item['price'],
+            'min_price': int(item['price']) - int(item['dis_price']),
+            'pic_url': item['imgurl'],
         }
         data_food_list.append(temp_data)
     resp['data']['list'] = data_food_list
