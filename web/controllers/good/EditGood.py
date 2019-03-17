@@ -53,7 +53,9 @@ def good_submit_edit():
         req['_id'] = _id
         db_mongo.get_table('plat2', 'good').insert_one(req)
     else:
+        print(_id)
         _id = int(float(_id))
+        print(_id)
         db_mongo.get_table('plat2', 'good').update({"_id": _id}, req)
     print("***id")
     print(_id)
