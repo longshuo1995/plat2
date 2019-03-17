@@ -1,4 +1,6 @@
 from flask import jsonify, request
+
+from common.libs import db_mongo
 from web.controllers.api import route_api
 
 test_url = 'https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=1976195564,3037788353&fm=27&gp=0.jpg'
@@ -9,15 +11,13 @@ def foodIndex():
     resp = {'code': 200, 'msg': '操作成功', 'data': {}}
     # 所有类
     data_cat_list = [{'id': 0, 'name': '全部'}]
-    # TODO 需要修改成查询数据库
-    cat_list = [(1, '免单商品'), (2, '高佣商品'), (3, '排行榜')]
-    if cat_list:
-        for item in cat_list:
-            data_cat_list.append({'id': item[0], 'name': item[1]})
+    items = db_mongo.get_table('plat2', 'good_tp').find()
+    for item in items:
+        data_cat_list.append({'id': item['_id'], 'name': item['name']})
     resp['data']['cat_list'] = data_cat_list
 
     # food list
-    food_list = [(1, '免单商品'), (2, '高佣商品'), (3, '排行榜')]
+    food_list = [(1, 'test'), (2, 'test'), (3, 'test')]
     data_food_list = []
     if food_list:
         for item in food_list:
@@ -35,7 +35,12 @@ def foodSearch():
     resp = {'code': 200, 'msg': '操作成功', 'data': {}}
     req = request.values
     cat_id = req.get('cat_id', 0)
+    query = {}
     mix_kw = req.get('mix_kw', '')
+    if cat_id:
+        query['_id'] = int(cat_id)
+    if mix_kw:
+        query['name'] = {"name": ""}
     p = int(req.get('p', 1))
     offset = (p-1) * page_size
 
