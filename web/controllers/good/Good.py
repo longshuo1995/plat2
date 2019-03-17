@@ -27,7 +27,7 @@ def good_detail():
     good_tp_list = list(db_mongo.get_table('plat2', 'good_type_list').find())
     good = {}
     if _id:
-        good = list(db_mongo.get_table('plat2', 'good_list').find({'_id': _id}).skip())
+        good = list(db_mongo.get_table('plat2', 'good_list').find({'_id': _id}))
         good = good[0] if good else {}
     data = {
         "good_tp_list": good_tp_list,
