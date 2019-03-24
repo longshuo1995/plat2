@@ -53,12 +53,16 @@ def foodSearch():
         quan_price = item.get('coupon_discount', 0)/100
         quan_price = quan_price if quan_price else 0
         row_price = item.get('min_group_price', 0)/100
+        row_price = round(row_price, 2)
+        min_price = row_price-quan_price
+        min_price = round(min_price, 2)
+        
         temp_data = {
             'promotion_rate': promotion_rate,
             'id': item['goods_id'],
             'name': item['goods_name'],
             'price': row_price,
-            'min_price': row_price-quan_price,
+            'min_price': min_price,
             'pic_url': item['goods_thumbnail_url'],
         }
         data_food_list.append(temp_data)
