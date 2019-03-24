@@ -51,6 +51,7 @@ def foodSearch():
         promotion_rate = item.get('promotion_rate')
         promotion_rate = promotion_rate if promotion_rate else 0
         quan_price = item.get('mall_coupon_min_order_amount', 0)
+        quan_price = quan_price if quan_price else 0
         row_price = item.get('min_group_price', 0)
         temp_data = {
             'promotion_rate': promotion_rate,
