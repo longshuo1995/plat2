@@ -38,7 +38,7 @@ def foodSearch():
 
     cat_id = int(req.get('cat_id', 0))
     cat_id = cat_id if cat_id else 1
-    cat_id = 0 if cat_id == 1 else cat_id
+    # cat_id = 0 if cat_id == 1 else cat_id
 
     p = int(req.get('p', 1))
     p = p if p else 1
@@ -56,7 +56,6 @@ def foodSearch():
         row_price = round(row_price, 2)
         min_price = row_price-quan_price
         min_price = round(min_price, 2)
-        
         temp_data = {
             'promotion_rate': promotion_rate,
             'id': item['goods_id'],
