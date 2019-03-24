@@ -34,6 +34,27 @@ def search_goods(keyword, sort_type=0, p=1, page_size=base_setting.show_every_pa
     return jo
 
 
+def search_good_by_order_sn(order_sn):
+    '''
+    https://gw-api.pinduoduo.com/api/router?type=pdd.ddk.order.detail.get&data_type=JSON&timestamp=1553453291&client_id=e46a7a383d3d480a913107fac24d04ca&order_sn=190324-270806221493150&sign=6EB7C3EE3A41109FA7CEA2B95FC3149B
+    '''
+    params = {
+        "type": 'pdd.ddk.order.detail.get',
+        "client_id": "e46a7a383d3d480a913107fac24d04ca",
+        "order_sn": order_sn,
+        "data_type": "JSON",
+    }
+    params['sign'] = calc_sign(params)
+    jo = requests.post(api_url, data=params).json()
+    return jo
+
+
+def order_search():
+    '''
+    https://gw-api.pinduoduo.com/api/router?type=pdd.ddk.order.list.increment.get&data_type=JSON&timestamp=1553453559&client_id=e46a7a383d3d480a913107fac24d04ca&start_update_time=1553438094&end_update_time=1553441694&sign=E284E5B0B2891622B802B1D107BC7EC2
+    '''
+
+
 if __name__ == '__main__':
     params = {
         "type": "pdd.ddk.goods.promotion.url.generate",

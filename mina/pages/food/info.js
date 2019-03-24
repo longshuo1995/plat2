@@ -27,7 +27,7 @@ Page({
         // });
         wx.navigateToMiniProgram({
           appId: 'wx32540bd863b27570',
-          path: 'package_a/welfare_coupon/welfare_coupon?goods_id=6799147167&pid=8475051_56582557&cpsSign=CC8475051_56582557_dfdd80a04ff0474e9fb3cdf1d7599068&duoduo_type=2',
+          path: 'package_a/welfare_coupon/welfare_coupon?goods_id=3793977791&pid=8475051_56582557&customParameters=longshuo&cpsSign=CC8475051_56582557_67deb66beed36782bfb496ca2941b9ae&duoduo_type=2',
           extraData: {
             foo: 'bar'
           },
