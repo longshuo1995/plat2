@@ -24,5 +24,7 @@ Page({
                 });
             }
         });
+    },
+    get_money: function () {
     }
 });

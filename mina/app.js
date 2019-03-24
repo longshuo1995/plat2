@@ -28,7 +28,7 @@ App({
         // domain:"http://0.0.0.0:8811/api",
         //sdomain:"http://192.168.0.119:8999/api",
         // domain:"https://food.54php.cn/api",
-        domain:"http://140.143.163.73:8811/api",
+        domain:"https://aishangnet.club/api",
         // sdomain:"http://140.143.163.73:8811/api"
     },
     buildUrl:function( path,params ){

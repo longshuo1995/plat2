@@ -10,6 +10,12 @@ code:
 '''
 SQLALCHEMY_DATABASE_URI = "mysql://root:1234@127.0.0.1/plat2"
 MINA_APP = {
-    'appid': 'wxbf35a7dfb61fcc81',
-    'appkey': 'a79c1d44c08bdb36a8f7aa638e15de28',
+    'appid': 'wxca37926201a188c4',
+    'appkey': 'c1bdd93e87a77af6ed7e629323d6a06c',
 }
+
+PDD_APP = {
+    'client_id': 'e46a7a383d3d480a913107fac24d04ca',
+    'client_secret': '85469664828093b810ee83b363895f03297f2ae6'
+}
+show_every_page = 10

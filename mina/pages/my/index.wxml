@@ -7,8 +7,14 @@
 
   <view class="earnings_box">
     <view class='balance'>
-      <view class='balance_info'>可提现金额:<span class="balance_info_price">￥0.00</span></view>
-      <view class='balance_get'>提现</view>
+      <view class='balance_info'>
+        可提现:
+        <span class="balance_info_price">￥{{ userInfo.current_money }}</span>
+        <br/>
+        提现中:
+        <span class="balance_info_price">￥{{ userInfo.checking_money }}</span>
+      </view>
+      <view class='balance_get' bindtap="get_money">提现</view>
     </view>
     <view class='earnings_box_line'></view>
     <view class='price_info'>

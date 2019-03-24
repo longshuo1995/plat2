@@ -1,6 +1,7 @@
 from flask import jsonify, request
 
 from common.libs import db_mongo
+from common.libs.pdd import pdd_tools
 from web.controllers.api import route_api
 
 test_url = 'https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=1976195564,3037788353&fm=27&gp=0.jpg'
@@ -34,26 +35,30 @@ def foodSearch():
     page_size = 10
     resp = {'code': 200, 'msg': '操作成功', 'data': {}}
     req = request.values
-    cat_id = req.get('cat_id', 0)
-    p = int(req.get('p', 1))
-    query = {}
-    mix_kw = req.get('mix_kw', '').split()
-    if cat_id and cat_id != '0':
-        query['type'] = cat_id
-    if mix_kw:
-        query['name'] = {"$regex": '.*'.join(mix_kw)}
-    print(query)
 
-    offset = (p-1) * page_size
-    items = db_mongo.get_table('plat2', 'good').find(query).skip(offset).limit(page_size)
+    cat_id = int(req.get('cat_id', 0))
+    cat_id = cat_id if cat_id else 1
+
+    p = int(req.get('p', 1))
+    p = p if p else 1
+
+    mix_kw = req.get('mix_kw', '').split()
+    keyword = ' '.join(mix_kw)
+
+    resp_jo = pdd_tools.search_goods(keyword=keyword, sort_type=cat_id, p=p)
     data_food_list = []
-    for item in items:
+    for item in resp_jo.get('goods_search_response', {}).get('goods_list', []):
+        promotion_rate = item.get('promotion_rate')
+        promotion_rate = promotion_rate if promotion_rate else 0
+        quan_price = item.get('mall_coupon_min_order_amount', 0)
+        row_price = item.get('min_group_price', 0)
         temp_data = {
-            'id': item['_id'],
-            'name': item['name'],
-            'price': item['price'],
-            'min_price': int(item['price']) - int(item['dis_price']),
-            'pic_url': item['imgurl'],
+            'promotion_rate': promotion_rate,
+            'id': item['goods_id'],
+            'name': item['goods_name'],
+            'price': row_price,
+            'min_price': row_price-quan_price,
+            'pic_url': item['goods_thumbnail_url'],
         }
         data_food_list.append(temp_data)
     resp['data']['list'] = data_food_list

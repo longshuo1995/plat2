@@ -36,7 +36,7 @@
 
 .my-item{
     width: 100%;
-    background: url(http://cdn.static.54php.cn/mina_order/arrow-right.png) no-repeat 750rpx center;
+    background: "../../images/arrow-right.png" no-repeat 750rpx center;
     background-size: 16rpx auto,750rpx auto;
     margin: 20rpx 0; 
     border-bottom: 1px solid #eee;
@@ -70,6 +70,7 @@
   height: 80rpx;
   margin-top:10rpx;
   line-height: 80rpx;
+  font-size:28rpx;
   left:5%;
 }
 
@@ -87,7 +88,7 @@
 }
 .balance_info_price{
   color: #e64340;
-  font-weight: bolder;
+  font-size:28rpx;
 }
 
 .price_info_item{

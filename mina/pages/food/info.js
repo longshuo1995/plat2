@@ -22,10 +22,22 @@ Page({
         commentCount:2
     },
     onLoad: function (e) {
-        var that = this;
-        that.setData({
-            id: e.id
-        });
+        // that.setData({
+        //     id: e.id
+        // });
+        wx.navigateToMiniProgram({
+          appId: 'wx32540bd863b27570',
+          path: 'package_a/welfare_coupon/welfare_coupon?goods_id=6799147167&pid=8475051_56582557&cpsSign=CC8475051_56582557_dfdd80a04ff0474e9fb3cdf1d7599068&duoduo_type=2',
+          extraData: {
+            foo: 'bar'
+          },
+          envVersion: 'release',
+          success(res) {
+            // 打开成功
+              app.goToIndex()
+          }
+        })
+
     },
     onShow:function(){
         this.getInfo();

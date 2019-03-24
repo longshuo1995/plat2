@@ -13,7 +13,7 @@
 	},
 	"compileType": "miniprogram",
 	"libVersion": "2.5.1",
-	"appid": "wxbf35a7dfb61fcc81",
+	"appid": "wxca37926201a188c4",
 	"projectname": "mina",
 	"debugOptions": {
 		"hidedInDevtools": []
@@ -43,21 +43,18 @@
 					"id": 0,
 					"name": "page_index",
 					"pathName": "pages/group_item_detail/group_item_detail",
-					"query": "scene=hahah",
 					"scene": 1001
 				},
 				{
 					"id": 1,
 					"name": "food_index",
 					"pathName": "pages/my/index",
-					"query": "scene=hahah",
 					"scene": 1001
 				},
 				{
 					"id": -1,
 					"name": "index",
 					"pathName": "pages/index/index",
-					"query": "scene=hahah",
 					"scene": null
 				}
 			]
