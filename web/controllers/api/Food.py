@@ -48,6 +48,7 @@ def foodSearch():
     resp_jo = pdd_tools.search_goods(keyword=keyword, sort_type=cat_id, p=p)
     data_food_list = []
     for item in resp_jo.get('goods_search_response', {}).get('goods_list', []):
+        print(item)
         promotion_rate = item.get('promotion_rate')
         promotion_rate = promotion_rate if promotion_rate else 0
         quan_price = item.get('mall_coupon_min_order_amount', 0)
