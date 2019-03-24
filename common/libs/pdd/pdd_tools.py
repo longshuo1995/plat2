@@ -18,20 +18,41 @@ def calc_sign(params):
     return md5_sign
 
 
-def search_goods(keyword, sort_type=0, p=1, page_size=base_setting.show_every_page):
-    params = {
-        "type": "pdd.ddk.goods.search",
+def pdd_request(added_params):
+    base_params = {
         "data_type": "JSON",
         "timestamp": int(time.time()),
         "client_id": base_setting.PDD_APP['client_id'],
+    }
+    params = dict(base_params, **added_params)
+    print(params)
+    params['sign'] = calc_sign(params)
+    jo = requests.post(api_url, data=params).json()
+    return jo
+
+
+def search_goods(keyword, sort_type=0, p=1, page_size=base_setting.show_every_page):
+    added_params = {
+        "type": "pdd.ddk.goods.search",
         "keyword": keyword,
         'sort_type': sort_type,
         'p': p,
         'page_size': page_size,
     }
-    params['sign'] = calc_sign(params)
-    jo = requests.post(api_url, data=params).json()
-    return jo
+    return pdd_request(added_params)
+
+
+def search_good_detail(good_id, custom_parameters):
+    added_params = {
+        'type': 'pdd.ddk.goods.promotion.url.generate',
+        'p_id': base_setting.p_id,
+        'goods_id_list': '["%s"]' % good_id,
+        'custom_parameters': custom_parameters,
+        'generate_we_app': 'true'
+    }
+
+    return pdd_request(added_params)
+
 
 
 def search_good_by_order_sn(order_sn):
@@ -56,26 +77,7 @@ def order_search():
 
 
 if __name__ == '__main__':
-    params = {
-        "type": "pdd.ddk.goods.promotion.url.generate",
-        "data_type": "JSON",
-        "timestamp": 1553435269,
-        "client_id": "e46a7a383d3d480a913107fac24d04ca",
-        "p_id": "8475051_56582557",
-        "goods_id_list": "[\"6799147167\"]",
-        "generate_we_app": "true",
-        # "sign": "BD0DA1E179918769B0A7C41F68CB7C85"
-    }
-    params = {
-        "type": "pdd.ddk.goods.search",
-        "data_type": "JSON",
-        "timestamp": 1553435939,
-        "client_id": "e46a7a383d3d480a913107fac24d04ca",
-        "keyword": "花瓶",
-        # "sign": "B9ABB8CDBF168BE630D9CA7C583AEBAF"
-    }
-    goods = search_goods('')
-    print(goods)
+    res = search_good_detail('5555515329', 'longshuo...')
+    print(res)
 
-    # sign = calc_sign(params)
-    # print(sign)
+

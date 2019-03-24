@@ -19,3 +19,4 @@ PDD_APP = {
     'client_secret': '85469664828093b810ee83b363895f03297f2ae6'
 }
 show_every_page = 10
+p_id = '8475051_56582557'
