@@ -28,6 +28,10 @@ Page({
         wx.request({
             url: app.buildUrl("/good/get_pdd_url"),
             header: app.getRequestHeader(),
+            data:{
+                good_id: e.id,
+                open_id: app.globalData.userInfo.open_id
+            },
             success: function (res) {
                 var resp = res.data;
                 console.log(resp);
