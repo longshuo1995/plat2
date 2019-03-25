@@ -25,6 +25,7 @@ def pdd_request(added_params):
         "client_id": base_setting.PDD_APP['client_id'],
     }
     params = dict(base_params, **added_params)
+    print(params)
     params['sign'] = calc_sign(params)
     jo = requests.post(api_url, data=params).json()
     return jo
