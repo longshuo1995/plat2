@@ -25,7 +25,6 @@ def pdd_request(added_params):
         "client_id": base_setting.PDD_APP['client_id'],
     }
     params = dict(base_params, **added_params)
-    print(params)
     params['sign'] = calc_sign(params)
     jo = requests.post(api_url, data=params).json()
     return jo
@@ -50,34 +49,29 @@ def search_good_detail(good_id, custom_parameters):
         'custom_parameters': custom_parameters,
         'generate_we_app': 'true'
     }
-
     return pdd_request(added_params)
 
 
-
-def search_good_by_order_sn(order_sn):
-    '''
-    https://gw-api.pinduoduo.com/api/router?type=pdd.ddk.order.detail.get&data_type=JSON&timestamp=1553453291&client_id=e46a7a383d3d480a913107fac24d04ca&order_sn=190324-270806221493150&sign=6EB7C3EE3A41109FA7CEA2B95FC3149B
-    '''
-    params = {
+def search_order_by_sn(order_sn):
+    added_params = {
         "type": 'pdd.ddk.order.detail.get',
-        "client_id": "e46a7a383d3d480a913107fac24d04ca",
         "order_sn": order_sn,
-        "data_type": "JSON",
     }
-    params['sign'] = calc_sign(params)
-    jo = requests.post(api_url, data=params).json()
-    return jo
+    return pdd_request(added_params)
 
 
-def order_search():
-    '''
-    https://gw-api.pinduoduo.com/api/router?type=pdd.ddk.order.list.increment.get&data_type=JSON&timestamp=1553453559&client_id=e46a7a383d3d480a913107fac24d04ca&start_update_time=1553438094&end_update_time=1553441694&sign=E284E5B0B2891622B802B1D107BC7EC2
-    '''
+def order_search(start_time, end_time):
+    added_params = {
+        "type": "pdd.ddk.order.list.increment.get",
+        'start_update_time': start_time,
+        'end_update_time': end_time
+    }
+    return pdd_request(added_params)
 
 
 if __name__ == '__main__':
-    res = search_good_detail('5555515329', 'longshuo...')
+    # res = order_search('1553355294', '1553441694')
+    res = search_order_by_sn('190324-270806221493150')
     print(res)
 
 
