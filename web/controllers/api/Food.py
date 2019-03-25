@@ -68,3 +68,20 @@ def foodSearch():
     resp['data']['list'] = data_food_list
     resp['data']['has_more'] = 0 if len(data_food_list) < page_size else 1
     return jsonify(resp)
+
+
+@route_api.route("/good/get_pdd_url")
+def foodSearch():
+    resp = {'code': 200, 'msg': '操作成功', 'data': ''}
+    req = request.values
+    good_id = req.get('good_id')
+    open_id = req.get('open_id')
+    res = pdd_tools.search_good_detail(good_id, open_id)
+    path = res.get('goods_promotion_url_generate_response', {}).get('goods_promotion_url_list', [])[0].get('we_app_info',
+                                                                                                    {}).get('page_path')
+    if path:
+        resp['data'] = path
+    else:
+        resp['code'] = 500
+        resp['msg'] = '获取商品详情页错误'
+    return jsonify(resp)

@@ -71,7 +71,8 @@ def order_search(start_time, end_time):
 
 if __name__ == '__main__':
     # res = order_search('1553355294', '1553441694')
-    res = search_order_by_sn('190324-270806221493150')
+    res = search_good_detail('1595904736', 'test')
+    res.get('goods_promotion_url_generate_response', {}).get('goods_promotion_url_list', [])[0].get('we_app_info', {}).get('page_path')
     print(res)
 
 

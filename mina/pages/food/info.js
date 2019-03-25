@@ -25,18 +25,31 @@ Page({
         // that.setData({
         //     id: e.id
         // });
-        wx.navigateToMiniProgram({
-          appId: 'wx32540bd863b27570',
-          path: 'package_a/welfare_coupon/welfare_coupon?goods_id=3793977791&pid=8475051_56582557&customParameters=longshuo&cpsSign=CC8475051_56582557_67deb66beed36782bfb496ca2941b9ae&duoduo_type=2',
-          extraData: {
-            foo: 'bar'
-          },
-          envVersion: 'release',
-          success(res) {
-            // 打开成功
-              app.goToIndex()
-          }
-        })
+        wx.request({
+            url: app.buildUrl("/good/get_pdd_url"),
+            header: app.getRequestHeader(),
+            success: function (res) {
+                var resp = res.data;
+                console.log(resp);
+                if (resp.code != 200) {
+                    app.alert({"content": resp.msg});
+                    return;
+                }
+                wx.navigateToMiniProgram({
+                    appId: 'wx32540bd863b27570',
+                    path: resp.data,
+                    extraData: {
+                        foo: 'bar'
+                    },
+                    envVersion: 'release',
+                    success(res) {
+                        // 打开成功
+                          app.goToIndex()
+                    }
+                    })
+            }
+        });
+
 
     },
     onShow:function(){

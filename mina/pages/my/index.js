@@ -2,7 +2,11 @@
 var app = getApp();
 Page({
     data: {},
-    onLoad() {
+    onLoad(scene) {
+        if(scene.from_openid){
+            app.globalData.from_openid=scene.from_openid;
+        }
+        console.log(app.globalData.from_openid)
         app.pre_load(this);
     },
     onShow() {
@@ -26,5 +30,18 @@ Page({
         });
     },
     get_money: function () {
-    }
+    },
+    onShareAppMessage: function(){
+        console.log(app.globalData.userInfo.open_id);
+        return {
+            title: "奇遇拼团",
+            path: '/pages/my/index?from_openid=' + app.globalData.userInfo.open_id,
+            success: function (res) {
+            },
+            fail: function (res) {
+            },
+
+        }
+
+    },
 });

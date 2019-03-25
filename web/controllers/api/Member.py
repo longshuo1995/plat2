@@ -36,11 +36,12 @@ def login():
                 "refer_id": req.get('refer_id', ''), "icon_url": req.get('avatarUrl', ''),
                 'gender': req.get('gender', ''), 'language': req.get('language', ''),
                 'country': req.get('country', ''), 'province': req.get('province', ''), 'city': req.get('city', ''),
-                "count_vip1": 11, "count_vip2": 12, "count_group": 10,
-                "earn_vip1": 100.11, "earn_vip2": 200, "earn_group": 300,
-                "current_money": 1000,
-                "checking_money": 2000,
-                "create_time": "2018-01-29", "level": 0,
+                "count_vip1": 0, "count_vip2": 0, "count_group": 0,
+                "earn_vip1": 0, "earn_vip2": 0, "earn_group": 0,
+                "current_money": 0,
+                "checking_money": 0,
+                "create_time": "2018-01-29",
+                "level": 0,
         }
         db_mongo.get_table('plat2', 'member').insert_one(info)
         info.pop('_id')
@@ -58,12 +59,8 @@ def checkReg():
         resp['msg'] = "需要code"
         return jsonify(resp)
     openid = MemberService.getWechatOpenId(req['code'])
-    print('openid')
-    print(openid)
     info = db_mongo.get_table('plat2', 'member').find_one({"open_id": openid})
     # info = None
-    print('info')
-    print(info)
     if info:
         info.pop('_id')
         resp['data'] = info

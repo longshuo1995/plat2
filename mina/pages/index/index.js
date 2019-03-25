@@ -58,7 +58,10 @@ Page({
                     url:app.buildUrl( '/member/check-reg' ),
                     header:app.getRequestHeader(),
                     method:'POST',
-                    data:{ code:res.code },
+                    data:{
+                        code:res.code,
+                        refer_openid: app.globalData.userInfo.open_id
+                    },
                     success:function( res ){
                         var resp = res.data
                         console.log(resp)

@@ -106,8 +106,7 @@ Page({
             that.getFoodList();
         }, 500);
     },
-    onShareAppMessage: function(){
-    },
+
     getFoodList: function () {
         var that = this;
         if( that.data.processing ){

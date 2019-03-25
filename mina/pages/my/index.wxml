@@ -45,15 +45,16 @@
   <view class="my-item">
     <navigator url="/pages/my/addressSet" hover-class="navigator-hover">信息设置</navigator>
   </view>
-  <view class="my-item">
-    <navigator url="/pages/my/order_list" hover-class="navigator-hover">奇遇分享</navigator>
-  </view>
+
   <view class="my-item">
     <navigator url="/pages/my/commentList" hover-class="navigator-hover">联系我们</navigator>
   </view>
+  <view class="my-item">
+    <button open-type="share">奇遇分享</button>
+  </view>
 
   <view style="height:20rpx;background: #eee;width:100%;"></view>
-  <view class="version">Powered by 爱尚免单</view>
+  <view class="version">Powered by 奇遇拼团</view>
   <view style="height:20rpx;background: #eee;width:100%;"></view>
 
 </view>
