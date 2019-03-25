@@ -71,7 +71,7 @@ def foodSearch():
 
 
 @route_api.route("/good/get_pdd_url")
-def foodSearch():
+def get_pdd_url():
     resp = {'code': 200, 'msg': '操作成功', 'data': ''}
     req = request.values
     good_id = req.get('good_id')
