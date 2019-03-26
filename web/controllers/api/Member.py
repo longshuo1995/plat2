@@ -54,6 +54,7 @@ def login():
                 "create_time": int(time.time()),
                 "level": 0,
         }
+        print(info)
         db_mongo.get_table('plat2', 'member').insert_one(info)
         info.pop('_id')
         resp['data'] = info
