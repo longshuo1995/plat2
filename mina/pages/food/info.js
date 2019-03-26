@@ -50,7 +50,7 @@ Page({
                         // 打开成功
                           app.goToIndex()
                     }
-                    })
+                })
             }
         });
 
