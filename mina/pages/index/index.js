@@ -43,7 +43,9 @@ Page({
         });
     },
     checkLogin:function(){
-        console.log('ready check login')
+
+        console.log('check......')
+        console.log(app.globalData.refer_openid)
 
          var that = this;
          wx.login({
@@ -60,9 +62,10 @@ Page({
                     method:'POST',
                     data:{
                         code:res.code,
-                        refer_openid: app.globalData.userInfo.open_id
+                        refer_openid: app.globalData.refer_openid
                     },
                     success:function( res ){
+                        console.log('####check success')
                         var resp = res.data
                         console.log(resp)
                         if(resp.is_register){

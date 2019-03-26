@@ -83,7 +83,7 @@ Page({
     if (lay_load) {
       lay_load = false
       wx.request({
-        url: 'http://140.143.163.73:8811/api/goods/hot_goods',
+        url: app.globalData.domain + '/goods/hot_goods',
         data: {
           tp: that.data.tp,
           pages: that.data.pages+1

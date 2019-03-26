@@ -27,7 +27,7 @@ def pdd_request(added_params):
     params = dict(base_params, **added_params)
     print(params)
     params['sign'] = calc_sign(params)
-    jo = requests.post(api_url, data=params).json()
+    jo = requests.post(api_url, data=params, verify=False).json()
     return jo
 
 
@@ -68,6 +68,7 @@ def order_search(start_time, end_time):
         'end_update_time': end_time
     }
     return pdd_request(added_params)
+
 
 
 if __name__ == '__main__':

@@ -16,10 +16,11 @@ def hot_goods():
         resp['code'] = -1
         resp['msg'] = "需要tp"
         return jsonify(resp)
+    db_mongo.get_table('plat2', 'order').find({})
     for i in range(10):
         temp = {
             'id': i,
-            'title': "2019春 小白鞋子",
+            'title': "",
             'icon': "https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=1976195564,3037788353&fm=27&gp=0.jpg",
             'price': 13.8,
             'discount': 10,
