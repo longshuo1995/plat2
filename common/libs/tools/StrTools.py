@@ -7,4 +7,4 @@ def get_md5(source):
     return m.hexdigest().upper()
 
 
-DAY_SECONDS = 24*60*60
+
