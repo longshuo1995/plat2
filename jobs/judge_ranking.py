@@ -59,4 +59,4 @@ def calc_top_user(offset_time, file_name):
 
 
 if __name__ == '__main__':
-    calc_top_user(11, '')
+    calc_top_user(1100000, '')
