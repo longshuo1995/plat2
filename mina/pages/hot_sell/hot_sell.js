@@ -1,5 +1,6 @@
 // pages/hot_sell/hot_sell.js
 var lay_load = true
+var app = getApp()
 Page({
 
   /**
@@ -16,11 +17,11 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
+  onLoad(scene){
     let that = this
     let tp = 0
     wx.request({
-      url: 'http://140.143.163.73:8811/api/goods/hot_goods', // 仅为示例，并非真实的接口地址
+      url: app.globalData.domain + '/goods/hot_goods', // 仅为示例，并非真实的接口地址
       data: {
         tp: 0,
         pages:that.data.pages
@@ -47,7 +48,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-  
+
   },
 
   /**
@@ -78,7 +79,7 @@ Page({
     let that = this
     that.setData({
       show_model: false
-    })
+    });
     let time = null
     if (lay_load) {
       lay_load = false
@@ -133,7 +134,7 @@ Page({
       let tp = e.currentTarget.dataset.tp;
       let that = this;
       wx.request({
-        url: 'http://140.143.163.73:8811/api/goods/hot_goods', // 仅为示例，并非真实的接口地址
+        url: app.globalData.domain + '/goods/hot_goods', // 仅为示例，并非真实的接口地址
         data: {
           tp: tp,
           pages:0

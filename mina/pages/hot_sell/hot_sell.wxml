@@ -20,7 +20,7 @@
     </view>
     <image src="{{item.icon}}"  lazy-load="true" class="item_img" mode='aspectFill' ></image>
     <view class='item_info_box'>
-      <view class='item_name'>{{item.title}}{{item.title}}{{item.title}}{{item.title}}</view>
+      <view class='item_name'>{{item.title}}</view>
       <view class='clearfix'>
         <view class='item_discount'>
         <image src='../../images/quan.png' class='quan_img'></image>
