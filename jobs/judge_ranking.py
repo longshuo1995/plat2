@@ -42,7 +42,7 @@ def judge_local(offset_time, file_nm):
             'icon': "https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=1976195564,3037788353&fm=27&gp=0.jpg",
             'price': str(round(info['order_amount']/100, 2)),
             'discount': str(round(info['duo_coupon_amount']/100, 2)),
-            'sale_count': value_count[good_id]
+            'sale_count': int(value_count[good_id])
         }
         print(temp)
         out_file.write('%s\n' % json.dumps(temp))
