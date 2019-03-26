@@ -28,7 +28,7 @@ def judge_local(offset_time, file_nm):
         {'goods_id': 1, '_id': 0})
     goods_ids = []
     for item in items:
-        goods_ids.append(item['goods_is'])
+        goods_ids.append(item['goods_id'])
 
     s = pd.Series(goods_ids)
     value_count = s.value_counts()
