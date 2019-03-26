@@ -12,9 +12,9 @@ App({
         console.log(typeof this.globalData.userInfo)
         console.log(this.globalData.userInfo)
         console.log(this.globalData.userInfo.nick_name)
-        page_ctx.setData({
-            nickname: this.globalData.userInfo.nick_name
-        });
+        // page_ctx.setData({
+        //     nickname: this.globalData.userInfo.nick_name
+        // });
 
     },
     data:{

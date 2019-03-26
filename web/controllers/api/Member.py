@@ -37,6 +37,8 @@ def login():
         if refer_id:
             refer_obj = db_mongo.get_table('plat2', 'member').\
                 find_one({"_id": refer_id}, {'leader_openid': 1, 'leader_master': 1})
+            if not refer_obj:
+                refer_obj = {}
 
         info = {
                 "_id": openid, "open_id": openid,

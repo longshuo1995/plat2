@@ -3,9 +3,8 @@ var app = getApp();
 Page({
     data: {},
     onLoad(scene) {
-        if(scene.from_openid){
-            app.globalData.from_openid=scene.from_openid;
-        }
+        app.globalData.from_openid=scene.from_openid;
+        console.log('from openid...')
         console.log(app.globalData.from_openid)
         app.pre_load(this);
     },
