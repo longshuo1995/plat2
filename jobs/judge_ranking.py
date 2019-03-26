@@ -37,7 +37,7 @@ def judge_local(offset_time, file_nm):
     for good_id in value_count.index:
         info = db_mongo.get_table('plat2', 'order').find_one({'goods_id': good_id})
         temp = {
-            'id': int(good_id),
+            'id': str(int(good_id)),
             'title': info['goods_name'],
             'icon': "https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=1976195564,3037788353&fm=27&gp=0.jpg",
             'price': round(info['order_amount']/100, 2),
