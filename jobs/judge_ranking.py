@@ -44,6 +44,7 @@ def judge_local(offset_time, file_nm):
             'discount': round(info['duo_coupon_amount']/100, 2),
             'sale_count': value_count[good_id]
         }
+        print(temp)
         out_file.write('%s\n' % json.dumps(temp))
     out_file.close()
 
