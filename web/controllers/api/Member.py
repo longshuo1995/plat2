@@ -1,4 +1,5 @@
 import json
+import time
 
 from flask import request, jsonify
 from application import app
@@ -23,7 +24,7 @@ def login():
     # jo = requests.get(url).json()
     openid = MemberService.getWechatOpenId(req['code'])
 
-    info = db_mongo.get_table('plat2', 'member').find_one({"open_id": openid})
+    info = db_mongo.get_table('plat2', 'member').find_one({"_id": openid})
     if info:
         resp['code'] = -1
         resp['msg'] = '已经绑定'
@@ -31,16 +32,26 @@ def login():
         resp['data'] = info
         return jsonify(resp)
     else:
+        refer_id = req.get('refer_id', '')
+        refer_obj = {}
+        if refer_id:
+            refer_obj = db_mongo.get_table('plat2', 'member').\
+                find_one({"_id": refer_id}, {'leader_openid': 1, 'leader_master': 1})
+
         info = {
-                "open_id": openid, "nick_name": req.get('nickName', ''),
-                "refer_id": req.get('refer_id', ''), "icon_url": req.get('avatarUrl', ''),
+                "_id": openid, "open_id": openid,
+                "nick_name": req.get('nickName', ''),
+                "icon_url": req.get('avatarUrl', ''),
                 'gender': req.get('gender', ''), 'language': req.get('language', ''),
                 'country': req.get('country', ''), 'province': req.get('province', ''), 'city': req.get('city', ''),
-                "count_vip1": 0, "count_vip2": 0, "count_group": 0,
-                "earn_vip1": 0, "earn_vip2": 0, "earn_group": 0,
+                # "count_vip1": 0, "count_vip2": 0, "count_group": 0,
+                # "earn_vip1": 0, "earn_vip2": 0, "earn_group": 0,
+                "refer_id": refer_id,
+                "leader_openid": refer_obj.get('leader_openid', ''),
+                "leader_master": refer_obj.get('leader_master', ''),
                 "current_money": 0,
                 "checking_money": 0,
-                "create_time": "2018-01-29",
+                "create_time": int(time.time()),
                 "level": 0,
         }
         db_mongo.get_table('plat2', 'member').insert_one(info)
