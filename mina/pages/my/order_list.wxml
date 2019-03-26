@@ -17,21 +17,19 @@
     <view class="order-list" wx:if="{{order_list.length}}">
         <view class="a-order" wx:for="{{order_list}}" wx:key="{{index}}" wx:for-item="item">
             <view class='order-date order_own'>
-              <image src='../../images/food.jpg' class='own_icon'></image>
-              <view class='own_info'>上帝</view>
-              <view class='order_state'><span class="state_font">state</span></view>
+              <image src='{{ item.own_icon }}' class='own_icon'></image>
+              <view class='own_info'>{{ item.own_name }}</view>
+              <view class='order_state'><span class="state_font">{{ item.order_status_desc }}</span></view>
             </view>
-            <!-- <view class="order-date" data-id="{{item.order_sn}}" bindtap="orderDetail">
-                <view class="date-box">下单时间：{{item.date}}</view>
-                <view class="status {{(item.status==0 || item.status==1) ? '':'red'}}">{{item.status_desc}}</view>
-            </view> -->
+
             <view class="goods_info"  data-id="{{item.order_sn}}" bindtap="orderDetail">
-               <view class="good_box" wx:for="{{[1,2]}}" wx:for-item="itemGood">
-                        <image src="../../images/food.jpg" class="goods_img"></image>
+               <view class="good_box">
+                   <!--<view class="good_box" wx:for="{{[1,2]}}" wx:for-item="itemGood">-->
+                        <image src="{{ item.goods_thumbnail_url }}" class="goods_img"></image>
                 <view class="goods-des">
-                  <view class='good_name'>五毒五毒五毒五毒五毒五毒五毒五毒五毒五毒五毒五毒五毒五毒</view>
+                  <view class='good_name'>{{ item.goods_name }}</view>
                   <view class='good_code'><span class="good_copy">点击复制:</span><span class="good_number">123456789</span></view>
-                  <view class='good_point'>自己50%</view>
+                  <!--<view class='good_point'>自己50%</view>-->
                 </view>
               </view>
 
@@ -46,11 +44,11 @@
             <view class='price_box clearfix'>
             <view class="price_box_item">
               <view class='price_box_text'>付款金额</view>
-              <view class='price_box_text price_box_text_bolder'>￥5.6</view>
+              <view class='price_box_text price_box_text_bolder'>￥{{ item.pay_money }}</view>
             </view>
             <view class="price_box_item">
               <view class='price_box_text'>属于自己</view>
-              <view class='price_box_text price_box_text_bolder'>￥5.6</view>
+              <view class='price_box_text price_box_text_bolder'>￥{{ item.self_money }}</view>
             </view>
             </view>
             <view class='order_time'>
