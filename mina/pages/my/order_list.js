@@ -38,11 +38,14 @@ Page({
     },
     getPayOrder:function(){
         var that = this;
+        console.log('getPayOrder')
+        console.log(app.globalData.userInfo);
         wx.request({
             url: app.buildUrl("/my/order"),
             header: app.getRequestHeader(),
             data: {
-                status: that.data.status[ that.data.currentType ]
+                status: that.data.status[ that.data.currentType ],
+                openid: app.globalData.userInfo.open_id
             },
             success: function (res) {
                 var resp = res.data;
@@ -52,7 +55,7 @@ Page({
                 }
 
                 that.setData({
-                   order_list:resp.data.pay_order_list
+                   order_list:resp.data.order_list
                 });
             }
         });
