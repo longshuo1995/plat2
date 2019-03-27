@@ -70,7 +70,7 @@ def calc_top_user(offset_time):
             'nick_name': mem_info['nick_name'],
             'icon': mem_info['icon_url'],
             'title': '',
-            'value': self_mem['idx']
+            'value': self_mem[idx]
         }
         self_file.write('%s\n' % json.dumps(temp))
     for idx in group_mem.index:
@@ -80,7 +80,7 @@ def calc_top_user(offset_time):
             'nick_name': mem_info['nick_name'],
             'icon': mem_info['icon_url'],
             'title': '',
-            'value': group_mem['idx']
+            'value': group_mem[idx]
         }
         group_file.write('%s\n' % json.dumps(temp))
 
@@ -112,14 +112,13 @@ def calc_top_promotion(offset_time):
     group_file = open(group_file_nm, 'w')
     tb_mem = db_mongo.get_table('plat2', 'member')
     for idx in self_promotion.index:
-        print(idx)
         mem_info = tb_mem.find_one({'_id': idx})
         temp = {
             'id': idx,
             'nick_name': mem_info['nick_name'],
             'icon': mem_info['icon_url'],
             'title': '',
-            'value': self_promotion['idx']
+            'value': self_promotion[idx]
         }
         self_file.write('%s\n' % json.dumps(temp))
 
