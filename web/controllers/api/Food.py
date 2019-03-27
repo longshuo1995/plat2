@@ -48,6 +48,7 @@ def foodSearch():
     resp_jo = pdd_tools.search_goods(keyword=keyword, sort_type=cat_id, p=p)
     data_food_list = []
     for item in resp_jo.get('goods_search_response', {}).get('goods_list', []):
+        print(item)
         promotion_rate = item.get('promotion_rate')
         promotion_rate = promotion_rate if promotion_rate else 0
         quan_price = item.get('coupon_discount', 0)/100
@@ -56,6 +57,10 @@ def foodSearch():
         row_price = round(row_price, 2)
         min_price = row_price-quan_price
         min_price = round(min_price, 2)
+
+        promotion = int(promotion_rate)*min_price / 1000
+        promotion_rate = round(promotion_rate, 2)
+
         temp_data = {
             'promotion_rate': promotion_rate,
             'id': item['goods_id'],
@@ -63,6 +68,7 @@ def foodSearch():
             'price': row_price,
             'min_price': min_price,
             'pic_url': item['goods_thumbnail_url'],
+            'promotion': promotion
         }
         data_food_list.append(temp_data)
     resp['data']['list'] = data_food_list
