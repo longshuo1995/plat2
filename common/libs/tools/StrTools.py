@@ -7,4 +7,9 @@ def get_md5(source):
     return m.hexdigest().upper()
 
 
-
+def filter_map(m):
+    resp = {}
+    for key in m.keys():
+        if m[key]:
+            resp[key] = m[key]
+    return resp
