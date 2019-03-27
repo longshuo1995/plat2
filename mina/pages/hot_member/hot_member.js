@@ -1,5 +1,6 @@
 // pages/hot_sell/hot_sell.js
 var lay_load = true
+var app = getApp()
 Page({
 
   /**
@@ -21,7 +22,7 @@ Page({
     let that = this
     let tp = 0
     wx.request({
-      url: 'http://140.143.163.73:8811/api/member/hot_member', // 仅为示例，并非真实的接口地址
+      url: app.globalData.domain+'/member/hot_member', // 仅为示例，并非真实的接口地址
       data: {
         tp: 0,
         pages:that.data.pages
@@ -84,7 +85,7 @@ Page({
     if (lay_load) {
       lay_load = false
       wx.request({
-        url: 'http://140.143.163.73:8811/api/member/hot_member',
+        url: app.globalData.domain+'/member/hot_member', // 仅为示例，并非真实的接口地址
         data: {
           tp: that.data.tp,
           pages: that.data.pages+1
@@ -134,7 +135,7 @@ Page({
       let tp = e.currentTarget.dataset.tp;
       let that = this;
       wx.request({
-        url: 'http://140.143.163.73:8811/api/member/hot_member', // 仅为示例，并非真实的接口地址
+        url: app.globalData.domain+'/member/hot_member',
         data: {
           tp: tp,
           pages:0

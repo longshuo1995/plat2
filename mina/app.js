@@ -7,13 +7,11 @@ App({
         if(!this.globalData.isLogin){
             this.check_login();
         }
-
         console.log('set data....');
         console.log(this.globalData.userInfo);
         page_ctx.setData({
             userInfo:this.globalData.userInfo,
         });
-
     },
     data:{
         'test': 'test'
@@ -28,8 +26,8 @@ App({
         // domain:"http://0.0.0.0:8811/api",
         //sdomain:"http://192.168.0.119:8999/api",
         // domain:"https://food.54php.cn/api",
-        domain:"https://aishangnet.club/api",
-        // domain:"http://140.143.163.73:8812/api",
+        // domain:"https://aishangnet.club/api",
+        domain:"http://140.143.163.73:8812/api",
         // sdomain:"http://140.143.163.73:8811/api"
     },
     buildUrl:function( path,params ){
