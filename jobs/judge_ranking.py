@@ -56,7 +56,9 @@ def calc_top_user(offset_time):
         {'order_create_time': {'$gt': door_time}})
     df = pd.DataFrame(items)
     custom_promotion = df[df['custom_parameters'] != '']['total_promotion'].groupby(df['custom_parameters']).sum()
+    print(custom_promotion)
     custom_promotion = custom_promotion * project_conf.rate_conf['self_rate']
+    print(custom_promotion)
     refer_promotion = df[df['refer_id'] != '']['total_promotion'].groupby(df['refer_id']).sum()
     refer_promotion = refer_promotion * project_conf.rate_conf['refer_rate']
     leader_promotion = df[df['leader_openid'] != '']['total_promotion'].groupby(df['leader_openid']).sum()
