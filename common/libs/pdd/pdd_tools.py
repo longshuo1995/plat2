@@ -70,9 +70,9 @@ def order_search(start_time, end_time):
     return pdd_request(added_params)
 
 
-
 if __name__ == '__main__':
-    # res = order_search('1553355294', '1553441694')
+    res = order_search('1553556662', '1553643062')
+    print(res)
     res = search_order_by_sn('190324-270806221493150')
     print(res)
 
