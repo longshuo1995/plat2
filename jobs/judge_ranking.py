@@ -22,10 +22,10 @@ def judge_local(offset_time, file_nm):
 
     c_time = int(time.time())
     door_time = c_time - offset_time
-
     items = db_mongo.get_table('plat2', 'order').find(
         {'order_create_time': {'$gt': door_time}},
-        {'goods_id': 1, '_id': 0})
+        {'goods_id': 1, '_id': 0}
+    )
     goods_ids = []
     for item in items:
         goods_ids.append(item['goods_id'])
@@ -51,14 +51,52 @@ def judge_local(offset_time, file_nm):
 def calc_top_user(offset_time):
     c_time = int(time.time())
     door_time = c_time - offset_time
+    items = db_mongo.get_table('plat2', 'member').find(
+        {'create_time': {'$gt': door_time}})
+    df = pd.DataFrame(items)
+    self_mem = df['refer_id'][df['refer_id'] != ''].value_counts()
+    group_mem = df['leader_openid'][df['leader_openid'] != ''].value_counts()
+
+    self_file_nm = os.path.join(project_conf.project_path, 'asserts', 'self_member')
+    self_file = open(self_file_nm, 'w')
+    group_file_nm = os.path.join(project_conf.project_path, 'asserts', 'group_member')
+    group_file = open(group_file_nm, 'w')
+    tb_mem = db_mongo.get_table('plat2', 'member')
+
+    for idx in self_mem:
+        mem_info = tb_mem.find_one({'_id': idx})
+        temp = {
+            'id': idx,
+            'nick_name': mem_info['nick_name'],
+            'icon': mem_info['icon_url'],
+            'title': '',
+            'value': self_mem['idx']
+        }
+        self_file.write('%s\n' % json.dumps(temp))
+    for idx in group_mem.index:
+        mem_info = tb_mem.find_one({'_id': idx})
+        temp = {
+            'id': idx,
+            'nick_name': mem_info['nick_name'],
+            'icon': mem_info['icon_url'],
+            'title': '',
+            'value': group_mem['idx']
+        }
+        group_file.write('%s\n' % json.dumps(temp))
+
+    self_file.close()
+    group_file.close()
+
+
+def calc_top_promotion(offset_time):
+    c_time = int(time.time())
+    door_time = c_time - offset_time
     # m
     items = db_mongo.get_table('plat2', 'order').find(
         {'order_create_time': {'$gt': door_time}})
     df = pd.DataFrame(items)
     custom_promotion = df[df['custom_parameters'] != '']['total_promotion'].groupby(df['custom_parameters']).sum()
-    print(custom_promotion)
     custom_promotion = custom_promotion * project_conf.rate_conf['self_rate']
-    print(custom_promotion)
     refer_promotion = df[df['refer_id'] != '']['total_promotion'].groupby(df['refer_id']).sum()
     refer_promotion = refer_promotion * project_conf.rate_conf['refer_rate']
     leader_promotion = df[df['leader_openid'] != '']['total_promotion'].groupby(df['leader_openid']).sum()
@@ -72,17 +110,33 @@ def calc_top_user(offset_time):
     self_file = open(self_file_nm, 'w')
     group_file_nm = os.path.join(project_conf.project_path, 'asserts', 'group_promotion')
     group_file = open(group_file_nm, 'w')
-
+    tb_mem = db_mongo.get_table('plat2', 'member')
     for idx in self_promotion.index:
-        self_file.write('%s\t%s\n' % (idx, self_promotion[idx]))
+        mem_info = tb_mem.find_one({'_id': idx})
+        temp = {
+            'id': idx,
+            'nick_name': mem_info['nick_name'],
+            'icon': mem_info['icon_url'],
+            'title': '',
+            'value': self_promotion['idx']
+        }
+        self_file.write('%s\n' % json.dumps(temp))
 
     for idx in group_promotion.index:
-        group_file.write('%s\t%s\n' % (idx, group_promotion[idx]))
+        mem_info = tb_mem.find_one({'_id': idx})
+        temp = {
+            'id': idx,
+            'nick_name': mem_info['nick_name'],
+            'icon': mem_info['icon_url'],
+            'title': '',
+            'value': group_promotion['idx']
+        }
+        group_file.write('%s\n' % json.dumps(temp))
     self_file.close()
     group_file.close()
 
 
 if __name__ == '__main__':
-    calc_top_user(1100000)
+    calc_top_promotion(1100000)
     # judge_24h()
 
