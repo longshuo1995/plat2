@@ -32,5 +32,5 @@ def start_update_order(time_interval=60):
 
 
 if __name__ == '__main__':
-    start_update_order()
+    start_update_order(24*60*60)
 
