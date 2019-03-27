@@ -52,7 +52,7 @@ def hot_member():
         file_name = os.path.join(project_conf.project_path, 'asserts', 'group_promotion')
     if tp == 1:
         file_name = os.path.join(project_conf.project_path, 'asserts', 'group_member')
-    
+
     for line in [i for i in open(file_name)]:
         jo = json.loads(line)
         resp['data'].append(jo)

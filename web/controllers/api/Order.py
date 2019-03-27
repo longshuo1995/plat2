@@ -2,6 +2,7 @@ import json
 
 from flask import request, jsonify
 
+import project_conf
 from common.libs import db_mongo
 from web.controllers.api import route_api
 
@@ -18,13 +19,13 @@ def my_order():
         member_info = db_mongo.get_table('plat2', 'member').find_one({'_id': info['custom_parameters']})
         rate = 0
         if info['custom_parameters'] == open_id:
-            rate += 0.2
+            rate += project_conf.rate_conf['self_rate']
         if info.get('refer_id') == open_id:
-            rate += 0.2
+            rate += project_conf.rate_conf['refer_rate']
         if info.get('leader_openid') == open_id:
-            rate += 0.6
+            rate += project_conf.rate_conf['leader_rate']
         if info.get('leader_master') == open_id:
-            rate += 0.1
+            rate += project_conf.rate_conf['relation_rate']
         temp = {
             'own_icon': member_info.get('icon_url'),
             'own_name': member_info.get('nick_name', ''),
