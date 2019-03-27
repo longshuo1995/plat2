@@ -62,28 +62,24 @@ def calc_top_user(offset_time):
     group_file_nm = os.path.join(project_conf.project_path, 'asserts', 'group_member')
     group_file = open(group_file_nm, 'w')
     tb_mem = db_mongo.get_table('plat2', 'member')
-
+    title = '粉丝'
     for idx in self_mem.index:
-        print('self')
-        print(idx)
         mem_info = tb_mem.find_one({'_id': idx})
         temp = {
             'id': idx,
             'nick_name': mem_info['nick_name'],
             'icon': mem_info['icon_url'],
-            'title': '',
+            'title': title,
             'value': self_mem[idx]
         }
         self_file.write('%s\n' % json.dumps(temp))
     for idx in group_mem.index:
-        print('group')
-        print(idx)
         mem_info = tb_mem.find_one({'_id': idx})
         temp = {
             'id': idx,
             'nick_name': mem_info['nick_name'],
             'icon': mem_info['icon_url'],
-            'title': '',
+            'title': title,
             'value': group_mem[idx]
         }
         group_file.write('%s\n' % json.dumps(temp))
@@ -115,13 +111,14 @@ def calc_top_promotion(offset_time):
     group_file_nm = os.path.join(project_conf.project_path, 'asserts', 'group_promotion')
     group_file = open(group_file_nm, 'w')
     tb_mem = db_mongo.get_table('plat2', 'member')
+    title = '佣金'
     for idx in self_promotion.index:
         mem_info = tb_mem.find_one({'_id': idx})
         temp = {
             'id': idx,
             'nick_name': mem_info['nick_name'],
             'icon': mem_info['icon_url'],
-            'title': '',
+            'title': title,
             'value': self_promotion[idx]
         }
         self_file.write('%s\n' % json.dumps(temp))
@@ -132,7 +129,7 @@ def calc_top_promotion(offset_time):
             'id': idx,
             'nick_name': mem_info['nick_name'],
             'icon': mem_info['icon_url'],
-            'title': '',
+            'title': title,
             'value': group_promotion[idx]
         }
         group_file.write('%s\n' % json.dumps(temp))

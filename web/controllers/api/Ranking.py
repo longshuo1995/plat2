@@ -48,21 +48,15 @@ def hot_member():
         resp['msg'] = "需要tp"
         return jsonify(resp)
     tp = int(tp)
-    title = ''
     if tp == 0:
-        title = '累计佣金'
+        file_name = os.path.join(project_conf.project_path, 'asserts', 'group_promotion')
     if tp == 1:
-        title = '累计粉丝'
+        file_name = os.path.join(project_conf.project_path, 'asserts', 'group_member')
+    
+    for line in [i for i in open(file_name)]:
+        jo = json.loads(line)
+        resp['data'].append(jo)
 
-    for i in range(10):
-        temp = {
-            'id': i,
-            'nick_name': "大头哥哥",
-            'icon': "https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=1976195564,3037788353&fm=27&gp=0.jpg",
-            'title': title,
-            'value': '290'
-        }
-        resp['data'].append(temp)
     return jsonify(resp)
 
 
