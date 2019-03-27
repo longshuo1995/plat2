@@ -57,6 +57,9 @@ def foodSearch():
         min_price = row_price-quan_price
         min_price = round(min_price, 2)
 
+        if promotion_rate > 100:
+            promotion_rate /= 100
+
         promotion = int(promotion_rate)*min_price / 100
         promotion = round(promotion, 2)
 
@@ -67,7 +70,7 @@ def foodSearch():
             'price': row_price,
             'min_price': min_price,
             'pic_url': item['goods_thumbnail_url'],
-            'promotion': promotion_rate
+            'promotion': promotion
         }
         data_food_list.append(temp_data)
     resp['data']['list'] = data_food_list
