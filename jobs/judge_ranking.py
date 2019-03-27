@@ -58,4 +58,6 @@ def calc_top_user(offset_time, file_name):
 
 
 if __name__ == '__main__':
-    calc_top_user(1100000, '')
+    # calc_top_user(1100000, '')
+    judge_24h()
+
