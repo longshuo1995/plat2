@@ -64,6 +64,7 @@ def calc_top_user(offset_time):
     tb_mem = db_mongo.get_table('plat2', 'member')
 
     for idx in self_mem.index:
+        print('self')
         print(idx)
         mem_info = tb_mem.find_one({'_id': idx})
         temp = {
@@ -75,6 +76,8 @@ def calc_top_user(offset_time):
         }
         self_file.write('%s\n' % json.dumps(temp))
     for idx in group_mem.index:
+        print('group')
+        print(idx)
         mem_info = tb_mem.find_one({'_id': idx})
         temp = {
             'id': idx,
