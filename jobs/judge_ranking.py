@@ -39,7 +39,7 @@ def judge_local(offset_time, file_nm):
         temp = {
             'id': int(good_id),
             'title': info['goods_name'],
-            'icon': "https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=1976195564,3037788353&fm=27&gp=0.jpg",
+            'icon': info['goods_thumbnail_url'],
             'price': str(round(info['order_amount']/100, 2)),
             'discount': str(round(info['duo_coupon_amount']/100, 2)),
             'sale_count': int(value_count[good_id])

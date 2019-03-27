@@ -12,7 +12,6 @@ def my_order():
     req = request.values
     status = int(req['status']) if 'status' in req else 0
     open_id = req.get('openid')
-
     infos = db_mongo.get_table('plat2', 'order').find({'custom_parameters': open_id})
     order_list = []
     for info in infos:
