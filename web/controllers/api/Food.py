@@ -58,7 +58,7 @@ def foodSearch():
         min_price = row_price-quan_price
         min_price = round(min_price, 2)
 
-        promotion = int(promotion_rate)*min_price / 1000
+        promotion = int(promotion_rate)*min_price / 100
         promotion = round(promotion, 2)
 
         temp_data = {
