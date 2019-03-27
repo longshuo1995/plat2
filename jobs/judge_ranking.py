@@ -48,17 +48,39 @@ def judge_local(offset_time, file_nm):
     out_file.close()
 
 
-def calc_top_user(offset_time, file_name):
+def calc_top_user(offset_time):
     c_time = int(time.time())
     door_time = c_time - offset_time
     # m
     items = db_mongo.get_table('plat2', 'order').find(
         {'order_create_time': {'$gt': door_time}})
     df = pd.DataFrame(items)
-    print(df.columns)
+    custom_promotion = df[df['custom_parameters'] != '']['total_promotion'].groupby(df['custom_parameters']).sum()
+    custom_promotion = custom_promotion * project_conf.rate_conf['self_rate']
+    refer_promotion = df[df['refer_id'] != '']['total_promotion'].groupby(df['refer_id']).sum()
+    refer_promotion = refer_promotion * project_conf.rate_conf['refer_rate']
+    leader_promotion = df[df['leader_openid'] != '']['total_promotion'].groupby(df['leader_openid']).sum()
+    leader_promotion = leader_promotion * project_conf.rate_conf['leader_rate']
+    # relation_promotion = df[df['leader_master'] != '']['total_promotion'].groupby(df['leader_master']).sum()
+
+    self_promotion = custom_promotion.add(refer_promotion, fill_value=0)
+    group_promotion = self_promotion.add(leader_promotion, fill_value=0)
+
+    self_file_nm = os.path.join(project_conf.project_path, 'asserts', 'self_promotion')
+    self_file = open(self_file_nm, 'w')
+    group_file_nm = os.path.join(project_conf.project_path, 'asserts', 'group_promotion')
+    group_file = open(group_file_nm, 'w')
+
+    for idx in self_promotion.index:
+        self_file.write('%s\t%s\n' % (idx, self_promotion[idx]))
+
+    for idx in group_promotion.index:
+        group_file.write('%s\t%s\n' % (idx, group_promotion[idx]))
+    self_file.close()
+    group_file.close()
 
 
 if __name__ == '__main__':
-    calc_top_user(1100000, '')
+    calc_top_user(1100000)
     # judge_24h()
 
