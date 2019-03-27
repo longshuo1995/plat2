@@ -59,7 +59,7 @@ def foodSearch():
         min_price = round(min_price, 2)
 
         promotion = int(promotion_rate)*min_price / 1000
-        promotion_rate = round(promotion_rate, 2)
+        promotion = round(promotion, 2)
 
         temp_data = {
             'promotion_rate': promotion_rate,
