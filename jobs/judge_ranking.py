@@ -51,13 +51,14 @@ def judge_local(offset_time, file_nm):
 def calc_top_user(offset_time, file_name):
     c_time = int(time.time())
     door_time = c_time - offset_time
+    # m
     items = db_mongo.get_table('plat2', 'order').find(
         {'order_create_time': {'$gt': door_time}})
     df = pd.DataFrame(items)
-    print(df)
+    print(df.columns)
 
 
 if __name__ == '__main__':
-    # calc_top_user(1100000, '')
-    judge_24h()
+    calc_top_user(1100000, '')
+    # judge_24h()
 

@@ -27,9 +27,10 @@ def start_update_order(time_interval=60):
             upd["refer_id"] = user_info.get('refer_id', '')
             upd["leader_openid"] = user_info.get("leader_openid", '')
             upd["leader_master"] = user_info.get("leader_master", '')
+            upd["total_promotion"] = item['promotion_rate'] * item['order_amount'] / 1000
             tbl.insert_one(upd)
 
 
 if __name__ == '__main__':
-    start_update_order()
+    start_update_order(24*60*60)
 
