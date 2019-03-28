@@ -54,7 +54,7 @@ def calc_top_user(offset_time):
     items = db_mongo.get_table('plat2', 'member').find(
         {'create_time': {'$gt': door_time}})
     df = pd.DataFrame(items)
-    self_mem = df['refer_id'][len(df['refer_id']) > 5].value_counts()
+    self_mem = df['refer_id'][df['refer_id'] != ''].value_counts()
     group_mem = df['leader_openid'][df['leader_openid'] != ''].value_counts()
 
     self_file_nm = os.path.join(project_conf.project_path, 'asserts', 'self_member')
