@@ -64,6 +64,7 @@ def calc_top_user(offset_time):
     tb_mem = db_mongo.get_table('plat2', 'member')
     title = '粉丝'
     for idx in self_mem.index:
+        print(idx)
         mem_info = tb_mem.find_one({'_id': idx})
         temp = {
             'id': idx,
