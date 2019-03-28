@@ -35,7 +35,7 @@ def judge_local(offset_time, file_nm):
     path_nm = os.path.join(project_conf.project_path, 'asserts', file_nm)
     out_file = open(path_nm, 'w')
     for good_id in value_count.index:
-        info = db_mongo.get_table('plat2', 'order').find_one({'goods_id': good_id, 'duo_coupon_amount': {'$ne': 4}})
+        info = db_mongo.get_table('plat2', 'order').find_one({'goods_id': good_id, 'order_status': {'$ne': 4}})
         print(info)
         # if not info.get('duo_coupon_amount'):
         #     continue
