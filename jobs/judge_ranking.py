@@ -36,6 +36,7 @@ def judge_local(offset_time, file_nm):
     out_file = open(path_nm, 'w')
     for good_id in value_count.index:
         info = db_mongo.get_table('plat2', 'order').find_one({'goods_id': good_id})
+        print(info)
         temp = {
             'id': int(good_id),
             'title': info['goods_name'],
