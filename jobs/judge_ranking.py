@@ -24,7 +24,7 @@ def judge_local(offset_time, file_nm):
     door_time = c_time - offset_time
     items = db_mongo.get_table('plat2', 'order').find(
         {'order_create_time': {'$gt': door_time}},
-        {'goods_id': 1, '_id': 0}
+        {'goods_id': 1, '_id': 0},
     )
     goods_ids = []
     for item in items:
@@ -36,7 +36,8 @@ def judge_local(offset_time, file_nm):
     out_file = open(path_nm, 'w')
     for good_id in value_count.index:
         info = db_mongo.get_table('plat2', 'order').find_one({'goods_id': good_id})
-        print(info)
+        if not info.get('duo_coupon_amount'):
+            continue
         temp = {
             'id': int(good_id),
             'title': info['goods_name'],
