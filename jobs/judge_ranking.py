@@ -141,5 +141,5 @@ def calc_top_promotion(offset_time):
 if __name__ == '__main__':
     calc_top_promotion(1100000)
     calc_top_user(1100000)
-    # judge_24h()
+    judge_24h()
 
