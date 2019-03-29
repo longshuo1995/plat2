@@ -1,5 +1,6 @@
 // pages/my/partner.js
 var lay_load = true
+var app = getApp()
 Page({
 
   /**
@@ -25,7 +26,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+      this.get_data()
   },
 
   /**
@@ -111,13 +112,15 @@ Page({
   },
   get_data: function(){
     var that = this;
+    console.log('datatatatatata')
+    console.log(that.data.groupType,)
     wx.request({
         url: app.globalData.domain + '/group/member',
         header:app.getRequestHeader(),
         method:'POST',
         data: {
-          group_id: data.groupType,
-          pages: data.pages
+          group_id: that.data.groupType,
+          pages: that.data.pages
         },
         success: function (res) {
           var resp = res.data;

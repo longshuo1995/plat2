@@ -17,6 +17,10 @@ def group_member():
     open_id = req.get('open_id', '')
     if group_id == 0:
         info = db_mongo.get_table('plat2', 'member').find_one({"_id": open_id})
+        print(open_id)
+        print(open_id)
+        print(open_id)
+        print(info)
         if info['leader_openid']:
             teacher_info = db_mongo.get_table('plat2', 'member').find_one({"_id": info['refer_id']})
             group_list.append({
