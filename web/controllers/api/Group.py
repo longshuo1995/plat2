@@ -9,7 +9,7 @@ from web.controllers.api import route_api
 
 
 @route_api.route('/group/member', methods=['GET', 'POST'])
-def login():
+def group_member():
     req = request.values
     group_list = []
     resp = {'code': 200, 'msg': '成功', 'data': group_list}
