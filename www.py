@@ -3,7 +3,7 @@ from web.controllers.account.Account import route_account
 from web.controllers.index import route_index
 from web.controllers.static import route_static
 from web.controllers.user.User import route_user
-from web.controllers.api import route_api, Food, Member, Ranking, Order
+from web.controllers.api import route_api, Food, Member, Ranking, Order, Group
 from web.controllers.good import route_good, EditGood
 
 
