@@ -1,10 +1,10 @@
 <!--pages/my/partner.wxml-->
 <view class='search_form'>
-  <input placeholder="请输入昵称或邀请码" auto-focus  class='search_input'/>
-  <view class='search_btn'>
-    <view class='btn_line'></view>
-    <image src='../../images/search.png' class='search_img'></image>
-  </view>
+  <!--<input placeholder="请输入昵称或邀请码" auto-focus  class='search_input'/>-->
+  <!--<view class='search_btn'>-->
+    <!--<view class='btn_line'></view>-->
+    <!--<image src='../../images/search.png' class='search_img'></image>-->
+  <!--</view>-->
 </view>
 
 <view class="status-box">
@@ -23,10 +23,10 @@
     <image src="{{item.user_img}}"  lazy-load="true" class="item_img" mode='aspectFill' ><view class='nicheng'>校长</view></image>
     <view class='item_info_box'>
       <view class='flex_item'>{{item.user_name}}</view>
-      <view class='flex_item'>账号:{{item.user_number}}</view>
-      <view class='flex_item'>账号:{{item.user_nickname}}</view>
+      <!--<view class='flex_item'>账号:{{item.user_number}}</view>-->
+      <!--<view class='flex_item'>账号:{{item.user_nickname}}</view>-->
     </view>
-    <image src='../../images/phone.png'class="phone_icon"></image>
+    <!--<image src='../../images/phone.png'class="phone_icon"></image>-->
   </view> 
 </block>
 

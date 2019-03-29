@@ -44,13 +44,14 @@ Page({
     },
     checkLogin:function(){
 
-        console.log('check......')
         console.log(app.globalData.refer_openid)
 
          var that = this;
          wx.login({
+             fail:function(res){
+                 console.log(res)
+             },
              success:function( res ){
-
                  console.log(res.code);
                  if( !res.code ){
                     app.alert( { 'content':'登录失败，请再次点击~~' } );
@@ -65,9 +66,8 @@ Page({
                         refer_openid: app.globalData.refer_openid
                     },
                     success:function( res ){
-                        console.log('####check success')
-                        var resp = res.data
-                        console.log(resp)
+                        var resp = res.data;
+                        console.log(resp);
                         if(resp.is_register){
                             app.globalData.userInfo = resp.data;
                             console.log(resp);
@@ -87,7 +87,7 @@ Page({
             });
             return;
         }
-        var data = e.detail.userInfo
+        var data = e.detail.userInfo;
         wx.login({
             success: function (res) {
                 if(!res.code){
@@ -95,8 +95,7 @@ Page({
                     return
                 }
                 data['code'] = res.code;
-                data['refer_id'] = 'test';
-                data[''] = 'test';
+                data['refer_id'] = app.globalData.refer_openid;
                 wx.request({
                     // TODO 修改域名
                     url:app.globalData.domain+'/member/login',
@@ -112,7 +111,6 @@ Page({
                 })
             }
         })
-
     }
     // login:function( e ){
     //     var that = this;

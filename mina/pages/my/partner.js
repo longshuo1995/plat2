@@ -6,7 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    group_list:["我的领导","分组A","分组B","我的客长"],
+    group_list:["我的领导","分组A","分组B","我的团长"],
     groupType:0,
     user_list:[
       {
@@ -14,35 +14,6 @@ Page({
         user_name:"无底洞",
         user_number:"2085963",
         user_nickname:"耍帅歌"
-      }, {
-        user_img: "../../images/food.jpg",
-        user_name: "无底洞",
-        user_number: "2085963",
-        user_nickname: "耍帅歌"
-      }
-      , {
-        user_img: "../../images/food.jpg",
-        user_name: "无底洞",
-        user_number: "2085963",
-        user_nickname: "耍帅歌"
-      }
-      , {
-        user_img: "../../images/food.jpg",
-        user_name: "无底洞",
-        user_number: "2085963",
-        user_nickname: "耍帅歌"
-      }
-      , {
-        user_img: "../../images/food.jpg",
-        user_name: "无底洞",
-        user_number: "2085963",
-        user_nickname: "耍帅歌"
-      }
-      , {
-        user_img: "../../images/food.jpg",
-        user_name: "无底洞",
-        user_number: "2085963",
-        user_nickname: "耍帅歌"
       }
     ],
     noMore: true,
@@ -126,41 +97,6 @@ Page({
         })
       }
       lay_load = true
-      // wx.request({
-      //   url: 'http://140.143.163.73:8811/api/goods/hot_goods',
-      //   data: {
-      //     tp: that.data.tp,
-      //     pages: that.data.pages + 1
-      //   },
-      //   success: function (res) {
-      //     console.log(res.data.data)
-      //     if (res.data.code == 200) {
-      //       if (res.data.data.length < 10) {
-      //         clearTimeout(time)
-      //         that.setData({
-      //           data_list: that.data.data_list.concat(res.data.data),
-      //           noMore: false,
-      //           show_model: true,
-      //         })
-      //         time = setTimeout(function () {
-      //           that.setData({
-      //             noMore: true
-      //           })
-      //           wx.hideLoading()
-      //         }, 1000)
-      //       }
-      //       else {
-      //         that.setData({
-      //           data_list: that.data.data_list.concat(res.data.data),
-      //           pages: that.data.pages + 1
-      //         })
-      //       }
-      //     }
-      //     console.log(res)
-
-      //     lay_load = true
-      //   }
-      // })
     }
     else {
       console.log('还没加载完呢')
@@ -173,10 +109,48 @@ Page({
   onShareAppMessage: function () {
 
   },
+  get_data: function(){
+    var that = this;
+    wx.request({
+        url: app.globalData.domain + '/group/member',
+        header:app.getRequestHeader(),
+        method:'POST',
+        data: {
+          group_id: data.groupType,
+          pages: data.pages
+        },
+        success: function (res) {
+          var resp = res.data;
+          if(resp.data.length>10){
+            clearTimeout(time)
+              that.setData({
+                user_list: that.data.user_list.concat(res.data.data),
+                noMore: false,
+                show_model: true,
+              })
+              time = setTimeout(function () {
+                that.setData({
+                  noMore: true
+                });
+                wx.hideLoading()
+              }, 1000)
+          }else{
+            that.setData({
+                user_list: that.data.user_list.concat(res.data.data),
+                pages: that.data.pages + 1
+              })
+          }
+
+        }
+    });
+  },
   groupStatusTap: function (e) {
     var curType = e.currentTarget.dataset.index;
+
     this.setData({
       groupType: curType
     });
+    this.get_data()
+
   },
-})
+});

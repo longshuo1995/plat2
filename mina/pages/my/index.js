@@ -3,13 +3,18 @@ var app = getApp();
 Page({
     data: {},
     onLoad(scene) {
-        app.globalData.from_openid=scene.from_openid;
-        console.log('from openid...')
-        console.log(app.globalData.from_openid)
-        app.pre_load(this);
+        if(scene.from_openid){
+            app.globalData.from_openid=scene.from_openid;
+        }
+        // app.pre_load(this);
+        app.goToIndex()
     },
     onShow() {
-        this.getInfo();
+        console.log('show...')
+        console.log(app.globalData.userInfo)
+        this.setData({
+            userInfo:app.globalData.userInfo
+        })
     },
     getInfo:function(){
         var that = this;
@@ -33,7 +38,7 @@ Page({
     onShareAppMessage: function(){
         console.log(app.globalData.userInfo.open_id);
         return {
-            title: "奇遇拼团",
+            title: "自购省钱，推广赚钱",
             path: '/pages/my/index?from_openid=' + app.globalData.userInfo.open_id,
             success: function (res) {
             },

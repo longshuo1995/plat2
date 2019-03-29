@@ -26,8 +26,8 @@ App({
         // domain:"http://0.0.0.0:8811/api",
         //sdomain:"http://192.168.0.119:8999/api",
         // domain:"https://food.54php.cn/api",
-        domain:"https://aishangnet.club/api",
-        // domain:"http://140.143.163.73:8812/api",
+        // domain:"https://aishangnet.club/api",
+        domain:"http://140.143.163.73:8812/api",
         // sdomain:"http://140.143.163.73:8811/api"
     },
     buildUrl:function( path,params ){
@@ -42,9 +42,15 @@ App({
         return url + _paramUrl;
     },
     check_login: function(){
+        console.log('check login ......')
+        console.log('check login ......')
+        console.log('check login ......')
+        console.log(this.globalData.isLogin)
         if(this.globalData.isLogin){
             return
         }
+
+        console.log('ready login')
         var that = this;
         wx.login({
              success:function( res ){
@@ -62,7 +68,6 @@ App({
                     },
                     success:function( res ){
                         var resp = res.data;
-                        console.log('*****');
                         that.globalData.userInfo = resp.data;
                         console.log(resp.data);
                         that.globalData.isLogin = resp.is_register;
@@ -77,7 +82,7 @@ App({
     },
     tip:function( params ){
         var that = this;
-        var title = params.hasOwnProperty('title')?params['title']:'爱尚免单提示您';
+        var title = params.hasOwnProperty('title')?params['title']:'奇遇拼团提示您';
         var content = params.hasOwnProperty('content')?params['content']:'';
         wx.showModal({
             title: title,
@@ -96,7 +101,7 @@ App({
         })
     },
     alert:function( params ){
-        var title = params.hasOwnProperty('title')?params['title']:'爱尚免单提示您';
+        var title = params.hasOwnProperty('title')?params['title']:'奇遇拼团提示您';
         var content = params.hasOwnProperty('content')?params['content']:'';
         wx.showModal({
             title: title,

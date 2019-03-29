@@ -19,16 +19,16 @@
     <view class='earnings_box_line'></view>
     <view class='price_info'>
       <view class="price_info_item item_first item_line">
-      <view class='price_item'>￥0.00</view>
+      <view class='price_item'>￥{{ userInfo.month_promotion }}</view>
       <view>本月预计</view>
       </view>
       <view class="price_info_item item_line">
-      <view class='price_item'>￥0.00</view>
+      <view class='price_item'>￥{{ userInfo.today_promotion }}</view>
       <view>今日收益</view>
       </view>
       <view class="price_info_item">
       <view class='price_item'>0</view>
-      <view>订单总数</view>
+      <view>待审核订单</view>
       </view>
     </view>
   </view>

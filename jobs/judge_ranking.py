@@ -19,7 +19,6 @@ def judge_24h():
 
 
 def judge_local(offset_time, file_nm):
-
     c_time = int(time.time())
     door_time = c_time - offset_time
     items = db_mongo.get_table('plat2', 'order').find(
@@ -36,7 +35,6 @@ def judge_local(offset_time, file_nm):
     out_file = open(path_nm, 'w')
     for good_id in value_count.index:
         info = db_mongo.get_table('plat2', 'order').find_one({'goods_id': good_id, 'order_status': {'$ne': 4}})
-        print(info)
         # if not info.get('duo_coupon_amount'):
         #     continue
         temp = {
@@ -67,7 +65,6 @@ def calc_top_user(offset_time):
     tb_mem = db_mongo.get_table('plat2', 'member')
     title = '粉丝'
     for idx in self_mem.index:
-        print(idx)
         mem_info = tb_mem.find_one({'_id': idx})
         temp = {
             'id': idx,

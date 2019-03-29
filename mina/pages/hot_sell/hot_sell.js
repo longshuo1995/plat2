@@ -21,13 +21,13 @@ Page({
     let that = this
     let tp = 0
     wx.request({
-      url: app.globalData.domain + '/goods/hot_goods', // 仅为示例，并非真实的接口地址
+      url: app.globalData.domain + '/goods/hot_goods',
       data: {
         tp: 0,
         pages:that.data.pages
       },
       header: {
-        'content-type': 'application/json' // 默认值
+        'content-type': 'application/json'
       },
       success: (res) => {
         that.setData({
@@ -90,7 +90,6 @@ Page({
           pages: that.data.pages+1
         },
         success: function (res) {
-          console.log(res.data.data)
           if (res.data.code == 200) {
             if (res.data.data.length < 10) {
               clearTimeout(time)
