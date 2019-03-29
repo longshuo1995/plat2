@@ -112,8 +112,6 @@ Page({
   },
   get_data: function(){
     var that = this;
-    console.log('datatatatatata')
-    console.log(that.data.groupType,)
     wx.request({
         url: app.globalData.domain + '/group/member',
         header:app.getRequestHeader(),
@@ -153,6 +151,7 @@ Page({
     this.setData({
       groupType: curType
     });
+    this.data.user_list = [];
     this.get_data()
 
   },
