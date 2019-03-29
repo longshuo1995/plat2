@@ -20,7 +20,7 @@
 <!-- 商品列表 -->
 <block wx:for="{{user_list}}" wx:key="{{index}}">
   <view class='item_box'>
-    <image src="{{item.user_img}}"  lazy-load="true" class="item_img" mode='aspectFill' ><view class='nicheng'>校长</view></image>
+    <image src="{{item.user_img}}"  lazy-load="true" class="item_img" mode='aspectFill' ><view class='nicheng'>{{item.tp_name}}</view></image>
     <view class='item_info_box'>
       <view class='flex_item'>{{item.user_name}}</view>
       <!--<view class='flex_item'>账号:{{item.user_number}}</view>-->

@@ -9,14 +9,7 @@ Page({
   data: {
     group_list:["我的领导","分组A","分组B","我的团长"],
     groupType:0,
-    user_list:[
-      {
-        user_img:"../../images/food.jpg",
-        user_name:"无底洞",
-        user_number:"2085963",
-        user_nickname:"耍帅歌"
-      }
-    ],
+    user_list:[],
     noMore: true,
     show_model: true,
     pages: 0
@@ -117,7 +110,8 @@ Page({
         header:app.getRequestHeader(),
         method:'POST',
         data: {
-          group_id: app.globalData.userInfo.open_id,
+          open_id: app.globalData.userInfo.open_id,
+          group_id: that.data.groupType,
           pages: that.data.pages
         },
         success: function (res) {

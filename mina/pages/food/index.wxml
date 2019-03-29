@@ -36,18 +36,29 @@
     </view>
   </view>
 
-  <view class="goods-container">
-    <view class="goods-box" wx:for-items="{{goods}}"  bindtap="toDetailsTap" data-id="{{item.id}}">
-      <view class="img-box">
-        <image src="{{item.pic_url}}" class="image" mode="aspectFill" lazy-load="true" />
+    <block wx:for="{{goods}}" bindtap="toDetailsTap" data-id="{{item.id}}">
+      <view class='item_box'>
+        <view class='item_index'>
+          <view class="item_index_number {{index==0?'item_first':''}} {{index==1?'item_second':''}} {{index==2?'item_three':''}}">{{index+1}}</view>
+        </view>
+        <image src="{{item.pic_url}}"  lazy-load="true" class="item_img" mode='aspectFill' ></image>
+        <view class='item_info_box'>
+          <view class='item_name'>{{item.name}}</view>
+          <view class='clearfix'>
+            <view class='item_discount'>
+            <image src='/images/quan.png' class='quan_img'></image>
+            <view class='quan_text'>券￥{{item.discount}}</view>
+
+            </view>
+            <view class='item_sale'>佣金:￥{{item.promotion}}</view>
+          </view>
+          <view class='price_box'>
+            <view class='item_price'>券后价￥{{item.min_price}}</view>
+            <view class='item_buy'>立即购买</view>
+          </view>
+        </view>
       </view>
-      <view class="goods-title">{{item.name}}</view>
-      <view style='display:flex;'>
-        <view class="goods-price">佣金 ¥ {{item.promotion}}</view>
-        <view class="goods-price">¥ {{item.min_price}}</view>
-        <view wx:if="{{item.price && item.price > 0 && item.min_price != item.price}}" class="goods-price" style='color:#aaa;text-decoration:line-through'>¥ {{item.price}}</view>
-      </view>
-    </view>
-  </view>
+    </block>
+
   <view hidden="{{loadingMoreHidden ? true : false}}" class="no-more-goods">哥也是有底线的</view>
 </view>

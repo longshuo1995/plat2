@@ -69,6 +69,7 @@ def foodSearch():
             'name': item['goods_name'],
             'price': row_price,
             'min_price': min_price,
+            'discount': quan_price,
             'pic_url': item['goods_thumbnail_url'],
             'promotion': promotion
         }
