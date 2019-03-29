@@ -117,7 +117,7 @@ Page({
         header:app.getRequestHeader(),
         method:'POST',
         data: {
-          group_id: that.data.groupType,
+          group_id: app.globalData.userInfo.open_id,
           pages: that.data.pages
         },
         success: function (res) {
