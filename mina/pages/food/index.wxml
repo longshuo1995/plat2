@@ -1,5 +1,6 @@
 <!--index.wxml-->
 <!--1px = 750/320 = 2.34rpx;-->
+<wxs module="filters" src="../../utils/filter.wxs"></wxs>
 <view class="container">
   <!--轮播图-->
   <view class="swiper-container">
@@ -48,7 +49,7 @@
             <view class='item_discount'>
                 <view class='quan_text' style="background-image: url('../../images/quan.png');background-size: cover">券￥{{item.discount}}</view>
             </view>
-            <view class='item_sale'>佣金:￥{{ item.min_price}}&{{item.promotion_rate}}&{{rate}}</view>
+            <view class='item_sale'>佣金:￥{{numberUtil.numberFormat(1.11 * 5)}} </view>
           </view>
           <view class='price_box'>
             <view class='item_buy'>券后价￥{{item.min_price}}</view>

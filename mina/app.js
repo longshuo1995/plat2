@@ -10,12 +10,15 @@ App({
         wx.setNavigationBarTitle({
             title: this.globalData.shopName
         });
-        if(this.globalData.userInfo=null){
-            goToIndex()
+        if(!this.globalData.userInfo){
+            this.goToIndex()
         }else{
             console.log('cache success....')
         }
-        if(this.userInfo.level>0){
+        console.log(this.globalData.userInfo)
+        console.log(this.globalData.userInfo)
+        console.log(this.globalData.userInfo)
+        if(this.globalData.userInfo.level>0){
             this.globalData.promotion_rate=1
         }
 
