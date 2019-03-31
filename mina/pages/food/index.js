@@ -58,7 +58,7 @@ Page({
     tapBanner: function (e) {
         if (e.currentTarget.dataset.id != 0) {
             wx.navigateTo({
-                url: "/pages/food/info?id=" + e.currentTarget.dataset.id
+                url: "/pages/page_img/index?pic_url=" + e.currentTarget.dataset.id
             });
         }
     },

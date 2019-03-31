@@ -29,10 +29,10 @@ def foodIndex():
 
     fn = os.path.join(project_conf.project_path, 'web', 'static', 'index_img')
     img_names = os.listdir(fn)
-    for item in img_names:
+    for img_name in img_names:
         data_food_list.append({
-            'id': 'img_name',
-            'pic_url': 'img_name',
+            'id': img_name,
+            'pic_url': 'https://aishangnet.club/static/index_img/%s' % img_name,
         })
     resp['data']['banner_list'] = data_food_list
     return jsonify(resp)
