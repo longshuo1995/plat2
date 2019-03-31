@@ -94,9 +94,16 @@ def get_pdd_url():
     good_id = req.get('good_id')
     open_id = req.get('open_id')
     res = pdd_tools.search_good_detail(good_id, open_id)
-    print(res)
-    path = res.get('goods_promotion_url_generate_response', {}).get('goods_promotion_url_list', [{}])[0].get('we_app_info',
-                                                                                                    {}).get('page_path')
+    path = res.get('goods_promotion_url_generate_response', {}).get('goods_promotion_url_list', [{}])[0].get('we_app_info',{}).get('page_path')
+    try:
+        level = req.get('level', 0)
+    except:
+        level = 0
+    if level == 0:
+        dis_rate = 0.5
+    else:
+        dis_rate = 1
+    print(path)
     if path:
         resp['data'] = path
     else:

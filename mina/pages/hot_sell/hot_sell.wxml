@@ -19,7 +19,7 @@
       <view class="item_index_number {{index==0?'item_first':''}} {{index==1?'item_second':''}} {{index==2?'item_three':''}}">{{index+1}}</view>
     </view>
     <image src="{{item.icon}}"  lazy-load="true" class="item_img" mode='aspectFill' ></image>
-    <view class='item_info_box'>
+    <view class='item_info_box' bindtap="toDetailsTap" data-id="{{item.id}}">
       <view class='item_name'>{{item.title}}</view>
       <view class='clearfix'>
         <view class='item_discount'>

@@ -21,7 +21,7 @@
         <view class="goods-info-fx">
           <image src='/images/qd.png' />
           <button open-type="share">分享</button>
-          <text>佣金{{ info.promotion_rate }}%</text>
+          <text>返:{{ info.promotion_rate }}%</text>
         </view>
    </view>
     <view class="goods-des-info">

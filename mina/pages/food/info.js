@@ -40,7 +40,8 @@ Page({
             header: app.getRequestHeader(),
             data:{
                 good_id: e.id,
-                open_id: app.globalData.userInfo.open_id
+                open_id: app.globalData.userInfo.open_id,
+                level: app.globalData.userInfo.level
             },
             success: function (res) {
                 var resp = res.data;

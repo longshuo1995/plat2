@@ -56,7 +56,7 @@
 				{
 					"id": 2,
 					"name": "index",
-					"pathName": "pages/page_img/index",
+					"pathName": "pages/index/index",
 					"query": "",
 					"scene": null
 				}

@@ -63,8 +63,8 @@ App({
         from_openid: '',
         is_update_userinfo: false,
         cache: '',
-        // domain:"https://aishangnet.club/api",
-        domain:"http://140.143.163.73:8812/api",
+        domain:"https://aishangnet.club/api",
+        // domain:"http://140.143.163.73:8812/api",
     },
     buildUrl:function( path,params ){
         var url = this.globalData.domain + path;

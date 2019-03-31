@@ -50,7 +50,11 @@ Page({
   onShow: function () {
 
   },
-
+  toDetailsTap: function (e) {
+        wx.navigateTo({
+            url: "/pages/food/info?id=" + e.currentTarget.dataset.id
+        });
+    },
   /**
    * 生命周期函数--监听页面隐藏
    */

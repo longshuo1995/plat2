@@ -49,7 +49,7 @@
             <view class='item_discount'>
                 <view class='quan_text' style="background-image: url('../../images/quan.png');background-size: cover">券￥{{item.discount}}</view>
             </view>
-            <view class='item_sale'>佣金:￥{{ item.promotion }} </view>
+            <view class='item_sale'>分享赚￥{{ item.promotion }} </view>
           </view>
           <view class='price_box'>
             <view class='item_buy'>券后价￥{{item.min_price}}</view>
