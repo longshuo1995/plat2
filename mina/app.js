@@ -3,15 +3,25 @@ App({
     onLaunch: function () {
     },
     pre_load: function(page_ctx){
-        console.log(this.globalData.isLogin);
-        if(!this.globalData.isLogin){
-            this.check_login();
-        }
-        console.log('set data....');
-        console.log(this.globalData.userInfo);
-        page_ctx.setData({
-            userInfo:this.globalData.userInfo,
+        app.globalData.userInfo = wx.getStorageSync('userInfo')
+        wx.setNavigationBarTitle({
+            title: app.globalData.shopName
         });
+        if(app.globalData.userInfo=null){
+            console.log('go to index....')
+            goToIndex()
+        }else{
+            console.log('cache success....')
+        }
+        // console.log(this.globalData.isLogin);
+        // if(!this.globalData.isLogin){
+        //     this.check_login();
+        // }
+        // console.log('set data....');
+        // console.log(this.globalData.userInfo);
+        // page_ctx.setData({
+        //     userInfo:this.globalData.userInfo,
+        // });
     },
     data:{
         'test': 'test'

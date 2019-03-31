@@ -1,5 +1,4 @@
-<import src="../../wxParse/wxParse.wxml" />
-<view class="container"> 
+<view class="container">
   <!--商品轮播图--> 
    <view class="swiper-container">
         <swiper class="swiper_box" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" bindchange="swiperchange">
@@ -19,19 +18,20 @@
    <view class="goods-info">
         <view class="goods-title">{{info.name}}</view>
         <view class="goods-price" style="padding-left:35rpx;">¥ {{info.price}}</view>
-        <view class="goods-price" style="color:#999;font-size:24rpx;">购买{{info.total_count}}次</view>
-        <view class="goods-price" style="color:#999;font-size:24rpx;">共收到 {{info.comment_count}} 次好评</view>
         <view class="goods-info-fx">
           <image src='/images/qd.png' />
           <button open-type="share">分享</button>
-          <text>分享有赏</text>
+          <text>佣金{{ info.promotion_rate }}%</text>
         </view>
    </view>
     <view class="goods-des-info">
         <view class="label-title">商品介绍</view>
         <view class="goods-text">
-            <template is="wxParse" data="{{wxParseData:article.nodes}}"/>
+            {{ info.goods_desc }}
          </view>
+        <block wx:for="{{info.pics}}" wx:key="id">
+            <image src="{{item}}" class="slide-image" width="355" height="150" mode="aspectFit" lazy-load="true"/>
+        </block>
     </view>
 
     <!--用户评价-->
@@ -51,11 +51,10 @@
 
     <!--底部-->
     <view class="footer-box">      
-        <view class="shop-cart-btn" bindtap="goShopCar">
-            <view class="shop-num">({{shopCarNum}})</view>
-            <view style='position:absolute;bottom:10rpx;'> 购物车 </view>
+        <view class="shop-cart-btn">
+            <view style='position:absolute;bottom:10rpx;'></view>
         </view>
-        <view class="join-shop-cart" bindtap="toAddShopCar">加入购物车</view>
+        <view class="join-shop-cart">加入购物车</view>
         <view class="now-buy" bindtap="tobuy">立即购买</view>
    </view>
 

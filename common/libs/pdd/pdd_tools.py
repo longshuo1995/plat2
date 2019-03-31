@@ -1,3 +1,4 @@
+import json
 import time
 
 import requests
@@ -71,9 +72,11 @@ def order_search(start_time, end_time):
 
 
 if __name__ == '__main__':
-    res = order_search('1553556662', '1553643062')
-    print(res)
-    res = search_order_by_sn('190324-270806221493150')
-    print(res)
+    # res = order_search('1553556662', '1553643062')
+    # print(res)
+    # res = search_order_by_sn('190324-270806221493150')
+    # print(res)
+    res = search_good_detail("2832084379", 'longshuo')
+    print(json.dumps(res))
 
 

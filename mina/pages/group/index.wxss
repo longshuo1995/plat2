@@ -29,8 +29,6 @@ page{
 .img_border{
   width: 100px;
   height: 100px;
-  border-radius: 30px;
-  background: white;
   float: left;
   margin:10px 0 0 10px;
 }

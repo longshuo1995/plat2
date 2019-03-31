@@ -19,7 +19,17 @@ Page({
         shopType: "addShopCar",//购物类型，加入购物车或立即购买，默认为加入购物车,
         id: 0,
         shopCarNum: 4,
-        commentCount:2
+        commentCount:2,
+        info: {
+            'pics': [
+                'https://t00img.yangkeduo.com/goods/images/2018-11-30/7c9f78d0dc92c980203d36a0a81339ec.jpeg',
+                'https://t00img.yangkeduo.com/goods/images/2018-11-24/fa21bbb71e5615dcda2b8f40866f6cf4.jpeg'
+            ],
+            'name': '多功能衣架收纳神器折叠衣架子阳台挂衣架家用晾衣架抖音魔术衣撑',
+            'price': 11,
+            'promotion_rate': 20,
+            'goods_desc': '【收藏商品优先发货,优先发货,优先发货,重要的事情说三遍】【厂家直销没有中间商赚差价】【拒绝假实惠,质量保证,七天无理由退换】【48小时内发货】【产品如有瑕疵,请直接联系客服,我们给您最完美的解决】'
+        }
     },
     onLoad: function (e) {
         // that.setData({
@@ -39,26 +49,26 @@ Page({
                     app.alert({"content": resp.msg});
                     return;
                 }
-                wx.navigateToMiniProgram({
-                    appId: 'wx32540bd863b27570',
-                    path: resp.data,
-                    extraData: {
-                        foo: 'bar'
-                    },
-                    envVersion: 'release',
-                    success(res) {
-                        // 打开成功
-                          app.goToIndex()
-                    }
-                })
+                // wx.navigateToMiniProgram({
+                //     appId: 'wx32540bd863b27570',
+                //     path: resp.data,
+                //     extraData: {
+                //         foo: 'bar'
+                //     },
+                //     envVersion: 'release',
+                //     success(res) {
+                //         // 打开成功
+                //           app.goToIndex()
+                //     }
+                // })
             }
         });
 
 
     },
     onShow:function(){
-        this.getInfo();
-        this.getComments();
+        // this.getInfo();
+        // this.getComments();
     },
     goShopCar: function () {
         wx.reLaunch({

@@ -2,6 +2,7 @@
   "pages": [
     "pages/index/index",
     "pages/food/index",
+    "pages/search/index",
     "pages/group/index",
     "pages/food/info",
     "pages/order/index",

@@ -67,9 +67,10 @@ zoom:1;
   box-shadow: 2px 2px 5px #C78D4A;
 }
 .item_img{
-  width:200rpx;
-  height: 200rpx;
-  margin-top:20rpx;
+  width:150rpx;
+  height: 150rpx;
+  margin-top:40rpx;
+  margin-right:40rpx;
   border-radius: 20rpx;
 }
 .item_info_box{
@@ -81,7 +82,7 @@ zoom:1;
   float: left;
 }
 .item_name{
-  margin-top:20rpx;
+  margin-top:40rpx;
   text-overflow: -o-ellipsis-lastline;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -112,9 +113,9 @@ zoom:1;
   margin:0 20rpx;
 }
 .item_sale{
-  float: right;
+  /*float: right;*/
   font-size: 32rpx;
-  color: #D4D2D3;
+  color: #E85654;
   margin-top: 10rpx;
 }
 .price_box{

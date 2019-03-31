@@ -42,14 +42,14 @@
 				{
 					"id": 0,
 					"name": "page_index",
-					"pathName": "pages/group_item_detail/group_item_detail",
+					"pathName": "pages/food/info",
 					"query": "",
 					"scene": 1001
 				},
 				{
 					"id": 1,
 					"name": "food_index",
-					"pathName": "pages/my/index",
+					"pathName": "pages/food/index",
 					"query": "",
 					"scene": 1001
 				},

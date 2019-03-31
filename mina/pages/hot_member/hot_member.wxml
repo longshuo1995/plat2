@@ -25,7 +25,6 @@
       <view class='item_name'>{{item.nick_name}}</view>
       <view class='clearfix'>
         <view class='item_discount'>
-        <image src='../../images/quan.png' class='quan_img'></image>
 
         </view>
         <view class='item_sale'>{{item.title}}:{{item.value}}</view>

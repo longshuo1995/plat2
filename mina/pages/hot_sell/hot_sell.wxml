@@ -31,7 +31,7 @@
       </view>
       <view class='price_box'>
         <view class='item_price'>券后价￥{{item.price}}</view>
-        <view class='item_buy'>立即购买</view>
+        <view class='item_buy'>佣金￥{{item.discount}}</view>
       </view>
     </view>
   </view>

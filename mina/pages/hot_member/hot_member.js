@@ -19,6 +19,8 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    var app = getApp()
+    app.pre_load()
     let that = this
     let tp = 0
     wx.request({

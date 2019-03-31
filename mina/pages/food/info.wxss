@@ -186,6 +186,7 @@ swiper-item image {
   background: url("http://cdn.static.54php.cn/mina_order/cart.png") no-repeat center 21rpx; 
   background-size: 44rpx auto;
 }
+
 .footer-box .shop-cart-btn .shop-num{
   position: absolute;
   color:#e64340;
@@ -197,10 +198,11 @@ swiper-item image {
   width: 310rpx;
   height: 100%;
   line-height: 100rpx;
-  background-color: #ff6850;
+  background-color: #fff;
   color:#fff;
   font-size: 34rpx;
 }
+
 .footer-box .now-buy{
   text-align: center;
   height: 100%;
@@ -209,7 +211,10 @@ swiper-item image {
   background-color: #e64340;
   color:#fff;
   font-size: 34rpx;
+  float:right;
+  position: relative;
 }
+
 .show-popup{
   position: fixed;
   top: 0;

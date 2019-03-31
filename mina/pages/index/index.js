@@ -12,10 +12,12 @@ Page({
         });
     },
     onLoad: function () {
+        app.globalData.userInfo = wx.getStorageSync('userInfo')
         wx.setNavigationBarTitle({
             title: app.globalData.shopName
         });
         this.checkLogin();
+        wx.setStorageSync('userInfo', app.globalData.userInfo)
     },
     onShow: function () {
 
