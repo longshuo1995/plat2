@@ -48,6 +48,8 @@ def foodSearch():
     search_list = resp_jo.get('goods_search_response', {}).get('goods_list', [])
     data_food_list = []
     for item in search_list:
+        print(item)
+        print(item['promotion_rate'])
         promotion_rate = item.get('promotion_rate')
         promotion_rate = promotion_rate if promotion_rate else 0
         quan_price = item.get('coupon_discount', 0)/100
