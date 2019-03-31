@@ -2,6 +2,26 @@
 //获取应用实例
 var app = getApp();
 Page({
+    getQrcode(){
+        var access_token = '20_MbMtOzeDs4tAA0_g3XMk3405RqH7j7-OCjamhogrHSlkCCG4TCYIhEMymXw9VtMiKww6LtOC_CQ6DNkqZ-LBl6TRZUzcUQQSkCNiMlUvKIjqb98FnY-Ocs_bvvRnWOCzm9T0_okG9VZKfSVtSEGjAJAIUW'
+        wx.request({
+            url: 'https://api.weixin.qq.com/wxa/getwxacodeunlimit?access_token=' + access_token
+            data: {
+                page: "pages/index/index",
+                scene: 'abc&ddd',
+                width: 300
+            },
+            header: {
+              'content-type': 'application/x-www-form-urlencoded'
+            },
+            method:  'POST',
+            dataType: 'json',
+            success: function(res){
+                var qrcodeUrl=res.data;//服务器小程序码地址
+                console.log(qrcodeUrl)
+            },
+        })
+    },
     data: {
         indicatorDots: true,
         autoplay: true,
@@ -19,12 +39,13 @@ Page({
         processing:false
     },
     onLoad: function (options) {
-        app.pre_load(this);
-        console.log(2222);
-        wx.setNavigationBarTitle({
-            title: app.globalData.shopName
-        });
-        this.getFoodList();
+        getQrcode()
+
+        // app.pre_load(this);
+        // wx.setNavigationBarTitle({
+        //     title: app.globalData.shopName
+        // });
+        // this.getFoodList();
     },
     //解决切换不刷新维内托，每次展示都会调用这个方法
     onShow:function(){

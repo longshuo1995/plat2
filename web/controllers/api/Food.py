@@ -1,6 +1,8 @@
+import requests
 from flask import jsonify, request
 
 from common.libs import db_mongo
+from common.libs.member import MemberService
 from common.libs.pdd import pdd_tools
 from web.controllers.api import route_api
 
@@ -37,8 +39,6 @@ def foodSearch():
     req = request.values
 
     cat_id = int(req.get('cat_id', 0))
-    # cat_id = cat_id if cat_id else 1
-    # cat_id = 0 if cat_id == 1 else cat_id
     p = int(req.get('p', 1))
     p = p if p else 1
 
@@ -48,18 +48,13 @@ def foodSearch():
     search_list = resp_jo.get('goods_search_response', {}).get('goods_list', [])
     data_food_list = []
     for item in search_list:
-        promotion_rate = round(item.get('promotion_rate')/1000, 2)
-        print(item.get('promotion_rate'))
+        promotion_rate = item.get('promotion_rate')/1000
         quan_price = item.get('coupon_discount', 0)/100
         quan_price = quan_price if quan_price else 0
         row_price = item.get('min_group_price', 0)/100
         row_price = round(row_price, 2)
         min_price = row_price-quan_price
         min_price = round(min_price, 2)
-        print(min_price)
-        print(promotion_rate)
-        promotion = promotion_rate*min_price
-        promotion = round(promotion, 2)
 
         temp_data = {
             'promotion_rate': promotion_rate,
@@ -69,7 +64,6 @@ def foodSearch():
             'min_price': min_price,
             'discount': quan_price,
             'pic_url': item['goods_thumbnail_url'],
-            'promotion': promotion
         }
         data_food_list.append(temp_data)
     resp['data']['list'] = data_food_list
@@ -93,3 +87,22 @@ def get_pdd_url():
         resp['code'] = 500
         resp['msg'] = '获取商品详情页错误'
     return jsonify(resp)
+
+
+@route_api.route("/good/share", methods=['GET', 'POST'])
+def good_share():
+    headers = {
+        "Content-Type": "application/json"
+    }
+    req = request.values
+    from_openid = req.get('from_openid')
+    access_token = MemberService.get_access_token()
+    path = req.get('path', '')
+    url = "https://api.weixin.qq.com/wxa/getwxacodeunlimit?access_token=%s" % access_token
+    data = {
+        'scene': 'from_openid=%s' % from_openid,
+        'path': path
+    }
+    content = requests.post(url, headers=headers, json=data).content
+    return content
+
