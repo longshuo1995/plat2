@@ -50,16 +50,15 @@ def foodSearch():
     for item in search_list:
         promotion_rate = round(item.get('promotion_rate')/1000, 2)
         print(item.get('promotion_rate'))
-        print(promotion_rate)
         quan_price = item.get('coupon_discount', 0)/100
         quan_price = quan_price if quan_price else 0
         row_price = item.get('min_group_price', 0)/100
         row_price = round(row_price, 2)
         min_price = row_price-quan_price
         min_price = round(min_price, 2)
-
-
-        promotion = promotion_rate*min_price / 100
+        print(min_price)
+        print(promotion_rate)
+        promotion = promotion_rate*min_price
         promotion = round(promotion, 2)
 
         temp_data = {
