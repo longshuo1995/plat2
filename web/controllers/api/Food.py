@@ -37,6 +37,7 @@ def foodSearch():
     req = request.values
 
     cat_id = int(req.get('cat_id', 0))
+    print('111')
     # cat_id = cat_id if cat_id else 1
     # cat_id = 0 if cat_id == 1 else cat_id
     p = int(req.get('p', 1))
