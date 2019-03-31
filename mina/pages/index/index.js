@@ -12,12 +12,12 @@ Page({
         });
     },
     onLoad: function () {
-        app.globalData.userInfo = wx.getStorageSync('userInfo')
+        // app.globalData.userInfo = wx.getStorageSync('userInfo')
         wx.setNavigationBarTitle({
             title: app.globalData.shopName
         });
         this.checkLogin();
-        wx.setStorageSync('userInfo', app.globalData.userInfo)
+
     },
     onShow: function () {
 
@@ -72,8 +72,11 @@ Page({
                         console.log(resp);
                         if(resp.is_register){
                             app.globalData.userInfo = resp.data;
-                            console.log(resp);
-                            that.goToIndex()
+                            wx.setStorageSync('userInfo', app.globalData.userInfo)
+                            console.log("********")
+                            console.log(app.globalData.userInfo)
+                            // console.log(resp);
+                            app.goToIndex()
                         }
                         // app.setCache( "token",res.data.data.token );
                         //that.goToIndex();
@@ -107,7 +110,8 @@ Page({
                     // openid获取
 
                     success:function (res) {
-                        console.log(res);
+                        userInfo = res.data.data
+                        wx.setStorageSync('userInfo', app.globalData.userInfo)
                         app.goToIndex();
                     }
                 })

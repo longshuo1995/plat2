@@ -6,34 +6,53 @@ App({
         if(this.globalData.userInfo){
             return
         }
-        this.globalData.userInfo = wx.getStorageSync('userInfo')
+        this.globalData.userInfo = wx.getStorageSync('userInfo');
         wx.setNavigationBarTitle({
             title: this.globalData.shopName
         });
-        if(!this.globalData.userInfo){
-            this.goToIndex()
+        if(this.globalData.userInfo && this.globalData.userInfo.open_id){
+            if(!this.globalData.is_update_userinfo){
+                this.update_userinfo();
+                this.globalData.is_update_userinfo=true
+            }
         }else{
-            console.log('cache success....')
+            this.goToLogin()
+            this.globalData.is_update_userinfo=true
         }
-        console.log(this.globalData.userInfo)
-        console.log(this.globalData.userInfo)
-        console.log(this.globalData.userInfo)
         if(this.globalData.userInfo.level>0){
             this.globalData.promotion_rate=1
         }
-
-        // console.log(this.globalData.isLogin);
-        // if(!this.globalData.isLogin){
-        //     this.check_login();
-        // }
-        // console.log('set data....');
-        // console.log(this.globalData.userInfo);
-        // page_ctx.setData({
-        //     userInfo:this.globalData.userInfo,
-        // });
     },
     data:{
         'test': 'test'
+    },
+    update_userinfo:function(){
+         var that = this;
+         wx.login({
+             fail:function(res){
+                 console.log(res)
+             },
+             success:function( res ){
+                 wx.request({
+                    url:this.buildUrl( '/member/check-reg' ),
+                    header:this.getRequestHeader(),
+                    method:'POST',
+                    data:{
+                        code:res.code,
+                        refer_openid: this.globalData.refer_openid
+                    },
+                    success:function( res ){
+                        var resp = res.data;
+                        console.log(resp);
+                        if(resp.is_register){
+                            that.globalData.userInfo = resp.data;
+                            wx.setStorageSync('userInfo', that.globalData.userInfo)
+                            that.globalData.is_update_userinfo = true
+                        }
+                    }
+                });
+             }
+         });
     },
     globalData: {
         isLogin: false,
@@ -42,6 +61,7 @@ App({
         version: "1.0",
         shopName: "奇遇拼团",
         from_openid: '',
+        is_update_userinfo: false,
         cache: '',
         // domain:"https://aishangnet.club/api",
         domain:"http://140.143.163.73:8812/api",
@@ -56,41 +76,6 @@ App({
             _paramUrl = "?" + _paramUrl;
         }
         return url + _paramUrl;
-    },
-    check_login: function(){
-        if(this.globalData.isLogin){
-            return
-        }
-
-        console.log('ready login')
-        var that = this;
-        wx.login({
-             success:function( res ){
-                 if( !res.code ){
-                    that.alert( { 'content':'登录失败，请再次点击~~' } );
-                    return;
-                 }
-                 wx.request({
-                    url:that.buildUrl( '/member/check-reg' ),
-                    header:that.getRequestHeader(),
-                    method:'POST',
-                    data:{
-                        code:res.code,
-                        'refer_openid':that.globalData.refer_openid,
-                    },
-                    success:function( res ){
-                        var resp = res.data;
-                        that.globalData.userInfo = resp.data;
-                        console.log(resp.data);
-                        that.globalData.isLogin = resp.is_register;
-                        if(!that.globalData.isLogin){
-                        //    跳转到登录页面。
-                            that.goToLogin()
-                        }
-                    }
-                });
-             }
-         });
     },
     tip:function( params ){
         var that = this;
@@ -162,7 +147,7 @@ App({
         });
     },
     goToLogin: function() {
-        wx.switchTab({
+        wx.navigateTo({
             url: '/pages/index/index',
         });
     },

@@ -37,7 +37,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 1,
+			"current": 2,
 			"list": [
 				{
 					"id": 0,
@@ -54,9 +54,9 @@
 					"scene": 1001
 				},
 				{
-					"id": -1,
+					"id": 2,
 					"name": "index",
-					"pathName": "pages/index/index",
+					"pathName": "pages/page_img/index",
 					"query": "",
 					"scene": null
 				}

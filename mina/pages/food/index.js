@@ -20,7 +20,6 @@ Page({
         rate: app.globalData.promotion_rate
     },
     onLoad: function (options) {
-        console.log(app.globalData);
         app.pre_load();
         wx.setNavigationBarTitle({
             title: app.globalData.shopName

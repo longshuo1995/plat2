@@ -1,8 +1,10 @@
 import base64
+import os
 
 import requests
 from flask import jsonify, request
 
+import project_conf
 from common.libs import db_mongo
 from common.libs.member import MemberService
 from common.libs.pdd import pdd_tools
@@ -24,11 +26,13 @@ def foodIndex():
     data_food_list = []
 
     resp_jo = pdd_tools.search_goods(keyword='', sort_type=0, p=1)
-    search_list = resp_jo.get('goods_search_response', {}).get('goods_list', [])
-    for item in search_list[:3]:
+
+    fn = os.path.join(project_conf.project_path, 'web', 'static', 'index_img')
+    img_names = os.listdir(fn)
+    for item in img_names:
         data_food_list.append({
-            'id': item['goods_id'],
-            'pic_url': item['goods_thumbnail_url'],
+            'id': 'img_name',
+            'pic_url': 'img_name',
         })
     resp['data']['banner_list'] = data_food_list
     return jsonify(resp)
