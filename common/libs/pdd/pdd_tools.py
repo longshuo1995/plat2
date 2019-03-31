@@ -37,7 +37,7 @@ def search_goods(keyword, sort_type=0, p=1, page_size=base_setting.show_every_pa
         "type": "pdd.ddk.goods.search",
         "keyword": keyword,
         'sort_type': sort_type,
-        'p': p,
+        'page': p,
         'page_size': page_size,
     }
     return pdd_request(added_params)

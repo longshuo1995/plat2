@@ -41,12 +41,6 @@ def foodSearch():
     # cat_id = 0 if cat_id == 1 else cat_id
     p = int(req.get('p', 1))
     p = p if p else 1
-    print('pppp')
-    print('pppp')
-    print('pppp')
-    print('pppp')
-    print('pppp')
-    print(p)
 
     mix_kw = req.get('mix_kw', '').split()
     keyword = ' '.join(mix_kw)
