@@ -1,3 +1,5 @@
+import base64
+
 import requests
 from flask import jsonify, request
 
@@ -104,5 +106,6 @@ def good_share():
         'path': path
     }
     content = requests.post(url, headers=headers, json=data).content
-    return content
+    b64str = base64.b64encode(content)
+    return b64str
 
