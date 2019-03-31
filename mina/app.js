@@ -2,17 +2,23 @@
 App({
     onLaunch: function () {
     },
-    pre_load: function(page_ctx){
-        app.globalData.userInfo = wx.getStorageSync('userInfo')
+    pre_load: function(){
+        if(this.globalData.userInfo){
+            return
+        }
+        this.globalData.userInfo = wx.getStorageSync('userInfo')
         wx.setNavigationBarTitle({
-            title: app.globalData.shopName
+            title: this.globalData.shopName
         });
-        if(app.globalData.userInfo=null){
-            console.log('go to index....')
+        if(this.globalData.userInfo=null){
             goToIndex()
         }else{
             console.log('cache success....')
         }
+        if(this.userInfo.level>0){
+            this.globalData.promotion_rate=1
+        }
+
         // console.log(this.globalData.isLogin);
         // if(!this.globalData.isLogin){
         //     this.check_login();
@@ -28,17 +34,14 @@ App({
     },
     globalData: {
         isLogin: false,
+        promotion_rate: 0.5,
         userInfo: null,
         version: "1.0",
         shopName: "奇遇拼团",
         from_openid: '',
-        nickName: '',
-        // domain:"http://0.0.0.0:8811/api",
-        //sdomain:"http://192.168.0.119:8999/api",
-        // domain:"https://food.54php.cn/api",
+        cache: '',
         // domain:"https://aishangnet.club/api",
         domain:"http://140.143.163.73:8812/api",
-        // sdomain:"http://140.143.163.73:8811/api"
     },
     buildUrl:function( path,params ){
         var url = this.globalData.domain + path;
@@ -52,10 +55,6 @@ App({
         return url + _paramUrl;
     },
     check_login: function(){
-        console.log('check login ......')
-        console.log('check login ......')
-        console.log('check login ......')
-        console.log(this.globalData.isLogin)
         if(this.globalData.isLogin){
             return
         }

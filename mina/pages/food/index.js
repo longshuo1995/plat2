@@ -16,11 +16,12 @@ Page({
         loadingMoreHidden: true,
         searchInput: '',
         p:1,
-        processing:false
+        processing:false,
+        rate: app.globalData.promotion_rate
     },
     onLoad: function (options) {
-        app.pre_load(this);
-        console.log(2222);
+        console.log(app.globalData);
+        app.pre_load();
         wx.setNavigationBarTitle({
             title: app.globalData.shopName
         });

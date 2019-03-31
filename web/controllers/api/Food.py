@@ -50,7 +50,7 @@ def foodSearch():
     search_list = resp_jo.get('goods_search_response', {}).get('goods_list', [])
     data_food_list = []
     for item in search_list:
-        promotion_rate = item.get('promotion_rate')/1000
+        promotion_rate = item.get('promotion_rate')
         quan_price = item.get('coupon_discount', 0)/100
         quan_price = quan_price if quan_price else 0
         row_price = item.get('min_group_price', 0)/100
