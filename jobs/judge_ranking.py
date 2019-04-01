@@ -50,8 +50,12 @@ def calc_top_user(offset_time):
     # 计算粉丝数
     df = pd.DataFrame(items)
     self_mem = df['refer_id'][df['refer_id'] != ''].value_counts()
+    print('1111')
+    print(self_mem)
     group_mem = df['leader_openid'][df['leader_openid'] != ''].value_counts()
     group_mem = group_mem.add(self_mem, fill_value=0)
+    print('2222')
+    print(group_mem)
     self_file_nm = os.path.join(project_conf.assert_path, project_conf.fengyun_range_pg['self']['member'])
     self_file = open(self_file_nm, 'w')
     group_file_nm = os.path.join(project_conf.assert_path, project_conf.fengyun_range_pg['group']['member'])
@@ -100,20 +104,10 @@ def calc_top_promotion(offset_time):
     refer_promotion = refer_promotion * project_conf.rate_conf['refer_rate']
     leader_promotion = df[df['leader_openid'] != '']['total_promotion'].groupby(df['leader_openid']).sum()
     leader_promotion = leader_promotion * project_conf.rate_conf['leader_rate']
-    print('11111')
-    print(custom_promotion)
-    print('2222')
-    print(refer_promotion)
-    print('3333')
-    print(leader_promotion)
     # relation_promotion = df[df['leader_master'] != '']['total_promotion'].groupby(df['leader_master']).sum()
 
     self_promotion = custom_promotion.add(refer_promotion, fill_value=0)
-    print('44444')
-    print(self_promotion)
     group_promotion = self_promotion.add(leader_promotion, fill_value=0)
-    print('55555')
-    print(group_promotion)
     self_file_nm = os.path.join(project_conf.assert_path, project_conf.fengyun_range_pg['self']['promotion'])
     self_file = open(self_file_nm, 'w')
     group_file_nm = os.path.join(project_conf.assert_path, project_conf.fengyun_range_pg['group']['promotion'])
