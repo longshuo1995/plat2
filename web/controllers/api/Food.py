@@ -94,7 +94,7 @@ def get_pdd_url():
     good_id = req.get('good_id')
     open_id = req.get('open_id')
     res = pdd_tools.search_good_detail(good_id, open_id)
-    path = res.get('goods_promotion_url_generate_response', {}).get('goods_promotion_url_list', [{}])[0]
+    dt = res.get('goods_promotion_url_generate_response', {}).get('goods_promotion_url_list', [{}])[0]
     try:
         level = req.get('level', 0)
     except:
@@ -103,9 +103,18 @@ def get_pdd_url():
         dis_rate = 0.5
     else:
         dis_rate = 1
-    print(path)
-    if path:
-        resp['data'] = path
+    if dt:
+        good_detail = dt.get('goods_detail', {})
+        resp['data'] = {
+            'promotion_rate': good_detail.get('promotion_rate', 0),
+            'pics': good_detail.get('goods_gallery_urls', []),
+            'name': good_detail.get('goods_name', []),
+            'discount': good_detail.get('coupon_discount', 0),
+            'price': 11,
+            'row_price': good_detail.get('min_group_price', 0),
+            'sold_quantity': good_detail.get('sold_quantity', 0),
+            'goods_desc': good_detail.get('goods_desc', '')
+        }
     else:
         resp['code'] = 500
         resp['msg'] = '获取商品详情页错误'

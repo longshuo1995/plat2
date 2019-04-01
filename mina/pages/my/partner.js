@@ -146,6 +146,10 @@ Page({
       groupType: curType
     });
     this.data.user_list = [];
+    this.setData({
+        user_list: this.data.user_list,
+        pages: 0
+    })
     this.get_data()
 
   },

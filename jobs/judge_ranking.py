@@ -8,14 +8,7 @@ import pandas as pd
 
 DAY_SECONDS = 24*60*60
 
-
 # db.order.find({'order_create_time': {'$gt': 1550977586}});
-
-
-def judge_24h():
-    offset_time = 30 * DAY_SECONDS
-    file_nm = '24h_ranking'
-    judge_local(offset_time, file_nm)
 
 
 def judge_local(offset_time, file_nm):
@@ -54,18 +47,21 @@ def calc_top_user(offset_time):
     door_time = c_time - offset_time
     items = db_mongo.get_table('plat2', 'member').find(
         {'create_time': {'$gt': door_time}})
+    # 计算粉丝数
     df = pd.DataFrame(items)
     self_mem = df['refer_id'][df['refer_id'] != ''].value_counts()
     group_mem = df['leader_openid'][df['leader_openid'] != ''].value_counts()
 
-    self_file_nm = os.path.join(project_conf.project_path, 'asserts', 'self_member')
+    self_file_nm = os.path.join(project_conf.assert_path, project_conf.fengyun_range_pg['self']['member'])
     self_file = open(self_file_nm, 'w')
-    group_file_nm = os.path.join(project_conf.project_path, 'asserts', 'group_member')
+    group_file_nm = os.path.join(project_conf.assert_path, project_conf.fengyun_range_pg['group']['member'])
     group_file = open(group_file_nm, 'w')
     tb_mem = db_mongo.get_table('plat2', 'member')
-    title = '粉丝'
+    title = '粉丝:'
     for idx in self_mem.index:
         mem_info = tb_mem.find_one({'_id': idx})
+        if not mem_info:
+            continue
         temp = {
             'id': idx,
             'nick_name': mem_info['nick_name'],
@@ -76,6 +72,8 @@ def calc_top_user(offset_time):
         self_file.write('%s\n' % json.dumps(temp))
     for idx in group_mem.index:
         mem_info = tb_mem.find_one({'_id': idx})
+        if not mem_info:
+            continue
         temp = {
             'id': idx,
             'nick_name': mem_info['nick_name'],
@@ -107,14 +105,16 @@ def calc_top_promotion(offset_time):
     self_promotion = custom_promotion.add(refer_promotion, fill_value=0)
     group_promotion = self_promotion.add(leader_promotion, fill_value=0)
 
-    self_file_nm = os.path.join(project_conf.project_path, 'asserts', 'self_promotion')
+    self_file_nm = os.path.join(project_conf.assert_path, project_conf.fengyun_range_pg['self']['promotion'])
     self_file = open(self_file_nm, 'w')
-    group_file_nm = os.path.join(project_conf.project_path, 'asserts', 'group_promotion')
+    group_file_nm = os.path.join(project_conf.assert_path, project_conf.fengyun_range_pg['group']['promotion'])
     group_file = open(group_file_nm, 'w')
     tb_mem = db_mongo.get_table('plat2', 'member')
-    title = '佣金'
+    title = '分享赚:'
     for idx in self_promotion.index:
         mem_info = tb_mem.find_one({'_id': idx})
+        if not mem_info:
+            continue
         temp = {
             'id': idx,
             'nick_name': mem_info['nick_name'],
@@ -126,6 +126,8 @@ def calc_top_promotion(offset_time):
 
     for idx in group_promotion.index:
         mem_info = tb_mem.find_one({'_id': idx})
+        if not mem_info:
+            continue
         temp = {
             'id': idx,
             'nick_name': mem_info['nick_name'],
@@ -141,5 +143,6 @@ def calc_top_promotion(offset_time):
 if __name__ == '__main__':
     # calc_top_promotion(1100000)
     # calc_top_user(1100000)
-    judge_24h()
+    for item in project_conf.qiyu_range_pg:
+        judge_local(item[0], item[1])
 
