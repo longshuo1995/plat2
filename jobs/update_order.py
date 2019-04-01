@@ -9,6 +9,11 @@ def start_update_order(time_interval=60):
     current_time = (time.time() // time_interval) * time_interval
     before_time = current_time - time_interval
     l = pdd_tools.order_search(int(before_time), int(current_time))
+    temp = l.get('order_list_get_response', {})
+    if not temp:
+        print(1111)
+    else:
+        print(temp)
     order_items = l.get('order_list_get_response', {}).get('order_list', [])
     print(order_items)
     tbl = db_mongo.get_table('plat2', 'order')

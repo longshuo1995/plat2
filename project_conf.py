@@ -24,7 +24,7 @@ fengyun_range_pg = {
         'promotion': 'self_promotion'
     },
     'group': {
-        'member': 'group_promotion',
+        'member': 'group_member',
         'promotion': 'group_promotion'
     },
 }
