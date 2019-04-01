@@ -67,7 +67,7 @@ def calc_top_user(offset_time):
             'nick_name': mem_info['nick_name'],
             'icon': mem_info['icon_url'],
             'title': title,
-            'value': self_mem[idx]
+            'value': int(self_mem[idx])
         }
         print(temp)
         self_file.write('%s\n' % json.dumps(temp))
@@ -80,7 +80,7 @@ def calc_top_user(offset_time):
             'nick_name': mem_info['nick_name'],
             'icon': mem_info['icon_url'],
             'title': title,
-            'value': group_mem[idx]
+            'value': int(group_mem[idx])
         }
         group_file.write('%s\n' % json.dumps(temp))
 
@@ -121,7 +121,7 @@ def calc_top_promotion(offset_time):
             'nick_name': mem_info['nick_name'],
             'icon': mem_info['icon_url'],
             'title': title,
-            'value': self_promotion[idx]
+            'value': int(self_promotion[idx])
         }
         self_file.write('%s\n' % json.dumps(temp))
 
