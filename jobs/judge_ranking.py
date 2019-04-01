@@ -96,11 +96,17 @@ def calc_top_promotion(offset_time):
         {'order_create_time': {'$gt': door_time}})
     df = pd.DataFrame(items)
     custom_promotion = df[df['custom_parameters'] != '']['total_promotion'].groupby(df['custom_parameters']).sum()
+    print('custom_promotion')
+    print(custom_promotion)
     custom_promotion = custom_promotion * project_conf.rate_conf['self_rate']
     refer_promotion = df[df['refer_id'] != '']['total_promotion'].groupby(df['refer_id']).sum()
     refer_promotion = refer_promotion * project_conf.rate_conf['refer_rate']
+    print('refer_promotion')
+    print(refer_promotion)
     leader_promotion = df[df['leader_openid'] != '']['total_promotion'].groupby(df['leader_openid']).sum()
     leader_promotion = leader_promotion * project_conf.rate_conf['leader_rate']
+    print('leader_promotion')
+    print(leader_promotion)
     # relation_promotion = df[df['leader_master'] != '']['total_promotion'].groupby(df['leader_master']).sum()
 
     self_promotion = custom_promotion.add(refer_promotion, fill_value=0)
@@ -149,7 +155,7 @@ def calc_top_promotion(offset_time):
 
 if __name__ == '__main__':
     calc_top_promotion(7 * project_conf.seconds_per_day)
-    calc_top_user(7 * project_conf.seconds_per_day)
-    for item in project_conf.qiyu_range_pg:
-        judge_local(item[0], item[1])
+    # calc_top_user(7 * project_conf.seconds_per_day)
+    # for item in project_conf.qiyu_range_pg:
+    #     judge_local(item[0], item[1])
 
