@@ -114,7 +114,6 @@ def calc_top_promotion(offset_time):
     group_promotion = self_promotion.add(leader_promotion, fill_value=0)
     print('55555')
     print(group_promotion)
-
     self_file_nm = os.path.join(project_conf.assert_path, project_conf.fengyun_range_pg['self']['promotion'])
     self_file = open(self_file_nm, 'w')
     group_file_nm = os.path.join(project_conf.assert_path, project_conf.fengyun_range_pg['group']['promotion'])
@@ -130,7 +129,7 @@ def calc_top_promotion(offset_time):
             'nick_name': mem_info['nick_name'],
             'icon': mem_info['icon_url'],
             'title': title,
-            'value': int(self_promotion[idx])
+            'value': float(self_promotion[idx])
         }
         self_file.write('%s\n' % json.dumps(temp))
 
@@ -143,7 +142,7 @@ def calc_top_promotion(offset_time):
             'nick_name': mem_info['nick_name'],
             'icon': mem_info['icon_url'],
             'title': title,
-            'value': int(group_promotion[idx])
+            'value': float(group_promotion[idx])
         }
         group_file.write('%s\n' % json.dumps(temp))
     self_file.close()
@@ -152,7 +151,7 @@ def calc_top_promotion(offset_time):
 
 if __name__ == '__main__':
     calc_top_promotion(7 * project_conf.seconds_per_day)
-    # calc_top_user(7 * project_conf.seconds_per_day)
+    calc_top_user(7 * project_conf.seconds_per_day)
     # for item in project_conf.qiyu_range_pg:
     #     judge_local(item[0], item[1])
 
