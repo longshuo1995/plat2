@@ -134,7 +134,7 @@ def calc_top_promotion(offset_time):
             'nick_name': mem_info['nick_name'],
             'icon': mem_info['icon_url'],
             'title': title,
-            'value': group_promotion[idx]
+            'value': int(group_promotion[idx])
         }
         group_file.write('%s\n' % json.dumps(temp))
     self_file.close()
