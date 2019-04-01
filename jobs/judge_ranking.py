@@ -51,7 +51,7 @@ def calc_top_user(offset_time):
     df = pd.DataFrame(items)
     self_mem = df['refer_id'][df['refer_id'] != ''].value_counts()
     group_mem = df['leader_openid'][df['leader_openid'] != ''].value_counts()
-
+    group_mem = group_mem.add(self_mem, fill_value=0)
     self_file_nm = os.path.join(project_conf.assert_path, project_conf.fengyun_range_pg['self']['member'])
     self_file = open(self_file_nm, 'w')
     group_file_nm = os.path.join(project_conf.assert_path, project_conf.fengyun_range_pg['group']['member'])
@@ -150,7 +150,7 @@ def calc_top_promotion(offset_time):
 
 
 if __name__ == '__main__':
-    calc_top_promotion(7 * project_conf.seconds_per_day)
+    # calc_top_promotion(7 * project_conf.seconds_per_day)
     calc_top_user(7 * project_conf.seconds_per_day)
     # for item in project_conf.qiyu_range_pg:
     #     judge_local(item[0], item[1])
