@@ -69,7 +69,6 @@ def calc_top_user(offset_time):
             'title': title,
             'value': int(self_mem[idx])
         }
-        print(temp)
         self_file.write('%s\n' % json.dumps(temp))
     for idx in group_mem.index:
         mem_info = tb_mem.find_one({'_id': idx})
@@ -96,26 +95,24 @@ def calc_top_promotion(offset_time):
         {'order_create_time': {'$gt': door_time}})
     df = pd.DataFrame(items)
     custom_promotion = df[df['custom_parameters'] != '']['total_promotion'].groupby(df['custom_parameters']).sum()
-    print('custom_promotion')
-    print(custom_promotion)
     custom_promotion = custom_promotion * project_conf.rate_conf['self_rate']
     refer_promotion = df[df['refer_id'] != '']['total_promotion'].groupby(df['refer_id']).sum()
     refer_promotion = refer_promotion * project_conf.rate_conf['refer_rate']
-    print('refer_promotion')
-    print(refer_promotion)
     leader_promotion = df[df['leader_openid'] != '']['total_promotion'].groupby(df['leader_openid']).sum()
     leader_promotion = leader_promotion * project_conf.rate_conf['leader_rate']
-    print('leader_promotion')
+    print('11111')
+    print(custom_promotion)
+    print('2222')
+    print(refer_promotion)
+    print('3333')
     print(leader_promotion)
     # relation_promotion = df[df['leader_master'] != '']['total_promotion'].groupby(df['leader_master']).sum()
 
     self_promotion = custom_promotion.add(refer_promotion, fill_value=0)
-    group_promotion = self_promotion.add(leader_promotion, fill_value=0)
-    print('*' * 11)
-    print('self_promotion')
+    print('44444')
     print(self_promotion)
-    print('*' * 11)
-    print('group_promotion')
+    group_promotion = self_promotion.add(leader_promotion, fill_value=0)
+    print('55555')
     print(group_promotion)
 
     self_file_nm = os.path.join(project_conf.assert_path, project_conf.fengyun_range_pg['self']['promotion'])
