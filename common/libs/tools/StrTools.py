@@ -1,4 +1,7 @@
 import hashlib
+import os
+
+import project_conf
 
 
 def get_md5(source):
@@ -13,3 +16,9 @@ def filter_map(m):
         if m[key]:
             resp[key] = m[key]
     return resp
+
+
+def write_log(fn, msg):
+    file_path = os.path.join(project_conf.project_path, 'log', fn)
+    with open(file_path, 'a') as f:
+        f.write(msg+'\n')

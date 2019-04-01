@@ -8,12 +8,18 @@ from common.libs.tools import StrTools
 def start_update_order(time_interval=60):
     current_time = (time.time() // time_interval) * time_interval
     before_time = current_time - time_interval
-    l = pdd_tools.order_search(int(before_time), int(current_time))
-    temp = l.get('order_list_get_response', {})
-    if not temp:
-        print(1111)
-    else:
-        print(temp)
+    for i in range(10):
+        msg = 'update order exception'
+        try:
+            l = pdd_tools.order_search(int(before_time), int(current_time))
+            temp = l.get('order_list_get_response', {})
+        except Exception as e:
+            msg = e
+        if not temp:
+            time.sleep(1)
+            StrTools.write_log('error_update_order', '%s' % msg)
+        else:
+            break
     order_items = l.get('order_list_get_response', {}).get('order_list', [])
     print(order_items)
     tbl = db_mongo.get_table('plat2', 'order')

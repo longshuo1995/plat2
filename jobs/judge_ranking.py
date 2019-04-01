@@ -61,7 +61,7 @@ def calc_top_user(offset_time):
     group_file_nm = os.path.join(project_conf.assert_path, project_conf.fengyun_range_pg['group']['member'])
     group_file = open(group_file_nm, 'w')
     tb_mem = db_mongo.get_table('plat2', 'member')
-    title = '粉丝:'
+    title = '粉丝'
     for idx in self_mem.index:
         mem_info = tb_mem.find_one({'_id': idx})
         if not mem_info:
@@ -113,7 +113,7 @@ def calc_top_promotion(offset_time):
     group_file_nm = os.path.join(project_conf.assert_path, project_conf.fengyun_range_pg['group']['promotion'])
     group_file = open(group_file_nm, 'w')
     tb_mem = db_mongo.get_table('plat2', 'member')
-    title = '分享赚:'
+    title = '分享赚'
     for idx in self_promotion.index:
         mem_info = tb_mem.find_one({'_id': idx})
         if not mem_info:
