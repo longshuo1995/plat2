@@ -198,7 +198,7 @@ swiper-item image {
   width: 310rpx;
   height: 100%;
   line-height: 100rpx;
-  background-color: #fff;
+  background-color: #ff6850;
   color:#fff;
   font-size: 34rpx;
 }
