@@ -99,19 +99,15 @@ def get_pdd_url():
         level = req.get('level', 0)
     except:
         level = 0
-    if level == 0:
-        dis_rate = 0.5
-    else:
-        dis_rate = 1
     if dt:
         good_detail = dt.get('goods_detail', {})
         resp['data'] = {
-            'promotion_rate': good_detail.get('promotion_rate', 0),
+            'promotion_rate': good_detail.get('promotion_rate', 0)/1000,
             'pics': good_detail.get('goods_gallery_urls', []),
             'name': good_detail.get('goods_name', []),
-            'discount': good_detail.get('coupon_discount', 0),
+            'discount': good_detail.get('coupon_discount', 0)/100,
             'price': 11,
-            'row_price': good_detail.get('min_group_price', 0),
+            'row_price': good_detail.get('min_group_price', 0)/100,
             'sold_quantity': good_detail.get('sold_quantity', 0),
             'goods_desc': good_detail.get('goods_desc', '')
         }
