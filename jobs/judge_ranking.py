@@ -69,6 +69,7 @@ def calc_top_user(offset_time):
             'title': title,
             'value': self_mem[idx]
         }
+        print(temp)
         self_file.write('%s\n' % json.dumps(temp))
     for idx in group_mem.index:
         mem_info = tb_mem.find_one({'_id': idx})
