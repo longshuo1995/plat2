@@ -34,12 +34,12 @@ App({
              },
              success:function( res ){
                  wx.request({
-                    url:this.buildUrl( '/member/check-reg' ),
-                    header:this.getRequestHeader(),
+                    url:that.buildUrl( '/member/check-reg' ),
+                    header:that.getRequestHeader(),
                     method:'POST',
                     data:{
                         code:res.code,
-                        refer_openid: this.globalData.refer_openid
+                        refer_openid: that.globalData.refer_openid
                     },
                     success:function( res ){
                         var resp = res.data;

@@ -11,7 +11,9 @@ Page({
             url: '/pages/food/index',
         });
     },
-    onLoad: function () {
+    onLoad: function (options) {
+        console.log(options);
+        console.log('index...')
         // app.globalData.userInfo = wx.getStorageSync('userInfo')
         wx.setNavigationBarTitle({
             title: app.globalData.shopName
