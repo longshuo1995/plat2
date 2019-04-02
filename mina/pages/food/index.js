@@ -136,6 +136,16 @@ Page({
                 }
 
                 var goods = resp.data.list;
+                var rate = app.globalData.promotion_rate;
+                console.log(app.globalData.userInfo)
+                if(app.globalData.userInfo && app.globalData.userInfo.level>0){
+                    console.log('success...');
+                    rate = 1
+                }
+                console.log(rate);
+                for(var i=0;i<goods.length;i++){
+                    goods[i]['promotion_rate']=goods[i]['promotion_rate'] * rate
+                }
                 that.setData({
                     goods: that.data.goods.concat( goods ),
                     p: that.data.p + 1,
