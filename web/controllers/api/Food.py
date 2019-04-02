@@ -82,7 +82,6 @@ def foodSearch():
         }
         data_food_list.append(temp_data)
     resp['data']['list'] = data_food_list
-    print(resp)
     resp['data']['has_more'] = 0 if len(data_food_list) < page_size else 1
     return jsonify(resp)
 

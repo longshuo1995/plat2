@@ -6,8 +6,10 @@ from common.libs.tools import StrTools
 
 
 def start_update_order(time_interval=60):
+    # db.order.find({'order_status': {$in: [1, 2]}});
     current_time = (time.time() // time_interval) * time_interval
     before_time = current_time - time_interval
+    temp = {}
     for i in range(10):
         msg = 'update order exception'
         try:
@@ -19,6 +21,7 @@ def start_update_order(time_interval=60):
             time.sleep(1)
             StrTools.write_log('error_update_order', '%s' % msg)
         else:
+            StrTools.write_log('error_update_order', 'success...%s' % msg)
             break
     order_items = l.get('order_list_get_response', {}).get('order_list', [])
     print(order_items)
