@@ -47,14 +47,7 @@ def foodSearch():
     cat_id = int(req.get('cat_id', 0))
     p = int(req.get('p', 1))
     p = p if p else 1
-    try:
-        level = req.get('level', 0)
-    except:
-        level = 0
-    if level == 0:
-        dis_rate = 0.5
-    else:
-        dis_rate = 1
+
 
     mix_kw = req.get('mix_kw', '').split()
     keyword = ' '.join(mix_kw)
@@ -78,7 +71,7 @@ def foodSearch():
             'min_price': min_price,
             'discount': quan_price,
             'pic_url': item['goods_thumbnail_url'],
-            'promotion': round(min_price*promotion_rate*dis_rate/1000, 2)
+            'promotion': round(min_price*promotion_rate/1000, 2)
         }
         data_food_list.append(temp_data)
     resp['data']['list'] = data_food_list
