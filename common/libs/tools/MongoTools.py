@@ -14,15 +14,10 @@ def search_member_order(open_id):
     df = pd.DataFrame(items)
     order_counts = len(df)
     promotion = 0
-    temp_1 = df[df['custom_parameters'] == open_id]['total_promotion'].sum()
-    print(1111)
-    print(temp_1)
-    print(22222)
-    print(project_conf.rate_conf['self_rate'])
-    promotion += df[df['custom_parameters'] == open_id].sum() * project_conf.rate_conf['self_rate']
-    promotion += df[df['refer_id'] == open_id].sum() * project_conf.rate_conf['refer_rate']
-    promotion += df[df['leader_openid'] == open_id].sum() * project_conf.rate_conf['leader_rate']
-    promotion += df[df['leader_master'] == open_id].sum() * project_conf.rate_conf['relation_rate']
+    promotion += df[df['custom_parameters'] == open_id]['total_promotion'].sum() * project_conf.rate_conf['self_rate']
+    promotion += df[df['refer_id'] == open_id]['total_promotion'].sum() * project_conf.rate_conf['refer_rate']
+    promotion += df[df['leader_openid'] == open_id]['total_promotion'].sum() * project_conf.rate_conf['leader_rate']
+    promotion += df[df['leader_master'] == open_id]['total_promotion'].sum() * project_conf.rate_conf['relation_rate']
     return order_counts, promotion
 
 
