@@ -140,7 +140,7 @@ Page({
                 }
                 for(var i=0; i<goods.length; i++){
                     goods[i]['promotion'] = (rate * goods[i]['promotion_rate']*goods[i]['min_price']).toFixed(2)
-
+                    goods[i]['min_price'] = goods[i]['min_price'].toFixed(2)
                 }
                 that.setData({
                     goods: that.data.goods.concat( goods ),

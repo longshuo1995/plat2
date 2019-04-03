@@ -37,7 +37,7 @@ def foodIndex():
 
 @route_api.route("/food/search")
 def foodSearch():
-    page_size = 10
+    page_size = 30
     resp = {'code': 200, 'msg': '操作成功', 'data': {}}
     req = request.values
 
