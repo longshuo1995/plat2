@@ -134,6 +134,14 @@ Page({
                 }
 
                 var goods = resp.data.list;
+                var rate = 0.5;
+                if(app.globalData.userInfo.level>0){
+                    rate = 1
+                }
+                for(var i=0; i<goods.length; i++){
+                    goods[i]['promotion'] = (rate * goods[i]['promotion_rate']*goods[i]['min_price']).toFixed(2)
+
+                }
                 that.setData({
                     goods: that.data.goods.concat( goods ),
                     p: that.data.p + 1,
