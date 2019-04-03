@@ -14,14 +14,17 @@ from web.controllers.api import route_api
 def hot_goods():
     goods_per_page = 10
     req = request.values
-    tp = req.get('tp')
-    page = req.get('page')
-    print('*'*10)
-    print(tp)
-    print(page)
+    tp = int(req.get('tp', 0))
     resp = {'code': 200, 'msg': '成功', 'data': []}
     pages = int(req.get('pages', 0))
-    ranking_path = os.path.join(project_conf.project_path, 'asserts', '24h_ranking')
+    print(tp)
+    print(pages)
+    tp_map = {
+        0: project_conf.qiyu_range_pg[0][1],
+        1: project_conf.qiyu_range_pg[1][1],
+        2: project_conf.qiyu_range_pg[1][2],
+    }
+    ranking_path = os.path.join(project_conf.project_path, 'asserts', tp_map[tp])
     items = [i for i in open(ranking_path)]
     if not tp:
         resp['code'] = -1
