@@ -23,18 +23,20 @@ def group_member():
         app.logger.error(open_id)
         if info['leader_openid']:
             teacher_info = db_mongo.get_table('plat2', 'member').find_one({"_id": info['refer_id']})
-            group_list.append({
-                'tp_name': '校长',
-                'user_img': teacher_info['icon_url'],
-                'user_name': teacher_info['nick_name'],
-            })
+            if teacher_info:
+                group_list.append({
+                    'tp_name': '校长',
+                    'user_img': teacher_info['icon_url'],
+                    'user_name': teacher_info['nick_name'],
+                })
         if info['refer_id']:
             teacher_info = db_mongo.get_table('plat2', 'member').find_one({"_id": info['refer_id']})
-            group_list.append({
-                'tp_name': '老师',
-                'user_img': teacher_info['icon_url'],
-                'user_name': teacher_info['nick_name'],
-            })
+            if teacher_info:
+                group_list.append({
+                    'tp_name': '老师',
+                    'user_img': teacher_info['icon_url'],
+                    'user_name': teacher_info['nick_name'],
+                })
     else:
         if group_id == 1:
             query = {'refer_id': open_id}

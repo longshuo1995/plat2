@@ -21,7 +21,7 @@ def start_update_order(time_interval=60):
             time.sleep(1)
             StrTools.write_log('error_update_order', '%s' % msg)
         else:
-            StrTools.write_log('error_update_order', 'success...%s' % msg)
+            StrTools.write_log('error_update_order', 'success...%s' % temp)
             break
     order_items = l.get('order_list_get_response', {}).get('order_list', [])
     print(order_items)

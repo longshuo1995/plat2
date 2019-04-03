@@ -117,12 +117,12 @@ Page({
         success: function (res) {
           var resp = res.data;
           if(resp.data.length>10){
-            clearTimeout(time)
+            clearTimeout(time);
               that.setData({
                 user_list: that.data.user_list.concat(res.data.data),
                 noMore: false,
                 show_model: true,
-              })
+              });
               time = setTimeout(function () {
                 that.setData({
                   noMore: true
@@ -135,7 +135,6 @@ Page({
                 pages: that.data.pages + 1
               })
           }
-
         }
     });
   },
