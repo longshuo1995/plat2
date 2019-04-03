@@ -85,15 +85,18 @@ def get_pdd_url():
     print(dt)
     if dt:
         good_detail = dt.get('goods_detail', {})
+        row_price = good_detail.get('min_group_price', 0)/100
+        discount = good_detail.get('coupon_discount', 0)/100
         resp['data'] = {
             'promotion_rate': good_detail.get('promotion_rate', 0)/1000,
             'pics': good_detail.get('goods_gallery_urls', []),
             'name': good_detail.get('goods_name', []),
-            'discount': good_detail.get('coupon_discount', 0)/100,
-            'price': 11,
-            'row_price': good_detail.get('min_group_price', 0)/100,
+            'discount': discount,
+            'price': row_price-discount,
+            'row_price': row_price,
             'sold_quantity': good_detail.get('sold_quantity', 0),
-            'goods_desc': good_detail.get('goods_desc', '')
+            'goods_desc': good_detail.get('goods_desc', ''),
+            'short_url': dt.get('short_url', '')
         }
     else:
         resp['code'] = 500
