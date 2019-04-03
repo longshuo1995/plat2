@@ -6,13 +6,10 @@ Page({
     },
 
     onLoad: function (options) {
-        // app.globalData.userInfo = wx.getStorageSync('userInfo')
-        console.log(options)
+        console.log(options);
         this.setData({
-            pic_url: options.pic_url
+            pic_url: 'https://aishangnet.club/static/index_img_detail/' + options.pic_url
         })
-
-
     },
     onShow: function () {
 

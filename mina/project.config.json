@@ -42,7 +42,7 @@
 				{
 					"id": 0,
 					"name": "page_index",
-					"pathName": "pages/food/info",
+					"pathName": "pages/index/index",
 					"query": "id=6869428690",
 					"scene": 1001
 				},

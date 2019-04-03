@@ -59,7 +59,7 @@
         <view class="shop-cart-btn">
             <view style='position:absolute;bottom:10rpx;'></view>
         </view>
-        <view class="join-shop-cart" bindtap="copy">生成二维码</view>
+        <view class="join-shop-cart" bindtap="copy">复制推广链接</view>
         <view class="now-buy" bindtap="tobuy">立即购买</view>
    </view>
 

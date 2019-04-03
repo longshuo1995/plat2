@@ -7,7 +7,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    group_list:["我的领导","分组A","分组B","我的团长"],
+    group_list:["我的领导","直属团员","间接团员","我的团长"],
     groupType:0,
     user_list:[],
     noMore: true,

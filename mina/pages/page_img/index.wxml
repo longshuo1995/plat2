@@ -1,4 +1,4 @@
 <!--start.wxml-->
 <view class="container" style="width: 100%;height: 100%;">
-  <image mode="scaleToFill" src="https://aishangnet.club/static/index_img_detail/{{pic_url}}" style="height: 100vh; margin: 0 auto"></image>
+  <image mode="scaleToFill" src="{{pic_url}}" style="height: 100vh; margin: 0 auto"></image>
 </view>

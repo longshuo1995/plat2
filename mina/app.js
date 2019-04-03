@@ -3,13 +3,14 @@ App({
     onLaunch: function () {
     },
     pre_load: function(){
-        if(this.globalData.userInfo){
-            return
-        }
-        this.globalData.userInfo = wx.getStorageSync('userInfo');
         wx.setNavigationBarTitle({
             title: this.globalData.shopName
         });
+        if(this.globalData.userInfo && this.globalData.userInfo.open_id){
+            return
+        }
+        this.globalData.userInfo = wx.getStorageSync('userInfo');
+
         if(this.globalData.userInfo && this.globalData.userInfo.open_id){
             if(!this.globalData.is_update_userinfo){
                 this.update_userinfo();
@@ -34,12 +35,12 @@ App({
              },
              success:function( res ){
                  wx.request({
-                    url:this.buildUrl( '/member/check-reg' ),
-                    header:this.getRequestHeader(),
+                    url:that.buildUrl( '/member/check-reg' ),
+                    header:that.getRequestHeader(),
                     method:'POST',
                     data:{
                         code:res.code,
-                        refer_openid: this.globalData.refer_openid
+                        refer_openid: that.globalData.refer_openid
                     },
                     success:function( res ){
                         var resp = res.data;
@@ -48,6 +49,8 @@ App({
                             that.globalData.userInfo = resp.data;
                             wx.setStorageSync('userInfo', that.globalData.userInfo)
                             that.globalData.is_update_userinfo = true
+                        }else{
+                            that.goToLogin()
                         }
                     }
                 });

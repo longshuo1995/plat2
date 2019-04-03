@@ -3,7 +3,7 @@
   height: 100rpx;
   width:100%;
   margin:0 auto;
-  background: #FED333;
+  background: #e85654;
 }
 .search_input{
   width: 70%;
