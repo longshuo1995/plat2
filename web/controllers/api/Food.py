@@ -22,10 +22,7 @@ def foodIndex():
     for item in items:
         data_cat_list.append({'id': item['_id'], 'name': item['name']})
     resp['data']['cat_list'] = data_cat_list
-
     data_food_list = []
-
-    resp_jo = pdd_tools.search_goods(keyword='', sort_type=0, p=1)
 
     fn = os.path.join(project_conf.project_path, 'web', 'static', 'index_img')
     img_names = os.listdir(fn)
@@ -47,8 +44,6 @@ def foodSearch():
     cat_id = int(req.get('cat_id', 0))
     p = int(req.get('p', 1))
     p = p if p else 1
-
-
     mix_kw = req.get('mix_kw', '').split()
     keyword = ' '.join(mix_kw)
     resp_jo = pdd_tools.search_goods(keyword=keyword, sort_type=cat_id, p=p)
@@ -87,10 +82,7 @@ def get_pdd_url():
     open_id = req.get('open_id')
     res = pdd_tools.search_good_detail(good_id, open_id)
     dt = res.get('goods_promotion_url_generate_response', {}).get('goods_promotion_url_list', [{}])[0]
-    try:
-        level = req.get('level', 0)
-    except:
-        level = 0
+    print(dt)
     if dt:
         good_detail = dt.get('goods_detail', {})
         resp['data'] = {
