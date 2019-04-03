@@ -22,7 +22,7 @@ def hot_goods():
     tp_map = {
         0: project_conf.qiyu_range_pg[0][1],
         1: project_conf.qiyu_range_pg[1][1],
-        2: project_conf.qiyu_range_pg[1][2],
+        2: project_conf.qiyu_range_pg[2][1],
     }
     ranking_path = os.path.join(project_conf.project_path, 'asserts', tp_map[tp])
     items = [i for i in open(ranking_path)]
