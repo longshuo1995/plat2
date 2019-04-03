@@ -68,7 +68,7 @@ def foodSearch():
             'min_price': min_price,
             'discount': quan_price,
             'pic_url': item['goods_thumbnail_url'],
-            'sale_count': sale_count
+            'sold_quantity': sale_count
         }
         data_food_list.append(temp_data)
     resp['data']['list'] = data_food_list

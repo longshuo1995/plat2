@@ -50,7 +50,7 @@
             <image src='/images/quan.png' class='quan_img'></image>
             <view class='quan_text'>券￥{{item.discount}}</view>
           </view>
-          <view class='item_sale'>已拼111单</view>
+          <view class='item_sale'>已拼{{ item.sold_quantity }}单</view>
         </view>
         <view class='price_box clearfix'>
         <view class='item_left_buy'>券后价￥{{item.min_price}}</view>
