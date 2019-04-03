@@ -1,0 +1,4 @@
+<view class="pageCa" style="background-image: url('{{activityInfo.background_img}}')">
+    <button bindtap="shareImg" class="shareBtn statis-share" style="background-image: url('{{activityInfo.button_background_img}}')"></button>
+</view>
+<canvas canvasId="share" style="position: fixed; z-index: -1; top:0; left:-200vw; width:750rpx; height:1280rpx;"></canvas>

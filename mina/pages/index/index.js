@@ -11,9 +11,7 @@ Page({
             url: '/pages/food/index',
         });
     },
-    onLoad: function (options) {
-        console.log(options);
-        console.log('index...')
+    onLoad: function () {
         // app.globalData.userInfo = wx.getStorageSync('userInfo')
         wx.setNavigationBarTitle({
             title: app.globalData.shopName
@@ -112,7 +110,8 @@ Page({
                     // openid获取
 
                     success:function (res) {
-                        userInfo = res.data.data
+                        // userInfo = res.data.data
+                        app.globalData.userInfo = res.data.data
                         wx.setStorageSync('userInfo', app.globalData.userInfo)
                         app.goToIndex();
                     }

@@ -17,13 +17,13 @@ Page({
     onLoad: function (e) {
         var that = this;
         that.setData({
-            id: e.id
+            id: e.id || ''
         });
-        this.initCityData(1);
+        // this.initCityData(1);
     },
-    onShow: function () {
-        this.getInfo();
-    },
+    // onShow: function () {
+    //     this.getInfo();
+    // },
 
     getPhoneNumber(e) {
         console.log(e.detail.errMsg)

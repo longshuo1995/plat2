@@ -1,0 +1,92 @@
+<view id="findCa" style="padding-top: {{wxUser.role==0?110:tabChecked==1?180:110}}rpx;">
+    <view class="header" style="padding-bottom: {{wxUser.role==0?40:tabChecked==1?0:40}}rpx;">
+        <view class="tab">
+            <view bind:tap="tabChange" class="single {{tabChecked==1?'active':''}}" data-index="{{1}}">发现</view>
+            <view bind:tap="tabChange" class="single {{tabChecked==2?'active':''}}" data-index="{{2}}" wx:if="{{wxUser.role!=0}}">我的分享</view>
+        </view>
+        <view class="filter" wx:if="{{tabChecked==1&&wxUser.role!=0}}">
+            <view bind:tap="filterChange" class="single {{filterChecked==1?'active':''}}" data-index="{{1}}">推荐</view>
+            <view class="dot dot-1" wx:if="{{findDot.dot_tj}}"></view>
+            <view bind:tap="filterChange" class="single {{filterChecked==2?'active':''}}" data-index="{{2}}">原创</view>
+            <view class="dot dot-2" wx:if="{{findDot.dot_yc}}"></view>
+            <view bind:tap="filterChange" class="single {{filterChecked==3?'active':''}}" data-index="{{3}}">排行</view>
+            <view bind:tap="filterChange" class="single {{filterChecked==4?'active':''}}" data-index="{{4}}">素材</view>
+            <view class="dot dot-4" wx:if="{{findDot.dot_sc}}"></view>
+            <view bind:tap="filterChange" class="single {{filterChecked==5?'active':''}}" data-index="{{5}}">新手</view>
+            <view class="dot dot-5" wx:if="{{findDot.dot_xs}}"></view>
+        </view>
+    </view>
+    <view class="list">
+        <view class="item" wx:for="{{list}}" wx:key="index">
+            <view class="top">
+                <view class="userInfo">
+                    <block wx:if="{{tabChecked==1&&filterChecked!=2}}">
+                        <image class="icon" mode="scaleToFill" src="{{imgHost}}/common/logo-1.png"></image>
+                        <view class="name">小编推荐</view>
+                    </block>
+                    <block wx:if="{{tabChecked==2||filterChecked==2}}">
+                        <image class="icon" mode="scaleToFill" src="{{item.avatarUrl}}"></image>
+                        <view class="name">{{item.nickName}}</view>
+                    </block>
+                </view>
+                <block wx:if="{{tabChecked==1}}">
+                    <view class="time" wx:if="{{filterChecked==1||filterChecked==4||filterChecked==5}}">{{item.suggestTime}}</view>
+                    <view class="time" wx:if="{{filterChecked==2}}">{{item.create_time}}</view>
+                    <view class="time" wx:if="{{filterChecked==3}}">下载量:{{item.sumNum}}</view>
+                </block>
+                <view class="status" wx:if="{{tabChecked==2}}">{{item.status==0?'审核中':item.status==1?'审核不通过':item.status==2?'审核通过':''}}</view>
+            </view>
+            <view class="findInfo">
+                <text selectable class="abstract">{{item.desc}}</text>
+                <view class="imgList">
+                    <image bind:tap="findPreviewImg" class="img" data-imgs="{{item.findImgs}}" data-index="{{index}}" mode="aspectFill" src="{{img}}" wx:for="{{item.findImgs}}" wx:for-item="img" wx:key="index"></image>
+                </view>
+            </view>
+            <block wx:if="{{filterChecked==1||filterChecked==2||filterChecked==3}}">
+                <view bind:tap="goodsDetails" class="goodsInfo" data-goodsId="{{item.goods_id}}" wx:if="{{filterChecked<4}}">
+                    <view class="info">
+                        <image class="img" mode="aspectFill" src="{{item.goods_image_url}}"></image>
+                        <view class="group">
+                            <view class="name">{{item.goods_name}}</view>
+                            <view class="more">
+                                <view class="price">劵后价￥{{item.quanhoujia}}</view>
+                                <view class="earn">分享赚￥{{item.yongjin}}</view>
+                            </view>
+                        </view>
+                        <view class="icon icon-more"></view>
+                    </view>
+                </view>
+            </block>
+            <view class="praise" wx:if="{{tabChecked==1}}">
+                <view class="latest">
+                    <view class="user">
+                        <image class="img" mode="scaleToFill" src="{{img}}" wx:if="{{index<3}}" wx:for="{{item.avatarUrl_like}}" wx:for-item="img" wx:key="index"></image>
+                    </view>
+                    <view class="sum" wx:if="{{item.likeCount>0}}">等{{item.likeCount}}人已分享</view>
+                </view>
+            </view>
+            <view class="bottom" style="padding-top:{{filterChecked>2?30:0}}rpx">
+                <view wx:if="{{tabChecked==1}}"></view>
+                <view class="time" wx:if="{{tabChecked==2}}">{{item.create_time}}</view>
+                <view class="btn">
+                    <block wx:if="{{tabChecked==1&&filterChecked==1}}">
+                        <button bind:tap="shareImg" class="com-btn-2 save" data-findIndex="{{index}}" data-item="{{item}}">一键保存</button>
+                        <button bind:tap="findLike" class="com-btn-3 share" data-findIndex="{{index}}" data-item="{{item}}" openType="share">一键分享</button>
+                    </block>
+                    <block wx:if="{{tabChecked==1&&filterChecked==2}}">
+                        <button bind:tap="shareImg" class="com-btn-2 save" data-findIndex="{{index}}" data-item="{{item}}">一键保存</button>
+                        <button bind:tap="findLike" class="com-btn-3 share" data-findIndex="{{index}}" data-item="{{item}}" openType="share">一键分享</button>
+                    </block>
+                    <block wx:if="{{tabChecked==1&&filterChecked==3}}">
+                        <button bind:tap="shareImg" class="com-btn-2 save" data-findIndex="{{index}}" data-item="{{item}}">一键保存</button>
+                        <button bind:tap="findLike" class="com-btn-3 share" data-findIndex="{{index}}" data-item="{{item}}" openType="share">一键分享</button>
+                    </block>
+                    <button bind:tap="copySave" class="com-btn-3 share" data-findIndex="{{index}}" data-item="{{item}}" wx:if="{{tabChecked==1&&filterChecked>3}}">一键分享</button>
+                    <button bind:tap="findDelete" class="delete" data-findIndex="{{index}}" wx:if="{{tabChecked==2}}">删除</button>
+                </view>
+            </view>
+        </view>
+    </view>
+    <button bind:tap="publish" class="com-btn-3 publish" wx:if="{{tabChecked==2}}">立即分享</button>
+</view>
+<canvas canvasId="share" style="position: fixed; z-index: -1; top:0; left:-200vw; width:750rpx; height:1334rpx;"></canvas>

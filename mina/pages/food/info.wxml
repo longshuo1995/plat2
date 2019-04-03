@@ -17,7 +17,12 @@
    <!--商品基本介绍-->
    <view class="goods-info">
         <view class="goods-title">{{info.name}}</view>
-        <view class="goods-price" style="padding-left:35rpx;">¥ {{info.price}}</view>
+        <view class='goods-all'>
+          <view class="goods-price" style="padding-left:35rpx;">¥ {{info.price}}</view>
+          <view class="goods-price_tip">券后价</view>
+          <view class="goods-price_old">原价¥12</view>
+          <view class="goods-price_right">已拼20单</view>
+        </view>
         <view class="goods-info-fx">
           <image src='/images/qd.png' />
           <button open-type="share">分享</button>
@@ -54,7 +59,7 @@
         <view class="shop-cart-btn">
             <view style='position:absolute;bottom:10rpx;'></view>
         </view>
-        <view class="join-shop-cart">生成二维码</view>
+        <view class="join-shop-cart" bindtap="copy">生成二维码</view>
         <view class="now-buy" bindtap="tobuy">立即购买</view>
    </view>
 

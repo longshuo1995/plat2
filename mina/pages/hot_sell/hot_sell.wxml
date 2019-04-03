@@ -31,7 +31,10 @@
       </view>
       <view class='price_box'>
         <view class='item_price'>券后价￥{{item.price}}</view>
-        <view class='item_buy'>佣金￥{{item.discount}}</view>
+        <view class='item_buy'>
+          <image src='/images/ic_fenxiang.png' class='bottom_img'></image>
+          <view class='item_but_text'>佣金:{{item.discount}}</view>
+          </view>
       </view>
     </view>
   </view>

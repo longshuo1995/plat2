@@ -27,7 +27,9 @@ Page({
             ],
             'name': '多功能衣架收纳神器折叠衣架子阳台挂衣架家用晾衣架抖音魔术衣撑',
             'price': 11,
+            'row_price': 10,
             'promotion_rate': 20,
+            'short_url': 'www.baidu.com',
             'goods_desc': '【收藏商品优先发货,优先发货,优先发货,重要的事情说三遍】【厂家直销没有中间商赚差价】【拒绝假实惠,质量保证,七天无理由退换】【48小时内发货】【产品如有瑕疵,请直接联系客服,我们给您最完美的解决】'
         }
     },
@@ -107,6 +109,23 @@ Page({
                 });
             }
         });
+    },
+    // 复制剪贴板
+    copy: function () {
+      let datas = `${this.data.info.name}价格：${this.data.info.price}元，券后价：${this.data.info.row_price}元,商品链接：${this.data.info.short_url}`
+
+      wx.setClipboardData({
+        data: datas,
+        success(res) {
+          wx.getClipboardData({
+            success: function (res) {
+              wx.showToast({
+                title: '复制成功'
+              })
+            }
+          })
+        }
+      })
     },
     buyNow: function () {
         var data = {

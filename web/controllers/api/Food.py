@@ -1,5 +1,7 @@
 import base64
+import logging
 import os
+import time
 
 import requests
 from flask import jsonify, request
@@ -9,8 +11,6 @@ from common.libs import db_mongo
 from common.libs.member import MemberService
 from common.libs.pdd import pdd_tools
 from web.controllers.api import route_api
-
-test_url = 'https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=1976195564,3037788353&fm=27&gp=0.jpg'
 
 
 @route_api.route("/food/index")
@@ -23,7 +23,6 @@ def foodIndex():
         data_cat_list.append({'id': item['_id'], 'name': item['name']})
     resp['data']['cat_list'] = data_cat_list
     data_food_list = []
-
     fn = os.path.join(project_conf.project_path, 'web', 'static', 'index_img')
     img_names = os.listdir(fn)
     for img_name in img_names:
@@ -82,7 +81,6 @@ def get_pdd_url():
     open_id = req.get('open_id')
     res = pdd_tools.search_good_detail(good_id, open_id)
     dt = res.get('goods_promotion_url_generate_response', {}).get('goods_promotion_url_list', [{}])[0]
-    print(dt)
     if dt:
         good_detail = dt.get('goods_detail', {})
         row_price = good_detail.get('min_group_price', 0)/100
@@ -99,6 +97,8 @@ def get_pdd_url():
             'short_url': dt.get('short_url', '')
         }
     else:
+        logging.log(logging.ERROR, 'get pdd detail failed~ msg:good_id:{good_id}, open_id:{open_id}'.format
+        (good_id=good_id, open_id=open_id))
         resp['code'] = 500
         resp['msg'] = '获取商品详情页错误'
     return jsonify(resp)

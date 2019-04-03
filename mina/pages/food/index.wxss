@@ -79,16 +79,10 @@
   -webkit-line-clamp: 2;
   line-clamp: 2;
   -webkit-box-orient: vertical;
-  font-size: 32rpx;
+  font-size: 30rpx;
 }
 .sell_box{
   position: relative;
-}
-.quan_img{
-  width: 100%;
-  height: 60rpx;
-  position: absolute;
-  z-index: -2;
 }
 .item_discount{
   float: left;
@@ -98,23 +92,34 @@
   position: relative;
   letter-spacing:0rpx;
 }
+.quan_img{
+  width: 100%;
+  height: 60rpx;
+  position: absolute;
+}
 .quan_text{
-  margin:0rpx 10rpx;
-  padding:15rpx 10rpx;
+  position: relative;
+  margin:0rpx 20rpx;
 }
 .item_sale{
   float: right;
-  font-size: 32rpx;
+  font-size: 28rpx;
   color: #D4D2D3;
   margin-top: 10rpx;
 }
 .price_box{
-  margin-top:20rpx;
+  margin-top:10rpx;
 }
 .item_price{
   float: left;
   color: #CA3954;
   font-size: 36rpx;
+}
+.item_left_buy {
+  float: left;
+  font-size:24rpx;
+  color: #CA3954;
+  line-height: 50rpx;
 }
 .item_buy{
   float: right;
@@ -123,6 +128,18 @@
   color: #FFFFFF;
   padding: 5rpx 20rpx;
   font-size:30rpx;
+  position: relative;
+}
+.bottom_img {
+  position: absolute;
+  left: 10rpx;
+  top: 12rpx;
+  width: 20rpx;
+  height: 20rpx;
+}
+.item_but_text {
+  font-size: 28rpx;
+  padding-left: 20rpx;
 }
 
 /*上划加载*/
@@ -409,4 +426,8 @@ swiper-item image {
   color:#fff;
   border:none;
   position: relative;
+}
+.clearfix {
+  zoom: 1;
+  overflow: hidden;
 }

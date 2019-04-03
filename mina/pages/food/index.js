@@ -20,8 +20,6 @@ Page({
         rate: app.globalData.promotion_rate
     },
     onLoad: function (options) {
-        console.log(options);
-        console.log('food...')
         app.pre_load();
         wx.setNavigationBarTitle({
             title: app.globalData.shopName
@@ -136,18 +134,6 @@ Page({
                 }
 
                 var goods = resp.data.list;
-                var rate = app.globalData.promotion_rate;
-                console.log(app.globalData.userInfo);
-                if(app.globalData.userInfo && app.globalData.userInfo.level>0){
-                    console.log('success...');
-                    rate = 1
-                }
-                console.log(rate);
-                for(var i=0;i<goods.length;i++){
-                    console.log(goods[i]);
-                    goods[i]['promotion']=(goods[i]['promotion'] * rate).toFixed(2);
-                    console.log(goods[i]);
-                }
                 that.setData({
                     goods: that.data.goods.concat( goods ),
                     p: that.data.p + 1,

@@ -6,8 +6,8 @@ Page({
         if(scene.from_openid){
             app.globalData.from_openid=scene.from_openid;
         }
-        app.pre_load();
-        // app.goToIndex()
+        // app.pre_load(this);
+        app.goToIndex()
     },
     onShow() {
         console.log('show...')

@@ -89,6 +89,7 @@
 .balance_info_price{
   color: #e64340;
   font-size:28rpx;
+  padding-right: 100rpx;
 }
 
 .price_info_item{

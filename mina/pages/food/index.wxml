@@ -7,7 +7,7 @@
     <swiper class="swiper_box" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" bindchange="swiperchange">
       <block wx:for="{{banners}}" wx:key="id">
         <swiper-item>
-          <image bindtap="tapBanner" data-id="{{item.pic_url}}" src="{{item.pic_url}}" class="slide-image" width="750rpx" height="562.5rpx" />
+          <image bindtap="tapBanner" data-id="{{item.id}}" src="{{item.pic_url}}" class="slide-image" width="750rpx" height="562.5rpx" />
         </swiper-item>
       </block>
     </swiper>
@@ -37,26 +37,31 @@
     </view>
   </view>
 
-    <view wx:for="{{goods}}" bindtap="toDetailsTap" data-id="{{item.id}}">
-      <view class='item_box'>
-        <view class='item_index'>
-          <view class="item_index_number {{index==0?'item_first':''}} {{index==1?'item_second':''}} {{index==2?'item_three':''}}">{{index+1}}</view>
-        </view>
-        <image src="{{item.pic_url}}"  lazy-load="true" class="item_img" mode='aspectFill' ></image>
-        <view class='item_info_box'>
-          <view class='item_name'>{{item.name}}</view>
-          <view class='clearfix'>
-            <view class='item_discount'>
-                <view class='quan_text' style="background-image: url('../../images/quan.png');background-size: cover">券￥{{item.discount}}</view>
-            </view>
-            <view class='item_sale'>分享赚￥{{ item.promotion }} </view>
+  <view wx:for="{{goods}}" bindtap="toDetailsTap" data-id="{{item.id}}">
+    <view class='item_box'>
+      <view class='item_index'>
+        <view class="item_index_number {{index==0?'item_first':''}} {{index==1?'item_second':''}} {{index==2?'item_three':''}}">{{index+1}}</view>
+      </view>
+      <image src="{{item.pic_url}}" lazy-load="true" class="item_img" mode='aspectFill'></image>
+      <view class='item_info_box'>
+        <view class='item_name'>{{item.name}}</view>
+        <view class='clearfix'>
+          <view class='item_discount'>
+            <image src='/images/quan.png' class='quan_img'></image>
+            <view class='quan_text'>券￥{{item.discount}}</view>
           </view>
-          <view class='price_box'>
-            <view class='item_buy'>券后价￥{{item.min_price}}</view>
+          <view class='item_sale'>已拼111单</view>
+        </view>
+        <view class='price_box clearfix'>
+        <view class='item_left_buy'>券后价￥{{item.min_price}}</view>
+          <view class='item_buy'>
+          <image src='/images/ic_fenxiang.png' class='bottom_img'></image>
+          <view class='item_but_text'>分享赚:{{item.promotion}}</view>
           </view>
         </view>
       </view>
     </view>
+  </view>
 
   <view hidden="{{loadingMoreHidden ? true : false}}" class="no-more-goods">哥也是有底线的</view>
 </view>

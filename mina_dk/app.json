@@ -1,0 +1,170 @@
+{
+    "pages": [
+        "pages/main/home/home",
+        "pages/main/find/find",
+        "pages/main/vip/vip",
+        "pages/main/ranking/ranking",
+        "pages/main/mine/mine",
+        "pages/main/activityShare/activityShare",
+        "pages/main/goodsDetails/goodsDetails",
+        "pages/main/inviteShare/inviteShare",
+        "pages/main/storeDailyDetails/storeDailyDetails",
+        "pages/main/storeDetails/storeDetails",
+        "pages/home/freeEvents/index/index",
+        "pages/home/freeEvents/details/details",
+        "pages/home/coupon/coupon",
+        "pages/home/headline/index/index",
+        "pages/home/headline/details/details",
+        "pages/home/news/index/index",
+        "pages/home/news/list/exchange/exchange",
+        "pages/home/news/list/official/official",
+        "pages/home/news/details/details",
+        "pages/home/orderRank/orderRank",
+        "pages/home/recommend/recommend",
+        "pages/home/school/index/index",
+        "pages/home/school/list/list",
+        "pages/home/school/details/details",
+        "pages/home/search/search",
+        "pages/home/store/store",
+        "pages/home/storeDaily/storeDaily",
+        "pages/home/thematicActivities/thematicActivities",
+        "pages/home/themeBuy/index/index",
+        "pages/home/themeBuy/details/details",
+        "pages/home/tutorial/index/index",
+        "pages/home/tutorial/details/details",
+        "pages/find/publish/publish",
+        "pages/find/selectGoods/selectGoods",
+        "pages/mine/earnings/earnings",
+        "pages/mine/exchange/exchange",
+        "pages/mine/favorite/favorite",
+        "pages/mine/order/order",
+        "pages/mine/setting/setting",
+        "pages/mine/team/index/index",
+        "pages/mine/team/search/search",
+        "pages/mine/team/relevance/relevance",
+        "pages/mine/withdrawal/index/index",
+        "pages/mine/withdrawal/detail/detail",
+        "pages/common/blacklist/blacklist",
+        "pages/common/goodsComment/goodsComment",
+        "pages/common/goodsStoreDetails/goodsStoreDetails",
+        "pages/common/H5/H5",
+        "pages/common/login/login",
+        "pages/common/register/register",
+        "pages/common/hotRecommend/hotRecommend"
+    ],
+    "window": {
+        "backgroundTextStyle": "dark",
+        "navigationBarBackgroundColor": "#ffffff",
+        "navigationBarTitleText": "",
+        "navigationBarTextStyle": "black"
+    },
+    "tabBar": {
+        "color": "#000000",
+        "selectedColor": "#000000",
+        "backgroundColor": "#ffffff",
+        "position": "bottom",
+        "list": [
+            {
+                "text": "首页",
+                "pagePath": "pages/main/home/home",
+                "iconPath": "img/tab-home.png",
+                "selectedIconPath": "img/tab-home-checked.png"
+            },
+            {
+                "text": "发现",
+                "pagePath": "pages/main/find/find",
+                "iconPath": "img/tab-find.png",
+                "selectedIconPath": "img/tab-find-checked.png"
+            },
+            {
+                "text": "会员",
+                "pagePath": "pages/main/vip/vip",
+                "iconPath": "img/tab-vip.png",
+                "selectedIconPath": "img/tab-vip-checked.png"
+            },
+            {
+                "text": "热销",
+                "pagePath": "pages/main/ranking/ranking",
+                "iconPath": "img/tab-rank.png",
+                "selectedIconPath": "img/tab-rank-checked.png"
+            },
+            {
+                "text": "我的",
+                "pagePath": "pages/main/mine/mine",
+                "iconPath": "img/tab-mine.png",
+                "selectedIconPath": "img/tab-mine-checked.png"
+            }
+        ]
+    },
+    "subPackages": [
+        {
+            "root": "pages/home",
+            "name": "home",
+            "pages": [
+                "pages/home/freeEvents/index/index",
+                "pages/home/freeEvents/details/details",
+                "pages/home/coupon/coupon",
+                "pages/home/headline/index/index",
+                "pages/home/headline/details/details",
+                "pages/home/news/index/index",
+                "pages/home/news/list/exchange/exchange",
+                "pages/home/news/list/official/official",
+                "pages/home/news/details/details",
+                "pages/home/orderRank/orderRank",
+                "pages/home/recommend/recommend",
+                "pages/home/school/index/index",
+                "pages/home/school/list/list",
+                "pages/home/school/details/details",
+                "pages/home/search/search",
+                "pages/home/store/store",
+                "pages/home/storeDaily/storeDaily",
+                "pages/home/thematicActivities/thematicActivities",
+                "pages/home/themeBuy/index/index",
+                "pages/home/themeBuy/details/details",
+                "pages/home/tutorial/index/index",
+                "pages/home/tutorial/details/details"
+            ]
+        },
+        {
+            "root": "pages/find",
+            "name": "find",
+            "pages": [
+                "pages/find/publish/publish",
+                "pages/find/selectGoods/selectGoods"
+            ]
+        },
+        {
+            "root": "pages/mine",
+            "name": "mine",
+            "pages": [
+                "pages/mine/earnings/earnings",
+                "pages/mine/exchange/exchange",
+                "pages/mine/favorite/favorite",
+                "pages/mine/order/order",
+                "pages/mine/setting/setting",
+                "pages/mine/team/index/index",
+                "pages/mine/team/search/search",
+                "pages/mine/team/relevance/relevance",
+                "pages/mine/withdrawal/index/index",
+                "pages/mine/withdrawal/detail/detail"
+            ]
+        },
+        {
+            "root": "pages/common",
+            "name": "common",
+            "pages": [
+                "pages/common/blacklist/blacklist",
+                "pages/common/goodsComment/goodsComment",
+                "pages/common/goodsStoreDetails/goodsStoreDetails",
+                "pages/common/H5/H5",
+                "pages/common/login/login",
+                "pages/common/register/register",
+                "pages/common/hotRecommend/hotRecommend"
+            ]
+        }
+    ],
+    "navigateToMiniProgramAppIdList": [
+        "wx32540bd863b27570"
+    ],
+    "debug": false
+}

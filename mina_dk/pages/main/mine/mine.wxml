@@ -1,0 +1,94 @@
+<view id="mineCa">
+    <view class="pageTitle">我的</view>
+    <view class="stats" wx:if="{{wxUser.role!=0}}">
+        <view class="topBox">
+            <view class="userInfo">
+                <image class="avatar" mode="scaleToFill" src="{{wxUser.avatarUrl}}"></image>
+                <view class="txt">
+                    <view class="top">
+                        <view class="name">{{wxUser.nickName}}</view>
+                        <image class="level" mode="aspectFit" src="{{imgHost}}/common/level-1.png" wx:if="{{wxUser.role==3}}"></image>
+                        <image class="level" mode="aspectFit" src="{{imgHost}}/common/level-2.png" wx:if="{{wxUser.role==2}}"></image>
+                    </view>
+                    <view class="bottom">
+                        <view class="number">账号：{{wxUser.mcode}}</view>
+                        <view bind:tap="copyMcode" class="copy">复制</view>
+                    </view>
+                </view>
+            </view>
+            <navigator class="setting" hoverClass="none" url="/pages/mine/setting/setting">
+                <view class="icon icon-setting"></view>
+            </navigator>
+        </view>
+        <navigator class="middleBox" hoverClass="none" url="/pages/mine/earnings/earnings">
+            <view class="item">
+                <view class="v">￥{{accountInfo.this_moneth_money?accountInfo.this_moneth_money:'0.00'}}</view>
+                <view class="t">本月预估</view>
+            </view>
+            <view class="item">
+                <view class="v">￥{{accountInfo.today_money?accountInfo.today_money:'0.00'}}</view>
+                <view class="t">今日收益</view>
+            </view>
+            <view class="item">
+                <view class="v">{{accountInfo.total_order?accountInfo.total_order:'0.00'}}</view>
+                <view class="t">总订单数</view>
+            </view>
+        </navigator>
+        <view class="bottomBox">
+            <view class="balance">
+                <view class="t">可提现余额：</view>
+                <view class="v">{{money?money:'0.00'}}</view>
+            </view>
+            <button bind:tap="withdrawal" class="com-btn-2 withdraw">提现</button>
+        </view>
+    </view>
+    <view class="statsVisitor" wx:if="{{wxUser.role==0}}">
+        <image class="avatar" mode="scaleToFill" src="{{wxUser.avatarUrl}}"></image>
+        <view class="txt">
+            <view class="name">{{wxUser.nickName}}</view>
+            <view class="no">账号：{{wxUser.id}}</view>
+        </view>
+        <navigator class="setting" hoverClass="none" url="/pages/mine/setting/setting">
+            <view class="icon icon-setting"></view>
+        </navigator>
+    </view>
+    <view class="navQuick" wx:if="{{vipNav.length>0}}">
+        <view class="type">会员服务</view>
+        <view class="list">
+            <block wx:for="{{vipNav}}" wx:key="index">
+                <button class="single contact" openType="contact" sessionFrom="{{user}}" wx:if="{{item.title=='联系客服'}}">
+                    <image class="icon" mode="scaleToFill" src="{{item.icon}}"></image>
+                    <view class="name">{{item.title}}</view>
+                </button>
+                <navigator class="single" hoverClass="none" url="{{item.jump_url_minApp}}" wx:else>
+                    <image class="icon" mode="scaleToFill" src="{{item.icon}}"></image>
+                    <view class="name">{{item.title}}</view>
+                </navigator>
+            </block>
+        </view>
+    </view>
+    <view class="navQuick" wx:if="{{myNav.length>0}}">
+        <view class="type">我的功能</view>
+        <view class="list">
+            <navigator class="single" hoverClass="none" url="{{item.jump_url_minApp}}" wx:for="{{myNav}}" wx:key="index">
+                <image class="icon" mode="scaleToFill" src="{{item.icon}}"></image>
+                <view class="name">{{item.title}}</view>
+            </navigator>
+        </view>
+    </view>
+    <view class="like" wx:if="{{wxUser.role==0}}">
+        <view class="title">猜你喜欢</view>
+        <view class="list">
+            <view bind:tap="goodsDetails" class="item" data-goodsId="{{item.goods_id}}" wx:for="{{likeGoodsList}}" wx:key="index">
+                <image class="img" mode="aspectFill" src="{{item.goods_thumbnail_url}}"></image>
+                <view class="name">{{item.goods_name}}</view>
+                <view class="price">券后￥{{item.quanhoujia}}</view>
+                <view class="goodsStats">
+                    <view class="sell">已拼{{item.sold_quantity}}单</view>
+                    <view class="coupon">券￥{{item.coupon_discount}}</view>
+                </view>
+                <button catch:tap="goPDDApp" class="com-btn-3 buy" data-item="{{item}}" wx:if="{{wxUser.role==0}}">领券购买</button>
+            </view>
+        </view>
+    </view>
+</view>

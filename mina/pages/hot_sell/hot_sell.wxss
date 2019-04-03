@@ -89,7 +89,7 @@ zoom:1;
   -webkit-line-clamp: 2;
   line-clamp: 2;
   -webkit-box-orient: vertical;
-  font-size: 32rpx;
+  font-size: 30rpx;
 }
 .sell_box{
   position: relative;
@@ -113,17 +113,18 @@ zoom:1;
 }
 .item_sale{
   float: right;
-  font-size: 32rpx;
+  font-size: 28rpx;
   color: #D4D2D3;
   margin-top: 10rpx;
 }
 .price_box{
-  margin-top:20rpx;
+  margin-top:10rpx;
 }
 .item_price{
   float: left;
   color: #CA3954;
-  font-size: 30rpx;
+  font-size: 24rpx;
+  line-height: 50rpx;
 }
 .item_buy{
   float: right;
@@ -132,6 +133,18 @@ zoom:1;
   color: #FFFFFF;
   padding: 5rpx 20rpx;
   font-size:30rpx;
+  position: relative;
+}
+.bottom_img {
+  position: absolute;
+  left: 10rpx;
+  top: 12rpx;
+  width: 20rpx;
+  height: 20rpx;
+}
+.item_but_text {
+  font-size: 28rpx;
+  padding-left: 20rpx;
 }
 
 /*上划加载*/

@@ -1,0 +1,163 @@
+<view id="indexCa">
+    <view class="header">
+        <image class="logo" mode="scaleToFill" src="{{imgHost}}/home/index/logo.png" wx:if="{{!sortFixed}}"></image>
+        <view class="searchBox">
+            <navigator class="comSearch" hoverClass="none" url="/pages/home/search/search">
+                <view class="search">
+                    <view class="icon icon-search"></view>
+                    <view class="searchVal">请输入关键字</view>
+                </view>
+            </navigator>
+            <navigator class="message" hoverClass="none" url="/pages/home/news/index/index" wx:if="{{wxUser.role!=0}}">
+                <view class="icon icon-message"></view>
+                <view class="sum" wx:if="{{newsCount>0}}">{{newsCount}}</view>
+            </navigator>
+        </view>
+        <scroll-view scrollWithAnimation scrollX class="menu" scrollLeft="{{menuScrollLeft}}">
+            <view class="list">
+                <block wx:for="{{menus}}" wx:key="index">
+                    <view bindtap="menuChange" class="single {{menuChecked==menu.key?'active':''}}" data-key="{{menu.key}}" id="menu-{{menu.key}}" wx:for="{{item}}" wx:for-item="menu" wx:key="{{item.key}}">{{menu.title}}</view>
+                </block>
+            </view>
+        </scroll-view>
+    </view>
+    <swiper autoplay circular indicatorDots class="bannerSwiper" wx:if="{{menuChecked==-1}}">
+        <swiper-item wx:for="{{bannerList}}" wx:key="index">
+            <navigator class="single" hoverClass="none" url="{{item.navigate_url}}">
+                <image class="bannerImg" mode="aspectFill" src="{{item.banner_url}}"></image>
+            </navigator>
+        </swiper-item>
+    </swiper>
+    <scroll-view scrollWithAnimation scrollX class="subMenu" scrollLeft="{{subMenuToLeft}}" wx:if="{{menuChecked!=-1}}">
+        <block wx:for="{{subMenus}}" wx:key="index">
+            <view bind:tap="subMenuChange" class="single {{subMenuChecked==subMenu.key?'active':''}}" data-key="{{subMenu.key}}" wx:for="{{item}}" wx:for-item="subMenu" wx:key="{{item.key}}">
+                <image class="icon" mode="scaleToFill" src="{{subMenu.url}}"></image>
+                <view class="name">{{subMenu.title}}</view>
+            </view>
+        </block>
+    </scroll-view>
+    <block wx:if="{{menuChecked==-1}}">
+        <view class="dkNews">
+            <image bind:tap="headLine" class="title" mode="scaleToFill" src="{{imgHost}}/home/index/dk-news-title.png"></image>
+            <view class="abstract">
+                <swiper autoplay circular vertical class="dkNewsSwiper" interval="3000">
+                    <swiper-item bind:tap="headLineDetail" data-id="{{item.id}}" wx:for="{{dkNews}}" wx:key="index">
+                        <view class="txt">{{item.title}}</view>
+                    </swiper-item>
+                </swiper>
+            </view>
+            <view bind:tap="headLine" class="more">
+                <view class="icon icon-more"></view>
+            </view>
+        </view>
+        <swiper indicatorDots class="navSwiper" wx:if="{{wxUser.role!=0}}">
+            <swiper-item class="item" wx:for="{{navList}}" wx:key="index">
+                <navigator class="nav statis-{{item.xcxid}}" url="{{item.jump_url_minApp}}" wx:for="{{item}}" wx:key="item.id">
+                    <image class="icon" mode="scaleToFill" src="{{item.icon}}"></image>
+                    <view class="name">{{item.title}}</view>
+                </navigator>
+            </swiper-item>
+        </swiper>
+        <view class="promotion">
+            <view class="groupTop">
+                <navigator class="best" hoverClass="none" style="background-image: url('{{youPin.icon}}')" url="{{youPin.jump_url_minApp}}">
+                    <view class="title">{{youPin.title}}</view>
+                    <view class="subTitle">
+                        <text>{{youPin.content}}</text>
+                    </view>
+                </navigator>
+                <view class="right">
+                    <navigator class="store" hoverClass="none" style="background-image: url('{{meiRiHaoDian.icon}}')" url="{{meiRiHaoDian.jump_url_minApp}}">
+                        <view class="title">{{meiRiHaoDian.title}}</view>
+                    </navigator>
+                    <navigator class="brand" hoverClass="none" style="background-image: url('{{pinPaiQingChang.icon}}')" url="{{pinPaiQingChang.jump_url_minApp}}">
+                        <view class="title">{{pinPaiQingChang.title}}</view>
+                    </navigator>
+                </view>
+            </view>
+            <view class="groupBottom">
+                <navigator class="item" hoverClass="none" style="background-image: url('{{item.icon}}')" url="{{item.jump_url_minApp}}" wx:for="{{promotionGroup}}" wx:key="index">
+                    <view class="title">{{item.title}}</view>
+                    <view class="subTitle">{{item.content}}</view>
+                </navigator>
+            </view>
+        </view>
+        <view class="recommend">
+            <navigator class="title" hoverClass="none" url="/pages/home/thematicActivities/thematicActivities?activitiesType=7&activitiesName=为您推荐">
+                <view class="v">为您推荐</view>
+                <view class="icon icon-more"></view>
+            </navigator>
+            <scroll-view scrollX class="list">
+                <view bind:tap="goodsDetails" class="item" data-goodsId="{{item.goods_id}}" wx:for="{{recommendGoodsList}}" wx:key="index">
+                    <image class="img" mode="aspectFit" src="{{item.goods_thumbnail_url}}"></image>
+                    <view class="name">{{item.goods_name}}</view>
+                    <view class="price">券后￥{{item.quanhoujia}}</view>
+                    <view class="stats">
+                        <view class="sell">已拼{{item.sold_quantity}}单</view>
+                        <view class="coupon">券￥{{item.coupon_discount}}</view>
+                    </view>
+                    <button catch:tap="obstacle" class="com-btn-3 share" data-item="{{item}}" openType="share" wx:if="{{wxUser.role!=0}}">分享赚￥{{item.yongjin}}</button>
+                    <button catch:tap="goPDDApp" class="com-btn-3 buy" data-item="{{item}}" wx:if="{{wxUser.role==0}}">领券购买</button>
+                </view>
+            </scroll-view>
+        </view>
+        <image class="ad" mode="scaleToFill" src="{{imgHost}}/temp/ad-1.png"></image>
+    </block>
+    <view class="goodsList">
+        <view class="sort {{sortFixed?'sortFixed':''}}">
+            <view bind:tap="sortChange" class="item {{item.active?'active':''}} {{item.sortType}}" data-index="{{item.index}}" wx:for="{{stor}}" wx:key="index">{{item.name}}</view>
+        </view>
+        <view class="list">
+            <view bind:tap="goodsDetails" class="item" data-goodsId="{{item.goods_id}}" wx:for="{{goodsList}}" wx:key="index">
+                <image class="img" mode="aspectFill" src="{{item.goods_thumbnail_url}}"></image>
+                <view class="group">
+                    <view class="name">{{item.goods_name}}</view>
+                    <view class="coupon">券￥{{item.coupon_discount}}</view>
+                    <view class="stats">
+                        <view class="originalPrice">原价￥{{item.min_group_price}}</view>
+                        <view class="sell">已售{{item.sold_quantity}}单</view>
+                    </view>
+                    <view class="operating">
+                        <view class="price">
+                            <view class="t">券后价</view>
+                            <view class="v">￥{{item.quanhoujia}}</view>
+                        </view>
+                        <button catch:tap="obstacle" class="com-btn-3 share" data-item="{{item}}" openType="share" wx:if="{{wxUser.role!=0}}">
+                            <view class="t">分享赚</view>
+                            <view class="v">￥{{item.yongjin}}</view>
+                        </button>
+                        <button catch:tap="goPDDApp" class="com-btn-3 buy" data-item="{{item}}" wx:if="{{wxUser.role==0}}">领券购买</button>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
+    <view class="newsDialog" wx:if="{{newsDialogShow&&newsDialogInfo}}">
+        <view class="article">
+            <image class="newsDialogBg" mode="aspectFit" src="{{imgHost}}/home/index/newsDialog-bg.png"></image>
+            <view bind:tap="newsDialogClose" class="close">
+                <view class="icon icon-close"></view>
+            </view>
+            <view class="title">{{newsDialogInfo.title}}</view>
+            <view class="text">{{newsDialogInfo.abstract_val}}</view>
+            <button bind:tap="newsDialogDetails" class="com-btn-2  submit" data-id="{{newsDialogInfo.id}}" data-type="{{newsDialogInfo.type}}">立即查看</button>
+        </view>
+    </view>
+    <view class="promotionGoodsDialog" wx:if="{{pgDialogShow&&pgDialogInfo}}">
+        <view class="box" style="background-image:url('{{pgDialogInfo.imgUrl_minApp}}')">
+            <view bind:tap="pgDialogClose" class="close" data-id="{{pgDialogInfo.id}}">
+                <view class="icon icon-close"></view>
+            </view>
+            <view class="content">{{pgDialogInfo.content}}</view>
+            <image class="img" mode="aspectFill" src="{{pgDialogInfo.img_url}}"></image>
+            <view class="btns">
+                <button bind:tap="extensionGoodsDetails" data-goodsId="{{pgDialogInfo.goods_id}}" data-id="{{pgDialogInfo.id}}">
+                    <image class="btnBg" mode="scaleToFill" src="{{pgDialogInfo.left_button}}"></image>
+                </button>
+                <button data-item="{{pgDialogInfo}}" data-type="promotion" openType="share">
+                    <image class="btnBg" mode="scaleToFill" src="{{pgDialogInfo.right_button}}"></image>
+                </button>
+            </view>
+        </view>
+    </view>
+</view>

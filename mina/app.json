@@ -17,7 +17,10 @@
     "pages/group_item_detail/group_item_detail",
     "pages/hot_sell/hot_sell",
     "pages/hot_member/hot_member",
-    "pages/my/partner"
+    "pages/my/partner",
+    "pages/list/list",
+    "pages/logs/logs",
+    "pages/log/log"
   ],
   "window": {
     "backgroundTextStyle": "light",

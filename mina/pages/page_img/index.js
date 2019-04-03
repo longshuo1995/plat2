@@ -11,9 +11,7 @@ Page({
         this.setData({
             pic_url: options.pic_url
         })
-        console.log(options.pic_url)
-        console.log(options.pic_url)
-        console.log(options.pic_url)
+
 
     },
     onShow: function () {

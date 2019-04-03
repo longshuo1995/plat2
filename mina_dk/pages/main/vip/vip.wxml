@@ -1,0 +1,219 @@
+<view id="vipCa" style="padding-top:{{wxUser.role==1?860:wxUser.role==2?860:1140}}rpx">
+    <view class="header" style="opacity:{{headerHide}};">
+        <view class="userInfo">
+            <image class="icon" mode="scaleToFill" src="{{wxUser.avatarUrl}}"></image>
+            <view class="name">{{wxUser.nickName}}</view>
+            <image class="level" mode="aspectFit" src="{{imgHost}}/common/level-1.png" wx:if="{{wxUser.role==3}}"></image>
+            <image class="level" mode="aspectFit" src="{{imgHost}}/common/level-2.png" wx:if="{{wxUser.role==2||wxUser.role==1}}"></image>
+        </view>
+        <view class="upgradePrivilege" wx:if="{{wxUser.role==3||wxUser.role==0}}">
+            <view class="title">多客长权益</view>
+            <view class="list">
+                <view class="single">
+                    <image class="icon" mode="scaleToFill" src="{{imgHost}}/vip/privilege-icon-1.png"></image>
+                    <view class="name">多客员</view>
+                    <view class="intro">所有权益</view>
+                </view>
+                <view class="single">
+                    <image class="icon" mode="scaleToFill" src="{{imgHost}}/vip/privilege-icon-2.png"></image>
+                    <view class="name">自购佣金</view>
+                    <view class="intro">奖励100%</view>
+                </view>
+                <view class="single">
+                    <image class="icon" mode="scaleToFill" src="{{imgHost}}/vip/privilege-icon-3.png"></image>
+                    <view class="name">A组出单</view>
+                    <view class="intro">奖励40%</view>
+                </view>
+                <view class="single">
+                    <image class="icon" mode="scaleToFill" src="{{imgHost}}/vip/privilege-icon-4.png"></image>
+                    <view class="name">直接出单</view>
+                    <view class="intro">奖励100%</view>
+                </view>
+                <view class="single">
+                    <image class="icon" mode="scaleToFill" src="{{imgHost}}/vip/privilege-icon-5.png"></image>
+                    <view class="name">B组出单</view>
+                    <view class="intro">奖励20%</view>
+                </view>
+                <view class="single">
+                    <image class="icon" mode="scaleToFill" src="{{imgHost}}/vip/privilege-icon-6.png"></image>
+                    <view class="name">关联多客长</view>
+                    <view class="intro">奖励10%</view>
+                </view>
+            </view>
+        </view>
+        <view catch:touchend="havePrivilegeTouchEnd" catch:touchmove="havePrivilegeTouchmove" catch:touchstart="havePrivilegeTouchStart" class="havePrivilege" wx:if="{{wxUser.role==2||wxUser.role==1}}">
+            <view class="list" style="transform: translateX(-50%) rotate({{slideRotateV}}deg); transition: all {{slideStatus?0:0.3}}s ease;">
+                <view class="single" style="transform: scale({{slideRotateV==-20?1:0.8}}) rotate(20deg) translateY({{slideRotateV==-20?6:0}}rpx);">
+                    <image class="icon" mode="scaleToFill" src="{{imgHost}}/vip/havePrivilege-icon-1.png"></image>
+                    <view class="name">多客员</view>
+                    <view class="intro">所有权益</view>
+                </view>
+                <view class="single" style="transform: scale({{slideRotateV==0?1:0.8}}) rotate(0deg) translateY({{slideRotateV==0?6:0}}rpx);">
+                    <image class="icon" mode="scaleToFill" src="{{imgHost}}/vip/havePrivilege-icon-2.png"></image>
+                    <view class="name">自购佣金</view>
+                    <view class="intro">奖励100%</view>
+                </view>
+                <view class="single" style="transform: scale({{slideRotateV==20?1:0.8}}) rotate(-20deg) translateY({{slideRotateV==20?6:0}}rpx);">
+                    <image class="icon" mode="scaleToFill" src="{{imgHost}}/vip/havePrivilege-icon-4.png"></image>
+                    <view class="name">直接出单</view>
+                    <view class="intro">奖励100%</view>
+                </view>
+                <view class="single" style="transform: scale({{slideRotateV==40?1:0.8}}) rotate(-40deg) translateY({{slideRotateV==40?6:0}}rpx);">
+                    <image class="icon" mode="scaleToFill" src="{{imgHost}}/vip/havePrivilege-icon-5.png"></image>
+                    <view class="name">A组出单</view>
+                    <view class="intro">奖励40%</view>
+                </view>
+                <view class="single" style="transform: scale({{slideRotateV==60?1:0.8}}) rotate(-60deg) translateY({{slideRotateV==60?6:0}}rpx);">
+                    <image class="icon" mode="scaleToFill" src="{{imgHost}}/vip/havePrivilege-icon-3.png"></image>
+                    <view class="name">B组出单</view>
+                    <view class="intro">奖励20%</view>
+                </view>
+                <view class="single" style="transform: scale({{slideRotateV==80?1:0.8}}) rotate(-80deg) translateY({{slideRotateV==80?6:0}}rpx);">
+                    <image class="icon" mode="scaleToFill" src="{{imgHost}}/vip/havePrivilege-icon-6.png"></image>
+                    <view class="name">关联多客长</view>
+                    <view class="intro">奖励10%</view>
+                </view>
+                <view class="single" style="transform: scale({{slideRotateV==100?1:0.8}}) rotate(-100deg) translateY({{slideRotateV==100?6:0}}rpx);">
+                    <image class="icon" mode="scaleToFill" src="{{imgHost}}/vip/havePrivilege-icon-7.png"></image>
+                    <view class="name">大牛面对面</view>
+                    <view class="intro">干货分享</view>
+                </view>
+                <view class="single" style="transform: scale({{slideRotateV==120?1:0.8}}) rotate(-120deg) translateY({{slideRotateV==120?6:0}}rpx);">
+                    <image class="icon" mode="scaleToFill" src="{{imgHost}}/vip/havePrivilege-icon-8.png"></image>
+                    <view class="name">商学院特邀</view>
+                    <view class="intro">入驻名人榜</view>
+                </view>
+            </view>
+        </view>
+    </view>
+    <view class="article1" wx:if="{{wxUser.role==3||wxUser.role==0}}">
+        <view class="semicircle" style="opacity:{{headerHide}}"></view>
+        <button bind:tap="uplevel" class="com-btn-3 freeUpdate">免费成为多客长</button>
+        <view class="promotion">
+            <view class="title">如何成为多客长</view>
+            <view class="conditions">
+                <view class="single" wx:for="{{uplevelpParam}}" wx:key="index">
+                    <view class="bar">
+                        <progress active borderRadius="20rpx" class="progress" color="#cfaa71" percent="{{item.data/item.total*100}}" strokeWidth="20rpx"></progress>
+                        <view class="goals">{{item.total}}{{item.unit}}</view>
+                    </view>
+                    <view class="schedule">{{item.name_wx}}</view>
+                </view>
+            </view>
+        </view>
+        <navigator class="com-btn-3 invite" hoverClass="none" target="" url="/pages/main/inviteShare/inviteShare">邀请好友</navigator>
+        <view class="leader">
+            <view class="title">我们的多客长</view>
+            <swiper circular bindchange="leaderSwiperChange" class="list" displayMultipleItems="5">
+                <swiper-item wx:for="{{weDkBossTop10}}" wx:key="index">
+                    <view class="userInfo {{current==index?'active':''}}">
+                        <view class="iconBox">
+                            <view class="cover"></view>
+                            <image class="icon" mode="scaleToFill" src="{{item.avatarUrl}}"></image>
+                        </view>
+                        <view class="name">{{item.nickName}}</view>
+                        <image class="level" mode="aspectFit" src="{{imgHost}}/common/level-2.png"></image>
+                    </view>
+                </swiper-item>
+            </swiper>
+            <view class="statistics">
+                <view class="money">{{weDkBossTop10[current].money}}元</view>
+                <view class="title">上月收入</view>
+                <view class="exemption">*以上信息均为获得用户同意公开</view>
+            </view>
+        </view>
+        <view class="videoList">
+            <view class="single" wx:for="{{videUrl}}" wx:key="index">
+                <video direction="0" id="myVideo" objectFit="contain" src="{{item}}"></video>
+                <view class="title">{{userVideo[index].title}}</view>
+                <view class="time">{{userVideo[index].add_time}}</view>
+            </view>
+        </view>
+    </view>
+    <view class="article2" wx:if="{{wxUser.role==2||wxUser.role==1}}">
+        <view class="chart">
+            <canvas canvasId="lineCanvas" class="lineCanvas"></canvas>
+            <view class="chartTab">
+                <view bindtap="chartTabChange" class="single {{chartTabChecked==1?'active':''}}" data-index="1">收益</view>
+                <view bindtap="chartTabChange" class="single {{chartTabChecked==2?'active':''}}" data-index="2">总订单</view>
+            </view>
+        </view>
+        <view class="teamRank">
+            <view class="tab">
+                <view bindtap="tabChange" class="single {{tabChecked==1?'active':''}}" data-index="1">订单排名</view>
+                <view bindtap="tabChange" class="single {{tabChecked==2?'active':''}}" data-index="2">贡献收益排名</view>
+                <view bindtap="tabChange" class="single {{tabChecked==3?'active':''}}" data-index="3">好友人数</view>
+            </view>
+            <view class="podium">
+                <view class="portrait">
+                    <view bind:tap="personalDetail" class="single" data-mcode="{{rankingList[1].mcode}}">
+                        <view class="box">
+                            <image class="icon" mode="scaleToFill" src="{{rankingList[1].avatarUrl}}"></image>
+                            <view class="rahmen"></view>
+                        </view>
+                    </view>
+                    <view bind:tap="personalDetail" class="single" data-mcode="{{rankingList[0].mcode}}">
+                        <view class="box">
+                            <image class="icon" mode="scaleToFill" src="{{rankingList[0].avatarUrl}}"></image>
+                            <view class="rahmen"></view>
+                        </view>
+                    </view>
+                    <view bind:tap="personalDetail" class="single" data-mcode="{{rankingList[2].mcode}}">
+                        <view class="box">
+                            <image class="icon" mode="scaleToFill" src="{{rankingList[2].avatarUrl}}"></image>
+                            <view class="rahmen"></view>
+                        </view>
+                    </view>
+                </view>
+                <view class="data">
+                    <view bind:tap="personalDetail" class="single" data-mcode="{{rankingList[1].mcode}}">
+                        <view class="n">{{rankingList[1].nickName}}</view>
+                        <view class="t" wx:if="{{tabChecked==1}}">订单</view>
+                        <view class="t" wx:if="{{tabChecked==2}}">元</view>
+                        <view class="t" wx:if="{{tabChecked==3}}">人</view>
+                        <view class="v" wx:if="{{tabChecked==1}}">{{rankingList[1].team_order_count?rankingList[1].team_order_count:0}}</view>
+                        <view class="v" wx:if="{{tabChecked==2}}">{{rankingList[1].money?rankingList[1].money:0}}</view>
+                        <view class="v" wx:if="{{tabChecked==3}}">{{rankingList[1].dk_user?rankingList[1].dk_user:0}}</view>
+                    </view>
+                    <view bind:tap="personalDetail" class="single" data-mcode="{{rankingList[0].mcode}}">
+                        <view class="n">{{rankingList[0].nickName}}</view>
+                        <view class="t" wx:if="{{tabChecked==1}}">订单</view>
+                        <view class="t" wx:if="{{tabChecked==2}}">元</view>
+                        <view class="t" wx:if="{{tabChecked==3}}">人</view>
+                        <view class="v" wx:if="{{tabChecked==1}}">{{rankingList[0].team_order_count?rankingList[0].team_order_count:0}}</view>
+                        <view class="v" wx:if="{{tabChecked==2}}">{{rankingList[0].money?rankingList[0].money:0}}</view>
+                        <view class="v" wx:if="{{tabChecked==3}}">{{rankingList[0].dk_user?rankingList[0].dk_user:0}}</view>
+                    </view>
+                    <view bind:tap="personalDetail" class="single" data-mcode="{{rankingList[2].mcode}}">
+                        <view class="n">{{rankingList[2].nickName}}</view>
+                        <view class="t" wx:if="{{tabChecked==1}}">订单</view>
+                        <view class="t" wx:if="{{tabChecked==2}}">元</view>
+                        <view class="t" wx:if="{{tabChecked==3}}">人</view>
+                        <view class="v" wx:if="{{tabChecked==1}}">{{rankingList[2].team_order_count?rankingList[2].team_order_count:0}}</view>
+                        <view class="v" wx:if="{{tabChecked==2}}">{{rankingList[2].money?rankingList[2].money:0}}</view>
+                        <view class="v" wx:if="{{tabChecked==3}}">{{rankingList[2].dk_user?rankingList[2].dk_user:0}}</view>
+                    </view>
+                </view>
+            </view>
+            <scroll-view scrollY class="list">
+                <view bind:tap="personalDetail" class="single" data-mcode="{{item.mcode}}" wx:if="{{index>2}}" wx:for="{{rankingList}}" wx:key="index">
+                    <view class="no">{{index+1}}</view>
+                    <view class="group">
+                        <view class="userInfo">
+                            <image class="icon" mode="scaleToFill" src="{{item.avatarUrl}}"></image>
+                            <view class="name">{{item.nickName}}</view>
+                        </view>
+                        <view class="order">
+                            <view class="v" wx:if="{{tabChecked==1}}">{{item.team_order_count?item.team_order_count:0}}</view>
+                            <view class="v" wx:if="{{tabChecked==2}}">{{item.money?item.money:0}}</view>
+                            <view class="v" wx:if="{{tabChecked==3}}">{{item.dk_user?item.dk_user:0}}</view>
+                            <view class="t" wx:if="{{tabChecked==1}}">订单</view>
+                            <view class="t" wx:if="{{tabChecked==2}}">元</view>
+                            <view class="t" wx:if="{{tabChecked==3}}">人</view>
+                        </view>
+                    </view>
+                </view>
+            </scroll-view>
+        </view>
+    </view>
+</view>

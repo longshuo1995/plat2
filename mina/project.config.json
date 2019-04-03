@@ -37,13 +37,13 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 1,
+			"current": 0,
 			"list": [
 				{
 					"id": 0,
 					"name": "page_index",
 					"pathName": "pages/food/info",
-					"query": "",
+					"query": "id=6869428690",
 					"scene": 1001
 				},
 				{
@@ -57,6 +57,13 @@
 					"id": 2,
 					"name": "index",
 					"pathName": "pages/index/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "1",
+					"pathName": "pages/my/addressSet",
 					"query": "",
 					"scene": null
 				}

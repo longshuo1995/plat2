@@ -10,7 +10,6 @@
       <view class='balance_info'>
         可提现:
         <span class="balance_info_price">￥{{ userInfo.current_money }}</span>
-        <br/>
         提现中:
         <span class="balance_info_price">￥{{ userInfo.checking_money }}</span>
       </view>
