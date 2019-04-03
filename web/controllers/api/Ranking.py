@@ -15,6 +15,10 @@ def hot_goods():
     goods_per_page = 10
     req = request.values
     tp = req.get('tp')
+    page = req.get('page')
+    print('*'*10)
+    print(tp)
+    print(page)
     resp = {'code': 200, 'msg': '成功', 'data': []}
     pages = int(req.get('pages', 0))
     ranking_path = os.path.join(project_conf.project_path, 'asserts', '24h_ranking')
@@ -42,12 +46,15 @@ def hot_goods():
 def hot_member():
     req = request.values
     tp = req.get('tp')
+    page = req.get('page')
     resp = {'code': 200, 'msg': '成功', 'data': []}
     if not tp:
         resp['code'] = -1
         resp['msg'] = "需要tp"
         return jsonify(resp)
     tp = int(tp)
+    print(tp)
+    print(page)
     if tp == 0:
         file_name = os.path.join(project_conf.project_path, 'asserts', 'group_promotion')
     if tp == 1:
