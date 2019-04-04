@@ -48,6 +48,7 @@ def hot_goods():
 @route_api.route('/member/hot_member', methods=['GET', 'POST'])
 def hot_member():
     req = request.values
+    print(req)
     tp = req.get('tp')
     pages = req.get('pages')
     team_index = req.get('team_index')
