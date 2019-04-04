@@ -86,14 +86,15 @@ def get_pdd_url():
     good_id = req.get('good_id')
     open_id = req.get('open_id')
     res = pdd_tools.search_good_detail(good_id, open_id)
-    print(res)
     dt = res.get('goods_promotion_url_generate_response', {}).get('goods_promotion_url_list', [{}])[0]
     if dt:
+        pdd_url = dt['we_app_info']['page_path']
         good_detail = dt.get('goods_detail', {})
         row_price = good_detail.get('min_group_price', 0)/100
         discount = good_detail.get('coupon_discount', 0)/100
         resp['data'] = {
             'promotion_rate': good_detail.get('promotion_rate', 0)/1000,
+            'pdd_url': pdd_url,
             'pics': good_detail.get('goods_gallery_urls', []),
             'name': good_detail.get('goods_name', []),
             'discount': discount,

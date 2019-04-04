@@ -17,7 +17,7 @@ App({
                 this.globalData.is_update_userinfo=true
             }
         }else{
-            this.goToLogin()
+            this.goToLogin();
             this.globalData.is_update_userinfo=true
         }
         if(this.globalData.userInfo.level>0){
@@ -65,9 +65,9 @@ App({
         shopName: "奇遇拼团",
         from_openid: '',
         is_update_userinfo: false,
-        cache: '',
-        // domain:"https://aishangnet.club/api",
-        domain:"http://140.143.163.73:8812/api",
+        cache: '/pages/food/index',
+        domain:"https://aishangnet.club/api",
+        // domain:"http://140.143.163.73:8812/api",
     },
     buildUrl:function( path,params ){
         var url = this.globalData.domain + path;

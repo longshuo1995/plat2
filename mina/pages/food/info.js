@@ -33,10 +33,29 @@ Page({
             'goods_desc': '【收藏商品优先发货,优先发货,优先发货,重要的事情说三遍】【厂家直销没有中间商赚差价】【拒绝假实惠,质量保证,七天无理由退换】【48小时内发货】【产品如有瑕疵,请直接联系客服,我们给您最完美的解决】'
         }
     },
+    onShareAppMessage: function(){
+        var path = '/pages/food/info?id=' + e.id + '&from_openid=' + app.globalData.userInfo.open_id;
+        console.log(path);
+        return {
+            title: "自购省钱，推广赚钱",
+            path: '/pages/food/info?id=' + e.id + '&from_openid=' + app.globalData.userInfo.open_id,
+            success: function (res) {
+            },
+            fail: function (res) {
+            },
+        }
+    },
     onLoad: function (e) {
         // that.setData({
         //     id: e.id
         // });
+        if(options.from_openid){
+            app.globalData.refer_openid = options.from_openid
+        }
+        var that = this;
+        var cache_path = '/pages/food/info?id=' + e.id;
+        app.globalData.cache = cache_path;
+        app.pre_load();
         wx.request({
             url: app.buildUrl("/good/get_pdd_url"),
             header: app.getRequestHeader(),
@@ -51,18 +70,21 @@ Page({
                     app.alert({"content": resp.msg});
                     return;
                 }
-                // wx.navigateToMiniProgram({
-                //     appId: 'wx32540bd863b27570',
-                //     path: resp.data,
-                //     extraData: {
-                //         foo: 'bar'
-                //     },
-                //     envVersion: 'release',
-                //     success(res) {
-                //         // 打开成功
-                //           app.goToIndex()
-                //     }
-                // })
+                var rate = 0.5
+                if(app.globalData.userInfo.level > 0){
+                    rate = 1
+                }
+
+                var dt = resp.data;
+                dt['promotion_rate'] = (dt['promotion_rate'] * rate).toFixed(2);
+                dt['percent_rate'] = dt['promotion_rate'] * 100;
+                dt['promotion'] = (dt['price'] * dt['promotion_rate']).toFixed(2);
+                dt['price'] = (dt['price']).toFixed(2)
+                dt['row_price'] = (dt['row_price']).toFixed(2)
+                that.setData({
+                    info: dt
+                })
+
             }
         });
 
@@ -111,7 +133,7 @@ Page({
     },
     // 复制剪贴板
     copy: function () {
-      let datas = `${this.data.info.name}价格：${this.data.info.price}元，券后价：${this.data.info.row_price}元,商品链接：${this.data.info.short_url}`
+      let datas = `${this.data.info.name}\n价格：${this.data.info.row_price}元，券后价：${this.data.info.row_price}元,商品链接：${this.data.info.short_url}`
 
       wx.setClipboardData({
         data: datas,
@@ -119,7 +141,7 @@ Page({
           wx.getClipboardData({
             success: function (res) {
               wx.showToast({
-                title: '复制成功'
+                title: '复制成功~  快去分享给小伙伴吧'
               })
             }
           })
@@ -127,21 +149,18 @@ Page({
       })
     },
     buyNow: function () {
-        var data = {
-            goods: [
-                {
-                    "id": this.data.info.id,
-                    "price": this.data.info.price,
-                    "number": this.data.buyNumber
-                }
-            ]
-        };
-        this.setData({
-            hideShopPopup: true
-        });
-        wx.navigateTo({
-            url: "/pages/order/index?data=" + JSON.stringify(data)
-        });
+        wx.navigateToMiniProgram({
+            appId: 'wx32540bd863b27570',
+            path: this.data.info.pdd_url,
+            extraData: {
+                foo: 'bar'
+            },
+            envVersion: 'release',
+            success(res) {
+                // 打开成功
+                  app.goToIndex()
+            }
+        })
     },
     /**
      * 规格选择弹出框

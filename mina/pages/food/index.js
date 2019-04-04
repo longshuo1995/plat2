@@ -19,7 +19,20 @@ Page({
         processing:false,
         rate: app.globalData.promotion_rate
     },
+    onShareAppMessage: function(){
+        return {
+            title: "自购省钱，推广赚钱",
+            path: '/pages/index/index?from_openid=' + app.globalData.userInfo.open_id,
+            success: function (res) {
+            },
+            fail: function (res) {
+            },
+        }
+    },
     onLoad: function (options) {
+        if(options.from_openid){
+            app.globalData.refer_openid = options.from_openid
+        }
         app.pre_load();
         wx.setNavigationBarTitle({
             title: app.globalData.shopName

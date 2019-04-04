@@ -8,9 +8,12 @@ Page({
     },
     goToIndex: function () {
         wx.switchTab({
-            url: '/pages/food/index',
+            url: app.globalData.cache,
         });
     },
+
+
+
     onLoad: function () {
         // app.globalData.userInfo = wx.getStorageSync('userInfo')
         wx.setNavigationBarTitle({
@@ -45,9 +48,8 @@ Page({
         });
     },
     checkLogin:function(){
-
+        console.log('open_id');
         console.log(app.globalData.refer_openid)
-
          var that = this;
          wx.login({
              fail:function(res){
