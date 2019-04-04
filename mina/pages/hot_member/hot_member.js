@@ -90,7 +90,8 @@ Page({
         url: app.globalData.domain+'/member/hot_member', // 仅为示例，并非真实的接口地址
         data: {
           tp: that.data.tp,
-          pages: that.data.pages+1
+          pages: that.data.pages+1,
+          team_index: that.data.team_index
         },
         success: function (res) {
           console.log(res.data.data)
@@ -133,14 +134,14 @@ Page({
   onShareAppMessage: function () {
   
   },
-  selectTab:function(e){
-      let tp = e.currentTarget.dataset.tp;
+  update_data: function (pages) {
       let that = this;
       wx.request({
         url: app.globalData.domain+'/member/hot_member',
         data: {
-          tp: tp,
-          pages:0
+          tp: that.data.tp,
+          pages:pages,
+          team_index: that.data.team_index
         },
         header: {
           'content-type': 'application/json' // 默认值
@@ -148,17 +149,28 @@ Page({
         success: (res) => {
           that.setData({
             data_list: res.data.data,
-            pages:0,
-            tp:tp
           })
         }
       })
+  },
+  selectTab:function(e){
+      let tp = e.currentTarget.dataset.tp;
+      this.setData({
+          tp: tp,
+          pages: 0
+      })
+      this.update_data(0)
+
+
+
   },
   teamSelete:function(e){
     let index = e.currentTarget.dataset.index;
     let that = this;
     that.setData({
-      team_index: index
-    })
+      team_index: index,
+      pages: 0
+    });
+    this.update_data(0)
   }
-})
+});
