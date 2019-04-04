@@ -18,12 +18,12 @@
     <view class='earnings_box_line'></view>
     <view class='price_info'>
       <view class="price_info_item item_first item_line">
-      <view class='price_item'>￥{{ userInfo.month_promotion }}</view>
+      <view class='price_item'>￥{{ userInfo.running_promotion }}</view>
       <view>进行中:</view>
       </view>
       <view class="price_info_item item_line">
       <view class='price_item'>￥{{ userInfo.today_promotion }}</view>
-      <view>今日收益</view>
+      <view>今日预估</view>
       </view>
       <view class="price_info_item">
       <view class='price_item'>￥{{ userInfo.running_order }}</view>
@@ -32,9 +32,6 @@
     </view>
   </view>
 
-  <view class="my-item">
-    <navigator url="/pages/group/index" hover-class="navigator-hover">我的收益</navigator>
-  </view>
   <view class="my-item">
     <navigator url="/pages/my/order_list" hover-class="navigator-hover">订单详情</navigator>
   </view>

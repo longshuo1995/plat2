@@ -88,6 +88,7 @@ def get_pdd_url():
         good_detail = dt.get('goods_detail', {})
         row_price = good_detail.get('min_group_price', 0)/100
         discount = good_detail.get('coupon_discount', 0)/100
+        print(good_detail)
         resp['data'] = {
             'promotion_rate': good_detail.get('promotion_rate', 0)/1000,
             'pics': good_detail.get('goods_gallery_urls', []),
