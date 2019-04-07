@@ -79,7 +79,7 @@ def get_pdd_url():
     '''
     resp = {'code': 200, 'msg': '操作成功', 'data': ''}
     req = request.values
-    good_id = req.get('good_id')
+    good_id = req.get('goods_id')
     open_id = req.get('open_id')
     res = pdd_tools.search_good_detail(good_id, open_id)
     dt = res.get('goods_promotion_url_generate_response', {}).get('goods_promotion_url_list', [{}])[0]
@@ -127,7 +127,7 @@ def opt_get():
 def mall_get():
     resp = {'code': 200, 'msg': '操作成功', 'data': []}
     req = request.values
-    good_id = req.get('good_id')
+    good_id = req.get('goods_id')
     if not good_id:
         resp['code'] = '401'
         resp['msg'] = '请传入good_id'
