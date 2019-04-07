@@ -38,7 +38,7 @@ def foodSearch():
 
     cat_id = int(req.get('sort_type', 0))
     opt_id = int(req.get('opt_id', 0))
-    p = int(req.get('p', 1))
+    p = int(req.get('page', 1))
     p = p if p else 1
     mix_kw = req.get('mix_kw', '').split()
     keyword = ' '.join(mix_kw)
@@ -85,20 +85,22 @@ def get_pdd_url():
     dt = res.get('goods_promotion_url_generate_response', {}).get('goods_promotion_url_list', [{}])[0]
     if dt:
         pdd_url = dt['we_app_info']['page_path']
+        app_id = dt['we_app_info']['app_id']
         good_detail = dt.get('goods_detail', {})
-        row_price = good_detail.get('min_group_price', 0)/100
-        discount = good_detail.get('coupon_discount', 0)/100
+        row_price = good_detail.get('min_group_price', 0)
+        discount = good_detail.get('coupon_discount', 0)
         resp['data'] = {
-            'promotion_rate': good_detail.get('promotion_rate', 0)/1000,
-            'pdd_url': pdd_url,
+            'goods_desc': good_detail.get('goods_desc', ''),
+            'short_url': dt.get('short_url', ''),
+            'promotion_rate': good_detail.get('promotion_rate', 0),
+            'we_app_id': app_id,
+            'we_page_path': pdd_url,
             'pics': good_detail.get('goods_gallery_urls', []),
             'name': good_detail.get('goods_name', []),
-            'discount': discount,
-            'price': row_price-discount,
+            'coupon_discount': discount,
+            'min_price': row_price-discount,
             'row_price': row_price,
             'sold_quantity': good_detail.get('sold_quantity', 0),
-            'goods_desc': good_detail.get('goods_desc', ''),
-            'short_url': dt.get('short_url', '')
         }
     else:
         logging.log(logging.ERROR, 'get pdd detail failed~ msg:good_id:{good_id}, open_id:{open_id}'.format
