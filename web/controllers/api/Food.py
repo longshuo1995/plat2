@@ -133,7 +133,7 @@ def mall_get():
 
 
 @route_api.route("/good/reviews_get")
-def mall_get():
+def reviews_get():
     resp = {'code': 200, 'msg': '操作成功', 'data': []}
     req = request.values
     good_id = req.get('good_id')
