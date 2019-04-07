@@ -1,1 +1,0 @@
-<web-view src="{{xinshou_url}}" wx:if="{{xinshou_url}}"></web-view>

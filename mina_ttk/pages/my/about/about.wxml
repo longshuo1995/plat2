@@ -1,5 +1,0 @@
-<view class="r_all">
-    <image class="logo" src="../../../images/icon_logo.png"></image>
-    <view style="font-size:24rpx;color:#4e4e4e;margin-top:30rpx;">推推客CPS当前版本：{{ver}}</view>
-    <view style="font-size:24rpx;color:#9b9b9b;margin-top:20rpx;">更多优惠信息请关注公众号：推推客CPS</view>
-</view>

@@ -1,4 +1,0 @@
-<view>
-    <button bindgetuserinfo="wxauthorize" class="socpe_btn" hoverClass="none" openType="getUserInfo">立即免费抢</button>
-    <image src="https://minipdd.mijian88.com/h5/img/mini_banner11_13.png" style="width:100vw;height:99.9vh;"></image>
-</view>
