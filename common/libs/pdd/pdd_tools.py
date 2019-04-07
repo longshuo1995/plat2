@@ -40,13 +40,14 @@ def opt_get(parent_opt_id=0):
     return pdd_request(added_params)
 
 
-def search_goods(keyword, sort_type=0, p=1, page_size=base_setting.show_every_page):
+def search_goods(keyword, sort_type=0, p=1, opt_id=0, page_size=base_setting.show_every_page):
     added_params = {
         "type": "pdd.ddk.goods.search",
         "keyword": keyword,
         'sort_type': sort_type,
         'page': p,
         'page_size': page_size,
+        'opt_id': opt_id
     }
     return pdd_request(added_params)
 
@@ -75,6 +76,16 @@ def order_search(start_time, end_time):
         "type": "pdd.ddk.order.list.increment.get",
         'start_update_time': start_time,
         'end_update_time': end_time
+    }
+    return pdd_request(added_params)
+
+
+def hot_goods_range(sort_type=1, offset=0, limit=50):
+    added_params = {
+        "type": "pdd.ddk.top.goods.list.query",
+        'offset': offset,
+        'sort_type': sort_type,
+        'limit': limit
     }
     return pdd_request(added_params)
 
