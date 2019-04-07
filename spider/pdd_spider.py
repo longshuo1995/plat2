@@ -6,7 +6,9 @@ pattern_num = re.compile('\((\d*)\)')
 
 def get_mall_info(good_id):
     url = 'https://mobile.yangkeduo.com/goods.html?goods_id=%s' % good_id
+    print(url)
     html = requests.get(url, verify=False).text
+    print(html)
     xhtml = etree.HTML(html)
     mall_name = xhtml.xpath("//div[@class='goods-mall-name']//text()")
     mall_name = mall_name[0] if mall_name else ''
