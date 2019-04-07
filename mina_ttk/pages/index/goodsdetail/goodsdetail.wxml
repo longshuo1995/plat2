@@ -1,0 +1,143 @@
+<canvas canvasId="shareCanvas" class="shareCanvas" style="border: 1px solid;display:{{canvasShow}};"></canvas>
+<canvas canvasId="shareCanvas1" class="shareCanvas" style="border: 1px solid;display:{{canvasShow}};"></canvas>
+<canvas canvasId="shareCanvas2" class="shareCanvas" style="border: 1px solid;display:{{canvasShow}};"></canvas>
+<scroll-view scrollY style="display:{{isLoadFinish?'':'none'}}">
+    <swiper autoplay="True" class="wx-swiper" indicatorDots="True" interval="2000" wx:if="{{!isX5S}}">
+        <swiper-item wx:for="{{goods_images}}" wx:for-index="i" wx:key="i">
+            <image bindtap="tap_d5808da3" class="wx-image" mode="aspectFill" src="{{goods_images[i]}}"></image>
+        </swiper-item>
+    </swiper>
+    <swiper class="wx-swiper" wx:if="{{isX5S}}">
+        <swiper-item wx:for="{{goods_images}}" wx:for-index="i" wx:key="i">
+            <image bindtap="tap_d5808da3" class="wx-image" mode="aspectFill" src="{{goods_images[i]}}"></image>
+        </swiper-item>
+    </swiper>
+    <view style="padding:2vw">
+        <view style=" display: flex; flex-direction: row;  margin-top: -10rpx;">
+            <view class="voucher_price" wx:if="{{goods.coupon_discount>0}}">
+        券后价</view>
+            <view class="final_price">
+                <text style="margin-left:20rpx;">¥{{goods.final_price}}  </text>
+            </view>
+            <text class="original_price" wx:if="{{goods.coupon_discount>0}}">原价：¥{{goods.price}}</text>
+        </view>
+        <text class="goods_text">{{goods.goods_name}}</text>
+        <view style="font-size:28rpx;display: flex; flex-direction: row;" wx:if="{{goods.coupon_discount>0}}">
+            <view class="discount" wx:if="{{goods.coupon_discount<999}}"> {{goods.coupon_discount}}元</view>
+            <view class="discount" style="font-size:20rpx;line-height:40rpx;" wx:if="{{goods.coupon_discount>999}}"> {{goods.coupon_discount}}元</view>
+            <image class="discount_image" src="../../../images/bk_youhuiquan.png"></image>
+            <view style="margin-left: 20rpx;">
+        券剩余：{{goods.coupon_remain_quantity}}/{{goods.coupon_total_quantity}}
+      </view>
+        </view>
+        <view class="gary_text">
+            <text>销量：{{goods.sold_quantity}} </text>
+            <text style="margin-left: 30rpx;">商品评分：{{goods.goods_eval_score}}</text>
+        </view>
+        <view style="flex-direction: row;display:flex;margin-top:20rpx;" wx:if="{{isBuyer}}">
+            <view class="yellow_view_buyer">
+                <image class="yellow_icon" src="../../../images/lingquanshengqian.png"></image>
+                <view class="yellow_title">领券省钱</view>
+            </view>
+            <view class="yellow_view_buyer">
+                <image class="yellow_icon" src="../../../images/icon_zhekou.png"></image>
+                <view class="yellow_title">超低折扣</view>
+            </view>
+            <view class="yellow_view_buyer">
+                <image class="yellow_icon" src="../../../images/icon_zhengpin.png"></image>
+                <view class="yellow_title">超值正品</view>
+            </view>
+        </view>
+        <view class="yellow_view" wx:if="{{!isBuyer&&goods_type_data!=4}}">
+            <view class="{{yellowPartClass}}">
+                <image class="promotion_img" src="../../../images/icon_promotion_left.png"></image>
+                <view class="yellow_text">
+                    <view class="yellow_text_top">
+                        <text style="overflow:hidden;white-space:nowrap;width: 100rpx;font-size:38rpx;" wx:if="{{lengthLeft>4}}">{{goods.promotion_price}}</text>
+                        <text style="overflow:hidden;white-space:nowrap;width: 100rpx;" wx:else>{{goods.promotion_price}}</text>
+                        <text style="font-size:20rpx;margin-left:10rpx;">元</text>
+                    </view>
+                    <view class="yellow_text_bottom">自买可省</view>
+                </view>
+            </view>
+            <view class="white_line"></view>
+            <view class="{{yellowPartClass}}">
+                <image class="promotion_img" src="../../../images/icon_promotion_middle.png"></image>
+                <view class="yellow_text">
+                    <view class="yellow_text_top">
+                        <text style="overflow:hidden;white-space:nowrap;width: 100rpx;font-size:38rpx;" wx:if="{{lengthMiddle>4}}">{{goods.promotion_price}}</text>
+                        <text style="overflow:hidden;white-space:nowrap;width: 100rpx;" wx:else>{{goods.promotion_price}}</text>
+                        <text style="font-size:20rpx;margin-left:10rpx;">元</text>
+                        <view class="yellow_text_bottom">分享可赚</view>
+                    </view>
+                </view>
+            </view>
+            <view class="white_line"></view>
+            <view class="{{yellowPartClass}}" wx:if="{{goods.bu_type==1||isFreeorder}}">
+                <image class="promotion_img" src="../../../images/icon_promotion_right.png"></image>
+                <view class="yellow_text">
+                    <view class="yellow_text_top">
+                        <text style="overflow:hidden;white-space:nowrap;width: 100rpx;font-size:38rpx;" wx:if="{{lengthRight>4}}">{{goods.act_promotion_price}}</text>
+                        <text style="overflow:hidden;white-space:nowrap;width: 100rpx;" wx:else>{{goods.act_promotion_price}}</text>
+                        <text style="font-size:20rpx;margin-left:10rpx;">元</text>
+                    </view>
+                    <view class="yellow_text_bottom">
+                        <text wx:if="{{goods.bu_type==1&&!isFreeorder}}">定向补贴</text>
+                        <text wx:if="{{isFreeorder&&goods.bu_type==0}}">佣金补贴</text>
+                    </view>
+                </view>
+            </view>
+        </view>
+        <view class="ms_txt">商品描述</view>
+        <view class="goods_desc">
+            <text style=" font-size:30rpx;line-height:32rpx;color:#9B9B9B">{{goods.goods_desc}}</text>
+        </view>
+        <view style="height: 100rpx;"></view>
+    </view>
+</scroll-view>
+<view class="{{isIphoneXForGoods?'bottom_view_new_forX':'bottom_view_new'}}" style="display:{{isLoadFinish?'':'none'}}" wx:if="{{isBuyer}}">
+    <view catchtap="toIndex" style=" line-height: 35rpx;margin-left: 30rpx;">
+        <image class="btn_tohome" src="../../../images/btn_tohome.png"></image>
+        <view style="font-size:20rpx;">首页</view>
+    </view>
+    <button class="share_btn share_black" openType="share" style="margin-left: 200rpx;" wx:if="{{!isFreeorder&&goods_type_data!=4}}">分享给好友</button>
+    <button catchtap="buyerBur" class="share_btn share_yellow" style="{{isFreeorder||goods_type_data==4?'margin-left:400rpx;':''}}">立即购买</button>
+</view>
+<view class="{{isIphoneXForGoods?'bottom_view_new_forX':'bottom_view_new'}}" style="display:{{isLoadFinish?'':'none'}}" wx:if="{{!isBuyer}}">
+    <image class="bk_circle" src="../../../images/yellow_circle.png" wx:if="{{goods_type_data!=4}}"></image>
+    <view class="zhuan" wx:if="{{goods_type_data!=4}}"></view>
+    <view style="margin-top:15rpx;margin-left:15rpx" wx:if="{{goods_type_data!=4}}">
+        <text>{{zhuan}}</text>
+        <text style="font-size:20rpx;">元</text>
+    </view>
+    <button catchtap="showShare" class="share_btn3 share_black" wx:if="{{!isFreeorder&&goods_type_data!=4}}">生成分享图片</button>
+    <button catchtap="buyerBur" class="share_btn2 share_black" style="{{isFreeorder?'margin-left:400rpx;':''}}" wx:if="{{goods_type_data!=4}}">自买</button>
+    <button catchtap="buyerBur" class="share_btn_zhuli" wx:if="{{goods_type_data==4}}">自买</button>
+    <button class="share_btn2 share_yellow" openType="share" wx:if="{{!isFreeorder&&goods_type_data!=4}}">分享</button>
+</view>
+<view catchtap="hideModal" class="share_bk" style="display:{{isShareDialogShow?'':'none'}}" wx:if="{{showModalStatus}}"></view>
+<view animation="{{animationData}}" class="r_share_button" wx:if="{{showModalStatus}}">
+    <view style="width:100vw;height:94rpx;background-color: #f9e276;text-align:center;line-height:94rpx;">
+    分享
+    <image catchtap="close_dialog" class="btn_close" src="../../../images/btn_close.png"></image>
+    </view>
+    <view class="share_input">
+        <text>{{shareText}}</text>
+    </view>
+    <view style="display: flex;flex-direction: row;">
+        <view catchtap="copyText" class="v_share_button">
+            <image class="share_button" src="../../../images/btn_fuzhiwenan.png"></image>
+            <view class="share_text">复制文案</view>
+        </view>
+        <view catchtap="shareByPdd" class="v_share_button">
+            <image class="share_button" src="../../../images/btn_xiaochengxuma.png"></image>
+            <view class="share_text">复制文案并生成</view>
+            <view class="share_text">小程序分享图片</view>
+        </view>
+        <view catchtap="drawSharePic" class="v_share_button">
+            <image class="share_button" src="../../../images/btn_putongerweima.png"></image>
+            <view class="share_text">复制文案并生</view>
+            <view class="share_text">成H5分享图片</view>
+        </view>
+    </view>
+</view>

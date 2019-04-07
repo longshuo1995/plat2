@@ -1,0 +1,69 @@
+<view>
+    <view class="top_tab">
+        <view catchtap="tabClick" class="tab_text" data-page_type="0">待结算</view>
+        <view class="line"></view>
+        <view catchtap="tabClick" class="tab_text" data-page_type="1">累计结算</view>
+        <view class="line"></view>
+        <view catchtap="tabClick" class="tab_text" data-page_type="2">累计提现</view>
+    </view>
+    <view animation="{{animation}}" class="type_bottom_line" style="{{move_left}}"></view>
+</view>
+<view style="color:#B2B2B2;font-size:22rpx;margin-top:30rpx;margin-bottom:30rpx;text-align:center">仅显示微信提现记录，更多提现记录请下载app查看。</view>
+<view class="bk_daijiesuan" wx:if="{{page_type==0}}">
+    <block wx:if="{{!isBuyer}}">
+        <view>待结算金额=（1）+（2）</view>
+        <view>1、APP报表，订单状态是待结算的佣金</view>
+        <view>2、全额返现，小程序我的返现，订单为待结算的佣金</view>
+        <view style="margin-top:20rpx;">
+      任何一个订单结算后，累计结算金额会增加，同时待结算金额会除去结算订单金额。
+    </view>
+        <view>
+      任何一个待结算订单发生退款/退货等维权行为，结算状态转为结算失败，同时待结算金额会减少。
+    </view>
+    </block>
+    <block wx:else>
+        <view>待结算金额=小程序我的返现，订单为待结算的佣金</view>
+        <view style="margin-top:20rpx;">
+      任何一个订单结算后，累计结算金额会增加，同时待结算金额会除去结算订单金额。
+    </view>
+        <view>
+      任何一个待结算订单发生退款/退货等维权行为，结算状态转为结算失败，同时待结算金额会减少。
+    </view>
+    </block>
+</view>
+<view class="bk_leijijiesuan" wx:if="{{page_type==1}}" wx:for="{{tixianArr}}" wx:for-index="i" wx:key="index">
+    <view>
+        <view style="font-size:24rpx;">{{tixianArr[i].title}}</view>
+        <view style="color:#B2B2B2;font-size:24rpx;">{{tixianArr[i].date}}</view>
+    </view>
+    <view style="font-size:38rpx;color:#4e4e4e;font-weight:800;padding-bottom:10rpx;">
+        <text style="font-size:18rpx;">¥</text>{{tixianArr[i].money}}</view>
+</view>
+<view class="item_card" wx:if="{{page_type==2}}" wx:for="{{tixianArr}}" wx:for-index="i" wx:key="index">
+    <view style="display:flex; flex-direction: row;justify-content: space-between;align-items: flex-end;padding-left:30rpx;padding-right:30rpx;padding-top:30rpx;padding-bottom:30rpx;">
+        <view style="font-size:30rpx;color:#4e4e4e;">{{tixianArr[i].title}}</view>
+        <image src="../../../../images/icon_weixintixian.png" style="width:120rpx;height:30rpx;position: absolute;left:190rpx;margin-top:-15rpx;"></image>
+        <view style="font-size:24rpx;color:#B2B2B2;">操作时间：{{tixianArr[i].date}}</view>
+    </view>
+    <view style="background-color: #f0f0f0;width:100%;height:1px;"></view>
+    <view style="display:flex; flex-direction: row;justify-content: space-between;align-items: flex-end;">
+        <view style="color:#4E4E4E;font-size:26rpx;margin-left:30rpx;margin-top:30rpx;">提现金额</view>
+        <view style="color:#4E4E4E;font-size:26rpx;margin-left:30rpx;margin-top:30rpx;margin-right:30rpx;font-weight:800;">
+            <text style="font-size:18rpx;">¥</text>{{tixianArr[i].money}}</view>
+    </view>
+    <view style="display:flex; flex-direction: row;justify-content: space-between;align-items: flex-end;">
+        <view style="color:#9B9B9B;font-size:26rpx;margin-left:30rpx;margin-top:25rpx;">手续费</view>
+        <view style="color:#9B9B9B;font-size:26rpx;margin-left:30rpx;margin-top:25rpx;margin-right:30rpx;">
+            <text style="font-size:18rpx;">¥</text>{{tixianArr[i].koushui_money}}</view>
+    </view>
+    <view style="display:flex; flex-direction: row;justify-content: space-between;align-items: flex-end;">
+        <view style="color:#9B9B9B;font-size:26rpx;margin-left:30rpx;margin-top:25rpx;">实际到账</view>
+        <view style="color:#9B9B9B;font-size:26rpx;margin-left:30rpx;margin-top:25rpx;margin-right:30rpx;">
+            <text style="font-size:18rpx;">¥</text>{{tixianArr[i].real_money}}</view>
+    </view>
+    <view style="color:#ff0000;font-size:26rpx;margin-left:30rpx;margin-top:25rpx;margin-right:30rpx;" wx:if="{{tixianArr[i].fail_msg!=null}}">{{tixianArr[i].fail_msg}}</view>
+</view>
+<view wx:if="{{tixianArr.length<=0&&page_type!=0}}">
+    <image class="no_orde_img" src="../../../../images/no_order.png"></image>
+    <text class="no_orde_text">暂无数据</text>
+</view>

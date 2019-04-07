@@ -1,0 +1,213 @@
+page {
+    background-color: #fff;
+}
+
+.r_all {
+    margin-top: 20rpx;
+    margin-left: 30rpx;
+    margin-right: 30rpx;
+}
+
+.goods_img {
+    width: 170rpx;
+    height: 170rpx;
+    position: absolute;
+}
+
+.goods_name {
+    font-size: 30rpx;
+    white-space: initial;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    margin-left: 180rpx;
+}
+
+.goods_item_title {
+    width: 100%;
+    height: 200rpx;
+}
+
+.order_info {
+    padding: 20rpx;
+    background-color: #f5f5f5;
+    font-size: 26rpx;
+    color: #9e9e9e;
+    line-height: 50rpx;
+    margin-top: 20rpx;
+    border-radius: 4rpx;
+}
+
+.state_text {
+    font-size: 26rpx;
+    margin-left: 80%;
+    margin-top: -60rpx;
+    display: flex;
+    width: 140rpx;
+    color: #878787;
+}
+
+.voucher_price {
+    background-color: #f9e276;
+    border-radius: 10rpx;
+    font-size: 22rpx;
+    height: 35rpx;
+    padding-top: 3rpx;
+    padding-bottom: 3rpx;
+    margin-left: 20rpx;
+    margin-top: 15rpx;
+    text-align: center;
+    padding-left: 10rpx;
+    padding-right: 10rpx;
+}
+
+.top_btns {
+    width: 25vw;
+    height: 60rpx;
+    background-color: #fff;
+    text-align: center;
+    line-height: 60rpx;
+    margin-top: 30rpx;
+    margin-bottom: 20rpx;
+}
+
+.r_top_btns {
+    display: flex;
+    flex-direction: row;
+    font-size: 32rpx;
+}
+
+.r_list {
+    margin-top: 120rpx;
+}
+
+.line {
+    width: 1rpx;
+    height: 100%;
+    background-color: #f0f0f0;
+}
+
+.bottom_line {
+    width: 130rpx;
+    height: 5rpx;
+    background-color: #000;
+    margin-left: 30rpx;
+}
+
+.bottom_line1 {
+    width: 130rpx;
+    height: 5rpx;
+    background-color: #000;
+    margin-left: 130rpx;
+}
+
+.gary_line {
+    background-color: #f6f6f6;
+    width: 100vw;
+    height: 15rpx;
+}
+
+.order_status_tab {
+    width: 20vw;
+    height: 56rpx;
+    line-height: 48rpx;
+    text-align: center;
+    margin-top: 20rpx;
+    margin-bottom: 20rpx;
+    margin-left: 30rpx;
+    background-color: #f6f6f6;
+    border-radius: 100rpx;
+    padding-top: 10rpx;
+}
+
+.sreach_input_bk {
+    display: flex;
+    flex-direction: row;
+    background-color: #f0f0f0;
+    border-radius: 100rpx;
+    margin: 10rpx 16rpx 10rpx 36rpx;
+    width: 75vw;
+    height: 54rpx;
+}
+
+.sreach_input {
+    font-size: 28rpx;
+    padding: 0rpx 32rpx 8rpx 72rpx;
+    height: 54rpx;
+    line-height: 54rpx;
+    width: 50vw;
+}
+
+.sreach_icon {
+    width: 36rpx;
+    height: 36rpx;
+    position: absolute;
+    margin-left: 60rpx;
+    font-size: 18rpx;
+    margin-top: 20rpx;
+}
+
+.sreach_icon_del {
+    width: 28rpx;
+    height: 28rpx;
+    margin-top: 16rpx;
+}
+
+.sreach_button {
+    background: none!important;
+    color: #000!important;
+    width: 130rpx;
+    margin-top: -10rpx;
+    font-size: 32rpx;
+}
+
+.no_orde_img {
+    width: 372rpx;
+    height: 248rpx;
+    left: 30vw;
+    top: 40vh;
+    position: fixed;
+}
+
+.no_orde_text {
+    width: 372rpx;
+    height: 248rpx;
+    left: 30vw;
+    top: 61vh;
+    position: fixed;
+    font-size: 30rpx;
+}
+
+.backshouru {
+    background-color: #f6f6f6;
+    width: 100vw;
+    height: 15rpx;
+}
+
+.no_more {
+    font-size: 26rpx;
+    width: 100vw;
+    text-align: center;
+    padding-top: 10rpx;
+    padding-bottom: 20rpx;
+    background-color: #f6f6f6;
+}
+
+.top_type_tab {
+    display: flex;
+    flex-direction: row;
+    margin-left: 30rpx;
+    margin-right: 30rpx;
+    background-color: #fff;
+    border-radius: 10rpx;
+    height: 76rpx;
+}
+
+.top_type_tab_l {
+    width: 50%;
+    text-align: center;
+    font-size: 24rpx;
+    padding-top: 20rpx;
+}

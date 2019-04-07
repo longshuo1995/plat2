@@ -1,0 +1,153 @@
+@import "../index/grid_temp.wxss";
+
+page {
+    background-color: #f6f6f6;
+}
+
+.bk {
+    position: fixed;
+    width: 100vw;
+    height: 100vw;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    flex-direction: column;
+    top: 338rpx;
+    font-size: 32rpx;
+}
+
+.bk_img {
+    width: 286rpx;
+    height: 230rpx;
+}
+
+.sreach_input_bk {
+    display: flex;
+    flex-direction: row;
+    background-color: #fff;
+    border-radius: 100rpx;
+    margin: 10rpx 16rpx 10rpx 36rpx;
+    width: 80vw;
+    height: 54rpx;
+}
+
+.sreach_input {
+    font-size: 28rpx;
+    padding: 0rpx 32rpx 8rpx 72rpx;
+    height: 54rpx;
+    line-height: 54rpx;
+    width: 55vw;
+}
+
+.sreach_icon {
+    width: 36rpx;
+    height: 36rpx;
+    position: absolute;
+    margin-left: 60rpx;
+    font-size: 18rpx;
+    margin-top: 20rpx;
+}
+
+.sreach_icon_del {
+    width: 28rpx;
+    height: 28rpx;
+    margin-top: 16rpx;
+}
+
+.sreach_button {
+    background: none!important;
+    color: #000!important;
+    width: 130rpx;
+    margin-top: -5rpx;
+}
+
+.sreach_button::after {
+    border: none;
+}
+
+.auto_view {
+    flex-flow: row wrap;
+    align-content: space-around;
+    font-size: 32rpx;
+    margin-left: 36rpx;
+    margin-right: 36rpx;
+    line-height: 64rpx;
+    margin-top: 100rpx;
+}
+
+.hot_word {
+    display: inline-block;
+    word-break: keep-all;
+    background-color: #f0f0f0;
+    border-radius: 50rpx;
+    padding: 5rpx 30rpx 5rpx 30rpx;
+    margin-right: 10rpx;
+    margin-top: 20rpx;
+    height: 64rpx;
+}
+
+.type_button {
+    width: 25vw;
+    text-align: center;
+    font-size: 32rpx;
+    display: inline-block;
+    margin-top: 20rpx;
+}
+
+.type_button3 {
+    width: 33.3vw;
+    text-align: center;
+    font-size: 28rpx;
+    display: inline-block;
+    padding-top: 10rpx;
+    padding-bottom: 10rpx;
+}
+
+.price_order {
+    width: 20rpx;
+    height: 28rpx;
+    margin-top: 13rpx;
+    margin-left: 10rpx;
+}
+
+.type_bottom_line {
+    height: 5rpx;
+    background-color: #000;
+    width: 80rpx;
+    transition: all 3s;
+    transform: translateX(0);
+    margin-left: 50rpx;
+    margin-top: 15rpx;
+}
+
+.type_bottom_line:hover {
+    transform: translateX(200px);
+}
+
+.type_scroll {
+    height: 80rpx;
+    width: 100vw;
+    white-space: nowrap;
+}
+
+::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+    color: transparent;
+}
+
+.no_more {
+    font-size: 26rpx;
+    width: 100vw;
+    text-align: center;
+    padding-top: 20rpx;
+    padding-bottom: 20rpx;
+}
+
+.goTop {
+    width: 80rpx;
+    height: 80rpx;
+    position: fixed;
+    bottom: 50rpx;
+    right: 50rpx;
+}

@@ -1,0 +1,9 @@
+<view class="r_top_title">
+    <view class="top_title">
+        <button catchtap="tabClick" class="top_btn">爆款推荐</button>
+        <view style="  background-color: #EDEDED;width:  2rpx;height: 50rpx;margin-top:25rpx;"></view>
+        <button catchtap="tabClick" class="top_btn">新人招募</button>
+    </view>
+    <view animation="{{animation}}" class="line"></view>
+    <view style="background-color: #EDEDED;width: 100vw;height: 2rpx;"></view>
+</view>

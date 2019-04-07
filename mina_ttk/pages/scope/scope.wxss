@@ -1,0 +1,12 @@
+.socpe_btn {
+    width: 605rpx;
+    height: 93rpx;
+    position: fixed;
+    bottom: 100rpx;
+    margin-left: 60rpx;
+    background-color: #1AAD18;
+    border-radius: 16rpx;
+    color: #fff;
+    font-size: 32rpx;
+    line-height: 93rpx;
+}

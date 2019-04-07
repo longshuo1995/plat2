@@ -1,0 +1,8 @@
+.shareCanvas {
+    width: 600rpx;
+    height: 1055rpx;
+    position: fixed;
+    left: 10%;
+    top: 2%;
+    z-index: 1000;
+}

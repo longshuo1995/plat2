@@ -1,0 +1,34 @@
+<canvas canvasId="shareCanvas" class="shareCanvas" id="canvas-container" style="border: 1px solid;display:{{canvasShow}};"></canvas>
+<view style="background-color: #fff;">
+    <view class="r_top_btns">
+        <view catchtap="tabClick" class="top_btns" data-tab="1" style="color:{{data_tab==1?'#4A4A4A':'#9B9B9B'}}">分享海报</view>
+        <view catchtap="tabClick" class="top_btns" data-tab="2" style="color:{{data_tab==2?'#4A4A4A':'#9B9B9B'}}">分享小程序</view>
+    </view>
+    <view animation="{{animation}}" class="bottom_line"></view>
+</view>
+<block wx:if="{{data_tab==1}}">
+    <view class="post_title">
+        <text>分享小程序图片给好友 好友将成为你的买家</text>
+    </view>
+    <swiper bindchange="swiperChange" class="swiper-block" current="{{swiperIndex}}" duration="200" nextMargin="140rpx" previousMargin="140rpx">
+        <swiper-item class="swiper-item" wx:for="{{mini_poster_list}}" wx:key="i">
+            <view class="r_poster  {{swiperIndex==index?'activeCode':''}}">
+                <image class="mini_code" src="{{miniCode}}"></image>
+                <image class="slide-image" mode="aspectFill" src="{{item.mini_poster_url}}"></image>
+            </view>
+        </swiper-item>
+    </swiper>
+    <button catchtap="shareImage" class="voucher_price">分享小程序海报</button>
+</block>
+<block wx:else>
+    <view class="post_title">
+        <text>分享小程序卡片给好友
+好友将成为你的买家</text>
+    </view>
+    <swiper bindchange="swiperChange" class="swiper-block2" current="{{swiperIndex}}" duration="200" nextMargin="125rpx" previousMargin="125rpx">
+        <swiper-item class="swiper-item2" wx:for="{{mini_card_list}}" wx:key="i">
+            <image class="slide-image2 {{swiperIndex==index?'active':''}}" mode="aspectFill" src="{{item.mini_card_url}}"></image>
+        </swiper-item>
+    </swiper>
+    <button class="voucher_price" openType="share">分享小程序卡片</button>
+</block>

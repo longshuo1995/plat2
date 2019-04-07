@@ -1,0 +1,81 @@
+<view>
+    <view style="display: flex; flex-direction: row;line-height: 94rpx;background-color: #fff;  position: fixed;top: 0;z-index:10000;width:100vw" wx:if="{{intoType==0||intoType==1}}">
+        <image class="sreach_icon" src="../../../images/icon_sreach.png"></image>
+        <view class="sreach_input_bk">
+            <input bindinput="inputWord" class="sreach_input" placeholder="输入订单号搜索" value="{{searchinput}}"></input>
+            <image bindtap="sreach_del" class="sreach_icon_del" src="../../../images/btn_sreach_del.png"></image>
+        </view>
+        <view catchtap="sreachClick" class="sreach_button">搜索</view>
+    </view>
+    <view style=" position: fixed;z-index: 10000;display: flex;flex-direction: row;flex-direction: column;top: {{intoType==1||intoType==0?'70rpx':'0'}};">
+        <view style="background-color: #fff; height:110rpx;">
+            <view class="r_top_btns" wx:if="{{!isFind}}">
+                <view catchtap="tabClick" class="top_btns" data-tab="1" style="color:{{data_tab==1?'#4A4A4A':'#9B9B9B'}}">今日</view>
+                <view catchtap="tabClick" class="top_btns" data-tab="2" style="border-left: 2px #f0f0f0 solid;border-right: 2px #f0f0f0 solid;color:{{data_tab==2?'#4A4A4A':'#9B9B9B'}}">昨日</view>
+                <view catchtap="tabClick" class="top_btns" data-tab="3" style="border-right: 2px #f0f0f0 solid;color:{{data_tab==3?'#4A4A4A':'#9B9B9B'}}">本月</view>
+                <view catchtap="tabClick" class="top_btns" data-tab="4" style="color:{{data_tab==4?'#4A4A4A':'#9B9B9B'}}">上月</view>
+            </view>
+            <view animation="{{animation}}" class="bottom_line" style="transition: transform 200ms ease 0ms; transform: translate(0px, 0px); transform-origin: left top 0px;" wx:if="{{!isFind}}"></view>
+        </view>
+        <view class="gary_line" wx:if="{{!isFind}}"></view>
+        <view style="background-color:#f6f6f6;" wx:if="{{(intoType==0||intoType==1)&&!isFind}}">
+            <view class="top_type_tab">
+                <view catchtap="getList" class="top_type_tab_l" data-tab="0" style="color:{{intoType==0?'#4A4A4A':'#9B9B9B'}}">自主推广</view>
+                <view style="height:80%;background-color:#f6f6f6;width:1px;margin-top:10rpx;"></view>
+                <view catchtap="getList" class="top_type_tab_l" data-tab="1" style="color:{{intoType==1?'#4A4A4A':'#9B9B9B'}}">团队订单</view>
+            </view>
+            <view animation="{{animation1}}" class="bottom_line1" style="{{intoType==1?'transition: transform 200ms ease 0ms; transform: translate(197.2px, 0px); transform-origin: left top 0px;':''}}" wx:if="{{!isFind}}"></view>
+        </view>
+        <view style="background-color:#f6f6f6;" wx:if="{{intoType==3||intoType==4}}">
+            <view class="top_type_tab">
+                <view catchtap="getList" class="top_type_tab_l" data-tab="3" style="color:{{intoType==3?'#4A4A4A':'#9B9B9B'}}">全额返现</view>
+                <view style="height:80%;background-color:#f6f6f6;width:1px;margin-top:10rpx;"></view>
+                <view catchtap="getList" class="top_type_tab_l" data-tab="4" style="color:{{intoType==4?'#4A4A4A':'#9B9B9B'}}">分享助力</view>
+            </view>
+            <view animation="{{animation1}}" class="bottom_line1" style="{{lrStyle}}" wx:if="{{!isFind}}"></view>
+        </view>
+        <view style="display: flex;flex-direction: row;font-size: 26rpx;background-color: #f6f6f6;" wx:if="{{!isFind}}">
+            <view catchtap="stateClick" class="order_status_tab" data-state="0" style="color:{{order_status==0?'#3F4047':'#666666'}};background-color:{{order_status==0?'#FAE774':'#E5E5E5'}};">全部</view>
+            <view catchtap="stateClick" class="order_status_tab" data-state="1" style="border-left: 1rpx #f0f0f0 solid;color:{{order_status==1?'#3F4047':'#666666'}};background-color:{{order_status==1?'#FAE774':'#E5E5E5'}};">已结算</view>
+            <view catchtap="stateClick" class="order_status_tab" data-state="2" style="border-left: 1rpx #f0f0f0 solid;color:{{order_status==2?'#3F4047':'#666666'}};background-color:{{order_status==2?'#FAE774':'#E5E5E5'}};;">待结算</view>
+            <view catchtap="stateClick" class="order_status_tab" data-state="3" style="border-left: 1rpx #f0f0f0 solid;color:{{order_status==3?'#3F4047':'#666666'}};background-color:{{order_status==3?'#FAE774':'#E5E5E5'}};">结算失败</view>
+        </view>
+    </view>
+</view>
+<view style="margin-top:{{intoType==0||intoType==1?'350rpx':'300rpx'}};background-color:#fff;padding-top:10rpx;padding-bottom:10rpx;" wx:if="{{orderList.length>0}}">
+    <view style="margin-top:{{isFind?'-300rpx':'0rpx'}};background-color:#fff;padding-top:10rpx;" wx:for="{{orderList}}" wx:for-index="i" wx:key="x">
+        <view class="r_all">
+            <view class="r_goods_item_title">
+                <view class="goods_item_title">
+                    <image class="goods_img" src="{{item.goods_thumbnail_url}}"></image>
+                    <text class="goods_name">{{item.goods_name}}</text>
+                </view>
+                <text class="state_text">{{item.order_status_str}}</text>
+            </view>
+            <view class="order_info">
+                <view>订单来源： {{item.pdd_source_str}}</view>
+                <view> 下单时间：{{item.order_time}}</view>
+                <view wx:if="{{intoType==0}}"> 支付时间： {{item.order_pay_time}}</view>
+                <view> 收货时间：{{item.order_receive_time}}</view>
+                <view> 订单编号： {{item.order_code}}</view>
+                <view wx:if="{{intoType==0||intoType==1}}"> 订单金额： {{item.order_amount}}</view>
+                <view wx:if="{{intoType==3||intoType==4}}"> 订单金额： {{item.order_price}}</view>
+            </view>
+            <view style="margin-top:10rpx;display:flex;">
+                <text style="font-size:26rpx;margin-top:25rpx;">预估收入 ：</text>
+                <text style="font-size:48rpx;">¥{{item.zhuan}}</text>
+                <text class="voucher_price" wx:if="{{intoType==0&&item.act_promotion_price>0&&item.dingdan_type!=1&&item.is_free!=1&&item.dingxiang_type!=1}}">补贴¥{{item.act_promotion_price}}</text>
+                <text class="voucher_price" wx:if="{{intoType==0&&item.act_promotion_price>0&&item.dingxiang_type==1}}">定向补贴¥{{item.act_promotion_price}}</text>
+                <text class="voucher_price" wx:if="{{intoType==0&&item.is_free==1}}">全额返现</text>
+                <text class="voucher_price" wx:if="{{intoType==3}}">全额返现</text>
+                <text class="voucher_price" wx:if="{{item.is_zhuli==1}}">分享助力</text>
+            </view>
+        </view>
+        <view class="backshouru" wx:if="{{orderList.length>1}}"></view>
+    </view>
+</view>
+<view class="no_more" wx:if="{{orderListThisTime.length<=0&&orderList.length>1&&!isFind}}">没有更多数据</view>
+<view wx:if="{{orderList.length<=0||orderList.length<=0&&isFind}}">
+    <image class="no_orde_img" src="../../../images/no_order.png"></image>
+    <text class="no_orde_text">未能查询到相关订单信息</text>
+</view>

@@ -1,0 +1,66 @@
+<view class="wxgrid">
+    <view class="wxrow" wx:for="{{wxgrid.rows}}" wx:for-index="i" wx:key="{{wxgrid.data.classifies[i][j].goods_id}}">
+        <view class="wxcol" style="width:{{item.width}}%;" wx:for="{{wxgrid.cols}}" wx:for-index="j" wx:key="{{wxgrid.data.classifies[i][j].goods_id}}">
+            <view catchtap="goodsClick" class="wxclassify" data-goods="{{wxgrid.data.classifies[i][j]}}" data-goods_id="{{wxgrid.data.classifies[i][j].goods_id}}" wx:if="{{wxgrid.data.classifies[i][j].goods_id>0}}">
+                <view class="r_tab_wxclassify-img" style="display: none">
+                    <block wx:if="{{wxgrid.data.classifies[i][j].isZhuanFull}}">
+                        <view class="tab_bk_long" wx:if="{{wxgrid.data.classifies[i][j].zhuan>0}}">
+                            <text class="tab_text_title" style=" margin-top: 20rpx;" wx:if="{{isBuyer}}">推手赚</text>
+                            <text style=" line-height: 22rpx;margin-top: 5rpx;font-size:16rpx;" wx:if="{{!isBuyer}}">佣 金
+补 贴</text>
+                            <view class="tab_wxclassify-text" style="margin-left: 55rpx;" wx:if="{{isBuyer}}">
+                                <text style="font-size: 24rpx;">¥</text>{{wxgrid.data.classifies[i][j].zhuan}}
+                <text style="margin-left:-6rpx;font-size:20rpx" wx:if="{{wxgrid.data.classifies[i][j].isZhuanWan}}">万</text>
+                            </view>
+                            <view class="tab_wxclassify-text" style="margin-left: 45rpx" wx:if="{{!isBuyer}}">
+                                <text style="font-size: 24rpx;">¥</text>{{wxgrid.data.classifies[i][j].act_promotion_price}}
+                <text style="margin-left:-6rpx;font-size:20rpx" wx:if="{{wxgrid.data.classifies[i][j].isZhuanWan}}">万</text>
+                            </view>
+                        </view>
+                    </block>
+                    <block wx:else>
+                        <view class="{{wxgrid.data.classifies[i][j].isZhuanWan?'tab_bk_long':'tab_bk'}}" wx:if="{{wxgrid.data.classifies[i][j].zhuan>0}}">
+                            <text class="tab_text_title" style=" margin-top: 20rpx;" wx:if="{{isBuyer}}">推手赚</text>
+                            <text style=" line-height: 22rpx;margin-top: 5rpx;font-size:16rpx;" wx:if="{{!isBuyer}}">佣 金
+补 贴</text>
+                            <view class="tab_wxclassify-text" style="margin-left: 55rpx;" wx:if="{{isBuyer}}">
+                                <text style="font-size: 24rpx;">¥</text>{{wxgrid.data.classifies[i][j].zhuan}}
+                <text style="margin-left:-6rpx;font-size:20rpx" wx:if="{{wxgrid.data.classifies[i][j].isZhuanWan}}">万</text>
+                            </view>
+                            <view class="tab_wxclassify-text" style="margin-left: 45rpx" wx:if="{{!isBuyer}}">
+                                <text style="font-size: 24rpx;">¥</text>{{wxgrid.data.classifies[i][j].act_promotion_price}}
+                <text style="margin-left:-6rpx;font-size:20rpx" wx:if="{{wxgrid.data.classifies[i][j].isZhuanWan}}">万</text>
+                            </view>
+                        </view>
+                    </block>
+                </view>
+                <image class="wxclassify-img" mode="aspectFit" src="{{wxgrid.data.classifies[i][j].goods_thumbnail_url}}"></image>
+                <image class="{{isIphoneX?'flag_hot_forX':'flag_hot'}}" src="../../images/icon_hot.png" wx:if="{{wxgrid.data.classifies[i][j].flag==1}}"></image>
+                <text class="goods_text">{{wxgrid.data.classifies[i][j].goods_name}}</text>
+                <view style="font-size:28rpx;display: flex; flex-direction: row;margin-top: 15rpx;margin-left:10rpx;">
+                    <view style="width:130rpx;">
+                        <text class="discount">{{wxgrid.data.classifies[i][j].coupon_discount}}<text wx:if="{{wxgrid.data.classifies[i][j].coupon_discount<999}}">元</text>
+                        </text>
+                        <image class="discount_image" src="../../images/bk_youhuiquan.png"></image>
+                    </view>
+                    <view style="width:100%;text-align:right;">
+                        <view class="gary_text">销量{{wxgrid.data.classifies[i][j].sold_quantity}}</view>
+                    </view>
+                </view>
+                <view style="display: flex; flex-direction: row;">
+                    <view class="final_price">
+                        <text style="font-size: 24rpx;">¥</text>{{wxgrid.data.classifies[i][j].final_price}}
+            <text style="margin-left: -8rpx;" wx:if="{{wxgrid.data.classifies[i][j].isPriceWan}}">万</text>
+                    </view>
+                    <view style="width:100%;text-align:right;" wx:if="{{!isBuyer&&wxgrid.data.classifies[i][j].zhuan2>0}}">
+                        <text class="voucher_price" wx:if="{{wxgrid.data.classifies[i][j].isZhuan2Wan}}">赚{{wxgrid.data.classifies[i][j].zhuan2}}万</text>
+                        <text class="voucher_price" wx:if="{{!wxgrid.data.classifies[i][j].isZhuan2Wan}}">赚{{wxgrid.data.classifies[i][j].zhuan2}}元</text>
+                    </view>
+                    <view style="width:100%;text-align:right;margin-top:-10rpx;" wx:if="{{isBuyer}}">
+                        <text class="voucher_price_yuan">立即购买</text>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
+</view>

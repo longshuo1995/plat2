@@ -1,0 +1,112 @@
+page {
+    background-color: #f6f6f6;
+}
+
+.top_tab {
+    width: 686rpx;
+    height: 96rpx;
+    background-color: #fff;
+    border-radius: 10rpx;
+    color: #252525;
+    font-size: 24rpx;
+    display: flex;
+    flex-direction: row;
+    border: 1px #f0f0f0 solid;
+    margin-left: 30rpx;
+    margin-top: 30rpx;
+}
+
+.tab_text {
+    width: 35%;
+    height: 100%;
+    text-align: center;
+    line-height: 96rpx;
+}
+
+.line {
+    background-color: #f0f0f0;
+    width: 1px;
+    height: 60%;
+    margin-top: 20rpx;
+    margin-bottom: 20rpx;
+}
+
+.type_bottom_line {
+    height: 5rpx;
+    background-color: #4e4e4e;
+    width: 80rpx;
+    margin-left: 107rpx;
+    margin-top: -10rpx;
+}
+
+.type_bottom_line:hover {
+    transform: translateX(200px);
+}
+
+.item_card {
+    background-color: #fff;
+    border-radius: 10rpx;
+    margin-left: 30rpx;
+    margin-right: 30rpx;
+    padding-bottom: 30rpx;
+    margin-top: 30rpx;
+}
+
+.bk_daijiesuan {
+    background-color: #fff;
+    border-radius: 10rpx;
+    color: #4e4e4e;
+    font-size: 24rpx;
+    padding: 20rpx 30rpx 20rpx 30rpx;
+    width: 628rpx;
+    margin-left: 30rpx;
+    line-height: 45rpx;
+}
+
+.bk_leijijiesuan {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-end;
+    padding-left: 30rpx;
+    padding-right: 30rpx;
+    padding-top: 20rpx;
+    padding-bottom: 20rpx;
+    background-color: #fff;
+    border-radius: 10rpx;
+    margin-left: 30rpx;
+    margin-right: 30rpx;
+    margin-top: 30rpx;
+}
+
+.no_orde_img {
+    width: 372rpx;
+    height: 248rpx;
+    left: 30vw;
+    top: 40vh;
+    position: fixed;
+}
+
+.no_orde_text {
+    width: 372rpx;
+    height: 248rpx;
+    left: 45vw;
+    top: 61vh;
+    position: fixed;
+    font-size: 30rpx;
+}
+
+.backshouru {
+    background-color: #f6f6f6;
+    width: 100vw;
+    height: 15rpx;
+}
+
+.no_more {
+    font-size: 26rpx;
+    width: 100vw;
+    text-align: center;
+    padding-top: 10rpx;
+    padding-bottom: 20rpx;
+    background-color: #f6f6f6;
+}

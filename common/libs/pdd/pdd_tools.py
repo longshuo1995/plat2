@@ -32,6 +32,14 @@ def pdd_request(added_params):
     return jo
 
 
+def opt_get(parent_opt_id=0):
+    added_params = {
+        "type": "pdd.goods.opt.get",
+        'parent_opt_id': parent_opt_id
+    }
+    return pdd_request(added_params)
+
+
 def search_goods(keyword, sort_type=0, p=1, page_size=base_setting.show_every_page):
     added_params = {
         "type": "pdd.ddk.goods.search",
@@ -76,7 +84,9 @@ if __name__ == '__main__':
     # print(res)
     # res = search_order_by_sn('190324-270806221493150')
     # print(res)
-    res = search_good_detail("2832084379", 'longshuo')
-    print(json.dumps(res))
+    res = search_good_detail(6843594724, 'longshuo')
+    print(res)
+    # res = opt_get('0')
+    # print(res)
 
 

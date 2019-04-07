@@ -1,19 +1,14 @@
-import base64
 import logging
 import os
-import time
-
-import requests
 from flask import jsonify, request
-
 import project_conf
 from common.libs import db_mongo
-from common.libs.member import MemberService
 from common.libs.pdd import pdd_tools
+from spider import pdd_spider
 from web.controllers.api import route_api
 
 
-@route_api.route("/food/index")
+@route_api.route("/good/index")
 def foodIndex():
     resp = {'code': 200, 'msg': '操作成功', 'data': {}}
     # 所有类
@@ -35,7 +30,7 @@ def foodIndex():
     return jsonify(resp)
 
 
-@route_api.route("/food/search")
+@route_api.route("/good/search")
 def foodSearch():
     page_size = 10
     resp = {'code': 200, 'msg': '操作成功', 'data': {}}
@@ -112,21 +107,37 @@ def get_pdd_url():
     return jsonify(resp)
 
 
-@route_api.route("/good/share", methods=['GET', 'POST'])
-def good_share():
-    headers = {
-        "Content-Type": "application/json"
-    }
+@route_api.route("/good/opt_get")
+def opt_get():
+    resp = {'code': 200, 'msg': '操作成功', 'data': []}
     req = request.values
-    from_openid = req.get('from_openid')
-    access_token = MemberService.get_access_token()
-    path = req.get('path', '')
-    url = "https://api.weixin.qq.com/wxa/getwxacodeunlimit?access_token=%s" % access_token
-    data = {
-        'scene': 'from_openid=%s' % from_openid,
-        'path': path
-    }
-    content = requests.post(url, headers=headers, json=data).content
-    b64str = base64.b64encode(content)
-    return b64str
+    parent_opt_id = req.get('parent_opt_id', 0)
+    # open_id = req.get('open_id')
+    resp['data'] = pdd_tools.opt_get(parent_opt_id).get('goods_opt_get_response', {}).get('goods_opt_list', [])
+    return jsonify(resp)
 
+
+@route_api.route("/good/mall_get")
+def mall_get():
+    resp = {'code': 200, 'msg': '操作成功', 'data': []}
+    req = request.values
+    good_id = req.get('good_id')
+    if not good_id:
+        resp['code'] = '401'
+        resp['msg'] = '请传入good_id'
+    resp['data'] = pdd_spider.get_mall_info(good_id)
+    return jsonify(resp)
+
+
+@route_api.route("/good/reviews_get")
+def mall_get():
+    resp = {'code': 200, 'msg': '操作成功', 'data': []}
+    req = request.values
+    good_id = req.get('good_id')
+    page = req.get('page', 1)
+    if not good_id:
+        resp['code'] = '401'
+        resp['msg'] = '请传入good_id'
+    jo = pdd_spider.get_reviews(good_id, page)
+    resp['data'] = jo.get('data', [])
+    return jsonify(resp)

@@ -1,0 +1,55 @@
+<view class="bindaccount">
+    <view wx:if="{{isJudge}}">
+        <view class="bindbanner" wx:if="{{into_type==1}}">
+            <image src="  https://minipdd.taokebon.com/h5/img/bind_banner.jpg"></image>
+        </view>
+        <view class="bindacont_top" wx:if="{{into_type==0}}">
+            <text>成为推手后，你在小程序中购买商品均可获得收益。好友购买你分享的优惠商品，你可获得收益提成。你还可邀请好友成为推手，你可永久获得好友的收益提成。
+      提成收益每月结算，结算后可直接提现。</text>
+        </view>
+        <view class="bindacont_form">
+            <view class="weui-cells weui-cells_after-title">
+                <view class="weui-media-box weui-media-box_text" wx:if="{{into_type==1}}">
+                    <view>
+                        <view class="weui-media-box__title weui-media-box__title_in-text">微信用户：{{nickname}}</view>
+                        <view class="weui-media-box__desc">加入推推客，需要你绑定一个手机号</view>
+                    </view>
+                    <view class="weui-cell__ft wxsqbtn" wx:if="{{!isWarrant}}">
+                        <button bindgetuserinfo="wxauthorize" class="yellow_btn" openType="getUserInfo">微信授权</button>
+                    </view>
+                </view>
+                <view class="weui-cell formtip" wx:else>绑定推推客手机号。如果输入的手机号未注册过推推客，我们将为你创建账号。</view>
+                <view class="weui-cell weui-cell_input grayline">
+                    <view class="weui-cell__bd">
+                        <input bindinput="phoneInput" class="weui-input" focus="true" placeholder="请输入手机号" placeholderStyle="color:#B2B2B2;font-size:32rpx;" type="number"></input>
+                    </view>
+                </view>
+                <view class="weui-cell weui-cell_input weui-cell_vcode grayline">
+                    <view class="weui-cell__bd">
+                        <input bindinput="codeInput" class="weui-input" placeholder="请输入验证码" placeholderStyle="color:#B2B2B2;font-size:32rpx;" type="number" value="{{smscode}}"></input>
+                    </view>
+                    <view class="weui-cell__ft">
+                        <button bindtap="getCode" class="getcodebtn {{codebtndisbled?disBtnclass:''}}" disabled="{{codebtndisbled}}">{{time}}</button>
+                    </view>
+                </view>
+            </view>
+            <view class="weui-cells weui-cells_after-title xieyi">
+                <checkbox-group catchchange="checkboxChange">
+                    <label class="weui-cell weui-check__label">
+                        <checkbox checked="isAgreement" class="weui-check" value="Agreement"></checkbox>
+                        <view class="weui-cell__hd weui-check__hd_in-checkbox">
+                            <icon class="weui-icon-checkbox_circle" type="circle" wx:if="{{!isAgreement}}"></icon>
+                            <icon class="weui-icon-checkbox_success" color="#434C55" size="20" type="success" wx:if="{{isAgreement}}"></icon>
+                        </view>
+                        <view class="weui-cell__bd xytxt">我已阅读并同意<text catchtap="toServiceAgree">《推推客用户服务协议》
+    </text>
+                        </view>
+                    </label>
+                </checkbox-group>
+            </view>
+        </view>
+        <view class="formbtn">
+            <button bindtap="bindAccount" class="bindbtn weui-btn" disabled="{{bindbtndis}}" hoverClass="btn-hover">确认绑定</button>
+        </view>
+    </view>
+</view>
