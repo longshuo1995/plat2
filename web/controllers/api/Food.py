@@ -50,9 +50,9 @@ def foodSearch():
         {'avg_desc': 483, 'mall_coupon_remain_quantity': None, 'category_name': '美妆', 'coupon_remain_quantity': 24000, 'avg_serv': 486, 'avg_lgst': 484, 'serv_pct': 0.8757, 'promotion_rate': 200, 'sold_quantity': 6998, 'cat_ids': [1432, 1433, 1442, 0], 'coupon_min_order_amount': 200, 'lgst_pct': 0.8726, 'category_id': 1432, 'mall_coupon_discount_pct': None, 'mall_id': 552747, 'goods_eval_score': 4.61, 'cat_id': None, 'mall_name': '珊瑚海美妆馆', 'coupon_total_quantity': 50000, 'desc_pct': 0.8323, 'mall_coupon_min_order_amount': None, 'mall_coupon_end_time': None, 'merchant_type': 6, 'goods_name': '【碎发整理神器】头发毛燥定型碎发膏 防静电毛发固定小孩可用', 'goods_eval_count': 404, 'goods_id': 5788056678, 'goods_gallery_urls': None, 'mall_coupon_id': None, 'goods_desc': None, 'opt_name': '美妆', 'goods_thumbnail_url': 'https://t00img.yangkeduo.com/goods/images/2019-01-24/51c2bbfc5a1986396858cae748b7790e.jpeg', 'opt_id': 16, 'opt_ids': [16, 643, 648, 299, 12, 300], 'goods_image_url': 'https://t00img.yangkeduo.com/openapi/images/2019-01-24/a956594657cfdde575c08620784a4eec.jpeg', 'min_normal_price': 1990, 'has_coupon': True, 'has_mall_coupon': False, 'mall_coupon_start_time': None, 'mall_rate': 10, 'mall_coupon_total_quantity': None, 'create_at': 1548394622, 'mall_coupon_max_discount_amount': None, 'min_group_price': 990, 'mall_cps': 1, 'coupon_start_time': 1553443200, 'coupon_discount': 200, 'coupon_end_time': 1556639999}
         '''
         promotion_rate = item.get('promotion_rate')
-        quan_price = item.get('coupon_discount', 0)/100
+        quan_price = item.get('coupon_discount', 0)
         quan_price = quan_price if quan_price else 0
-        row_price = item.get('min_group_price', 0)/100
+        row_price = item.get('min_group_price', 0)
         min_price = row_price-quan_price
         sale_count = item.get('sold_quantity', 0)
 
