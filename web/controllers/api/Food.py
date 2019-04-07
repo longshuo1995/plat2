@@ -87,12 +87,15 @@ def get_pdd_url():
         pdd_url = dt['we_app_info']['page_path']
         app_id = dt['we_app_info']['app_id']
         good_detail = dt.get('goods_detail', {})
+        promotion_rate = good_detail.get('promotion_rate', 0)
+        promotion_rate = promotion_rate if promotion_rate else 0
+
         row_price = good_detail.get('min_group_price', 0)
         discount = good_detail.get('coupon_discount', 0)
         resp['data'] = {
             'goods_desc': good_detail.get('goods_desc', ''),
             'short_url': dt.get('short_url', ''),
-            'promotion_rate': good_detail.get('promotion_rate', 0),
+            'promotion_rate': promotion_rate,
             'we_app_id': app_id,
             'we_page_path': pdd_url,
             'pics': good_detail.get('goods_gallery_urls', []),

@@ -1,7 +1,7 @@
 import re
 import requests
 from lxml import etree
-pattern_num = re.compile('\(\d*\)')
+pattern_num = re.compile('\((\d*)\)')
 
 
 def get_mall_info(good_id):
@@ -12,9 +12,8 @@ def get_mall_info(good_id):
     mall_name = mall_name[0] if mall_name else ''
     mall_icon = xhtml.xpath("//img[@class='goods-mall-tag']/@src")
     mall_icon = mall_icon[0] if mall_icon else ''
-
     desc = xhtml.xpath("//div[@class='dsr-center']//text()")
-    review_num_str = xhtml.xpath("//div[@class='goods-reviews-num']//text()")
+    review_num_str = ''.join(xhtml.xpath("//div[@class='goods-reviews-num']//text()"))
     search_res = pattern_num.search(review_num_str)
     review_num = int(search_res.group(1)) if search_res else 0
     review_items = xhtml.xpath("//div[@class='reviews-item']")

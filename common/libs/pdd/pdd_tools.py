@@ -5,6 +5,7 @@ import requests
 
 from common.libs.tools import StrTools
 from config import base_setting
+from spider import pdd_spider
 
 api_url = 'https://gw-api.pinduoduo.com/api/router'
 
@@ -95,7 +96,7 @@ if __name__ == '__main__':
     # print(res)
     # res = search_order_by_sn('190324-270806221493150')
     # print(res)
-    res = search_good_detail(6843594724, 'longshuo')
+    res = pdd_spider.get_mall_info(6843594724)
     print(res)
     # res = opt_get('0')
     # print(res)
