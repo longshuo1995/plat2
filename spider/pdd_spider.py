@@ -55,7 +55,7 @@ def get_mall_info(good_id):
         resp = {
             'mall_name': jo['store']['initDataObj']['mall']['mallName'],
             'mall_icon': jo['store']['initDataObj']['mall']['logo'],
-            'mall_desc': jo['store']['initDataObj']['mall']['mallRatingTextList'],
+            'mall_desc': jo['store']['initDataObj']['mall']['dsr']['mallRatingTextList'],
             'review': {
                 'num': jo['store']['initDataObj']['mall']['dsr']['mallRatingTextList'],
                 'data': ''
