@@ -92,11 +92,12 @@ def hot_goods_range(sort_type=1, offset=0, limit=50):
 
 
 if __name__ == '__main__':
+    res = hot_goods_range(sort_type=1)
+    print(res)
     # res = order_search('1553556662', '1553643062')
     # print(res)
     # res = search_order_by_sn('190324-270806221493150')
     # print(res)
-    pass
     # res = opt_get('0')
     # print(res)
 

@@ -19,10 +19,6 @@ def hot_goods():
     resp = {'code': 200, 'msg': '成功', 'data': []}
     pages = int(req.get('pages', 1))
     team_index = req.get('team_index')
-    if not tp:
-        resp['code'] = -1
-        resp['msg'] = "需要tp"
-        return jsonify(resp)
     if team_index == 1:
         offset = (pages-1) * goods_per_page
         tp += 1
