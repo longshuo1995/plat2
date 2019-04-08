@@ -1,14 +1,16 @@
 import json
 import re
-import requests
 from lxml import etree
+
+from common.libs.pdd import HttpTool
+
 pattern_num = re.compile('\((\d*)\)')
 pattern_detail = re.compile('window\.rawData.*?({.*});\n')
 
 
 def get_mall_info(good_id):
     url = 'https://mobile.yangkeduo.com/goods.html?goods_id=%s' % good_id
-    html = requests.get(url, verify=False).text
+    html = HttpTool.get_html(url, use_proxy=True)
     xhtml = etree.HTML(html)
 
     good_content = pattern_detail.search(html)
@@ -79,11 +81,11 @@ def get_mall_info(good_id):
 
 def get_reviews(good_id, page=1):
     url = 'https://mobile.yangkeduo.com/proxy/api/reviews/%s/list?page=%s&size=10&enable_video=0' % (good_id, page)
-    print(url)
-    jo = requests.get(url, verify=False).json()
+    html = HttpTool.get_html(url, use_proxy=True)
+    jo = json.loads(html)
     return jo
 
 
 if __name__ == '__main__':
-    for i in range(1000):
-        res = get_reviews(2826761917, 2)
+    res = get_reviews(2826761917, 1)
+    print(res)

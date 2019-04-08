@@ -72,14 +72,11 @@ def hot_goods():
 def hot_member():
     req = request.values
     print(req)
-    tp = req.get('tp')
+    tp = req.get('tp', 0)
     pages = req.get('pages')
     team_index = req.get('team_index')
     resp = {'code': 200, 'msg': '成功', 'data': []}
-    if not tp:
-        resp['code'] = -1
-        resp['msg'] = "需要tp"
-        return jsonify(resp)
+
     tp = int(tp)
     if tp == 0:
         file_name = os.path.join(project_conf.project_path, 'asserts', 'group_promotion')
