@@ -85,5 +85,5 @@ def get_reviews(good_id, page=1):
 
 
 if __name__ == '__main__':
-    res = get_mall_info(2826761917)
-    print(res)
+    for i in range(1000):
+        res = get_reviews(2826761917, 2)
