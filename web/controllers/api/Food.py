@@ -18,7 +18,6 @@ def foodIndex():
     img_names.sort()
     for img_name in img_names:
         data.append({
-            'id': img_name,
             'banner_url': 'https://aishangnet.club/static/index_img/%s' % img_name,
             'banner_detail_url': 'https://aishangnet.club/static/index_img_detail/%s' % img_name,
         })

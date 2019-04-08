@@ -52,13 +52,26 @@ def get_mall_info(good_id):
         }
     else:
         jo = json.loads(good_content.group(1))
+        print(good_content.group(1))
+        mall_desc = []
+        for item in jo['store']['initDataObj']['mall']['dsr']['mallRatingTextList']:
+            mall_desc.append([
+                item['mall_rating_key']['txt'],
+                # jo['store']['initDataObj']['mall']['dsr'].get('logisticsScore', ''),
+                item['mall_rating_value']['txt'],
+                item['mall_rating_value']['color'],
+            ])
+        mall_desc[0].insert(1, jo['store']['initDataObj']['mall']['dsr'].get('descScore', ''))
+        mall_desc[1].insert(1, jo['store']['initDataObj']['mall']['dsr'].get('serviceScore', ''))
+        mall_desc[2].insert(1, jo['store']['initDataObj']['mall']['dsr'].get('logisticsScore', ''))
+
         resp = {
             'mall_name': jo['store']['initDataObj']['mall']['mallName'],
             'mall_icon': jo['store']['initDataObj']['mall']['logo'],
-            'mall_desc': jo['store']['initDataObj']['mall']['dsr']['mallRatingTextList'],
+            'mall_desc': mall_desc,
             'review': {
-                'num': jo['store']['initDataObj']['mall']['dsr']['mallRatingTextList'],
-                'data': ''
+                'num': jo['store']['initDataObj']['reviews']['commentsAmount'],
+                'data': jo['store']['initDataObj']['reviews']['detailList']
             }
         }
     return resp
@@ -71,3 +84,6 @@ def get_reviews(good_id, page=1):
     return jo
 
 
+if __name__ == '__main__':
+    res = get_mall_info(2826761917)
+    print(res)

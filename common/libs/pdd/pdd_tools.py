@@ -96,8 +96,7 @@ if __name__ == '__main__':
     # print(res)
     # res = search_order_by_sn('190324-270806221493150')
     # print(res)
-    res = pdd_spider.get_mall_info(6843594724)
-    print(res)
+    pass
     # res = opt_get('0')
     # print(res)
 
