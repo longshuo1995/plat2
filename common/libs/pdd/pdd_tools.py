@@ -92,7 +92,7 @@ def hot_goods_range(sort_type=1, offset=0, limit=50):
 
 
 if __name__ == '__main__':
-    res = hot_goods_range(sort_type=1)
+    res = hot_goods_range(sort_type=1, offset=0, limit=50)
     print(res)
     # res = order_search('1553556662', '1553643062')
     # print(res)

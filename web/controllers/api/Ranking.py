@@ -22,7 +22,7 @@ def hot_goods():
     if team_index == 1:
         offset = (pages-1) * goods_per_page
         tp += 1
-        data = pdd_tools.hot_goods_range(tp, offset, limit=goods_per_page).get('top_goods_list_get_response', {}).get('list', [])
+        data = pdd_tools.hot_goods_range(sort_type=tp, offset=offset, limit=goods_per_page).get('top_goods_list_get_response', {}).get('list', [])
         for item in data:
             temp = {
                 'goods_id': item['goods_id'],
