@@ -30,7 +30,7 @@ def hot_goods():
                 'goods_name': item['goods_name'],
                 'goods_thumbnail_url': item['goods_thumbnail_url'],
                 'row_price': item['min_normal_price'],
-                'min_price': item['price'],
+                'min_price': item['min_normal_price'] - item['coupon_discount'],
                 'discount': item['coupon_discount'],
                 'sold_quantity': item['sold_quantity'],
                 'promotion_rate': item['promotion_rate'],
