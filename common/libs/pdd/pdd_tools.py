@@ -88,6 +88,7 @@ def hot_goods_range(sort_type=1, offset=0, limit=50):
         'sort_type': sort_type,
         'limit': limit
     }
+    print(added_params)
     return pdd_request(added_params)
 
 
