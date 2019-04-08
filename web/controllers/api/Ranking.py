@@ -18,7 +18,7 @@ def hot_goods():
     tp = int(req.get('tp', 0))
     resp = {'code': 200, 'msg': '成功', 'data': []}
     pages = int(req.get('pages', 1))
-    team_index = req.get('team_index')
+    team_index = int(req.get('team_index'), 0)
     if team_index == 1:
         offset = (pages-1) * goods_per_page
         tp += 1
