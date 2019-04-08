@@ -8,25 +8,21 @@ from spider import pdd_spider
 from web.controllers.api import route_api
 
 
-@route_api.route("/good/index")
+@route_api.route("/index/get_banner")
 def foodIndex():
-    resp = {'code': 200, 'msg': '操作成功', 'data': {}}
+    resp = {'code': 200, 'msg': '操作成功', 'data': []}
     # 所有类
-    data_cat_list = [{'id': 0, 'name': '全部'}]
-    items = db_mongo.get_table('plat2', 'good_tp').find()
-    for item in items:
-        data_cat_list.append({'id': item['_id'], 'name': item['name']})
-    resp['data']['cat_list'] = data_cat_list
-    data_food_list = []
+    data = []
     fn = os.path.join(project_conf.project_path, 'web', 'static', 'index_img')
     img_names = os.listdir(fn)
     img_names.sort()
     for img_name in img_names:
-        data_food_list.append({
+        data.append({
             'id': img_name,
-            'pic_url': 'https://aishangnet.club/static/index_img/%s' % img_name,
+            'banner_url': 'https://aishangnet.club/static/index_img/%s' % img_name,
+            'banner_detail_url': 'https://aishangnet.club/static/index_img_detail/%s' % img_name,
         })
-    resp['data']['banner_list'] = data_food_list
+    resp['data'] = data
     return jsonify(resp)
 
 
