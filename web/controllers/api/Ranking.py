@@ -19,7 +19,6 @@ def hot_goods():
     resp = {'code': 200, 'msg': '成功', 'data': []}
     pages = int(req.get('pages', 1))
     team_index = int(req.get('team_index'), 0)
-    print(team_index)
     if team_index == 1:
         offset = (pages-1) * goods_per_page
         tp += 1
@@ -37,8 +36,6 @@ def hot_goods():
             }
             resp['data'].append(temp)
         return jsonify(resp)
-
-
     else:
         tp_map = {
             0: project_conf.qiyu_range_pg[0][1],
@@ -48,30 +45,9 @@ def hot_goods():
         ranking_path = os.path.join(project_conf.project_path, 'asserts', tp_map[tp])
         items = [i for i in open(ranking_path)]
 
-        db_mongo.get_table('plat2', 'order').find({})
         for item in items[pages * goods_per_page: (pages+1) * goods_per_page]:
             item = json.loads(item)
-            temp = {
-                'goods_id': item['goods_id'],
-                'goods_name': item['goods_name'],
-                'goods_thumbnail_url': item['goods_thumbnail_url'],
-                'row_price': item['min_normal_price'],
-                'min_price': item['min_normal_price'] - item['coupon_discount'],
-                'discount': item['coupon_discount'],
-                'sold_quantity': item['sold_quantity'],
-                'promotion_rate': item['promotion_rate'],
-            }
-            temp = {
-                'goods_id': item['id'],
-                'goods_name': item['title'],
-                'goods_thumbnail_url': item['icon'],
-                'row_price': float(item['price']),
-                'min_price': float(item['price']),
-                'discount': item['discount'],
-                'sold_quantity': item['sale_count'],
-                'promotion_rate': 200,
-            }
-            resp['data'].append(temp)
+            resp['data'].append(item)
         return jsonify(resp)
 
 
