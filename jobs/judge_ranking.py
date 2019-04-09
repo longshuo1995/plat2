@@ -105,7 +105,7 @@ def calc_top_promotion(offset_time):
     print(l)
     if not l:
         return
-    df = pd.DataFrame(items)
+    df = pd.DataFrame(l)
     print(df)
     custom_promotion = df[df['custom_parameters'] != '']['total_promotion'].groupby(df['custom_parameters']).sum()
     custom_promotion = custom_promotion * project_conf.rate_conf['self_rate']
