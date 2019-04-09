@@ -101,10 +101,10 @@ def calc_top_promotion(offset_time):
     # m
     items = db_mongo.get_table('plat2', 'order').find(
         {'order_create_time': {'$gt': door_time}})
-    print('*' * 10)
-    print(list(items))
+    l = list(items)
+    if not l:
+        return
     df = pd.DataFrame(items)
-    print(df)
     custom_promotion = df[df['custom_parameters'] != '']['total_promotion'].groupby(df['custom_parameters']).sum()
     custom_promotion = custom_promotion * project_conf.rate_conf['self_rate']
     refer_promotion = df[df['refer_id'] != '']['total_promotion'].groupby(df['refer_id']).sum()
@@ -151,7 +151,7 @@ def calc_top_promotion(offset_time):
 
 
 if __name__ == '__main__':
-    calc_top_promotion(7 * project_conf.seconds_per_day)
+    calc_top_promotion(14 * project_conf.seconds_per_day)
     calc_top_user(7 * project_conf.seconds_per_day)
     for item in project_conf.qiyu_range_pg:
         judge_local(item[0], item[1])
