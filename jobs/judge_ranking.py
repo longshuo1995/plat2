@@ -101,6 +101,8 @@ def calc_top_promotion(offset_time):
     # m
     items = db_mongo.get_table('plat2', 'order').find(
         {'order_create_time': {'$gt': door_time}})
+    print('*' * 10)
+    print(list(items))
     df = pd.DataFrame(items)
     print(df)
     custom_promotion = df[df['custom_parameters'] != '']['total_promotion'].groupby(df['custom_parameters']).sum()
