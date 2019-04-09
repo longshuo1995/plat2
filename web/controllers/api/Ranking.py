@@ -52,6 +52,16 @@ def hot_goods():
         for item in items[pages * goods_per_page: (pages+1) * goods_per_page]:
             item = json.loads(item)
             temp = {
+                'goods_id': item['goods_id'],
+                'goods_name': item['goods_name'],
+                'goods_thumbnail_url': item['goods_thumbnail_url'],
+                'row_price': item['min_normal_price'],
+                'min_price': item['min_normal_price'] - item['coupon_discount'],
+                'discount': item['coupon_discount'],
+                'sold_quantity': item['sold_quantity'],
+                'promotion_rate': item['promotion_rate'],
+            }
+            temp = {
                 'goods_id': item['id'],
                 'goods_name': item['title'],
                 'goods_thumbnail_url': item['icon'],

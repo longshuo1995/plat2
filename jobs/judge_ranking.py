@@ -6,6 +6,8 @@ import project_conf
 from common.libs import db_mongo
 import pandas as pd
 
+from common.libs.pdd import pdd_tools
+
 DAY_SECONDS = 24*60*60
 
 # db.order.find({'order_create_time': {'$gt': 1550977586}});
@@ -27,16 +29,22 @@ def judge_local(offset_time, file_nm):
     path_nm = os.path.join(project_conf.project_path, 'asserts', file_nm)
     out_file = open(path_nm, 'w')
     for good_id in value_count.index:
-        info = db_mongo.get_table('plat2', 'order').find_one({'goods_id': good_id, 'order_status': {'$ne': 4}})
+        # info 不走缓存， 走搜索
+        info = pdd_tools.search_good_detail(good_id, '')
+        dt = info.get('goods_promotion_url_generate_response', {}).get('goods_promotion_url_list', [{}])[0]
         # if not info.get('duo_coupon_amount'):
         #     continue
+        goods_detail = dt.get('goods_detail', {})
         temp = {
-            'id': int(good_id),
-            'title': info['goods_name'],
-            'icon': info['goods_thumbnail_url'],
-            'price': str(round(info['order_amount']/100, 2)),
-            'discount': info['total_promotion'],
-            'sale_count': int(value_count[good_id])
+            'goods_id': goods_detail['goods_id'],
+            'goods_name': goods_detail['goods_name'],
+            'goods_thumbnail_url': goods_detail['goods_thumbnail_url'],
+            'row_price': goods_detail['min_normal_price'],
+            'min_price': goods_detail['min_normal_price'] - goods_detail.get('coupon_discount', 0),
+            'discount': goods_detail.get('coupon_discount', 0),
+            'promotion_rate': goods_detail['promotion_rate'],
+            # 修改为自己的数据
+            'sold_quantity': int(value_count[good_id])
         }
         out_file.write('%s\n' % json.dumps(temp))
     out_file.close()
