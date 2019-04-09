@@ -1,5 +1,7 @@
 import json
 import re
+
+import requests
 from lxml import etree
 
 from common.libs.pdd import HttpTool
@@ -87,5 +89,13 @@ def get_reviews(good_id, page=1):
 
 
 if __name__ == '__main__':
-    res = get_reviews(2826761917, 1)
-    print(res)
+    headers = {
+        'referer': 'https://servicewechat.com/wx676a09ae59553fda/73/page-frame.html',
+    }
+    url = 'https://apiv4.yangkeduo.com/reviews/5681711441?page=1&size=3'
+    '''
+    https://duoke678.com/pdd/goodDetail?goods_id=622626205&uid=0&pid=1000065_43001792&ranNum=RMbYaabYaYA&sign=9bd5ba6789365f3b4f3f4cc6f4350d4f
+    '''
+    for i in range(100):
+        res = requests.get(url, headers=headers, verify=False, timeout=5).text
+        print(res)
