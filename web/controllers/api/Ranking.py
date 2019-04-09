@@ -19,6 +19,7 @@ def hot_goods():
     resp = {'code': 200, 'msg': '成功', 'data': []}
     pages = int(req.get('pages', 1))
     team_index = int(req.get('team_index'), 0)
+    team_index = 1
     if team_index == 1:
         offset = (pages-1) * goods_per_page
         tp += 1
@@ -63,7 +64,7 @@ def hot_member():
     tp = int(tp)
     if tp == 0:
         file_name = os.path.join(project_conf.project_path, 'asserts', 'group_promotion')
-    if tp == 1:
+    else:
         file_name = os.path.join(project_conf.project_path, 'asserts', 'group_member')
 
     for line in [i for i in open(file_name)]:

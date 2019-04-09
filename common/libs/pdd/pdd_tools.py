@@ -88,14 +88,11 @@ def hot_goods_range(sort_type=1, offset=0, limit=50):
         'sort_type': sort_type,
         'limit': limit
     }
-    print(added_params)
     return pdd_request(added_params)
 
 
 if __name__ == '__main__':
-    # res = hot_goods_range(sort_type=1, offset=0, limit=50)
-    # print(res)
-    res = search_good_detail(6869428690, 1)
+    res = hot_goods_range(sort_type=1, offset=0, limit=50)
     print(res)
     # res = order_search('1553556662', '1553643062')
     # print(res)
