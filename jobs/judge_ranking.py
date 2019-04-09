@@ -30,7 +30,7 @@ def judge_local(offset_time, file_nm):
     out_file = open(path_nm, 'w')
     for good_id in value_count.index:
         # info 不走缓存， 走搜索
-        info = pdd_tools.search_good_detail(good_id, '')
+        info = pdd_tools.search_good_detail(good_id, 'xx')
         dt = info.get('goods_promotion_url_generate_response', {}).get('goods_promotion_url_list', [{}])[0]
         # if not info.get('duo_coupon_amount'):
         #     continue
@@ -102,6 +102,7 @@ def calc_top_promotion(offset_time):
     items = db_mongo.get_table('plat2', 'order').find(
         {'order_create_time': {'$gt': door_time}})
     df = pd.DataFrame(items)
+    print(df)
     custom_promotion = df[df['custom_parameters'] != '']['total_promotion'].groupby(df['custom_parameters']).sum()
     custom_promotion = custom_promotion * project_conf.rate_conf['self_rate']
     refer_promotion = df[df['refer_id'] != '']['total_promotion'].groupby(df['refer_id']).sum()
