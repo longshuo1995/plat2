@@ -1,0 +1,10 @@
+.logo {
+    width: 280rpx;
+    height: 280rpx;
+    border-radius: 30rpx;
+}
+
+.r_all {
+    text-align: center;
+    padding-top: 25%;
+}

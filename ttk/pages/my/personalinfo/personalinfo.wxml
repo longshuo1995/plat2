@@ -1,0 +1,46 @@
+<view class="personalinfo">
+    <view style="background-color: #fff;height:240rpx;display:{{isBuyer=='false'?'':'none'}}">
+        <view style="display:flex;flex-direction: row;justify-content: space-between;align-items: flex-end;margin-top:30rpx;padding-top:40rpx;">
+            <view style="font-size:36rpx;margin-left:30rpx;">当前权益</view>
+            <view catchtap="goFaq" style="color:#4FA1F4;font-size:36rpx;margin-right:30rpx;">FAQ</view>
+        </view>
+        <view style="height:1px;width: 90vw;background-color: #EFEFEF;margin-left:30rpx;margin-right:30rpx;margin-top: 30rpx;"></view>
+        <button catchtap="goWeb" class="yellow_btn">{{rights_str}}</button>
+    </view>
+    <view class="weui-cells weui-cells_after-title" style="margin-top:30rpx;">
+        <view class="weui-cell">
+            <image class="left_icon" src="../../../images/icon_tuijianren.png"></image>
+            <view class="weui-cell__bd">推荐人邀请码</view>
+            <view class="weui-cell__ft">{{parentCode}}</view>
+        </view>
+        <view class="weui-cell" wx:if="{{isWarrant}}">
+            <image class="left_icon" src="../../../images/icon_weixin.png"></image>
+            <view class="weui-cell__bd">微信昵称</view>
+            <view class="weui-cell__ft">{{name}}</view>
+        </view>
+        <view class="weui-cell" wx:if="{{isBuyer=='false'?'none':''}}">
+            <image class="left_icon" src="../../../images/icon_shouji.png" style="width:24rpx;height:30rpx;"></image>
+            <view class="weui-cell__bd">绑定手机号</view>
+            <view class="weui-cell__ft">
+        {{phone}}
+        <view catchtap="gotoBind" style="color:#4FA1F4;" wx:if="{{phone==''&&isBuyer=='false'}}">去绑定</view>
+            </view>
+        </view>
+        <view class="weui-cell" wx:if="{{isBuyer=='false'}}">
+            <image class="left_icon_zhuceshijian" src="../../../images/icon_zhuceshijian.png"></image>
+            <view class="weui-cell__bd">注册时间</view>
+            <view class="weui-cell__ft">{{reg_time}}</view>
+        </view>
+        <view class="weui-cell" wx:else>
+            <image class="left_icon" src="../../../images/icon_shouquanshijian.png" style="width:27rpx;height:32rpx;"></image>
+            <view class="weui-cell__bd">授权时间</view>
+            <view class="weui-cell__ft">{{auth_time}}</view>
+        </view>
+    </view>
+</view>
+<modal bindcancel="cancel" bindconfirm="bindAccount" cancelText="取消" confirmText="绑定" hidden="{{hiddenmodalput}}" title="绑定手机号">
+    <input bindinput="inputPhone" class="input" placeholder="请输入手机号" style="margin-top: 30rpx;" value="{{inputPhone}}"></input>
+    <input bindinput="inputSms" class="input" placeholder="请输入验证码" style="margin-top: 30rpx;" value="{{inputSms}}">></input>
+    <button catchtap="sendCodeClick" class="btn" disabled="{{codebtndisbled}}">{{time}}</button>
+    <view style="height: 30rpx;"></view>
+</modal>

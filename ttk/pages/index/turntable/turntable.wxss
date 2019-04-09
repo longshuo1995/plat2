@@ -1,0 +1,121 @@
+.bk {
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    bottom: 0rpx;
+}
+
+.buyer_btn {
+    width: 310rpx;
+    height: 84rpx;
+    position: fixed;
+    bottom: 100rpx;
+    z-index: 100;
+}
+
+.tuike_btn {
+    width: 310rpx;
+    height: 84rpx;
+    position: fixed;
+    bottom: 70rpx;
+    z-index: 100;
+}
+
+.qi {
+    position: fixed;
+    top: 30rpx;
+    z-index: 999;
+    width: 450rpx;
+    height: 180rpx;
+    left: 140rpx;
+}
+
+.no_qi {
+    position: fixed;
+    top: 150rpx;
+    z-index: 999;
+    width: 450rpx;
+    height: 60rpx;
+    left: 140rpx;
+}
+
+.dialog {
+    width: 70vw;
+    background-color: #fff;
+    border-radius: 10rpx;
+    text-align: center;
+    padding-top: 30rpx;
+}
+
+.bk_dialog {
+    background-color: #000;
+    opacity: 0.5;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 999;
+}
+
+.red_text {
+    color: #ff4034;
+    font-size: 28rpx;
+    padding-left: 40rpx;
+    padding-right: 40rpx;
+    margin-top: 30rpx;
+    text-align: left;
+    margin-bottom: 30rpx;
+}
+
+.dialog_close {
+    background-color: #fff;
+    width: 68rpx;
+    height: 68rpx;
+    margin-top: 100rpx;
+    border-radius: 100%;
+}
+
+.r_dialog {
+    position: fixed;
+    top: 20vh;
+    left: 15vw;
+    text-align: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    z-index: 1000;
+}
+
+.shareDialog {
+    width: 100vw;
+    height: 260rpx;
+    background-color: #fff;
+    position: fixed;
+    bottom: -300px;
+    z-index: 1001;
+}
+
+.shareBtn {
+    width: 120rpx;
+    height: 120rpx;
+}
+
+.sharebtnFake {
+    background: none;
+    width: 180rpx;
+    height: 131rpx;
+}
+
+.sharebtnFake::after {
+    border: none;
+}
+
+.shareCanvas {
+    width: 600rpx;
+    height: 950rpx;
+    position: fixed;
+    left: 10%;
+    top: 2%;
+    z-index: 1000;
+}

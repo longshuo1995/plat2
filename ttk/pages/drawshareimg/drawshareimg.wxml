@@ -1,0 +1,1 @@
+<canvas canvasId="shareCanvas" class="shareCanvas" id="canvas-container" style="border: 1px solid;display:{{canvasShow}};"></canvas>

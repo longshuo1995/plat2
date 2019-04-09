@@ -1,0 +1,77 @@
+{
+    "pages": [
+        "pages/index/index",
+        "pages/index/share/share_zhuli",
+        "pages/index/share/share",
+        "pages/my/orderlist/orderlist",
+        "pages/my/tixian/mingxi/mingxi",
+        "pages/my/tixian/tixian",
+        "pages/index/turntable/turntable",
+        "pages/my/friend/friend",
+        "pages/my/about/about",
+        "pages/my/personalinfo/personalinfo",
+        "pages/scope/scope",
+        "pages/my/sharepost_thire/sharepost_thire",
+        "pages/my/my",
+        "pages/my/bindaccount/bindaccount",
+        "pages/index/goodsdetail/goodsdetail",
+        "pages/search/search",
+        "pages/my/novice/novice",
+        "pages/my/bindaccount/agreement/agreement",
+        "pages/shareTransfer/shareTransfer",
+        "pages/exemption/exemption",
+        "pages/drawshareimg/drawshareimg",
+        "pages/webview/webview",
+        "pages/circle/circle",
+        "pages/awth",
+        "pages/hotsale/hotsale",
+        "pages/fuli/fuli",
+        "pages/my/friend/xiaji/xiaji"
+    ],
+    "window": {
+        "backgroundTextStyle": "dark",
+        "navigationBarBackgroundColor": "#f9e276",
+        "navigationBarTitleText": "推推客",
+        "navigationBarTextStyle": "black",
+        "backgroundColor": "#f9e276"
+    },
+    "tabBar": {
+        "color": "#999999",
+        "selectedColor": "#999999",
+        "backgroundColor": "#FBFBFB",
+        "list": [
+            {
+                "pagePath": "pages/index/index",
+                "text": "首页",
+                "iconPath": "images/btn_index.png",
+                "selectedIconPath": "images/btn_index_c.png"
+            },
+            {
+                "pagePath": "pages/hotsale/hotsale",
+                "text": "热销榜",
+                "iconPath": "images/btn_hotsale.png",
+                "selectedIconPath": "images/btn_hotsale_c.png"
+            },
+            {
+                "pagePath": "pages/fuli/fuli",
+                "text": "福利",
+                "iconPath": "images/btn_fuli.png",
+                "selectedIconPath": "images/btn_fuli_c.png"
+            },
+            {
+                "pagePath": "pages/my/my",
+                "text": "我的",
+                "iconPath": "images/btn_my.png",
+                "selectedIconPath": "images/btn_my_c.png"
+            }
+        ]
+    },
+    "networkTimeout": {
+        "request": 10000,
+        "downloadFile": 10000
+    },
+    "navigateToMiniProgramAppIdList": [
+        "wx32540bd863b27570"
+    ],
+    "debug": true
+}

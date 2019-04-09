@@ -84,7 +84,6 @@ Page({
                 that.setData({
                     info: dt
                 })
-
             }
         });
 

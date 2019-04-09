@@ -1,0 +1,38 @@
+<view style="display: flex; flex-direction: column;">
+    <view>
+        <view style="display: flex; flex-direction: row;line-height: 94rpx;background-color: #f9e276;  position: fixed;top: 0;z-index:10000">
+            <image class="sreach_icon" src="../../images/icon_sreach.png"></image>
+            <view class="sreach_input_bk">
+                <input bindinput="inputWord" class="sreach_input" placeholder="搜索优惠商品" value="{{searchinput}}"></input>
+                <image bindtap="sreach_del" class="sreach_icon_del" src="../../images/btn_sreach_del.png"></image>
+            </view>
+            <view catchtap="sreachClick" class="sreach_button">搜索</view>
+        </view>
+        <view class="bk" wx:if="{{goodList.length<=0&&!isFirst}}">
+            <image class="bk_img" src="../../images/bk_nor_goods.png"></image>
+            <view style="margin-top:38rpx;">未找到相关商品</view>
+            <view>请换个关键词再试试</view>
+        </view>
+        <view class="auto_view" wx:if="{{goodList.length<=0&&isFirst}}">
+            <text style="margin-right:20rpx;">热搜</text>
+            <view catchtap="hotWordSreach" class="hot_word" data-value="{{hot_search_word[i]}}" wx:if="{{i<hot_search_word.length}}" wx:for="hot_search_word" wx:for-index="i" wx:key="i">
+        {{hot_search_word[i]}}</view>
+        </view>
+        <view style="background-color: #fff; position: fixed;top: 80rpx;z-index:10000" wx:if="{{goodList.length>0}}">
+            <view catchtap="tabClick" class=" {{isBuyer?'type_button3':'type_button'}}" data-value="0" style="  position: relative;">最新</view>
+            <view catchtap="tabClick" class=" {{isBuyer?'type_button3':'type_button'}}" data-value="2" style="  position: relative;" wx:if="{{!isBuyer}}">佣金</view>
+            <view catchtap="tabClick" class=" {{isBuyer?'type_button3':'type_button'}}" data-value="6" style="  position: relative;">销量</view>
+            <view catchtap="tabClick" class=" {{isBuyer?'type_button3':'type_button'}}" data-value="3" style="position: relative;">
+        价格
+        <image class="price_order" src="../../images/price_nor.png" wx:if="{{order!=3&&order!=4}}"></image>
+                <image class="price_order" src="../../images/price_up.png" wx:if="{{order==3}}"></image>
+                <image class="price_order" src="../../images/price_down.png" wx:if="{{order==4}}"></image>
+            </view>
+            <view animation="{{animation}}" class="type_bottom_line" style="margin-left:{{isBuyer?'80rpx;':''}}"></view>
+        </view>
+        <view style="margin-top: 190rpx;"></view>
+        <include src="../index/grid_temp.wxml"></include>
+    </view>
+    <view class="no_more" wx:if="{{pageGoodList.length<=0&&!isFirst}}">没有更多数据了</view>
+</view>
+<image catchtap="goTop" class="goTop" src="../../images/go_top.png" wx:if="{{page>1}}"></image>

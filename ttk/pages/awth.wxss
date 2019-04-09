@@ -1,0 +1,7 @@
+.shouquan {
+    background-color: #f9e276;
+    position: fixed;
+    top: 50%;
+    left: 30%;
+    width: 300rpx;
+}
