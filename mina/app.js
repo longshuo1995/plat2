@@ -6,12 +6,13 @@ App({
         wx.setNavigationBarTitle({
             title: this.globalData.shopName
         });
+
         if(this.globalData.userInfo && this.globalData.userInfo.open_id){
             return
         }
         this.globalData.userInfo = wx.getStorageSync('userInfo');
-
         if(this.globalData.userInfo && this.globalData.userInfo.open_id){
+            this.goToIndex();
             if(!this.globalData.is_update_userinfo){
                 this.update_userinfo();
                 this.globalData.is_update_userinfo=true
@@ -44,7 +45,6 @@ App({
                     },
                     success:function( res ){
                         var resp = res.data;
-                        console.log(resp);
                         if(resp.is_register){
                             that.globalData.userInfo = resp.data;
                             wx.setStorageSync('userInfo', that.globalData.userInfo)
