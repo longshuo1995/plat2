@@ -4,6 +4,7 @@ from flask import jsonify, request
 import project_conf
 from common.libs import db_mongo
 from common.libs.pdd import pdd_tools
+from common.libs.tools import StrTools
 from spider import pdd_spider
 from web.controllers.api import route_api
 
@@ -96,12 +97,12 @@ def get_pdd_url():
         row_price = good_detail.get('min_group_price', 0)
         discount = good_detail.get('coupon_discount', 0)
         resp['data'] = {
-            'mall_id': good_detail.get('mall_id', ''),
-            'mall_name': good_detail.get('mall_name', ''),
-            'avg_serv': good_detail.get('avg_serv', ''),
-            'avg_desc': good_detail.get('avg_desc', ''),
-            'avg_lgst': good_detail.get('avg_lgst', ''),
-            'goods_desc': good_detail.get('goods_desc', '暂无评论'),
+            'mall_id': StrTools.null_convert(good_detail.get('mall_id')),
+            'mall_name': StrTools.null_convert(good_detail.get('mall_name')),
+            'avg_serv': StrTools.null_convert(good_detail.get('avg_serv'), 1),
+            'avg_desc': StrTools.null_convert(good_detail.get('avg_desc'), 1),
+            'avg_lgst': StrTools.null_convert(good_detail.get('avg_lgst'), 1),
+            'goods_desc': StrTools.null_convert(good_detail.get('goods_desc')),
             'short_url': dt.get('short_url', ''),
             'promotion_rate': promotion_rate,
             'we_app_id': app_id,

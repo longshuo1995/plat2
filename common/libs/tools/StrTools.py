@@ -22,3 +22,10 @@ def write_log(fn, msg):
     file_path = os.path.join(project_conf.project_path, 'log', fn)
     with open(file_path, 'a') as f:
         f.write(msg+'\n')
+
+
+def null_convert(value, is_int=False):
+    if is_int:
+        return value if value else 0
+    else:
+        return value if value else ''
