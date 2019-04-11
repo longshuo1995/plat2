@@ -8,6 +8,25 @@ from common.libs.member import MemberService
 from web.controllers.api import route_api
 
 
+@route_api.route('/member/finance', methods=['GET', 'POST'])
+def member_finance():
+    req = request.values
+    resp = {'code': 200, 'msg': '成功', 'data': {}}
+    open_id = req.get('openid')
+    if not open_id:
+        resp = {'code': 401, 'msg': '请传入参数openid', 'data': {}}
+        return jsonify(resp)
+    data = {
+        "current_money": 0,
+        "checking_money": 0,
+        "order_num": 0,
+        "est_money": 0,
+        "today_money": 0
+    }
+    resp['data'] = data
+    return jsonify(resp)
+
+
 @route_api.route('/member/login', methods=['GET', 'POST'])
 def login():
     req = request.values
@@ -17,11 +36,6 @@ def login():
         resp['code'] = -1
         resp['msg'] = "需要code"
         return jsonify(resp)
-
-    # 临时登录凭证转  openid
-    # url = 'https://api.weixin.qq.com/sns/jscode2session?appid={appid}&secret={secret}&js_code={js_code}&grant_type' \
-    #       '=authorization_code'.format(appid=app.config['MINA_APP']['appid'], js_code=req.get('code'), secret=app.config['MINA_APP']['appkey'])
-    # jo = requests.get(url).json()
     openid = MemberService.getWechatOpenId(req['code'])
 
     info = db_mongo.get_table('plat2', 'member').find_one({"_id": openid})
@@ -73,7 +87,6 @@ def checkReg():
         return jsonify(resp)
     openid = MemberService.getWechatOpenId(req['code'])
     info = db_mongo.get_table('plat2', 'member').find_one({"open_id": openid})
-    # info = None
     if info:
         info.pop('_id')
         resp['data'] = info
@@ -81,4 +94,5 @@ def checkReg():
     else:
         resp['is_register'] = False
     return jsonify(resp)
+
 
