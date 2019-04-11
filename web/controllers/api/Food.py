@@ -114,6 +114,8 @@ def get_pdd_url():
             'row_price': row_price,
             'sold_quantity': good_detail.get('sold_quantity', 0),
         }
+        if not resp['data']['goods_des']:
+            resp['data']['goods_des'] = '该商品暂无描述'
     else:
         logging.log(logging.ERROR, 'get pdd detail failed~ msg:good_id:{good_id}, open_id:{open_id}'.format
         (good_id=good_id, open_id=open_id))
