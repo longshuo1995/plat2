@@ -101,7 +101,7 @@ def get_pdd_url():
             'avg_serv': good_detail.get('avg_serv', ''),
             'avg_desc': good_detail.get('avg_desc', ''),
             'avg_lgst': good_detail.get('avg_lgst', ''),
-            'goods_desc': good_detail.get('goods_desc', ''),
+            'goods_desc': good_detail.get('goods_desc', '暂无评论'),
             'short_url': dt.get('short_url', ''),
             'promotion_rate': promotion_rate,
             'we_app_id': app_id,
