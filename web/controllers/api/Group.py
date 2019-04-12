@@ -18,10 +18,10 @@ def group_member():
     if group_id == 0:
         info = db_mongo.get_table('plat2', 'member').find_one({"_id": open_id})
         if info['leader_openid']:
-            teacher_info = db_mongo.get_table('plat2', 'member').find_one({"_id": info['refer_id']})
+            teacher_info = db_mongo.get_table('plat2', 'member').find_one({"_id": info['leader_openid']})
             if teacher_info:
                 group_list.append({
-                    'tp_name': '校长',
+                    'tp_name': '团长',
                     'user_img': teacher_info['icon_url'],
                     'user_name': teacher_info['nick_name'],
                 })

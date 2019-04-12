@@ -1,7 +1,6 @@
 from common.libs import db_mongo
 
 '''
-
 注册：
 refer_openid,
 leader_openid,
