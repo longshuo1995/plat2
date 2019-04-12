@@ -1,0 +1,4 @@
+<view>
+    <button bindgetuserinfo="login" class="socpe_btn" hoverClass="none" openType="getUserInfo">授权登录</button>
+    <image src="https://aishangnet.club/static/mina_pic/login_background.png" style="width:100vw;height:99.9vh;"></image>
+</view>

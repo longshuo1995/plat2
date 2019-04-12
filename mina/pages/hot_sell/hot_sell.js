@@ -8,10 +8,11 @@ Page({
    */
   data: {
     tp:0,
+    team_index: 0,
     data_list:[],
     noMore: true,
     show_model: true,
-    pages: 0
+    pages: 1
   },
 
   /**
@@ -24,14 +25,26 @@ Page({
       url: app.globalData.domain + '/goods/hot_goods',
       data: {
         tp: 0,
+        team_index: 0,
         pages:that.data.pages
       },
       header: {
         'content-type': 'application/json'
       },
       success: (res) => {
+        var rate = 0.5;
+        if (app.globalData.userInfo.level > 0) {
+          rate = 1
+        }
+        var goods = res.data.data
+        for (var i = 0; i < goods.length; i++) {
+          goods[i]['row_price'] = (goods[i]['row_price'] / 100).toFixed(2)
+          goods[i]['min_price'] = (goods[i]['min_price'] / 100).toFixed(2)
+          goods[i]['coupon_discount'] = (goods[i]['row_price'] - goods[i]['min_price']).toFixed(2)
+          goods[i]['promotion'] = (rate * goods[i]['promotion_rate'] / 1000 * goods[i]['min_price']).toFixed(2)
+        }
         that.setData({
-          data_list: res.data.data,
+          data_list: goods
         })
       }
     })
@@ -49,6 +62,41 @@ Page({
    */
   onShow: function () {
 
+  },
+  teamSelete: function (e) {
+    let index = e.currentTarget.dataset.index;
+    let that = this;
+    that.setData({
+      team_index: index,
+      pages: 1
+    });
+    wx.request({
+      url: app.globalData.domain + '/goods/hot_goods', // 仅为示例，并非真实的接口地址
+      data: {
+        tp: that.data.tp,
+        pages: 1,
+        team_index: index
+      },
+      header: {
+        'content-type': 'application/json' // 默认值
+      },
+      success: (res) => {
+        var rate = 0.5;
+        if (app.globalData.userInfo.level > 0) {
+          rate = 1
+        }
+        var goods = res.data.data
+        for (var i = 0; i < goods.length; i++) {
+          goods[i]['row_price'] = (goods[i]['row_price'] / 100).toFixed(2)
+          goods[i]['min_price'] = (goods[i]['min_price'] / 100).toFixed(2)
+          goods[i]['coupon_discount'] = (goods[i]['row_price'] - goods[i]['min_price']).toFixed(2)
+          goods[i]['promotion'] = (rate * goods[i]['promotion_rate'] / 1000 * goods[i]['min_price']).toFixed(2)
+        }
+        that.setData({
+          data_list: goods
+        })
+      }
+    })
   },
   toDetailsTap: function (e) {
         wx.navigateTo({
@@ -91,14 +139,28 @@ Page({
         url: app.globalData.domain + '/goods/hot_goods',
         data: {
           tp: that.data.tp,
-          pages: that.data.pages+1
+          pages: that.data.pages+1,
+          team_index: that.data.team_index
         },
         success: function (res) {
           if (res.data.code == 200) {
+            var rate = 0.5;
+            if (app.globalData.userInfo.level > 0) {
+              rate = 1
+            }
+            var goods = res.data.data
+            for (var i = 0; i < goods.length; i++) {
+              goods[i]['row_price'] = (goods[i]['row_price'] / 100).toFixed(2)
+              goods[i]['min_price'] = (goods[i]['min_price'] / 100).toFixed(2)
+              goods[i]['coupon_discount'] = (goods[i]['row_price'] - goods[i]['min_price']).toFixed(2)
+              goods[i]['promotion'] = (rate * goods[i]['promotion_rate'] / 1000 * goods[i]['min_price']).toFixed(2)
+            }
             if (res.data.data.length < 10) {
               clearTimeout(time)
+             
+              
               that.setData({
-                data_list: that.data.data_list.concat(res.data.data),
+                data_list: that.data.data_list.concat(goods),
                 noMore: false,
                 show_model: true,
               })
@@ -111,7 +173,7 @@ Page({
             }
             else {
               that.setData({
-                data_list: that.data.data_list.concat(res.data.data),
+                data_list: that.data.data_list.concat(goods),
                 pages: that.data.pages + 1
               })
             }
@@ -140,15 +202,27 @@ Page({
         url: app.globalData.domain + '/goods/hot_goods', // 仅为示例，并非真实的接口地址
         data: {
           tp: tp,
-          pages:0
+          pages:1,
+          team_index: that.data.team_index
         },
         header: {
           'content-type': 'application/json' // 默认值
         },
         success: (res) => {
+          var rate = 0.5;
+          if (app.globalData.userInfo.level > 0) {
+            rate = 1
+          }
+          var goods = res.data.data
+          for (var i = 0; i < goods.length; i++) {
+            goods[i]['row_price'] = (goods[i]['row_price'] / 100).toFixed(2)
+            goods[i]['min_price'] = (goods[i]['min_price'] / 100).toFixed(2)
+            goods[i]['coupon_discount'] = (goods[i]['row_price'] - goods[i]['min_price']).toFixed(2)
+            goods[i]['promotion'] = (rate * goods[i]['promotion_rate'] / 1000 * goods[i]['min_price']).toFixed(2)
+          }
           that.setData({
-            data_list: res.data.data,
-            pages:0,
+            data_list: goods,
+            pages:1,
             tp:tp
           })
         }

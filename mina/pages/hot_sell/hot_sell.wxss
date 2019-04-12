@@ -1,115 +1,141 @@
 /* pages/hot_sell/hot_sell.wxss */
-.clearfix:after{
-content:"";
-display:block;
-visibility:hidden;
-clear:both;
-height:0;
+.top_box{
+  width: 690rpx;
+  margin: 0 auto;
+  margin-bottom: 25rpx;
 }
-.clearfix{ /* 为了照顾ie6浏览器*/
-zoom:1;
+.myself{
+  margin-right: 30rpx;
+}
+.team_active{
+  font-size: 46rpx;
+  color: #010101;
+}
+.team_text{
+  font-size: 36rpx;
+  color: #787878;
+}
+.banner{
+  width: 690rpx;
+  height: 320rpx;
+  margin: 0 auto;
+  background-size: cover;
+}
+.qiyurexiao{
+  background-image: url(https://aishangnet.club/static/mina_pic/qiyurexiao.png);
+}
+.quanwangrexiao{
+  background-image: url(https://aishangnet.club/static/mina_pic/quanwangrexiao.png);
 }
 .time_quantum{
-  height: 80rpx;
-  width: 90%;
-  margin:10rpx auto 20rpx;
-  border-radius: 40rpx;
-  border:1rpx solid #E85654;
+  width: 690rpx;
+	height: 80rpx;
+  margin: 20rpx auto;
+  border-radius: 10rpx;
+  background-color: #ececec;
   display:flex;
 }
 .time_item{
   flex: 1;
   height: 100%;
-  box-sizing: border-box;
-  border-radius: 40rpx;
   font-size: 30rpx;
-  color: #E85654;
+  color: #000;
   line-height: 80rpx;
-  text-align: center
+  text-align: center;
 }
 .time_item_active{
-  background: linear-gradient(#E15654, #EE5654);
-  color: white;
+  color: #ea4037;
 }
 .item_box{
-  height: 240rpx;
-  border-bottom: 1px solid #EFEFED;
-}
-.item_index{
-  width:120rpx;
-  height: 100%;
+  height: 220rpx;
+  width: 690rpx;
+  margin: 0 auto;
+  margin-bottom: 20rpx;
   position: relative;
 }
-.item_index_number{
-  width: 60rpx;
-  height: 60rpx;
+.item_index{
   position: absolute;
-  transform: translate(-50%,-50%); 
-  left: 50%;
-  top: 50%;
-  line-height: 60rpx;
-  text-align: center;
-  background: #B3B1B2;
-  border-radius: 30rpx;
-  color: white;
-  box-shadow: 2px 2px 5px #B3B1B2;
+  top: 0;
+  left: 0;
+  width: 40rpx;
+	height: 40rpx;
+text-align:left;
+  border-top-left-radius: 10px;
+}
+.item_index_number{
+  line-height: 40rpx;
+  font-size: 24rpx;
+  color: #fffefe;
+  background-image: url(https://aishangnet.club/static/mina_pic/num_background.png);
+  background-size: cover;
 }
 .item_first{
-  background: #FFC806;
-  box-shadow: 2px 2px 5px #E4A53F;
+  background-image: url(https://aishangnet.club/static/mina_pic/1.png);
+  background-size: cover;
 }
 .item_second{
-  background: #BAC1CF;
-  box-shadow: 2px 2px 5px #9E9BB1;
+  background-image: url(https://aishangnet.club/static/mina_pic/2.png);
+  background-size: cover;
 }
 .item_three{
-  background: #E2B57C;
-  box-shadow: 2px 2px 5px #C78D4A;
+  background-image: url(https://aishangnet.club/static/mina_pic/3.png);
+  background-size: cover;
 }
 .item_img{
-  width:200rpx;
-  height: 200rpx;
-  margin-top:20rpx;
-  border-radius: 20rpx;
+  width:220rpx;
+  height: 220rpx;
+  border-radius: 10px 0px 0px 10px;
 }
 .item_info_box{
   height: 100%;
-  min-width: 200rpx;
-  max-width:400rpx;
+  width:450rpx;
+  margin-left: 20rpx;
 }
-.item_img,.item_index,.item_info_box{
+.item_img,.item_info_box{
   float: left;
 }
 .item_name{
   margin-top:20rpx;
-  text-overflow: -o-ellipsis-lastline;
   overflow: hidden;
   text-overflow: ellipsis;
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  line-clamp: 2;
-  -webkit-box-orient: vertical;
+  white-space: nowrap;
   font-size: 30rpx;
+  color: #333333;
 }
-.sell_box{
+
+.item_discount{
+  display:inline-block;
   position: relative;
+	height: 40rpx;
+  margin: 18rpx 0 16rpx 0;
 }
 .quan_img{
   width: 100%;
-  height: 60rpx;
+	height: 40rpx;
   position: absolute;
-  z-index: -2;
-}
-.item_discount{
-  float: left;
-  font-size: 24rpx;
-  line-height: 60rpx;
-  color: white;
-  position: relative;
-  letter-spacing:0rpx;
+  z-index: -1;
 }
 .quan_text{
-  margin:0 20rpx;
+  padding: 0 14rpx;
+  line-height: 40rpx;
+  text-align: center;
+  color: white;
+  font-size: 30rpx;
+}
+.discount_unit{
+  font-size: 16rpx;
+}
+.old_box{
+  font-size: 24rpx;
+  color: #c3c3c3;
+  letter-spacing: 0;
+}
+.selledline{
+  margin: 27rpx;
+}
+
+.oldprice{
+  text-decoration:line-through
 }
 .item_sale{
   float: right;
@@ -118,33 +144,36 @@ zoom:1;
   margin-top: 10rpx;
 }
 .price_box{
-  margin-top:10rpx;
+  margin-top:13rpx;
 }
 .item_price{
   float: left;
-  color: #CA3954;
+  color: #c3c3c3;
   font-size: 24rpx;
   line-height: 50rpx;
 }
+.item_price_num{
+  color: #ff1b51;
+  font-size: 36rpx;
+}
 .item_buy{
   float: right;
-  background: #E85654;
-  border-radius: 25rpx;
+  height: 44rpx;
+  line-height: 44rpx;
+  background: #ea4037;
+  border-radius: 22rpx;
   color: #FFFFFF;
-  padding: 5rpx 20rpx;
-  font-size:30rpx;
-  position: relative;
+  padding: 0 12rpx;
+  font-size:24rpx;
+  text-align: center;
 }
 .bottom_img {
-  position: absolute;
-  left: 10rpx;
-  top: 12rpx;
-  width: 20rpx;
-  height: 20rpx;
+  width: 23rpx;
+  height: 23rpx;
+  vertical-align: middle;
 }
 .item_but_text {
-  font-size: 28rpx;
-  padding-left: 20rpx;
+  padding-left: 5rpx;
 }
 
 /*上划加载*/

@@ -1,67 +1,108 @@
 <!--index.wxml-->
-<!--1px = 750/320 = 2.34rpx;-->
-<wxs module="filters" src="../../utils/filter.wxs"></wxs>
 <view class="container">
-  <!--轮播图-->
-  <view class="swiper-container">
-    <swiper class="swiper_box" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" bindchange="swiperchange">
-      <block wx:for="{{banners}}" wx:key="id">
-        <swiper-item>
-          <image bindtap="tapBanner" data-id="{{item.id}}" src="{{item.pic_url}}" class="slide-image" width="750rpx" height="562.5rpx" />
-        </swiper-item>
-      </block>
-    </swiper>
-    <view class="dots">
-      <block wx:for="{{banners}}" wx:key="unique">
-        <view class="dot{{index == swiperCurrent ? ' active' : ''}}"></view>
-      </block>
-    </view>
-  </view>
-  <!--分类展示-->
-  <view class="type-container">
-    <scroll-view class="type-navbar" scroll-x="true">
-      <view class="type-box" wx:for-items="{{categories}}" wx:key="id">
-        <view id="{{item.id}}" class="type-navbar-item {{activeCategoryId == item.id ? 'type-item-on' : ''}}" bindtap="catClick">
-          {{item.name}}
-        </view>
-      </view>
-    </scroll-view>
-  </view>
-  <!--搜索框-->
-  <view class="search-view" style="background:{{ scrollTop === 0 ?'-webkit-linear-gradient(top, rgba(105,195,170, 1), rgba(105,195,170, 0.3))' :( scrollTop<200 ? 'rgba(105,195,170,'+(scrollTop/400+0.3) +')' : 'rgba(105,195,170,1)')  }} ">
-    <view class="search-content">
-      <image src="/images/search-pic.png" class="search-icon" />
-      <input placeholder="请输入搜索内容" class="search-input" maxlength="30" confirm-type="搜索" bindinput='listenerSearchInput' bindconfirm='toSearch'>
+  
+  <view class="topfix-view" style="height:{{activeCategoryId==0?'158rpx':'246rpx'}}">
+    <!--搜索框-->
+    <view class="search-content" bindtap="toSearch">
+      <image src="https://aishangnet.club/static/mina_pic/ic_search_2.png" class="search-icon" />
+      <input placeholder="搜索关键字" class="search-input" placeholder-class="placeholder" disabled>
       </input>
-      <button class='search-btn' bindtap="toSearch">搜索</button>
     </view>
-  </view>
-
-  <view wx:for="{{goods}}" bindtap="toDetailsTap" data-id="{{item.id}}">
-    <view class='item_box'>
-      <view class='item_index'>
-        <view class="item_index_number {{index==0?'item_first':''}} {{index==1?'item_second':''}} {{index==2?'item_three':''}}">{{index+1}}</view>
+    <!--一级分类展示-->
+    <view class="type-container clearfix">
+      <scroll-view class="type-navbar" scroll-x="true">
+        <view class="type-box" wx:for-items="{{categories}}" wx:key="id">
+          <view id="{{item.opt_id}}" data-parent="{{item.parent_opt_id}}" class="type-navbar-item {{activeCategoryId == item.opt_id ? 'type-item-on' : ''}}" bindtap="catClick">
+            {{item.opt_name}}
+          </view>
+        </view>
+      </scroll-view>
+      <view class='type-menu' id="0" bindtap='showMenu'>
       </view>
-      <image src="{{item.pic_url}}" lazy-load="true" class="item_img" mode='aspectFill'></image>
-      <view class='item_info_box'>
-        <view class='item_name'>{{item.name}}</view>
-        <view class='clearfix'>
+    </view>
+    <!--子分类展示-->
+    <block wx:if="{{activeCategoryId!=0}}">
+    <view class="type-container clearfix">
+      <scroll-view class="type-navbar" scroll-x="true">
+        <view class="type-box type-childbox" wx:for-items="{{childlist}}" wx:key="id">
+          <view id="{{item.opt_id}}" data-parent="{{item.parent_opt_id}}" class="type-navbar-item {{activeCategoryId == item.opt_id ? 'type-item-on' : ''}}" bindtap="catClick">
+            {{item.opt_name}}
+          </view>
+        </view>
+      </scroll-view>
+      <view class='type-updown' id="1" bindtap='showMenu'>
+      </view>
+    </view>
+    </block>
+  </view>
+  <view class='app-main' style="padding-top:{{activeCategoryId==0?'168rpx':'256rpx'}}">
+    
+    
+    <!--轮播图-->
+    <block wx:if="{{activeCategoryId==0}}">
+    <view class="swiper-container">
+      <swiper class="swiper_box" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" bindchange="swiperchange">
+        <block wx:for="{{banners}}" wx:key="id">
+          <swiper-item>
+            <image bindtap="tapBanner" data-id="{{item.banner_detail_url}}" src="{{item.banner_url}}" class="swiper_box"/>
+          </swiper-item>
+        </block>
+      </swiper>
+      <view class="dots">
+        <block wx:for="{{banners}}" wx:key="unique">
+          <view class="dot{{index == swiperCurrent ? ' active' : ''}}"></view>
+        </block>
+      </view>
+    </view>
+    </block>
+    <view class='time_quantum'>
+      <view class="time_item {{tp==0?'time_item_active':''}}" bindtap='selectTab' data-tp='0'>
+        全部
+      </view>
+      <view class="time_item {{tp==1?'time_item_active':''}}" data-tp='1' bindtap='selectTab'>
+      高佣
+      </view>
+      <view class="time_item {{tp==datatp1?'time_item_active':''}}" data-tp='{{datatp1}}' id="0" bindtap='selectSort'>
+      价格<image src="{{imageurl1}}" class='sort-img'></image>
+      </view>
+      <view class="time_item {{tp==datatp2?'time_item_active':''}}" data-tp='{{datatp2}}' id="1" bindtap='selectSort'>
+      销量<image src="{{imageurl2}}" class='sort-img'></image>
+      </view>
+    </view>
+
+
+    <view wx:for="{{goods}}" bindtap="toDetailsTap" data-id="{{item.goods_id}}" wx:key="id">
+      <view class='item_box'>
+        <image src="{{item.goods_thumbnail_url}}"  lazy-load="true" class="item_img" mode='aspectFill' ></image>
+        <view class='item_info_box' bindtap="toDetailsTap" data-id="{{item.goods_id}}">
+          <view class='item_name'>{{item.goods_name}}</view>
           <view class='item_discount'>
-            <image src='/images/quan.png' class='quan_img'></image>
-            <view class='quan_text'>券￥{{item.discount}}</view>
+            <image src='https://aishangnet.club/static/mina_pic/quan_1.png' class='quan_img'></image>
+            <view class='quan_text'>{{item.coupon_discount}}<text class='discount_unit'>元</text></view>
           </view>
-          <view class='item_sale'>已拼{{ item.sold_quantity }}单</view>
-        </view>
-        <view class='price_box clearfix'>
-        <view class='item_left_buy'>券后价￥{{item.min_price}}</view>
-          <view class='item_buy'>
-          <image src='/images/ic_fenxiang.png' class='bottom_img'></image>
-          <view class='item_but_text'>分享赚:{{item.promotion}}</view>
+          <view class='old_box'>
+          原价:<text class='oldprice'>¥{{item.row_price}}</text><text class='selledline'>|</text>已售{{item.sold_quantity}}件
+          </view>
+          <view class='price_box clearfix'>
+            <view class='item_price'>券后价：<text class='item_price_num'>￥{{item.min_price}}</text></view>
+            <view class='item_buy'>
+              <image src='https://aishangnet.club/static/mina_pic/fenxiang-4.png' class='bottom_img'></image>
+              <text class='item_but_text'>分享赚:{{item.promotion}}</text>
+            </view>
           </view>
         </view>
       </view>
     </view>
-  </view>
 
-  <view hidden="{{loadingMoreHidden ? true : false}}" class="no-more-goods">哥也是有底线的</view>
+    <view hidden="{{loadingMoreHidden ? true : false}}" class="no-more-goods">哥也是有底线的</view>
+  </view>
+</view>
+<view class='mark' wx:if="{{is_open}}" style="top:{{currentid==0?'158rpx':'246rpx'}}">
+  <view class='categorys'>
+    <block wx:for="{{markList}}" wx:for-index="i" wx:for-item="item" wx:key="id">
+        <view id="{{item.opt_id}}"  data-parent="{{item.parent_opt_id}}" class="item-category" bindtap="catClick">
+            {{item.opt_name}}
+        </view>
+    </block>
+  </view>
 </view>

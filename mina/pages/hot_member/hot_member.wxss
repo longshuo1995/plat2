@@ -1,97 +1,204 @@
 /* pages/hot_sell/hot_sell.wxss */
-.clearfix:after{
-content:"";
-display:block;
-visibility:hidden;
-clear:both;
-height:0;
+.container{
+  min-height: 100%;
+  width: 100%;
 }
-.clearfix{ /* 为了照顾ie6浏览器*/
-zoom:1;
+.top-wrapper{
+  position: relative;
+  width: 100%;
+  height: 654rpx;
+  margin-bottom: 18rpx;
+}
+.billboard{
+  position: absolute;
+  z-index:-1;
+  top: 0;
+  width: 100%;
+	height: 312rpx;
+	background-image: linear-gradient(143deg, 
+		#f9756e 0%, 
+		#ea4037 100%), 
+	linear-gradient(
+		#1d90e5, 
+		#1d90e5);
+	background-blend-mode: normal, 
+		normal;
+}
+
+.wrapp-inner{
+  width: 690rpx;
+  margin: 0 auto;
+}
+
+.team_box{
+  padding-top: 17rpx;
+}
+.myself{
+  margin-right: 29rpx;
+}
+.team_active{
+  font-size: 46rpx;
+  color: #fefefe;
+}
+.team_text{
+  font-size: 36rpx;
+  color: #fff;
+}
+.paiming{
+  width: 100%;
+	height: 465rpx;
+	background-color: #ffffff;
+	box-shadow: 0px 6px 50px 0px 
+		rgba(0, 0, 0, 0.08);
+	border-radius: 20rpx;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-end;
+}
+.paiming-item{
+  width: 126rpx;
+  padding-bottom: 34rpx;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+}
+.one{
+  margin: 0 50rpx;
+}
+.paimingimg{
+  width: 126rpx;
+  margin-top:30rpx;
+  background-size: cover;
+  color: #fff;
+  /* display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center; */
+  position: relative;
+  text-align: center;
+  box-sizing: border-box;
+}
+.level{
+  font-size: 72rpx;
+  line-height:53rpx;
+}
+.number{
+  font-size: 30rpx;
+  position: absolute;
+  bottom: 22rpx;
+  line-height: 23rpx;
+  width: 100%;
+  text-align: center;
+}
+.paimingone{
+  padding-top: 50rpx;
+  height: 211rpx;
+  background-image: url(https://aishangnet.club/static/mina_pic/jinpai.png);
+}
+.paimingtwo{
+  padding-top: 32rpx;
+  height: 154rpx;
+  background-image: url(https://aishangnet.club/static/mina_pic/yinpai.png);
+}
+.paimingthree{
+  padding-top: 19rpx;
+  height: 141rpx;
+  background-image: url(https://aishangnet.club/static/mina_pic/tongpai.png);
+}
+.paimingavtor{
+  width: 96rpx;
+  height: 96rpx;
+  border-radius: 50%;
+  margin-bottom:13rpx;
+}
+.paimingavtorone{
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 50%;
+  margin-bottom:13rpx;
+}
+.item_name{
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space:nowrap;
+  font-size: 26rpx;
 }
 .time_quantum{
+  position: relative;
   height: 80rpx;
-  width: 90%;
-  margin:10rpx auto 20rpx;
+  width: 100%;
+  margin:28rpx 0 20rpx 0;
+}
+.time_bg{
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 100%;
   border-radius: 40rpx;
-  border:1rpx solid #E85654;
-  display:flex;
+  z-index: -1;
+  opacity: 0.3;
+  background: #fff
 }
 .time_item{
-  flex: 1;
+  position: absolute;
+  left: 0;
+  width: 50%;
+  z-index: 1;
   height: 100%;
-  box-sizing: border-box;
   border-radius: 40rpx;
-  font-size: 30rpx;
-  color: #E85654;
+  font-size: 34rpx;
   line-height: 80rpx;
-  text-align: center
+  text-align: center;
+  color: #fff;
 }
+
 .time_item_active{
-  background: linear-gradient(#E15654, #EE5654);
-  color: white;
+  opacity:1;
+  background: #fff;
+  color: #ea4037;
 }
 .item_box{
-  height: 240rpx;
-  border-bottom: 1px solid #EFEFED;
+  height: 124rpx;
+  width: 690rpx;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 .item_index{
-  width:120rpx;
-  height: 100%;
-  position: relative;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }
 .item_index_number{
-  width: 60rpx;
-  height: 60rpx;
-  position: absolute;
-  transform: translate(-50%,-50%); 
-  left: 50%;
-  top: 50%;
-  line-height: 60rpx;
-  text-align: center;
-  background: #B3B1B2;
-  border-radius: 30rpx;
-  color: white;
-  box-shadow: 2px 2px 5px #B3B1B2;
+  font-size: 36rpx;
+  color: #333;
 }
-.item_first{
-  background: #FFC806;
-  box-shadow: 2px 2px 5px #E4A53F;
+.item_index_name{
+  font-size: 34rpx;
+  color: #333;
 }
-.item_second{
-  background: #BAC1CF;
-  box-shadow: 2px 2px 5px #9E9BB1;
-}
-.item_three{
-  background: #E2B57C;
-  box-shadow: 2px 2px 5px #C78D4A;
+.item_sale{
+  font-size: 36rpx;
+  color: #ea4037;
 }
 .item_img{
-  width:150rpx;
-  height: 150rpx;
-  margin-top:40rpx;
-  margin-right:40rpx;
-  border-radius: 20rpx;
+  width: 88rpx;
+	height: 88rpx;
+  border-radius: 50%;
+  margin: 0 30rpx;
 }
 .item_info_box{
   height: 100%;
   min-width: 200rpx;
   max-width:400rpx;
 }
-.item_img,.item_index,.item_info_box{
-  float: left;
-}
-.item_name{
-  margin-top:40rpx;
-  text-overflow: -o-ellipsis-lastline;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  line-clamp: 2;
-  -webkit-box-orient: vertical;
-  font-size: 32rpx;
-}
+
+
 .sell_box{
   position: relative;
 }
@@ -109,15 +216,8 @@ zoom:1;
   position: relative;
   letter-spacing:0rpx;
 }
-.quan_text{
-  margin:0 20rpx;
-}
-.item_sale{
-  /*float: right;*/
-  font-size: 32rpx;
-  color: #E85654;
-  margin-top: 10rpx;
-}
+
+
 .price_box{
   margin-top:20rpx;
 }
@@ -186,17 +286,3 @@ zoom:1;
 
 
 
-.team_box{
-  height: 80rpx
-}
-.myself,.team{
-  float: left;
-  width: 50%;
-  line-height: 80rpx;
-  text-align: center;
-  box-sizing: border-box;
-}
-.team_active{
-  border-bottom: 2rpx solid #EE5654;
-  color: #EE5654;
-}

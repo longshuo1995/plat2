@@ -1,56 +1,56 @@
 <view class="container">
 	<view class="userinfo">
 		<image wx:if="{{userInfo && userInfo.icon_url }}" class="userinfo-avatar" src="{{ userInfo.icon_url }}" background-size="cover"></image>
-		<text class="userinfo-nickname">{{ userInfo.nick_name }}</text>
-	</view>
-  <!-- <view style="height:20rpx;background: #eee;width:100%;"></view> -->
-
-  <view class="earnings_box">
-    <view class='balance'>
-      <view class='balance_info'>
-        可提现:
-        <span class="balance_info_price">￥{{ userInfo.current_money }}</span>
-        提现中:
-        <span class="balance_info_price">￥{{ userInfo.checking_money }}</span>
+    <view class="userinfo-nickname"><text>{{ userInfo.nick_name }}</text></view>
+		<view class="userinfo-account"><text>账号： {{ userInfo.nick_name }}</text><label class='lab_copy' bindtap='copyBtn'>复制</label></view>
+    <view class='price_info clearfix'>
+      <view class="price_info_item">
+      <view class='price_item'>￥{{ finance.est_money }}</view>
+      <view>进行中</view>
       </view>
-      <view class='balance_get' bindtap="get_money">提现</view>
-    </view>
-    <view class='earnings_box_line'></view>
-    <view class='price_info'>
-      <view class="price_info_item item_first item_line">
-      <view class='price_item'>￥{{ userInfo.running_promotion }}</view>
-      <view>进行中:</view>
-      </view>
-      <view class="price_info_item item_line">
-      <view class='price_item'>￥{{ userInfo.today_promotion }}</view>
+      <view class="price_info_item">
+      <view class='price_item'>￥{{ finance.today_money }}</view>
       <view>今日预估</view>
       </view>
       <view class="price_info_item">
-      <view class='price_item'>￥{{ userInfo.running_order }}</view>
+      <view class='price_item'>￥{{ finance.order_num }}</view>
       <view>进行中订单</view>
       </view>
     </view>
+	</view>
+
+  <view class='balance clearfix'>
+    <view class='balance_info'>
+      可提现:
+      <span class="balance_info_price">￥{{ finance.current_money }}</span>
+    </view>
+    <view class='balance_info' style='text-align:center;'>
+      提现中:
+      <span class="balance_info_price">￥{{ finance.checking_money }}</span>
+    </view>
+    <view class='balance_info'>
+      <view class='balance_get' bindtap="get_money">提现</view>
+    </view>
   </view>
 
-  <view class="my-item">
-    <navigator url="/pages/my/order_list" hover-class="navigator-hover">订单详情</navigator>
+  <view class='my-item' style='border-bottom: 1px solid #ececec;'>
+    <navigator url="/pages/my/order_list" hover-class="none"><view><label class='item-line'></label>全部订单<image src="https://aishangnet.club/static/mina_pic/you.png" mode="aspectFit" class='arrowimg'></image></view></navigator>
+    <view class='order_info clearfix'>
+      <navigator url="/pages/my/order_list" hover-class="none"><view class="order_info_item">
+        <view><image src="https://aishangnet.club/static/mina_pic/youxiao.png" mode="aspectFit" class='orderimg'></image></view>
+        <view class='price_item'>有效订单</view>
+      </view></navigator>
+      <navigator url="/pages/my/order_list" hover-class="none"><view class="order_info_item">
+        <view><image src="https://aishangnet.club/static/mina_pic/shixiaodingdan.png" mode="aspectFit" class='orderimg'></image></view>
+        <view class='price_item'>失效订单</view>
+      </view></navigator>
+      <navigator url="/pages/my/order_list" hover-class="none"><view class="order_info_item">
+        <view><image src="https://aishangnet.club/static/mina_pic/tixian.png" mode="aspectFit" class='orderimg'></image></view>
+        <view class='price_item'>可提现订单</view>
+      </view></navigator>
+    </view>
   </view>
-  <view class="my-item">
-    <navigator url="/pages/my/partner" hover-class="navigator-hover">我的团队</navigator>
+  <view class='my-item'>
+    <navigator url="/pages/my/partner" hover-class="none"><view><image src="https://aishangnet.club/static/mina_pic/tuandui.png" mode="aspectFit" class='teamimg'></image>我的团队<image src="https://aishangnet.club/static/mina_pic/you.png" mode="aspectFit" class='arrowimg'></image></view></navigator>
   </view>
-  <!--<view class="my-item">-->
-    <!--<navigator url="/pages/my/addressSet" hover-class="navigator-hover">信息设置</navigator>-->
-  <!--</view>-->
-
-  <!--<view class="my-item">-->
-    <!--<navigator url="/pages/my/commentList" hover-class="navigator-hover">联系我们</navigator>-->
-  <!--</view>-->
-  <!--<view class="my-item">-->
-    <!--<button open-type="share">奇遇分享</button>-->
-  <!--</view>-->
-
-  <view style="height:20rpx;background: #eee;width:100%;"></view>
-  <view class="version">Powered by 奇遇拼团</view>
-  <view style="height:20rpx;background: #eee;width:100%;"></view>
-
 </view>

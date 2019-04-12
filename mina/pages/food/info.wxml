@@ -1,3 +1,4 @@
+<wxs module="dateUtil" src="./timeUtil.wxs"></wxs>
 <view class="container">
   <!--商品轮播图--> 
    <view class="swiper-container">
@@ -18,49 +19,105 @@
    <view class="goods-info">
         <view class="goods-title">{{info.name}}</view>
         <view class='goods-all'>
-          <view class="goods-price" style="padding-left:35rpx;">¥ {{info.price}}</view>
-          <view class="goods-price_tip">券后价</view>
+          <view class="goods-price_tip">券后价¥{{info.min_price}}</view>
           <view class="goods-price_old">原价¥{{ info.row_price }}</view>
-          <view class="goods-price_right">已拼{{ info.sold_quantity }}单</view>
+          <view class='goods-quan'>
+            <image src='https://aishangnet.club/static/mina_pic/quan_2.png' class='quanimg'/>
+            <view class='quantext'>劵{{info.coupon_discount}}元</view>
+          </view>
         </view>
         <view class="goods-info-fx">
-          <image src='/images/qd.png' />
-          <button open-type="share">分享</button>
-          <text>返:{{ info.percent_rate }}%</text>
+          <view class="goods-price_right">已售{{ info.sold_quantity }}件</view>
+          <view>
+            <image src='https://aishangnet.club/static/mina_pic/shoucang.png' class='goods-saveimg'/><text class='goods-save'>收藏</text>
+          </view>
         </view>
    </view>
+   <!-- 优惠券 -->
+   <view class='goods-coupon'>
+      <view class='coupon-bg'>
+      <view class='coupon-text'>优惠券</view>
+      <view class='coupon-use'>
+        <view class='coupon-price'>￥{{info.coupon_discount}}</view>
+        <view class='coupon-date'>有效期{{info.coupon_start_time}}-{{info.coupon_end_time}}</view>
+      </view>
+      </view>
+      <view class='coupon-surplus'>
+        <view>优惠券剩余</view>
+        <view>{{info.coupon_remain_quantity}}/{{info.coupon_total_quantity}}张</view>
+      </view>
+   </view>
+   <!-- 标题 -->
+   <view class='goods-midtitle'>
+    <view class='midtitle-item'><image class="midtitle-itemimg" src='https://aishangnet.club/static/mina_pic/duihao.png'/><text>领券省钱</text></view>
+    <view class='midtitle-item'><image class="midtitle-itemimg" src='https://aishangnet.club/static/mina_pic/duihao.png'/><text>超低折扣</text></view>
+    <view class='midtitle-item'><image class="midtitle-itemimg" src='https://aishangnet.club/static/mina_pic/duihao.png'/><text>超值正品</text></view>
+   </view>
+   <!-- 商家 -->
+   <view class='seller'>
+    <view class='seller-top'>
+      <image src='{{mall.logo}}' class='seller-img' lazy-load="{{true}}"></image>
+      <view class='seller-desc'>
+        <view class='seller-name'>{{mall.mall_name}}</view>
+        <view class='sell-numdesc'>{{mall.goods_num_desc}}<text style='margin-left:24rpx;'>{{mall.sales_tip}}</text></view>
+      </view>
+    </view>
+    <view class='seller-code'>
+      <view class='seller-item'>描述相符<text class='seller-score'>{{mall.dsr.desc_score}}</text><view class='seller-level'><view class='level-bg'></view><text>{{mall.dsr.desc_rating}}</text></view></view>
+      <view class='seller-item'>服务态度<text class='seller-score'>{{mall.dsr.service_score}}</text><view class='seller-level'><view class='level-bg'></view><text>{{mall.dsr.service_rating}}</text></view></view>
+      <view class='seller-item'>物流服务<text class='seller-score'>{{mall.dsr.logistics_score}}</text><view class='seller-level'><view class='level-bg'></view><text>{{mall.dsr.logistics_rating}}</text></view></view>
+    </view>
+   </view>
+   <!-- 评论 -->
+    
     <view class="goods-des-info">
-        <view class="label-title">商品介绍</view>
+      <navigator url="/pages/food/comment?id={{goods_id}}" hover-class="none">
+        <view class='goods-des'>
+          <view style='font-size: 30rpx;color:#000;'>评论</view>
+          <image src="https://aishangnet.club/static/mina_pic/you.png" mode="aspectFit" class='arrowimg'></image>
+        </view>
+      </navigator>
+    </view>
+    <view class="reviews" wx:for="{{reviews}}" wx:key="id">
+      <view class='user-reviews'>
+        <view style='display:flex;flex-direction:row;align-items:center;'>
+          <image style="width: 60rpx; height: 60rpx;border-radius: 50%; " src="{{item.avatar}}"></image>
+          <text style="font-size: 30rpx;color:#000;margin-left:24rpx;">{{item.name}}</text>
+        </view>
+        <view style="color: #787878;font-size:24rpx;">{{dateUtil.timestampToTime(item.time)}}</view>
+      </view>
+      <view class='reviewstitle'>
+      {{item.comment}}
+      </view>
+      <view class='reviewsspecs'>
+      {{item.text}}
+      </view>
+    </view>
+    <navigator url="/pages/food/comment?id={{goods_id}}" hover-class="none">
+      <view class='show-reviews'>展开评论</view>
+      </navigator>
+    <view class="goods-detail">
+        商品详情
+    </view>
+    <view>
         <view class="goods-text">
             {{ info.goods_desc }}
          </view>
-        <block wx:for="{{info.pics}}" wx:key="id">
-            <image src="{{item}}" class="slide-image" width="355" height="150" mode="aspectFit" lazy-load="true"/>
+         <view style="text-align:center;padding-bottom:130rpx;">
+          <block wx:for="{{info.pics}}" wx:key="id">
+            <image src="{{item}}" class="slide-image" mode="widthFix" lazy-load="true"/>
         </block>
-    </view>
-
-    <!--用户评价-->
-    <view class="goods-des-info" style="margin-top:35rpx;" wx:if="{{commentList}}">
-        <view class="label-title" style="border-bottom:1px solid #eee;">大家评价<text style="color:red">（{{commentCount}}）</text></view>
-        <view class="goods-text" style="margin-top:15rpx;border-bottom:1px solid #eee;" wx:for="{{commentList}}">
-          <view style="width:100rpx;float:left;">
-            <image style="width: 100rpx; height: 100rpx;" src="{{item.user.avatar_url}}"></image>
-            <view style="text-align:center;width:100rpx;">{{item.score}}</view>
-          </view>
-          <view style="width:550rpx;float:left;margin-left:35rpx;">
-            <view>{{item.content}}</view>
-            <view style="color: #B0B0B0;font-size:24rpx;">{{item.date}}</view>
-          </view>
-        </view>
+         </view>
     </view>
 
     <!--底部-->
     <view class="footer-box">      
-        <view class="shop-cart-btn">
-            <view style='position:absolute;bottom:10rpx;'></view>
+        <view class="home">
+          <view class='homebg'></view>
+          <view class='hometxt'>首页</view>
         </view>
-        <view class="join-shop-cart" bindtap="copy">复制推广链接</view>
-        <view class="now-buy" bindtap="tobuy">自购返￥{{ info.promotion }}</view>
+        <view class="btn now-buy" style="margin-right:8rpx;background-color: #000;" bindtap="tobuy">自购返：￥{{info.promotion}}</view>
+        <view class="btn join-shop-cart" style="background-color: #ea4037;" bindtap="copy">分享赚：￥{{info.shareprice}}</view>
    </view>
 
    <!--购买和收藏弹窗-->

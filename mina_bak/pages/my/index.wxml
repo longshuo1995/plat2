@@ -1,0 +1,56 @@
+<view class="container">
+	<view class="userinfo">
+		<image wx:if="{{userInfo && userInfo.icon_url }}" class="userinfo-avatar" src="{{ userInfo.icon_url }}" background-size="cover"></image>
+		<text class="userinfo-nickname">{{ userInfo.nick_name }}</text>
+	</view>
+  <!-- <view style="height:20rpx;background: #eee;width:100%;"></view> -->
+
+  <view class="earnings_box">
+    <view class='balance'>
+      <view class='balance_info'>
+        可提现:
+        <span class="balance_info_price">￥{{ userInfo.current_money }}</span>
+        提现中:
+        <span class="balance_info_price">￥{{ userInfo.checking_money }}</span>
+      </view>
+      <view class='balance_get' bindtap="get_money">提现</view>
+    </view>
+    <view class='earnings_box_line'></view>
+    <view class='price_info'>
+      <view class="price_info_item item_first item_line">
+      <view class='price_item'>￥{{ userInfo.running_promotion }}</view>
+      <view>进行中:</view>
+      </view>
+      <view class="price_info_item item_line">
+      <view class='price_item'>￥{{ userInfo.today_promotion }}</view>
+      <view>今日预估</view>
+      </view>
+      <view class="price_info_item">
+      <view class='price_item'>￥{{ userInfo.running_order }}</view>
+      <view>进行中订单</view>
+      </view>
+    </view>
+  </view>
+
+  <view class="my-item">
+    <navigator url="/pages/my/order_list" hover-class="navigator-hover">订单详情</navigator>
+  </view>
+  <view class="my-item">
+    <navigator url="/pages/my/partner" hover-class="navigator-hover">我的团队</navigator>
+  </view>
+  <!--<view class="my-item">-->
+    <!--<navigator url="/pages/my/addressSet" hover-class="navigator-hover">信息设置</navigator>-->
+  <!--</view>-->
+
+  <!--<view class="my-item">-->
+    <!--<navigator url="/pages/my/commentList" hover-class="navigator-hover">联系我们</navigator>-->
+  <!--</view>-->
+  <!--<view class="my-item">-->
+    <!--<button open-type="share">奇遇分享</button>-->
+  <!--</view>-->
+
+  <view style="height:20rpx;background: #eee;width:100%;"></view>
+  <view class="version">Powered by 奇遇拼团</view>
+  <view style="height:20rpx;background: #eee;width:100%;"></view>
+
+</view>

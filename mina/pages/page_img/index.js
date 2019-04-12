@@ -6,9 +6,8 @@ Page({
     },
 
     onLoad: function (options) {
-        console.log(options);
         this.setData({
-            pic_url: 'https://aishangnet.club/static/index_img_detail/' + options.pic_url
+            pic_url: options.pic_url
         })
     },
     onShow: function () {

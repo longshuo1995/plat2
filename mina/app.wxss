@@ -10,3 +10,13 @@
 .wxParse-img {
   display: block !important;
 }
+.clearfix:after{
+  content:"";
+  display:block;
+  visibility:hidden;
+  clear:both;
+  height:0;
+}
+.clearfix{
+  zoom:1;
+}

@@ -20,22 +20,13 @@ Page({
         id: 0,
         shopCarNum: 4,
         commentCount:2,
-        info: {
-            'pics': [
-                'https://t00img.yangkeduo.com/goods/images/2018-11-30/7c9f78d0dc92c980203d36a0a81339ec.jpeg',
-                'https://t00img.yangkeduo.com/goods/images/2018-11-24/fa21bbb71e5615dcda2b8f40866f6cf4.jpeg'
-            ],
-            'name': '多功能衣架收纳神器折叠衣架子阳台挂衣架家用晾衣架抖音魔术衣撑',
-            'price': 11,
-            'row_price': 10,
-            'promotion_rate': 20,
-            'short_url': 'www.baidu.com',
-            'goods_desc': '【收藏商品优先发货,优先发货,优先发货,重要的事情说三遍】【厂家直销没有中间商赚差价】【拒绝假实惠,质量保证,七天无理由退换】【48小时内发货】【产品如有瑕疵,请直接联系客服,我们给您最完美的解决】'
-        }
+        info: {},
+      mall: {},
+      reviews: [],
+      goods_id: ''
     },
     onShareAppMessage: function(){
         var path = '/pages/food/info?id=' + e.id + '&from_openid=' + app.globalData.userInfo.open_id;
-        console.log(path);
         return {
             title: "自购省钱，推广赚钱",
             path: '/pages/food/info?id=' + e.id + '&from_openid=' + app.globalData.userInfo.open_id,
@@ -45,27 +36,29 @@ Page({
             },
         }
     },
-    onLoad: function (e) {
-        // that.setData({
-        //     id: e.id
-        // });
-        if(options.from_openid){
-            app.globalData.refer_openid = options.from_openid
-        }
-        var that = this;
-        var cache_path = '/pages/food/info?id=' + e.id;
-        app.globalData.cache = cache_path;
-        app.pre_load();
+  onLoad: function (options) {
+    if (options.from_openid){
+      app.globalData.refer_openid = options.from_openid
+    }
+    var that = this;
+    var cache_path = '/pages/food/info?id=' + options.id;
+    
+    app.globalData.cache = cache_path;
+    // 暂时注释
+    // app.pre_load();
+    that.setData({
+      goods_id: options.id
+    })
+    that.getReviews(options.id)
         wx.request({
-            url: app.buildUrl("/good/get_pdd_url"),
+          url: app.buildUrl("/good/get_good_detail"),
             header: app.getRequestHeader(),
             data:{
-                good_id: e.id,
-                open_id: app.globalData.userInfo.open_id,
+              goods_id: options.id,
+              open_id: app.globalData.userInfo.open_id,
             },
             success: function (res) {
                 var resp = res.data;
-                console.log(resp);
                 if (resp.code != 200) {
                     app.alert({"content": resp.msg});
                     return;
@@ -74,24 +67,82 @@ Page({
                 if(app.globalData.userInfo.level > 0){
                     rate = 1
                 }
-
+              var mall_id = resp.data.mall_id
+              wx.request({
+                url: 'https://api.pinduoduo.com/mall/' + mall_id+'/info?check_merchant_score=yes',
+                header: app.getRequestHeader(),
+                success: function (res) {
+                  if (res.statusCode != 200) {
+                    app.alert({ "content": res.errMsg });
+                    return;
+                  } 
+                  var response = res.data
+                  if (response.dsr) {
+                    response.dsr.desc_rating = null
+                    response.dsr.service_rating = null
+                    response.dsr.logistics_rating = null
+                    var mall_rating_text_list = response.dsr.mall_rating_text_list
+                    mall_rating_text_list.forEach(item => {
+                      if(item.mall_rating_key.txt == '描述相符'){
+                        response.dsr.desc_rating = item.mall_rating_value.txt
+                      } else if (item.mall_rating_key.txt == '服务态度') {
+                        response.dsr.service_rating = item.mall_rating_value.txt
+                      } else if (item.mall_rating_key.txt == '物流服务') {
+                        response.dsr.logistics_rating = item.mall_rating_value.txt
+                      }
+                    })
+                  }
+                  that.setData({
+                    mall: response
+                  })
+                }
+              });
                 var dt = resp.data;
-                dt['promotion_rate'] = (dt['promotion_rate'] * rate).toFixed(2);
-                dt['percent_rate'] = dt['promotion_rate'] * 100;
-                dt['promotion'] = (dt['price'] * dt['promotion_rate']).toFixed(2);
-                dt['price'] = (dt['price']).toFixed(2)
-                dt['row_price'] = (dt['row_price']).toFixed(2)
+                dt['min_price'] = (dt['min_price']/100).toFixed(2)
+                dt['row_price'] = (dt['row_price']/100).toFixed(2)
+              dt['coupon_discount'] = (dt['coupon_discount']/100).toFixed(2)
+              dt['promotion'] = (dt['min_price'] * dt['promotion_rate'] * rate / 1000).toFixed(2)
+              dt['shareprice'] = (dt['promotion']*0.5).toFixed(2)
                 that.setData({
                     info: dt
                 })
+
             }
         });
 
 
     },
+    getReviews:function(id) {
+      var that = this
+      wx.request({
+        url: 'https://mobile.yangkeduo.com/proxy/api/reviews/' + id+'/list?page=1&size=10&enable_video=0',
+        header: app.getRequestHeader(),
+        success: function (res) {
+          if (res.statusCode != 200) {
+            app.alert({ "content": res.errMsg });
+            return;
+          }
+          var reviews = res.data.data
+          var avatar = reviews[0].avatar
+          var name = reviews[0].name
+          var time = reviews[0].time
+          var comment = reviews[0].comment
+          var specs = JSON.parse(reviews[0].specs)
+          var text = specs[0].spec_key + ":  " + specs[0].spec_value
+          
+          that.setData({
+            reviews: [{
+              avatar,
+              name,
+              time,
+              comment,
+              text
+            }]
+          })
+        }
+      });
+    },
     onShow:function(){
-        // this.getInfo();
-        // this.getComments();
     },
     goShopCar: function () {
         wx.reLaunch({
@@ -202,56 +253,6 @@ Page({
         this.setData({
             swiperCurrent: e.detail.current
         })
-    },
-    getInfo: function () {
-        var that = this;
-        wx.request({
-            url: app.buildUrl("/food/info"),
-            header: app.getRequestHeader(),
-            data: {
-                id: that.data.id
-            },
-            success: function (res) {
-                var resp = res.data;
-                if (resp.code != 200) {
-                    app.alert({"content": resp.msg});
-                    wx.navigateTo({
-                        url: "/pages/food/index"
-                    });
-                    return;
-                }
-
-                that.setData({
-                    info: resp.data.info,
-                    buyNumMax: resp.data.info.stock,
-                    shopCarNum:resp.data.cart_number
-                });
-
-                WxParse.wxParse('article', 'html', resp.data.info.summary, that, 5);
-            }
-        });
-    },
-    getComments:function(){
-        var that = this;
-        wx.request({
-            url: app.buildUrl("/food/comments"),
-            header: app.getRequestHeader(),
-            data: {
-                id: that.data.id
-            },
-            success: function (res) {
-                var resp = res.data;
-                if (resp.code != 200) {
-                    app.alert({"content": resp.msg});
-                    return;
-                }
-
-                that.setData({
-                    commentList: resp.data.list,
-                    commentCount: resp.data.count,
-                });
-            }
-        });
     },
     onShareAppMessage: function () {
         var that = this;

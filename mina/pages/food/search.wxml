@@ -1,0 +1,79 @@
+<view class="search-view clearfix">
+  <view class="search-content">
+    <image src="https://aishangnet.club/static/mina_pic/ic_search_2.png" class="search-icon" />
+    <input placeholder="搜索关键字" class="search-input" placeholder-class="placeholder" maxlength="30" confirm-type="搜索" value="{{searchInput}}" bindinput='listenerSearchInput' bindconfirm='toSearch'>
+    </input>
+    <image src="https://aishangnet.club/static/mina_pic/cross.png" class="search-del" wx:if="{{searchInput!=''}}" bindtap='clearInput'/>
+  </view><view class="search-text" bindtap='setSearchStorage'>搜索</view>
+</view>
+<view class='app-main' hidden='{{isShow}}'>
+  <block wx:if="{{sercherStorage.length!==0}}">
+    <view>
+      <view class='history'>
+        <view class="history-span">历史搜索</view>
+        <view class="history-clear" bindtap='clearSearchStorage'></view>
+      </view>
+      <view class='label-view clearfix'>
+        <block wx:for="{{sercherStorage}}" wx:key="id">
+          <view class='search-label' bindtap='tapSercherStorage' id="{{item}}">{{item}}</view>
+        </block>
+      </view>
+    </view>
+  </block>
+  <block wx:if="{{hotlist.length!==0}}">
+    <view>
+      <view class='history' style="margin-top:{{sercherStorage.length!==0?'0':'24rpx'}}">
+        <view class="history-span">热门搜索</view>
+      </view>
+      <view class='label-view clearfix'>
+        <block wx:for="{{hotlist}}" wx:key="id">
+          <view class='search-label' id="{{item}}" bindtap='tapChoose'>{{item}}</view>
+        </block>
+      </view>
+    </view>
+  </block>
+</view>
+<view class='app-main' hidden='{{!isShow}}'>
+  <view class='time_quantum'>
+    <view class="time_item {{tp==0?'time_item_active':''}}" bindtap='selectTab' data-tp='0'>
+      全部
+    </view>
+    <view class="time_item {{tp==datatp1?'time_item_active':''}}" data-tp='{{datatp1}}' id="0" bindtap='selectSort'>
+    价格<image src="{{imageurl1}}" class='sort-img'></image>
+    </view>
+    <view class="time_item {{tp==datatp2?'time_item_active':''}}" data-tp='{{datatp2}}' id="1" bindtap='selectSort'>
+    销量<image src="{{imageurl2}}" class='sort-img'></image>
+    </view>
+  </view>
+
+
+  <view wx:for="{{goods}}" bindtap="toDetailsTap" data-id="{{item.id}}" wx:key="id">
+    <view class='item_box'>
+      <image src="{{item.goods_thumbnail_url}}"  lazy-load="true" class="item_img" mode='aspectFill' ></image>
+      <view class='item_info_box' bindtap="toDetailsTap" data-id="{{item.goods_id}}">
+        <view class='item_name'>{{item.goods_name}}</view>
+        <view class='item_discount'>
+          <image src='https://aishangnet.club/static/mina_pic/quan_1.png' class='quan_img'></image>
+          <view class='quan_text'>{{item.coupon_discount}}<text class='discount_unit'>元</text></view>
+        </view>
+        <view class='old_box'>
+        原价:<text class='oldprice'>¥{{item.row_price}}</text><text class='selledline'>|</text>已售{{item.sold_quantity}}件
+        </view>
+        <view class='price_box clearfix'>
+          <view class='item_price'>券后价：<text class='item_price_num'>￥{{item.min_price}}</text></view>
+          <view class='item_buy'>
+            <image src='https://aishangnet.club/static/mina_pic/fenxiang-4.png' class='bottom_img'></image>
+            <text class='item_but_text'>分享赚:{{item.promotion}}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="no-more" hidden='{{noMore}}'>--没有更多商品了--</view>
+  <view hidden='{{show_model}}'>
+  <view class="comment-loadmore" hidden='{{!noMore}}'>
+    <view class="comment-loading"></view>
+    <view class="comment-loadmore-tips">正在加载</view>
+  </view>
+</view> 
+</view>

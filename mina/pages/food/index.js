@@ -10,6 +10,8 @@ Page({
         loadingHidden: false, // loading
         swiperCurrent: 0,
         categories: [],
+        childlist: [],
+        banners: [],
         activeCategoryId: 0,
         goods: [],
         scrollTop: "0",
@@ -17,7 +19,15 @@ Page({
         searchInput: '',
         p:1,
         processing:false,
-        rate: app.globalData.promotion_rate
+        rate: app.globalData.promotion_rate,
+        tp:0,
+      imageurl1: 'https://aishangnet.club/static/mina_pic/paixu_3.png',
+      imageurl2: 'https://aishangnet.club/static/mina_pic/paixu_3.png',
+      datatp1: 3,
+      datatp2: 5,
+      is_open: false,
+      markList: [],
+      currentid: 0
     },
     onShareAppMessage: function(){
         return {
@@ -41,13 +51,8 @@ Page({
     },
     //解决切换不刷新维内托，每次展示都会调用这个方法
     onShow:function(){
-        this.getBannerAndCat();
-    },
-    scroll: function (e) {
-        var that = this, scrollTop = that.data.scrollTop;
-        that.setData({
-            scrollTop: e.detail.scrollTop
-        });
+        this.getBanner();
+        this.getClassList()
     },
     //事件处理函数
     swiperchange: function (e) {
@@ -60,13 +65,80 @@ Page({
             searchInput: e.detail.value
         });
     },
-    toSearch:function( e ){
+  showMenu: function(e) {
+    let id = e.currentTarget.id
+    if (!this.data.is_open) {
+      if (id == 0) {
         this.setData({
-            p:1,
-            goods:[],
-            loadingMoreHidden:true
-        });
-        this.getFoodList();
+          markList: this.data.categories
+        })
+      } else {
+        this.setData({
+          markList: this.data.childlist
+        })
+      }
+    }
+    this.setData({
+      currentid: id,
+      is_open: !this.data.is_open
+    })
+  },
+    selectTab: function (e) {
+      let tp = e.currentTarget.dataset.tp;
+      let that = this;
+      that.setData({
+        imageurl1: "https://aishangnet.club/static/mina_pic/paixu_3.png",
+        imageurl2: "https://aishangnet.club/static/mina_pic/paixu_3.png",
+        tp: tp,
+        p: 1
+      })
+      that.getFoodList()
+    },
+    selectSort: function (e) {
+      let id = e.currentTarget.id; // 0 价格 1 销量
+      let tp = e.currentTarget.dataset.tp;
+      let that = this;
+      if (id == 0) {
+        if (that.data.datatp1 == 3) {
+          that.setData({
+            imageurl1: "https://aishangnet.club/static/mina_pic/paixu_2.png",
+            imageurl2: "https://aishangnet.club/static/mina_pic/paixu_3.png",
+            datatp1: 4,
+            tp: 4,
+            p: 1
+          })
+        } else {
+          that.setData({
+            imageurl1: "https://aishangnet.club/static/mina_pic/paixu_1.png",
+            imageurl2: "https://aishangnet.club/static/mina_pic/paixu_3.png",
+            datatp1: 3,
+            tp: 3,
+            p: 1
+          })
+        }
+      } else {
+        if (that.data.datatp2 == 5) {
+          that.setData({
+            imageurl1: 'https://aishangnet.club/static/mina_pic/paixu_3.png',
+            imageurl2: "https://aishangnet.club/static/mina_pic/paixu_2.png",
+            datatp2: 6,
+            tp: 6,
+            p: 1
+          })
+        } else {
+          that.setData({
+            imageurl1: 'https://aishangnet.club/static/mina_pic/paixu_3.png',
+            imageurl2: "https://aishangnet.club/static/mina_pic/paixu_1.png",
+            datatp2: 5,
+            tp: 5,
+            p: 1
+          })
+        }
+      }
+      that.getFoodList()
+    },
+    toSearch:function( e ){
+      wx.navigateTo({ url: 'search' });
 	},
     tapBanner: function (e) {
         if (e.currentTarget.dataset.id != 0) {
@@ -80,43 +152,94 @@ Page({
             url: "/pages/food/info?id=" + e.currentTarget.dataset.id
         });
     },
-    getBannerAndCat: function () {
-        var that = this;
-        wx.request({
-            url:app.buildUrl("/food/index"),
-            header: app.getRequestHeader(),
-            success: function (res) {
-                var resp = res.data
-                if(resp.code != 200){
-                    app.alert({"content": resp.msg})
-                    return
-                }
-                that.setData({
-                    banners: resp.data.banner_list,
-                    categories: resp.data.cat_list,
-
-                });
-            }
-        })
+    getBanner: function () {
+      var that = this;
+      wx.request({
+        url: app.globalData.domain + '/index/get_banner',
+        data: {},
+        header: {
+          'content-type': 'application/json' // 默认值
+        },
+        success: (res) => {
+          let banner_list = res.data.data
+          that.setData({
+            banners: banner_list
+          })
+        }
+      })
     },
     catClick: function (e) {
+      let id = e.currentTarget.id
+      if (id === this.data.activeCategoryId) return
+      let parent = e.currentTarget.dataset.parent
+      if (this.data.is_open) {
         this.setData({
-            activeCategoryId: e.currentTarget.id
-        });
-        this.setData({
-            loadingMoreHidden: true,
-            p:1,
-            goods:[]
-        });
-        this.getFoodList();
+          is_open: false
+        })
+      }
+      this.setData({
+        activeCategoryId: id,
+        loadingMoreHidden: true,
+        p:1,
+        goods:[]
+      });
+      if (parent==0) {
+      this.getChildList(id)
+      }
+      this.getFoodList();
     },
     onReachBottom: function () {
-        var that = this;
-        setTimeout(function () {
-            that.getFoodList();
-        }, 500);
+      var that = this;
+      if (that.data.processing) {
+        return;
+      }
+      that.setData({
+        p: that.data.p+1
+      })
+      that.getFoodList()
     },
-
+    getChildList:function(id) {
+      var that = this
+      wx.request({
+        url: app.globalData.domain + '/good/opt_get',
+        data: {
+          parent_opt_id: id
+        },
+        header: {
+          'content-type': 'application/json' // 默认值
+        },
+        success: (res) => {
+          let childlist = res.data.data
+          that.setData({
+            childlist: childlist
+          })
+        }
+      })
+    },
+    getClassList: function() {
+      var that = this
+      wx.request({
+        url: app.globalData.domain + '/good/opt_get',
+        data: {
+          parent_opt_id: 0
+        },
+        header: {
+          'content-type': 'application/json' // 默认值
+        },
+        success: (res) => {
+          let categories = res.data.data
+          categories.unshift({
+            level:1,
+            opt_id: 0,
+            opt_name: '今日推荐',
+            parent_opt_id: 0
+          })
+          that.setData({
+            categories: categories
+          })
+        }
+      })
+    },
     getFoodList: function () {
         var that = this;
         if( that.data.processing ){
@@ -132,12 +255,13 @@ Page({
         });
 
         wx.request({
-            url: app.buildUrl("/food/search"),
+            url: app.buildUrl("/good/search"),
             header: app.getRequestHeader(),
             data: {
-                cat_id: that.data.activeCategoryId,
-                mix_kw: that.data.searchInput,
-                p: that.data.p,
+              opt_id: that.data.activeCategoryId,
+              mix_kw: '',
+              page: that.data.p,
+              sort_type: that.data.tp
             },
             success: function (res) {
                 var resp = res.data;
@@ -152,8 +276,10 @@ Page({
                     rate = 1
                 }
                 for(var i=0; i<goods.length; i++){
-                    goods[i]['promotion'] = (rate * goods[i]['promotion_rate']*goods[i]['min_price']).toFixed(2)
-                    goods[i]['min_price'] = goods[i]['min_price'].toFixed(2)
+                  goods[i]['row_price'] = (goods[i]['row_price'] / 100).toFixed(2)
+                  goods[i]['coupon_discount'] = (goods[i]['coupon_discount'] / 100).toFixed(2)
+                  goods[i]['min_price'] = (goods[i]['min_price'] / 100).toFixed(2)
+                  goods[i]['promotion'] = (rate * goods[i]['promotion_rate']/1000*goods[i]['min_price']).toFixed(2)
                 }
                 that.setData({
                     goods: that.data.goods.concat( goods ),

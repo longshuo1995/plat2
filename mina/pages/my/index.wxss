@@ -2,114 +2,140 @@
   min-height: 100%;
   overflow: hidden;
   overflow-y: hidden;
+  width: 690rpx;
+  margin: 0 auto;
 }
+
 .userinfo {
-	display: flex;
-	flex-direction: column;
-	padding: 50rpx 0;
-	align-items: center;
-	background: #e85654;
-    width: 750rpx;
-}
-
-.userinfo-avatar {
-	width: 160rpx;
-	height: 160rpx;
-	margin: 20rpx;
-	border-radius: 50%;
-}
-
-.userinfo-nickname {
-  margin-top: 20rpx;
+  position: relative;
+	height: 300rpx;
+  width: 100%;
+	background-image: linear-gradient(143deg, 
+		#f9756e 0%, 
+		#ea4037 100%), 
+	linear-gradient(
+		#787878, 
+		#787878);
+	background-blend-mode: normal, 
+		normal;
+	border-radius: 20rpx;
   color: #FFF;
 }
 
+.userinfo-avatar {
+  position: absolute;
+  top: 34rpx;
+  left: 28rpx;
+	width: 92rpx;
+	height: 92rpx;
+	border-radius: 50%;
+}
+.userinfo-nickname {
+  padding-left: 143rpx;
+  font-size: 32rpx;
+  margin-top: 47rpx;
+}
+.userinfo-account{
+  padding-left: 143rpx;
+  font-size: 24rpx;
+}
 
-.version {
-  width:100%;
-  height: 40rpx;
-	line-height: 40rpx;
-	font-size: 24rpx;
-	text-align: center;  
-  padding: 40rpx;
+
+.balance{
+  position: relative;
+  width: 100%;
+  border-bottom: 1px solid #ececec;
+}
+
+.balance_info{
+  float: left;
+  width: 33.33%;
+  height: 115rpx;
+  line-height: 115rpx;
+  font-size:30rpx;
+  color: #787878;
+}
+.balance_info_price{
+  color: #ea4037;
+}
+.balance_get{
+  position:absolute;
+  right:0;
+  line-height:60rpx;
+  width: 120rpx;
+	height: 60rpx;
+  text-align: center;
+	background-color: #ea4037;
+	border-radius: 10rpx;
+  color: #fff;
+  margin-top: 33rpx;
+}
+.lab_copy{
+  width: 78rpx;
+	height: 30rpx;
+  padding:0 15rpx;
+  margin-left: 10rpx;
+	border-radius: 15rpx;
+  font-size: 24rpx;
+	border: solid 1px #fff;
+}
+.price_info{
+  position:absolute;
+  left:0;
+  right:0;
+  bottom:33rpx;
+  font-size: 28rpx;
+}
+.price_info_item{
+  float:left;
+  box-sizing:border-box;
+  width:33.33%;
+  text-align:center;
 }
 
 .my-item{
     width: 100%;
-    background: "../../images/arrow-right.png" no-repeat 750rpx center;
-    background-size: 16rpx auto,750rpx auto;
-    margin: 20rpx 0; 
-    border-bottom: 1px solid #eee;
-    height: 100rpx;
-    line-height: 100rpx;
-    padding-left: 100rpx;
+    margin-top: 26rpx; 
+    font-size: 30rpx;
+    color: #787878;
 }
-
-/* 收益信息 */
-.earnings_box{
-  width: 96%;
-  height: 260rpx;
-  margin: 10rpx auto 10rpx;
-  box-shadow: 2rpx 2rpx 5rpx #8F8F8F;
+.item-line{
+  display:inline-block;
+  width: 8rpx;
+	height: 29rpx;
+	background-color: #ea4037;
+	border-radius: 4rpx;
+  margin-right: 12rpx;
+  vertical-align:middle;
 }
-.balance{
-  height: 100rpx;
-  position: relative;
+.arrowimg{
+  float: right;
+  width: 16rpx;
+	height: 29rpx;
 }
-.earnings_box_line{
-    width: 90%;
-    height: 4rpx;
-    margin: 0 auto;
-    background: #f3f3f3;
+.order_info{
+  margin-top: 28rpx;
+  margin-bottom: 30rpx;
 }
-.price_info{
-  height: 140rpx;
-}
-.balance_info{
-  position: absolute;
-  height: 80rpx;
-  margin-top:10rpx;
-  line-height: 80rpx;
-  font-size:28rpx;
-  left:5%;
-}
-
-.balance_get{
-  position:absolute;
-  border:2rpx solid #E64340;
-  border-radius:20rpx;
-  right:5%;
-  height:60rpx;
-  line-height:60rpx;
-  font-size:30rpx;
-  padding:0 20rpx;
-  margin-top:20rpx;
-  color:#e64340;
-}
-.balance_info_price{
-  color: #e64340;
-  font-size:28rpx;
-  padding-right: 100rpx;
-}
-
-.price_info_item{
+.order_info_item{
   float:left;
   box-sizing:border-box;
-  width:30%;
+  width:33.33%;
   text-align:center;
-  height:100rpx;
-  margin-top:20rpx;
-  color: #CECECE;
-  font-size:36rpx;
-  
-  
+  font-size: 28rpx;
+  color: #666;
 }
-.item_first{
-  margin-left:5%;
+.orderimg{
+  width: 78rpx;
+	height: 78rpx;
 }
-.item_line{
-  border-right:2rpx solid #f2f2f2;
+.teamimg{
+  width: 50rpx;
+	height: 42rpx;
+  margin-right: 21rpx;
+  vertical-align:middle;
 }
-.price_item{
-  color: #e64340;
-}
+
+
+
+
