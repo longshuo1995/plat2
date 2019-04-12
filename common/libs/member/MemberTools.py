@@ -15,3 +15,6 @@ def upgrade(open_id):
     tb.update({'_id': open_id}, {'$set': {'level': 1, 'leader_openid': open_id,
                                           'leader_master': info['leader_openid']}})
     tb.update({'refer_openid': open_id}, {'$set': {'leader_openid': open_id, 'leader_master': info['leader_openid']}})
+
+
+upgrade('ohl4g5USDznFdyo9qVFmZQcOn-6Q')
