@@ -1,5 +1,6 @@
 import hashlib
 import os
+import time
 
 import project_conf
 
@@ -29,3 +30,10 @@ def null_convert(value, is_int=False):
         return value if value else 0
     else:
         return value if value else ''
+
+
+def convert_time(timestamp, fmt):
+    if not timestamp or timestamp < 10000:
+        timestamp = int(time.time())
+    st = time.localtime(timestamp)
+    return time.strftime(fmt, st)

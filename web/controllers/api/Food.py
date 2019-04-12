@@ -113,6 +113,10 @@ def get_pdd_url():
             'min_price': row_price-discount,
             'row_price': row_price,
             'sold_quantity': good_detail.get('sold_quantity', 0),
+            'coupon_start_time': StrTools.convert_time(good_detail.get('coupon_start_time', 0), fmt='%m-%d'),
+            'coupon_end_time': StrTools.convert_time(good_detail.get('coupon_end_time', 0), fmt='%m-%d'),
+            'coupon_total_quantity': good_detail.get('coupon_total_quantity', 5000),
+            'coupon_remain_quantity': good_detail.get('coupon_remain_quantity', 3000),
         }
         if not resp['data']['goods_desc']:
             resp['data']['goods_desc'] = '该商品暂无描述'
