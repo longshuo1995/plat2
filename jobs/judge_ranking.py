@@ -39,9 +39,9 @@ def judge_local(offset_time, file_nm):
             'goods_id': goods_detail['goods_id'],
             'goods_name': goods_detail['goods_name'],
             'goods_thumbnail_url': goods_detail['goods_thumbnail_url'],
-            'row_price': goods_detail['min_normal_price'],
-            'min_price': goods_detail['min_normal_price'] - goods_detail.get('coupon_discount', 0),
-            'discount': goods_detail.get('coupon_discount', 0),
+            'row_price': goods_detail['min_group_price'],
+            'min_price': goods_detail['min_group_price'] - goods_detail.get('coupon_discount', 0),
+            'coupon_discount': goods_detail.get('coupon_discount', 0),
             'promotion_rate': goods_detail['promotion_rate'],
             # 修改为自己的数据
             'sold_quantity': int(value_count[good_id])
