@@ -151,8 +151,8 @@ def calc_top_promotion(offset_time):
 
 
 if __name__ == '__main__':
-    calc_top_promotion(14 * project_conf.seconds_per_day)
-    calc_top_user(7 * project_conf.seconds_per_day)
+    # calc_top_promotion(14 * project_conf.seconds_per_day)
+    # calc_top_user(7 * project_conf.seconds_per_day)
     for item in project_conf.qiyu_range_pg:
         judge_local(item[0], item[1])
 
