@@ -8,9 +8,6 @@ from common.libs.member import MemberService
 from web.controllers.api import route_api
 
 
-
-
-
 @route_api.route('/member/login', methods=['GET', 'POST'])
 def login():
     req = request.values

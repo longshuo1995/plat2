@@ -25,7 +25,7 @@ def group_member():
                     'user_img': teacher_info['icon_url'],
                     'user_name': teacher_info['nick_name'],
                 })
-        if info['refer_id']:
+        if info['refer_id'] and info['refer_id'] != open_id:
             teacher_info = db_mongo.get_table('plat2', 'member').find_one({"_id": info['refer_id']})
             if teacher_info:
                 group_list.append({
@@ -35,11 +35,11 @@ def group_member():
                 })
     else:
         if group_id == 1:
-            query = {'refer_id': open_id}
+            query = {'refer_id': open_id, '_id': {'$ne': open_id}}
         elif group_id == 2:
             query = {'leader_openid': open_id, '_id': {'$ne': open_id}}
         elif group_id == 3:
-            query = {'leader_master': open_id}
+            query = {'leader_master': open_id, '_id': {'$ne': open_id}}
         items = db_mongo.get_table('plat2', 'member').find(query)
         for item in items:
             group_list.append({
