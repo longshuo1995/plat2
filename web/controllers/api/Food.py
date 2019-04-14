@@ -60,7 +60,7 @@ def foodSearch():
         min_price = row_price-quan_price
 
         # 高佣 价格过滤
-        if sort_tp == 2 and min_price < 1000:
+        if sort_tp == 2 and min_price < 100:
             continue
         sale_count = item.get('sold_quantity', 0)
 
