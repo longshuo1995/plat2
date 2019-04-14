@@ -15,7 +15,7 @@ def upgrade(open_id):
     if leader_master == open_id:
         leader_master = ''
     tb.update({'_id': open_id}, {'$set': {'level': 1, 'leader_openid': open_id,
-                                          'refer_id': open_id, 'leader_master': info['leader_openid']}})
+                                          'refer_id': open_id, 'leader_master': leader_master}})
     tb.update({'refer_openid': open_id}, {'$set': {'leader_openid': open_id, 'leader_master': leader_master}})
 
 
