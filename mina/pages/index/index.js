@@ -14,6 +14,7 @@ Page({
 
 
     onLoad: function () {
+        console.log('index ready...')
         app.pre_load();
         wx.setNavigationBarTitle({
             title: app.globalData.shopName

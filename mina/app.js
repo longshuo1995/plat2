@@ -8,6 +8,7 @@ App({
         });
 
         if(this.globalData.userInfo && this.globalData.userInfo.open_id){
+            console.log('step 1')
             return
         }
         this.globalData.userInfo = wx.getStorageSync('userInfo');

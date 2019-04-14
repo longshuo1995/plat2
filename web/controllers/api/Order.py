@@ -11,6 +11,7 @@ from web.controllers.api import route_api
 def my_order():
     resp = {'code': 200, 'msg': '操作成功~', 'data': {}}
     req = request.values
+    print(req)
     status = int(req['status']) if 'status' in req else 0
     open_id = req.get('openid')
     infos = db_mongo.get_table('plat2', 'order').find({'custom_parameters': open_id})

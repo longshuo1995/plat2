@@ -37,14 +37,14 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 0,
+			"current": 1,
 			"list": [
 				{
 					"id": 0,
 					"name": "page_index",
 					"pathName": "pages/index/index",
 					"query": "id=6869428690",
-					"scene": 1001
+					"scene": 1025
 				},
 				{
 					"id": 1,
@@ -52,20 +52,6 @@
 					"pathName": "pages/food/index",
 					"query": "",
 					"scene": 1001
-				},
-				{
-					"id": 2,
-					"name": "index",
-					"pathName": "pages/index/index",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "1",
-					"pathName": "pages/my/addressSet",
-					"query": "",
-					"scene": null
 				}
 			]
 		}

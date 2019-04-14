@@ -23,9 +23,9 @@ Page({
         this.getPayOrder();
     },
     orderDetail: function (e) {
-        wx.navigateTo({
-            url: "/pages/my/order_info?order_sn=" + e.currentTarget.dataset.id
-        })
+        // wx.navigateTo({
+        //     url: "/pages/my/order_info?order_sn=" + e.currentTarget.dataset.id
+        // })
     },
     onLoad: function (options) {
         // 生命周期函数--监听页面加载
@@ -94,9 +94,9 @@ Page({
         this.orderOps( e.currentTarget.dataset.id,"confirm","确定收到？" );
     },
     orderComment:function( e ){
-        wx.navigateTo({
-            url: "/pages/my/comment?order_sn=" + e.currentTarget.dataset.id
-        });
+        // wx.navigateTo({
+        //     url: "/pages/my/comment?order_sn=" + e.currentTarget.dataset.id
+        // });
     },
     orderOps:function(order_sn,act,msg){
         var that = this;
