@@ -55,6 +55,7 @@ Page({
     return obj
     },
   onLoad: function (options) {
+    console.log(options);
     if (options.from_openid){
       app.globalData.refer_openid = options.from_openid
     }

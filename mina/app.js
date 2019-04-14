@@ -6,17 +6,20 @@ App({
         wx.setNavigationBarTitle({
             title: this.globalData.shopName
         });
+
         if(this.globalData.userInfo && this.globalData.userInfo.open_id){
             return
         }
         this.globalData.userInfo = wx.getStorageSync('userInfo');
-
         if(this.globalData.userInfo && this.globalData.userInfo.open_id){
+            console.log('ready goToIndex');
+            this.goToIndex();
             if(!this.globalData.is_update_userinfo){
                 this.update_userinfo();
                 this.globalData.is_update_userinfo=true
             }
         }else{
+            console.log('ready goToLogin');
             this.goToLogin();
             this.globalData.is_update_userinfo=true
         }
@@ -145,8 +148,11 @@ App({
         });
     },
     goToIndex: function() {
+        wx.navigateTo({
+            url: this.globalData.cache,
+        });
         wx.switchTab({
-            url: '/pages/food/index',
+            url: this.globalData.cache,
         });
     },
     goToLogin: function() {

@@ -94,7 +94,6 @@ Page({
           team_index: that.data.team_index
         },
         success: function (res) {
-          console.log(res.data.data)
           if (res.data.code == 200) {
             if (res.data.data.length < 10) {
               clearTimeout(time)

@@ -36,17 +36,17 @@ def foodIndex():
 
 @route_api.route("/good/search")
 def foodSearch():
-    page_size = 10
+    page_size = 50
     resp = {'code': 200, 'msg': '操作成功', 'data': {}}
     req = request.values
 
-    cat_id = int(req.get('sort_type', 0))
+    sort_tp = int(req.get('sort_type', 0))
     opt_id = int(req.get('opt_id', 0))
     p = int(req.get('page', 1))
     p = p if p else 1
     mix_kw = req.get('mix_kw', '').split()
     keyword = ' '.join(mix_kw)
-    resp_jo = pdd_tools.search_goods(keyword=keyword, opt_id=opt_id, sort_type=cat_id, p=p)
+    resp_jo = pdd_tools.search_goods(keyword=keyword, opt_id=opt_id, page_size=page_size, sort_type=sort_tp, p=p)
     search_list = resp_jo.get('goods_search_response', {}).get('goods_list', [])
     data_food_list = []
     for item in search_list:
@@ -58,6 +58,10 @@ def foodSearch():
         quan_price = quan_price if quan_price else 0
         row_price = item.get('min_group_price', 0)
         min_price = row_price-quan_price
+
+        # 高佣 价格过滤
+        if sort_tp == 2 and min_price < 1000:
+            continue
         sale_count = item.get('sold_quantity', 0)
 
         temp_data = {
