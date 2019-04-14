@@ -55,7 +55,6 @@ Page({
     return obj
     },
   onLoad: function (options) {
-    console.log(options);
     if (options.from_openid){
       app.globalData.refer_openid = options.from_openid
     }
@@ -118,9 +117,10 @@ Page({
                 var dt = resp.data;
                 dt['min_price'] = (dt['min_price']/100).toFixed(2)
                 dt['row_price'] = (dt['row_price']/100).toFixed(2)
-              dt['coupon_discount'] = (dt['coupon_discount']/100).toFixed(2)
-              dt['promotion'] = (dt['min_price'] * dt['promotion_rate'] * rate / 1000).toFixed(2)
-              dt['shareprice'] = (dt['promotion']*0.5).toFixed(2)
+                dt['coupon_discount'] = (dt['coupon_discount']/100).toFixed(2)
+                dt['promotion'] = (dt['min_price'] * dt['promotion_rate'] * rate / 1000).toFixed(2)
+                dt['shareprice'] = (dt['promotion']*0.5).toFixed(2)
+                dt['we_page_path'] = dt['we_page_path']
                 that.setData({
                     info: dt
                 })
@@ -224,7 +224,7 @@ Page({
     buyNow: function () {
         wx.navigateToMiniProgram({
             appId: 'wx32540bd863b27570',
-            path: this.data.info.pdd_url,
+            path: this.data.info.we_page_path,
             extraData: {
                 foo: 'bar'
             },

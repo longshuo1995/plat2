@@ -1,0 +1,109 @@
+<!--index.wxml-->
+<view class="container">
+  
+  <view class="topfix-view" style="height:{{activeCategoryId==0?'158rpx':'246rpx'}}">
+    <!--搜索框-->
+    <view class="search-content" bindtap="toSearch">
+      <image src="https://aishangnet.club/static/mina_pic/ic_search_2.png" class="search-icon" />
+      <input placeholder="搜索关键字" class="search-input" placeholder-class="placeholder" disabled>
+      </input>
+    </view>
+    <!--一级分类展示-->
+    <view class="type-container clearfix">
+      <scroll-view class="type-navbar" scroll-x="true">
+        <view class="type-box" wx:for-items="{{categories}}" wx:key="id">
+          <view id="{{item.opt_id}}" data-parent="{{item.parent_opt_id}}" class="type-navbar-item {{activeCategoryId == item.opt_id ? 'type-item-on' : ''}}" bindtap="catClick">
+            {{item.opt_name}}
+          </view>
+        </view>
+      </scroll-view>
+      <view class='type-menu' id="0" bindtap='showMenu'>
+      </view>
+    </view>
+    <!--子分类展示-->
+    <block wx:if="{{activeCategoryId!=0}}">
+    <view class="type-container clearfix">
+      <scroll-view class="type-navbar" scroll-x="true">
+        <view class="type-box type-childbox" wx:for-items="{{childlist}}" wx:key="id">
+          <view id="{{item.opt_id}}" data-parent="{{item.parent_opt_id}}" class="type-navbar-item {{activeCategoryId == item.opt_id ? 'type-item-on' : ''}}" bindtap="catClick">
+            {{item.opt_name}}
+          </view>
+        </view>
+      </scroll-view>
+      <view class='type-updown' id="1" bindtap='showMenu'>
+      </view>
+    </view>
+    </block>
+  </view>
+  <view class='app-main' style="padding-top:{{activeCategoryId==0?'168rpx':'256rpx'}}">
+    
+    
+    <!--轮播图-->
+    <block wx:if="{{activeCategoryId==0}}">
+    <view class="swiper-container">
+      <swiper class="swiper_box" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" bindchange="swiperchange">
+        <block wx:for="{{banners}}" wx:key="id">
+          <swiper-item>
+            <image bindtap="tapBanner" data-id="{{item.banner_detail_url}}" src="{{item.banner_url}}" class="swiper_box"/>
+          </swiper-item>
+        </block>
+      </swiper>
+      <view class="dots">
+        <block wx:for="{{banners}}" wx:key="unique">
+          <view class="dot{{index == swiperCurrent ? ' active' : ''}}"></view>
+        </block>
+      </view>
+    </view>
+    </block>
+    <view class='time_quantum'>
+      <view class="time_item {{tp==0?'time_item_active':''}}" bindtap='selectTab' data-tp='0'>
+        全部
+      </view>
+      <view class="time_item {{tp==2?'time_item_active':''}}" data-tp='2' bindtap='selectTab'>
+      高佣
+      </view>
+      <view class="time_item {{tp==datatp1?'time_item_active':''}}" data-tp='{{datatp1}}' id="0" bindtap='selectSort'>
+      价格<image src="{{imageurl1}}" class='sort-img'></image>
+      </view>
+      <view class="time_item {{tp==datatp2?'time_item_active':''}}" data-tp='{{datatp2}}' id="1" bindtap='selectSort'>
+      销量<image src="{{imageurl2}}" class='sort-img'></image>
+      </view>
+    </view>
+
+
+    <view wx:for="{{goods}}"  wx:key="id">
+      <view class='item_box'>
+        <image src="{{item.goods_thumbnail_url}}" bindtap="toDetailsTap" data-id="{{item.goods_id}}" lazy-load="true" class="item_img" mode='aspectFill' ></image>
+        <view class='item_info_box'>
+          <view class='item_name' bindtap="toDetailsTap" data-id="{{item.goods_id}}">{{item.goods_name}}</view>
+          <view class='item_discount' bindtap="toDetailsTap" data-id="{{item.goods_id}}">
+            <image src='https://aishangnet.club/static/mina_pic/quan_1.png' class='quan_img'></image>
+            <view class='quan_text'>{{item.coupon_discount}}<text class='discount_unit'>元</text></view>
+          </view>
+          <view class='old_box' bindtap="toDetailsTap" data-id="{{item.goods_id}}">
+          原价:<text class='oldprice'>¥{{item.row_price}}</text><text class='selledline'>|</text>已售{{item.sold_quantity}}件
+          </view>
+          <view class='price_box clearfix'>
+            <view class='item_price' bindtap="toDetailsTap" data-id="{{item.goods_id}}">券后价：<text class='item_price_num'>￥{{item.min_price}}</text></view>
+            <view class='item_buy'>
+              <image src='https://aishangnet.club/static/mina_pic/fenxiang-4.png' class='bottom_img'></image>
+              <button open-type="share" class='item_but_text' plain="true" data-coupon_discount="{{item.coupon_discount}}" data-row_price="{{item.row_price}}" data-min_price="{{item.min_price}}" data-img="{{item.goods_thumbnail_url}}" data-id="{{item.goods_id}}">分享赚:{{item.promotion}}</button>
+              <!-- <text class='item_but_text'>分享赚:{{item.promotion}}</text> -->
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <view hidden="{{loadingMoreHidden ? true : false}}" class="no-more-goods">哥也是有底线的</view>
+  </view>
+</view>
+<view class='mark' wx:if="{{is_open}}" style="top:{{currentid==0?'158rpx':'246rpx'}}">
+  <view class='categorys'>
+    <block wx:for="{{markList}}" wx:for-index="i" wx:for-item="item" wx:key="id">
+        <view id="{{item.opt_id}}"  data-parent="{{item.parent_opt_id}}" class="item-category" bindtap="catClick">
+            {{item.opt_name}}
+        </view>
+    </block>
+  </view>
+</view>

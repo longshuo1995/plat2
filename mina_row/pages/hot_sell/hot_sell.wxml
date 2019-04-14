@@ -1,0 +1,67 @@
+<!--pages/hot_sell/hot_sell.wxml-->
+<view class='top_box'>
+  <text class='myself {{team_index==0?"team_active":"team_text"}}' bindtap='teamSelete' data-index='0'>奇遇热销榜</text>
+  <text class='{{team_index==1?"team_active":"team_text"}}'  bindtap='teamSelete' data-index='1'>全网热销榜</text>
+</view>
+<block wx:if="{{team_index==0}}">
+<view class='banner qiyurexiao'></view>
+<view class='time_quantum'>
+  <view class="time_item {{tp==0?'time_item_active':''}}" bindtap='selectTab' data-tp='0'>
+    1小时热销
+  </view>
+  <view class="time_item {{tp==1?'time_item_active':''}}" data-tp='1' bindtap='selectTab'>
+  2小时热销
+  </view>
+  <view class="time_item {{tp==2?'time_item_active':''}}" data-tp='2' bindtap='selectTab'>
+  24小时热销
+  </view>
+</view>
+</block>
+<block wx:else>
+<view class='banner quanwangrexiao'></view>
+  <view class='time_quantum'>
+    <view class="time_item {{tp==0?'time_item_active':''}}" bindtap='selectTab' data-tp='0'>
+      实时热销榜
+    </view>
+    <view class="time_item {{tp==1?'time_item_active':''}}" data-tp='1' bindtap='selectTab'>
+    实时收益榜
+    </view>
+  </view>
+</block>
+
+
+<!-- 商品列表 -->
+<block wx:for="{{data_list}}" wx:key="{{index}}">
+  <view class='item_box'>
+    <view class="item_index {{index==0?'item_first':''}} {{index==1?'item_second':''}} {{index==2?'item_three':''}}" wx:if="{{index<3}}">
+    </view>
+    <view class="item_index item_index_number" wx:else>{{index+1}}</view>
+    <image src="{{item.goods_thumbnail_url}}"  bindtap="toDetailsTap" data-id="{{item.goods_id}}" lazy-load="true" class="item_img" mode='aspectFill' ></image>
+    <view class='item_info_box'>
+      <view class='item_name' bindtap="toDetailsTap" data-id="{{item.goods_id}}">{{item.goods_name}}</view>
+      <view class='item_discount' bindtap="toDetailsTap" data-id="{{item.goods_id}}">
+        <image src='https://aishangnet.club/static/mina_pic/quan_1.png' class='quan_img'></image>
+        <view class='quan_text'>{{item.coupon_discount}}<text class='discount_unit'>元</text></view>
+      </view>
+      <view class='old_box' bindtap="toDetailsTap" data-id="{{item.goods_id}}">
+       原价:<text class='oldprice'>¥{{item.row_price}}</text><text class='selledline'>|</text>已售{{item.sold_quantity}}件
+      </view>
+      <view class='price_box clearfix'>
+        <view class='item_price' bindtap="toDetailsTap" data-id="{{item.goods_id}}">券后价：<text class='item_price_num'>￥{{item.min_price}}</text></view>
+        <view class='item_buy'>
+          <image src='https://aishangnet.club/static/mina_pic/fenxiang-4.png' class='bottom_img'></image>
+          <button open-type="share" class='item_but_text' plain="true" data-coupon_discount="{{item.coupon_discount}}" data-row_price="{{item.row_price}}" data-min_price="{{item.min_price}}" data-img="{{item.goods_thumbnail_url}}" data-id="{{item.goods_id}}">分享赚:{{item.promotion}}</button>
+              <!-- <text class='item_but_text'>分享赚:{{item.promotion}}</text> -->
+        </view>
+      </view>
+    </view>
+  </view>
+</block>
+
+ <view class="no-more" hidden='{{noMore}}'>--没有更多商品了--</view>
+<view hidden='{{show_model}}'>
+  <view class="comment-loadmore" hidden='{{!noMore}}'>
+    <view class="comment-loading"></view>
+    <view class="comment-loadmore-tips">正在加载</view>
+  </view>
+</view> 

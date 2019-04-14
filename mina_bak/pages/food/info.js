@@ -157,7 +157,7 @@ Page({
             envVersion: 'release',
             success(res) {
                 // 打开成功
-                  app.goToIndex()
+                //   app.goToIndex()
             }
         })
     },

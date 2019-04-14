@@ -1,0 +1,39 @@
+<!--pages/my/partner.wxml-->
+<view class='search_form'>
+  <!--<input placeholder="请输入昵称或邀请码" auto-focus  class='search_input'/>-->
+  <!--<view class='search_btn'>-->
+    <!--<view class='btn_line'></view>-->
+    <!--<image src='../../images/search.png' class='search_img'></image>-->
+  <!--</view>-->
+</view>
+
+<view class="status-box">
+    <view bindtap="groupStatusTap" class="status-label {{index == groupType ? 'active' : ''}}" wx:for-items="{{group_list}}" wx:key="{{index}}" data-index="{{index}}">
+        {{item}}
+        <view class="{{tabClass[index]}}"></view>
+    </view>
+</view>
+
+
+<!-- user list -->
+
+<!-- 商品列表 -->
+<block wx:for="{{user_list}}" wx:key="{{index}}">
+  <view class='item_box'>
+    <image src="{{item.user_img}}"  lazy-load="true" class="item_img" mode='aspectFill' ><view class='nicheng'>{{item.tp_name}}</view></image>
+    <view class='item_info_box'>
+      <view class='flex_item'>{{item.user_name}}</view>
+      <!--<view class='flex_item'>账号:{{item.user_number}}</view>-->
+      <!--<view class='flex_item'>账号:{{item.user_nickname}}</view>-->
+    </view>
+    <!--<image src='../../images/phone.png'class="phone_icon"></image>-->
+  </view> 
+</block>
+
+ <view class="no-more" hidden='{{noMore}}'>--没有更多商品了--</view>
+<view hidden='{{show_model}}'>
+  <view class="comment-loadmore" hidden='{{!noMore}}'>
+    <view class="comment-loading"></view>
+    <view class="comment-loadmore-tips">正在加载</view>
+  </view>
+</view> 

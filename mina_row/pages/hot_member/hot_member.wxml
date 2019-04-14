@@ -1,0 +1,70 @@
+<!--pages/hot_sell/hot_sell.wxml-->
+<view class='top-wrapper'>
+  <view class='billboard'>
+  </view>
+  <view class='wrapp-inner'>
+    <view class='team_box'>
+      <text class='myself {{team_index==0?"team_active":"team_text"}}' bindtap='teamSelete' data-index='0'>个人榜</text>
+      <text class='{{team_index==1?"team_active":"team_text"}}'  bindtap='teamSelete' data-index='1'>团队榜</text>
+    </view>
+    <view class='time_quantum'>
+      <view class='time_bg'></view>
+      <view class="time_item {{tp==0?'time_item_active':''}}" bindtap='selectTab' data-tp='0'>
+        佣金排名
+      </view>
+      <view style="left:50%;" class="time_item {{tp==1?'time_item_active':''}}" data-tp='1' bindtap='selectTab'>
+      粉丝排名
+      </view>
+    </view>
+    <view class='paiming'>
+      <view class='paiming-item'>
+        <image src="{{data_list[1].icon}}"  lazy-load="true" class="paimingavtor" mode='aspectFill' ></image>
+        <view class='item_name'>{{data_list[1].nick_name}}</view>
+        <view class='paimingimg paimingtwo'>
+          <view class='level'>2</view>
+          <view class='number'>{{data_list[1].value}}</view>
+        </view>
+      </view>
+      <view class='paiming-item one'>
+        <image src="{{data_list[0].icon}}"  lazy-load="true" class="paimingavtorone" mode='aspectFill' ></image>
+        <view class='item_name'>{{data_list[0].nick_name}}</view>
+        <view class='paimingimg paimingone'>
+          <view class='level'>1</view>
+          <view class='number'>{{data_list[0].value}}</view>
+        </view>
+      </view>
+      <view class='paiming-item'>
+        <image src="{{data_list[2].icon}}"  lazy-load="true" class="paimingavtor" mode='aspectFill' ></image>
+        <view class='item_name'>{{data_list[2].nick_name}}</view>
+        <view class='paimingimg paimingthree'>
+          <view class='level'>3</view>
+          <view class='number'>{{data_list[2].value}}</view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+
+
+
+
+<!-- 商品列表 -->
+<block wx:for="{{data_list}}" wx:key="{{index}}">
+  <view class='item_box' wx:if="{{index>2}}">
+  <!-- <view class='item_box'> -->
+    <view class='item_index'>
+      <view class="item_index_number">{{index+1}}</view>
+      <image src="{{item.icon}}"  lazy-load="true" class="item_img" mode='aspectFill' ></image>
+      <view class='item_name'>{{item.nick_name}}</view>
+    </view>
+    <view class='item_sale'>{{item.value}}</view>
+  </view>
+</block>
+
+ <view class="no-more" hidden='{{noMore}}'>--没有更多商品了--</view>
+<view hidden='{{show_model}}'>
+  <view class="comment-loadmore" hidden='{{!noMore}}'>
+    <view class="comment-loading"></view>
+    <view class="comment-loadmore-tips">正在加载</view>
+  </view>
+</view> 

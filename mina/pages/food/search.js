@@ -16,6 +16,25 @@ const conf = {
     datatp2: 5,
     isShow: false
   },
+  onShareAppMessage: function (options) {
+    var obj = {
+      title: "自购省钱，推广赚钱",
+      path: '/pages/index/index?from_openid=' + app.globalData.userInfo.open_id,
+      success: function (res) {
+      },
+      fail: function (res) {
+      },
+    }
+    if (options.from == 'button') {
+      let dataset = options.target.dataset
+      let datas = `【拼多多】优惠券${dataset.coupon_discount}元\n 原价￥${dataset.row_price} 券后价￥${dataset.min_price}`
+
+      obj.title = datas
+      obj.imageUrl = dataset.img
+      obj.path = '/pages/food/info?from_openid=' + app.globalData.userInfo.open_id + '&id=' + dataset.id
+    }
+    return obj
+  },
   onLoad: function (options) {
     this.setData({
       isShow: false
@@ -220,7 +239,6 @@ const conf = {
       wx.setStorageSync('searchData', searchData);
       that.setData({ sercherStorage: searchData, goods: [] })
     }
-    
     that.setData({
       isShow: true
     })
@@ -242,6 +260,9 @@ const conf = {
       success: function (res) {
         var resp = res.data;
         if (resp.code != 200) {
+          that.setData({
+            processing: false
+          });
           app.alert({ "content": resp.msg });
           return;
         }
@@ -249,6 +270,7 @@ const conf = {
         var goods = resp.data.list;
         if (goods.length === 0) {
           that.setData({
+            processing: false,
             noMore: false,
             goods: []
           });

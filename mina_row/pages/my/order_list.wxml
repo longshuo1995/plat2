@@ -1,0 +1,57 @@
+<view class="container">
+    <view class="status-box">
+        <view bindtap="orderStatusTap" class="status-label {{index == currentOrderType ? 'active' : ''}}" wx:for-items="{{orderState}}" wx:key="{{index}}" data-index="{{index}}">
+            {{item}}
+            <view class="{{tabClass[index]}}"></view>
+        </view>
+    </view>
+    <view class="status-box new_bg" hidden='{{currentOrderType!=1?true:false}}'>
+        <view bindtap="statusTap" class="status-label {{index == currentType ? 'new_active' : ''}} new_order_list" wx:for-items="{{statusType}}" wx:key="{{index}}" data-index="{{index}}">
+            {{item}}
+        </view>
+    </view>
+    <view class="no-order" wx:if="{{!order_list.length}}">
+        <image src="/images/no-order.png" class="no-order-img"></image>
+        <view class="text">暂无订单</view>
+    </view>
+    <view class="order-list" wx:if="{{order_list.length}}">
+        <view class="a-order" wx:for="{{order_list}}" wx:key="{{index}}" wx:for-item="item">
+            <view class='order-date order_own'>
+              <image src='{{ item.own_icon }}' class='own_icon'></image>
+              <view class='own_info'>{{ item.own_name }}</view>
+              <view class='order_state'><span class="state_font">{{ item.order_status_desc }}</span></view>
+            </view>
+
+            <view class="goods_info"  data-id="{{item.order_sn}}" bindtap="orderDetail">
+               <view class="good_box">
+                   <!--<view class="good_box" wx:for="{{[1,2]}}" wx:for-item="itemGood">-->
+                        <image src="{{ item.goods_thumbnail_url }}" class="goods_img"></image>
+                <view class="goods-des">
+                  <view class='good_name'>{{ item.goods_name }}</view>
+                 <view class='good_code'><span class="good_copy">订单号:</span><span class="good_number">{{item.order_sn}}</span></view>
+                  <!--<view class='good_point'>自己50%</view>-->
+                </view>
+              </view>
+
+            </view>
+            <!-- <view >
+                <scroll-view class="goods-img-container" scroll-x="true">
+                    <view class="img-box" wx:for="{{item.goods_list}}" wx:for-item="itemGood">
+                        <image src="{{itemGood.pic_url}}" class="goods-img"></image>
+                    </view>
+                </scroll-view>
+            </view> -->
+            <view class='price_box clearfix'>
+            <view class="price_box_item">
+              <view class='price_box_text'>付款金额</view>
+              <view class='price_box_text price_box_text_bolder'>￥{{ item.pay_money }}</view>
+            </view>
+            <view class="price_box_item">
+              <view class='price_box_text'>属于自己</view>
+              <view class='price_box_text price_box_text_bolder'>￥{{ item.self_money }}</view>
+            </view>
+            </view>
+
+        </view>
+    </view>
+</view>

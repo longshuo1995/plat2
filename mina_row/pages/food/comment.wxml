@@ -1,0 +1,23 @@
+
+<view class="reviews" wx:for="{{reviews}}" wx:key="id">
+  <view class='user-reviews'>
+    <view style='display:flex;flex-direction:row;align-items:center;'>
+      <image style="width: 60rpx; height: 60rpx;border-radius: 50%; " src="{{item.avatar}}"></image>
+      <text style="font-size: 30rpx;color:#000;margin-left:24rpx;">{{item.name}}</text>
+    </view>
+    <view style="color: #787878;font-size:24rpx;">{{dateUtil.timestampToTime(item.time)}}</view>
+  </view>
+  <view class='reviewstitle'>
+  {{item.comment}}
+  </view>
+  <view class='reviewsspecs'>
+  {{item.text}}
+  </view>
+</view>
+<view class="no-more" hidden='{{noMore}}'>--没有更多评价了--</view>
+<view hidden='{{show_model}}'>
+  <view class="comment-loadmore" hidden='{{!noMore}}'>
+    <view class="comment-loading"></view>
+    <view class="comment-loadmore-tips">正在加载</view>
+  </view>
+</view> 

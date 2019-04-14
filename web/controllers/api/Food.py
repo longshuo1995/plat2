@@ -2,7 +2,6 @@ import logging
 import os
 from flask import jsonify, request
 import project_conf
-from common.libs import db_mongo
 from common.libs.pdd import pdd_tools
 from common.libs.tools import StrTools
 from spider import pdd_spider

@@ -1,0 +1,22 @@
+/**app.wxss**/
+.container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+} 
+.wxParse-img {
+  display: block !important;
+}
+.clearfix:after{
+  content:"";
+  display:block;
+  visibility:hidden;
+  clear:both;
+  height:0;
+}
+.clearfix{
+  zoom:1;
+}

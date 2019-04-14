@@ -9,7 +9,7 @@
       </input>
     </view>
     <!--一级分类展示-->
-    <view class="type-container clearfix">
+    <view class="type-container">
       <scroll-view class="type-navbar" scroll-x="true">
         <view class="type-box" wx:for-items="{{categories}}" wx:key="id">
           <view id="{{item.opt_id}}" data-parent="{{item.parent_opt_id}}" class="type-navbar-item {{activeCategoryId == item.opt_id ? 'type-item-on' : ''}}" bindtap="catClick">
@@ -18,11 +18,12 @@
         </view>
       </scroll-view>
       <view class='type-menu' id="0" bindtap='showMenu'>
+      <image src='https://aishangnet.club/static/mina_pic/fenlei.png' style="width:30rpx;height:30rpx;padding-left:10rpx;"></image>
       </view>
     </view>
     <!--子分类展示-->
     <block wx:if="{{activeCategoryId!=0}}">
-    <view class="type-container clearfix">
+    <view class="type-container">
       <scroll-view class="type-navbar" scroll-x="true">
         <view class="type-box type-childbox" wx:for-items="{{childlist}}" wx:key="id">
           <view id="{{item.opt_id}}" data-parent="{{item.parent_opt_id}}" class="type-navbar-item {{activeCategoryId == item.opt_id ? 'type-item-on' : ''}}" bindtap="catClick">
@@ -31,6 +32,7 @@
         </view>
       </scroll-view>
       <view class='type-updown' id="1" bindtap='showMenu'>
+            <image src='https://aishangnet.club/static/mina_pic/xia.png' style="width:28rpx;height:16rpx;padding-left:10rpx"></image>
       </view>
     </view>
     </block>
@@ -83,12 +85,11 @@
           <view class='old_box' bindtap="toDetailsTap" data-id="{{item.goods_id}}">
           原价:<text class='oldprice'>¥{{item.row_price}}</text><text class='selledline'>|</text>已售{{item.sold_quantity}}件
           </view>
-          <view class='price_box clearfix'>
-            <view class='item_price' bindtap="toDetailsTap" data-id="{{item.goods_id}}">券后价：<text class='item_price_num'>￥{{item.min_price}}</text></view>
+          <view class='price_box'>
+            <view class='item_price' bindtap="toDetailsTap" data-id="{{item.goods_id}}">券后价:<text class='item_price_num' style="font-size:{{item.min_price>1000?'28rpx':'36rpx'}}">¥{{item.min_price}}</text></view>
             <view class='item_buy'>
               <image src='https://aishangnet.club/static/mina_pic/fenxiang-4.png' class='bottom_img'></image>
               <button open-type="share" class='item_but_text' plain="true" data-coupon_discount="{{item.coupon_discount}}" data-row_price="{{item.row_price}}" data-min_price="{{item.min_price}}" data-img="{{item.goods_thumbnail_url}}" data-id="{{item.goods_id}}">分享赚:{{item.promotion}}</button>
-              <!-- <text class='item_but_text'>分享赚:{{item.promotion}}</text> -->
             </view>
           </view>
         </view>

@@ -1,0 +1,141 @@
+.container{
+  min-height: 100%;
+  overflow: hidden;
+  overflow-y: hidden;
+  width: 690rpx;
+  margin: 0 auto;
+}
+
+.userinfo {
+  position: relative;
+	height: 300rpx;
+  width: 100%;
+	background-image: linear-gradient(143deg, 
+		#f9756e 0%, 
+		#ea4037 100%), 
+	linear-gradient(
+		#787878, 
+		#787878);
+	background-blend-mode: normal, 
+		normal;
+	border-radius: 20rpx;
+  color: #FFF;
+}
+
+.userinfo-avatar {
+  position: absolute;
+  top: 34rpx;
+  left: 28rpx;
+	width: 92rpx;
+	height: 92rpx;
+	border-radius: 50%;
+}
+.userinfo-nickname {
+  padding-left: 143rpx;
+  font-size: 32rpx;
+  margin-top: 47rpx;
+}
+.userinfo-account{
+  padding-left: 143rpx;
+  font-size: 24rpx;
+}
+
+
+.balance{
+  position: relative;
+  width: 100%;
+  border-bottom: 1px solid #ececec;
+}
+
+.balance_info{
+  float: left;
+  width: 33.33%;
+  height: 115rpx;
+  line-height: 115rpx;
+  font-size:30rpx;
+  color: #787878;
+}
+.balance_info_price{
+  color: #ea4037;
+}
+.balance_get{
+  position:absolute;
+  right:0;
+  line-height:60rpx;
+  width: 120rpx;
+	height: 60rpx;
+  text-align: center;
+	background-color: #ea4037;
+	border-radius: 10rpx;
+  color: #fff;
+  margin-top: 33rpx;
+}
+.lab_copy{
+  width: 78rpx;
+	height: 30rpx;
+  padding:0 15rpx;
+  margin-left: 10rpx;
+	border-radius: 15rpx;
+  font-size: 24rpx;
+	border: solid 1px #fff;
+}
+.price_info{
+  position:absolute;
+  left:0;
+  right:0;
+  bottom:33rpx;
+  font-size: 28rpx;
+}
+.price_info_item{
+  float:left;
+  box-sizing:border-box;
+  width:33.33%;
+  text-align:center;
+}
+
+.my-item{
+    width: 100%;
+    margin-top: 26rpx; 
+    font-size: 30rpx;
+    color: #787878;
+}
+.item-line{
+  display:inline-block;
+  width: 8rpx;
+	height: 29rpx;
+	background-color: #ea4037;
+	border-radius: 4rpx;
+  margin-right: 12rpx;
+  vertical-align:middle;
+}
+.arrowimg{
+  float: right;
+  width: 16rpx;
+	height: 29rpx;
+}
+.order_info{
+  margin-top: 28rpx;
+  margin-bottom: 30rpx;
+}
+.order_info_item{
+  float:left;
+  box-sizing:border-box;
+  width:33.33%;
+  text-align:center;
+  font-size: 28rpx;
+  color: #666;
+}
+.orderimg{
+  width: 78rpx;
+	height: 78rpx;
+}
+.teamimg{
+  width: 50rpx;
+	height: 42rpx;
+  margin-right: 21rpx;
+  vertical-align:middle;
+}
+
+
+
+

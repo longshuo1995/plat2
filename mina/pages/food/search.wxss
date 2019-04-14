@@ -120,35 +120,37 @@
   width: 690rpx;
   margin: 0 auto;
   margin-bottom: 20rpx;
+  background-color: #fff;
+	border-radius: 10rpx;
+  overflow: hidden;
+  display: flex;
+  justify-content: space-between;
 }
 
 .item_img{
   width:220rpx;
   height: 220rpx;
-  border-radius: 10px 0px 0px 10px;
 }
 .item_info_box{
-  height: 100%;
   width:450rpx;
-  margin-left: 20rpx;
 }
-.item_img,.item_info_box{
-  float: left;
-}
+
 .item_name{
-  margin-top:20rpx;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
   font-size: 30rpx;
+  height: 30rpx;
+  line-height: 30rpx;
   color: #333333;
+  margin-top: 19rpx;
 }
 
 .item_discount{
   display:inline-block;
   position: relative;
 	height: 40rpx;
-  margin: 18rpx 0 16rpx 0;
+  margin: 18rpx 0;
   z-index:1;
 }
 
@@ -169,6 +171,8 @@
   font-size: 16rpx;
 }
 .old_box{
+  height: 24rpx;
+  line-height: 24rpx;
   font-size: 24rpx;
   color: #c3c3c3;
   letter-spacing: 0;
@@ -185,11 +189,15 @@
   color: #D4D2D3;
   margin-top: 10rpx;
 }
+
 .price_box{
-  margin-top:13rpx;
+  margin-top:20rpx;
+  height: 44rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 .item_price{
-  float: left;
   color: #c3c3c3;
   font-size: 24rpx;
   line-height: 50rpx;
@@ -197,25 +205,32 @@
 .item_price_num{
   color: #ff1b51;
   font-size: 36rpx;
+  letter-spacing:0;
 }
 .item_buy{
-  float: right;
   height: 44rpx;
-  line-height: 44rpx;
   background: #ea4037;
   border-radius: 22rpx;
   color: #FFFFFF;
   padding: 0 12rpx;
   font-size:24rpx;
   text-align: center;
+  display: flex;
+  align-items: center;
 }
 .bottom_img {
   width: 23rpx;
   height: 23rpx;
   vertical-align: middle;
 }
+button[plain]{ border:0;color: #fff; }
 .item_but_text {
-  padding-left: 5rpx;
+  padding: 0 0 0 5px;
+  border:0;
+  display: inline;
+  font-size:24rpx;
+  color: #fff;
+  line-height:1;
 }
 /*上划加载*/
 .comment-loadmore{

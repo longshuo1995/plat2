@@ -1,0 +1,288 @@
+/* pages/hot_sell/hot_sell.wxss */
+.container{
+  min-height: 100%;
+  width: 100%;
+}
+.top-wrapper{
+  position: relative;
+  width: 100%;
+  height: 654rpx;
+  margin-bottom: 18rpx;
+}
+.billboard{
+  position: absolute;
+  z-index:-1;
+  top: 0;
+  width: 100%;
+	height: 312rpx;
+	background-image: linear-gradient(143deg, 
+		#f9756e 0%, 
+		#ea4037 100%), 
+	linear-gradient(
+		#1d90e5, 
+		#1d90e5);
+	background-blend-mode: normal, 
+		normal;
+}
+
+.wrapp-inner{
+  width: 690rpx;
+  margin: 0 auto;
+}
+
+.team_box{
+  padding-top: 17rpx;
+}
+.myself{
+  margin-right: 29rpx;
+}
+.team_active{
+  font-size: 46rpx;
+  color: #fefefe;
+}
+.team_text{
+  font-size: 36rpx;
+  color: #fff;
+}
+.paiming{
+  width: 100%;
+	height: 465rpx;
+	background-color: #ffffff;
+	box-shadow: 0px 6px 50px 0px 
+		rgba(0, 0, 0, 0.08);
+	border-radius: 20rpx;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-end;
+}
+.paiming-item{
+  width: 126rpx;
+  padding-bottom: 34rpx;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+}
+.one{
+  margin: 0 50rpx;
+}
+.paimingimg{
+  width: 126rpx;
+  margin-top:30rpx;
+  background-size: cover;
+  color: #fff;
+  /* display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center; */
+  position: relative;
+  text-align: center;
+  box-sizing: border-box;
+}
+.level{
+  font-size: 72rpx;
+  line-height:53rpx;
+}
+.number{
+  font-size: 30rpx;
+  position: absolute;
+  bottom: 22rpx;
+  line-height: 23rpx;
+  width: 100%;
+  text-align: center;
+}
+.paimingone{
+  padding-top: 50rpx;
+  height: 211rpx;
+  background-image: url(https://aishangnet.club/static/mina_pic/jinpai.png);
+}
+.paimingtwo{
+  padding-top: 32rpx;
+  height: 154rpx;
+  background-image: url(https://aishangnet.club/static/mina_pic/yinpai.png);
+}
+.paimingthree{
+  padding-top: 19rpx;
+  height: 141rpx;
+  background-image: url(https://aishangnet.club/static/mina_pic/tongpai.png);
+}
+.paimingavtor{
+  width: 96rpx;
+  height: 96rpx;
+  border-radius: 50%;
+  margin-bottom:13rpx;
+}
+.paimingavtorone{
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 50%;
+  margin-bottom:13rpx;
+}
+.item_name{
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space:nowrap;
+  font-size: 26rpx;
+}
+.time_quantum{
+  position: relative;
+  height: 80rpx;
+  width: 100%;
+  margin:28rpx 0 20rpx 0;
+}
+.time_bg{
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 100%;
+  border-radius: 40rpx;
+  z-index: -1;
+  opacity: 0.3;
+  background: #fff
+}
+.time_item{
+  position: absolute;
+  left: 0;
+  width: 50%;
+  z-index: 1;
+  height: 100%;
+  border-radius: 40rpx;
+  font-size: 34rpx;
+  line-height: 80rpx;
+  text-align: center;
+  color: #fff;
+}
+
+.time_item_active{
+  opacity:1;
+  background: #fff;
+  color: #ea4037;
+}
+.item_box{
+  height: 124rpx;
+  width: 690rpx;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.item_index{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.item_index_number{
+  font-size: 36rpx;
+  color: #333;
+}
+.item_index_name{
+  font-size: 34rpx;
+  color: #333;
+}
+.item_sale{
+  font-size: 36rpx;
+  color: #ea4037;
+}
+.item_img{
+  width: 88rpx;
+	height: 88rpx;
+  border-radius: 50%;
+  margin: 0 30rpx;
+}
+.item_info_box{
+  height: 100%;
+  min-width: 200rpx;
+  max-width:400rpx;
+}
+
+
+.sell_box{
+  position: relative;
+}
+.quan_img{
+  width: 100%;
+  height: 60rpx;
+  position: absolute;
+  z-index: -2;
+}
+.item_discount{
+  float: left;
+  font-size: 24rpx;
+  line-height: 60rpx;
+  color: white;
+  position: relative;
+  letter-spacing:0rpx;
+}
+
+
+.price_box{
+  margin-top:20rpx;
+}
+.item_price{
+  float: left;
+  color: #CA3954;
+  font-size: 36rpx;
+}
+.item_buy{
+  float: right;
+  background: #FECB05;
+  border-radius: 25rpx;
+  color: #F3613D;
+  padding: 5rpx 20rpx;
+  font-size:30rpx;
+}
+
+/*上划加载*/
+.comment-loadmore{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  padding:20rpx 0;
+  /* border-top: 2rpx solid #eeeeee; */
+  background: #fff;
+}
+.comment-loadmore-tips{
+  font-size: 30rpx;
+  color: #999999;
+}
+.comment-loading {
+  margin: 0 10rpx;
+  width: 40rpx;
+  height: 40rpx;
+  display: inline-block;
+  vertical-align: middle;
+  -webkit-animation: Loading 1s steps(12, end) infinite;
+          animation: Loading 1s steps(12, end) infinite;
+  background: transparent url(data:image/svg+xml;base64,PHN2ZyBjbGFzcz0iciIgd2lkdGg9JzEyMHB4JyBoZWlnaHQ9JzEyMHB4JyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj4KICAgIDxyZWN0IHg9IjAiIHk9IjAiIHdpZHRoPSIxMDAiIGhlaWdodD0iMTAwIiBmaWxsPSJub25lIiBjbGFzcz0iYmsiPjwvcmVjdD4KICAgIDxyZWN0IHg9JzQ2LjUnIHk9JzQwJyB3aWR0aD0nNycgaGVpZ2h0PScyMCcgcng9JzUnIHJ5PSc1JyBmaWxsPScjRTlFOUU5JwogICAgICAgICAgdHJhbnNmb3JtPSdyb3RhdGUoMCA1MCA1MCkgdHJhbnNsYXRlKDAgLTMwKSc+CiAgICA8L3JlY3Q+CiAgICA8cmVjdCB4PSc0Ni41JyB5PSc0MCcgd2lkdGg9JzcnIGhlaWdodD0nMjAnIHJ4PSc1JyByeT0nNScgZmlsbD0nIzk4OTY5NycKICAgICAgICAgIHRyYW5zZm9ybT0ncm90YXRlKDMwIDUwIDUwKSB0cmFuc2xhdGUoMCAtMzApJz4KICAgICAgICAgICAgICAgICByZXBlYXRDb3VudD0naW5kZWZpbml0ZScvPgogICAgPC9yZWN0PgogICAgPHJlY3QgeD0nNDYuNScgeT0nNDAnIHdpZHRoPSc3JyBoZWlnaHQ9JzIwJyByeD0nNScgcnk9JzUnIGZpbGw9JyM5Qjk5OUEnCiAgICAgICAgICB0cmFuc2Zvcm09J3JvdGF0ZSg2MCA1MCA1MCkgdHJhbnNsYXRlKDAgLTMwKSc+CiAgICAgICAgICAgICAgICAgcmVwZWF0Q291bnQ9J2luZGVmaW5pdGUnLz4KICAgIDwvcmVjdD4KICAgIDxyZWN0IHg9JzQ2LjUnIHk9JzQwJyB3aWR0aD0nNycgaGVpZ2h0PScyMCcgcng9JzUnIHJ5PSc1JyBmaWxsPScjQTNBMUEyJwogICAgICAgICAgdHJhbnNmb3JtPSdyb3RhdGUoOTAgNTAgNTApIHRyYW5zbGF0ZSgwIC0zMCknPgogICAgPC9yZWN0PgogICAgPHJlY3QgeD0nNDYuNScgeT0nNDAnIHdpZHRoPSc3JyBoZWlnaHQ9JzIwJyByeD0nNScgcnk9JzUnIGZpbGw9JyNBQkE5QUEnCiAgICAgICAgICB0cmFuc2Zvcm09J3JvdGF0ZSgxMjAgNTAgNTApIHRyYW5zbGF0ZSgwIC0zMCknPgogICAgPC9yZWN0PgogICAgPHJlY3QgeD0nNDYuNScgeT0nNDAnIHdpZHRoPSc3JyBoZWlnaHQ9JzIwJyByeD0nNScgcnk9JzUnIGZpbGw9JyNCMkIyQjInCiAgICAgICAgICB0cmFuc2Zvcm09J3JvdGF0ZSgxNTAgNTAgNTApIHRyYW5zbGF0ZSgwIC0zMCknPgogICAgPC9yZWN0PgogICAgPHJlY3QgeD0nNDYuNScgeT0nNDAnIHdpZHRoPSc3JyBoZWlnaHQ9JzIwJyByeD0nNScgcnk9JzUnIGZpbGw9JyNCQUI4QjknCiAgICAgICAgICB0cmFuc2Zvcm09J3JvdGF0ZSgxODAgNTAgNTApIHRyYW5zbGF0ZSgwIC0zMCknPgogICAgPC9yZWN0PgogICAgPHJlY3QgeD0nNDYuNScgeT0nNDAnIHdpZHRoPSc3JyBoZWlnaHQ9JzIwJyByeD0nNScgcnk9JzUnIGZpbGw9JyNDMkMwQzEnCiAgICAgICAgICB0cmFuc2Zvcm09J3JvdGF0ZSgyMTAgNTAgNTApIHRyYW5zbGF0ZSgwIC0zMCknPgogICAgPC9yZWN0PgogICAgPHJlY3QgeD0nNDYuNScgeT0nNDAnIHdpZHRoPSc3JyBoZWlnaHQ9JzIwJyByeD0nNScgcnk9JzUnIGZpbGw9JyNDQkNCQ0InCiAgICAgICAgICB0cmFuc2Zvcm09J3JvdGF0ZSgyNDAgNTAgNTApIHRyYW5zbGF0ZSgwIC0zMCknPgogICAgPC9yZWN0PgogICAgPHJlY3QgeD0nNDYuNScgeT0nNDAnIHdpZHRoPSc3JyBoZWlnaHQ9JzIwJyByeD0nNScgcnk9JzUnIGZpbGw9JyNEMkQyRDInCiAgICAgICAgICB0cmFuc2Zvcm09J3JvdGF0ZSgyNzAgNTAgNTApIHRyYW5zbGF0ZSgwIC0zMCknPgogICAgPC9yZWN0PgogICAgPHJlY3QgeD0nNDYuNScgeT0nNDAnIHdpZHRoPSc3JyBoZWlnaHQ9JzIwJyByeD0nNScgcnk9JzUnIGZpbGw9JyNEQURBREEnCiAgICAgICAgICB0cmFuc2Zvcm09J3JvdGF0ZSgzMDAgNTAgNTApIHRyYW5zbGF0ZSgwIC0zMCknPgogICAgPC9yZWN0PgogICAgPHJlY3QgeD0nNDYuNScgeT0nNDAnIHdpZHRoPSc3JyBoZWlnaHQ9JzIwJyByeD0nNScgcnk9JzUnIGZpbGw9JyNFMkUyRTInCiAgICAgICAgICB0cmFuc2Zvcm09J3JvdGF0ZSgzMzAgNTAgNTApIHRyYW5zbGF0ZSgwIC0zMCknPgogICAgPC9yZWN0Pgo8L3N2Zz4=) no-repeat;
+  background-size: 100%;
+}
+@-webkit-keyframes Loading {
+  0% {
+    -webkit-transform: rotate3d(0, 0, 1, 0deg);
+            transform: rotate3d(0, 0, 1, 0deg);
+  }
+  100% {
+    -webkit-transform: rotate3d(0, 0, 1, 360deg);
+            transform: rotate3d(0, 0, 1, 360deg);
+  }
+}
+@keyframes Loading {
+  0% {
+    -webkit-transform: rotate3d(0, 0, 1, 0deg);
+            transform: rotate3d(0, 0, 1, 0deg);
+  }
+  100% {
+    -webkit-transform: rotate3d(0, 0, 1, 360deg);
+            transform: rotate3d(0, 0, 1, 360deg);
+  }
+}
+.no-more{
+  text-align: center;
+  color: #999;
+}
+
+
+
