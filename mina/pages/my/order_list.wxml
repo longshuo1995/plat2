@@ -28,7 +28,7 @@
                         <image src="{{ item.goods_thumbnail_url }}" class="goods_img"></image>
                 <view class="goods-des">
                   <view class='good_name'>{{ item.goods_name }}</view>
-                  <view class='good_code'><span class="good_copy">点击复制:</span><span class="good_number">123456789</span></view>
+                 <view class='good_code'><span class="good_copy">订单号:</span><span class="good_number">{{item.order_sn}}</span></view>
                   <!--<view class='good_point'>自己50%</view>-->
                 </view>
               </view>
@@ -51,19 +51,7 @@
               <view class='price_box_text price_box_text_bolder'>￥{{ item.self_money }}</view>
             </view>
             </view>
-            <view class='order_time'>
-              <view class='order_time_start'>创建:2018-09-01 12:20:20</view>
-              <view class='order_time_end'>失效:2018-09-01 12:20:20</view>
-            </view>
 
-            <!-- <view class="price-box">
-                <view class="total-price">合计：¥ {{item.total_price}}</view>
-                <view class="btn cancel-btn" bindtap="orderCancel" data-id="{{item.order_sn}}" wx:if="{{item.status==-8}}">取消订单</view>
-                <view class="btn topay-btn" bindtap="toPay" data-id="{{item.order_sn}}" wx:if="{{item.status==-8}}">马上付款</view>
-
-                <view class="btn topay-btn" bindtap="orderConfirm" data-id="{{item.order_sn}}" wx:if="{{item.status==-6}}">确认收货</view>
-                <view class="btn topay-btn" bindtap="orderComment" data-id="{{item.order_sn}}" wx:if="{{item.status==-5}}">走，去评价</view>
-            </view> -->
         </view>
     </view>
 </view>

@@ -28,6 +28,7 @@ def my_order():
         if info.get('leader_master') == open_id:
             rate += project_conf.rate_conf['relation_rate']
         temp = {
+            'order_sn': info['_id'],
             'own_icon': member_info.get('icon_url'),
             'own_name': member_info.get('nick_name', ''),
             'order_status_desc': info.get('order_status_desc', ''),

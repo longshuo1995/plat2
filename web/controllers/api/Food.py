@@ -12,7 +12,7 @@ from web.controllers.api import route_api
 @route_api.route("/good/hot_key")
 def hot_key():
     resp = {'code': 200, 'msg': '操作成功', 'data': []}
-    data = ['包包', '男鞋', '口红', '棉服', '围巾', '零食', '尼龙双肩背包']
+    data = ['包包', '男鞋', '口红', '棉服', '围巾', '零食']
     resp['data'] = data
     return jsonify(resp)
 
