@@ -112,12 +112,13 @@
 
     <!--底部-->
     <view class="footer-box">      
-        <view class="home">
+        <view class="home" bindtap="tohome">
           <view class='homebg'></view>
           <view class='hometxt'>首页</view>
         </view>
         <view class="btn now-buy" style="margin-right:8rpx;background-color: #000;" bindtap="tobuy">自购返：￥{{info.promotion}}</view>
-        <view class="btn join-shop-cart" style="background-color: #ea4037;" bindtap="copy">分享赚：￥{{info.shareprice}}</view>
+        <!-- <view class="btn join-shop-cart" style="background-color: #ea4037;" bindtap="copy">分享赚：￥{{info.shareprice}}</view> -->
+        <button open-type="share" class='btn join-shop-cart item_but_text' style="background-color: #ea4037;" plain="true">分享赚：￥{{info.shareprice}}</button>
    </view>
 
    <!--购买和收藏弹窗-->

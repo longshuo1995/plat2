@@ -25,16 +25,34 @@ Page({
       reviews: [],
       goods_id: ''
     },
-    onShareAppMessage: function(){
-        var path = '/pages/food/info?id=' + e.id + '&from_openid=' + app.globalData.userInfo.open_id;
-        return {
-            title: "自购省钱，推广赚钱",
-            path: '/pages/food/info?id=' + e.id + '&from_openid=' + app.globalData.userInfo.open_id,
-            success: function (res) {
-            },
-            fail: function (res) {
-            },
-        }
+  onShareAppMessage: function (options){
+      var path = '/pages/food/info?id=' + this.data.goods_id + '&from_openid=' + app.globalData.userInfo.open_id;
+    var obj = {
+      title: "自购省钱，推广赚钱",
+      path: path,
+      success: function (res) {
+        // 转发成功
+        wx.request({
+          url: app.buildUrl("/member/share"),
+          header: app.getRequestHeader(),
+          method: 'POST',
+          data: {
+            url: utils.getCurrentPageUrlWithArgs()
+          },
+          success: function (res) {
+
+          }
+        });
+      },
+      fail: function (res) {
+      },
+    }
+    var that = this
+    if (options.from == 'button') {
+      let datas = `【拼多多】优惠券${that.data.info.coupon_discount}元\n 原价￥${that.data.info.row_price} 券后价￥${that.data.info.min_price}`
+      obj.title = datas
+    }
+    return obj
     },
   onLoad: function (options) {
     if (options.from_openid){
@@ -44,7 +62,6 @@ Page({
     var cache_path = '/pages/food/info?id=' + options.id;
     
     app.globalData.cache = cache_path;
-    // 暂时注释
     // app.pre_load();
     that.setData({
       goods_id: options.id
@@ -181,6 +198,11 @@ Page({
             }
         });
     },
+  tohome: function(){
+    wx.switchTab({
+      url: '/pages/food/index'
+    })
+  },
     // 复制剪贴板
     copy: function () {
       let datas = `${this.data.info.name}\n价格：${this.data.info.row_price}元，券后价：${this.data.info.row_price}元,商品链接：${this.data.info.short_url}`
@@ -253,29 +275,5 @@ Page({
         this.setData({
             swiperCurrent: e.detail.current
         })
-    },
-    onShareAppMessage: function () {
-        var that = this;
-        return {
-            title: that.data.info.name,
-            path: '/pages/food/info?id=' + that.data.info.id,
-            success: function (res) {
-                // 转发成功
-                wx.request({
-                    url: app.buildUrl("/member/share"),
-                    header: app.getRequestHeader(),
-                    method: 'POST',
-                    data: {
-                        url: utils.getCurrentPageUrlWithArgs()
-                    },
-                    success: function (res) {
-
-                    }
-                });
-            },
-            fail: function (res) {
-                // 转发失败
-            }
-        }
     }
 });

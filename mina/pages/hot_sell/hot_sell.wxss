@@ -172,8 +172,14 @@ text-align:left;
   height: 23rpx;
   vertical-align: middle;
 }
+button[plain]{ border:0;color: #fff; }
 .item_but_text {
-  padding-left: 5rpx;
+  padding: 0 0 0 5px;
+  border:0;
+  display: inline;
+  font-size:24rpx;
+  color: #fff;
+  line-height:1;
 }
 
 /*上划加载*/

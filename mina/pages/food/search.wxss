@@ -265,3 +265,21 @@
   text-align: center;
   color: #999;
 }
+.common_search_input {
+     display: flex;
+     flex: 1;
+     font-size: 30rpx;
+     border: none;
+     align-items: center;
+     width: 620rpx;
+  height: 70rpx;
+   background-color: #ececec;
+   border-radius:10rpx;
+}
+
+.common_search_img {
+     width: 44rpx;
+    height: 44rpx;
+    margin-left: 20rpx;
+     vertical-align: center;
+}

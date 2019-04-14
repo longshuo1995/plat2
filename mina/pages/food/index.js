@@ -29,15 +29,24 @@ Page({
       markList: [],
       currentid: 0
     },
-    onShareAppMessage: function(){
-        return {
-            title: "自购省钱，推广赚钱",
-            path: '/pages/index/index?from_openid=' + app.globalData.userInfo.open_id,
-            success: function (res) {
-            },
-            fail: function (res) {
-            },
-        }
+    onShareAppMessage: function (options){
+      var obj ={
+          title: "自购省钱，推广赚钱",
+          path: '/pages/index/index?from_openid=' + app.globalData.userInfo.open_id,
+          success: function (res) {
+          },
+          fail: function (res) {
+          },
+      }
+      if (options.from =='button') {
+        let dataset = options.target.dataset
+        let datas = `【拼多多】优惠券${dataset.coupon_discount}元\n 原价￥${dataset.row_price} 券后价￥${dataset.min_price}`
+
+        obj.title = datas
+        obj.imageUrl = dataset.img
+        obj.path = '/pages/food/info?from_openid=' + app.globalData.userInfo.open_id + '&id=' + dataset.id
+      }
+      return obj
     },
     onLoad: function (options) {
         if(options.from_openid){
@@ -90,7 +99,8 @@ Page({
         imageurl1: "https://aishangnet.club/static/mina_pic/paixu_3.png",
         imageurl2: "https://aishangnet.club/static/mina_pic/paixu_3.png",
         tp: tp,
-        p: 1
+        p: 1,
+        goods: []
       })
       that.getFoodList()
     },
@@ -98,22 +108,24 @@ Page({
       let id = e.currentTarget.id; // 0 价格 1 销量
       let tp = e.currentTarget.dataset.tp;
       let that = this;
+      that.setData({
+        p:1,
+        goods: []
+      })
       if (id == 0) {
         if (that.data.datatp1 == 3) {
           that.setData({
             imageurl1: "https://aishangnet.club/static/mina_pic/paixu_2.png",
             imageurl2: "https://aishangnet.club/static/mina_pic/paixu_3.png",
             datatp1: 4,
-            tp: 4,
-            p: 1
+            tp: 4
           })
         } else {
           that.setData({
             imageurl1: "https://aishangnet.club/static/mina_pic/paixu_1.png",
             imageurl2: "https://aishangnet.club/static/mina_pic/paixu_3.png",
             datatp1: 3,
-            tp: 3,
-            p: 1
+            tp: 3
           })
         }
       } else {
@@ -122,16 +134,14 @@ Page({
             imageurl1: 'https://aishangnet.club/static/mina_pic/paixu_3.png',
             imageurl2: "https://aishangnet.club/static/mina_pic/paixu_2.png",
             datatp2: 6,
-            tp: 6,
-            p: 1
+            tp: 6
           })
         } else {
           that.setData({
             imageurl1: 'https://aishangnet.club/static/mina_pic/paixu_3.png',
             imageurl2: "https://aishangnet.club/static/mina_pic/paixu_1.png",
             datatp2: 5,
-            tp: 5,
-            p: 1
+            tp: 5
           })
         }
       }

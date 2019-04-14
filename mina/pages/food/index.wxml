@@ -59,7 +59,7 @@
       <view class="time_item {{tp==0?'time_item_active':''}}" bindtap='selectTab' data-tp='0'>
         全部
       </view>
-      <view class="time_item {{tp==1?'time_item_active':''}}" data-tp='1' bindtap='selectTab'>
+      <view class="time_item {{tp==2?'time_item_active':''}}" data-tp='2' bindtap='selectTab'>
       高佣
       </view>
       <view class="time_item {{tp==datatp1?'time_item_active':''}}" data-tp='{{datatp1}}' id="0" bindtap='selectSort'>
@@ -71,23 +71,24 @@
     </view>
 
 
-    <view wx:for="{{goods}}" bindtap="toDetailsTap" data-id="{{item.goods_id}}" wx:key="id">
+    <view wx:for="{{goods}}"  wx:key="id">
       <view class='item_box'>
-        <image src="{{item.goods_thumbnail_url}}"  lazy-load="true" class="item_img" mode='aspectFill' ></image>
-        <view class='item_info_box' bindtap="toDetailsTap" data-id="{{item.goods_id}}">
-          <view class='item_name'>{{item.goods_name}}</view>
-          <view class='item_discount'>
+        <image src="{{item.goods_thumbnail_url}}" bindtap="toDetailsTap" data-id="{{item.goods_id}}" lazy-load="true" class="item_img" mode='aspectFill' ></image>
+        <view class='item_info_box'>
+          <view class='item_name' bindtap="toDetailsTap" data-id="{{item.goods_id}}">{{item.goods_name}}</view>
+          <view class='item_discount' bindtap="toDetailsTap" data-id="{{item.goods_id}}">
             <image src='https://aishangnet.club/static/mina_pic/quan_1.png' class='quan_img'></image>
             <view class='quan_text'>{{item.coupon_discount}}<text class='discount_unit'>元</text></view>
           </view>
-          <view class='old_box'>
+          <view class='old_box' bindtap="toDetailsTap" data-id="{{item.goods_id}}">
           原价:<text class='oldprice'>¥{{item.row_price}}</text><text class='selledline'>|</text>已售{{item.sold_quantity}}件
           </view>
           <view class='price_box clearfix'>
-            <view class='item_price'>券后价：<text class='item_price_num'>￥{{item.min_price}}</text></view>
+            <view class='item_price' bindtap="toDetailsTap" data-id="{{item.goods_id}}">券后价：<text class='item_price_num'>￥{{item.min_price}}</text></view>
             <view class='item_buy'>
               <image src='https://aishangnet.club/static/mina_pic/fenxiang-4.png' class='bottom_img'></image>
-              <text class='item_but_text'>分享赚:{{item.promotion}}</text>
+              <button open-type="share" class='item_but_text' plain="true" data-coupon_discount="{{item.coupon_discount}}" data-row_price="{{item.row_price}}" data-min_price="{{item.min_price}}" data-img="{{item.goods_thumbnail_url}}" data-id="{{item.goods_id}}">分享赚:{{item.promotion}}</button>
+              <!-- <text class='item_but_text'>分享赚:{{item.promotion}}</text> -->
             </view>
           </view>
         </view>

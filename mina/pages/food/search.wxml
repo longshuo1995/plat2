@@ -1,10 +1,11 @@
 <view class="search-view clearfix">
   <view class="search-content">
-    <image src="https://aishangnet.club/static/mina_pic/ic_search_2.png" class="search-icon" />
-    <input placeholder="搜索关键字" class="search-input" placeholder-class="placeholder" maxlength="30" confirm-type="搜索" value="{{searchInput}}" bindinput='listenerSearchInput' bindconfirm='toSearch'>
+    <!-- <image src="https://aishangnet.club/static/mina_pic/ic_search_2.png" class="search-icon" />
+    <input placeholder="搜索关键字" class="search-input" adjust-position="{{false}}" placeholder-class="placeholder" maxlength="30" confirm-type="搜索" value="{{searchInput}}" bindinput='listenerSearchInput' bindconfirm='toSearch'>
     </input>
-    <image src="https://aishangnet.club/static/mina_pic/cross.png" class="search-del" wx:if="{{searchInput!=''}}" bindtap='clearInput'/>
-  </view><view class="search-text" bindtap='setSearchStorage'>搜索</view>
+    <image src="https://aishangnet.club/static/mina_pic/cross.png" class="search-del" wx:if="{{searchInput!=''}}" bindtap='clearInput'/> -->
+    <clearInput style='flex:1' icon-class='common_search_img' input-class='common_search_input' confirmType='search' bind:inputListener='listenerSearchInput' bind:inputConfirm='toSearch' bind:inputClear='clearInput' initValue="{{searchInput}}" />
+  </view><view class="search-text" bindtap='toSearch'>搜索</view>
 </view>
 <view class='app-main' hidden='{{isShow}}'>
   <block wx:if="{{sercherStorage.length!==0}}">

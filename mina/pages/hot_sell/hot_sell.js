@@ -192,8 +192,24 @@ Page({
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
-  
+  onShareAppMessage: function (options) {
+    var obj = {
+      title: "自购省钱，推广赚钱",
+      path: '/pages/index/index?from_openid=' + app.globalData.userInfo.open_id,
+      success: function (res) {
+      },
+      fail: function (res) {
+      },
+    }
+    if (options.from == 'button') {
+      let dataset = options.target.dataset
+      let datas = `【拼多多】优惠券${dataset.coupon_discount}元\n 原价￥${dataset.row_price} 券后价￥${dataset.min_price}`
+
+      obj.title = datas
+      obj.imageUrl = dataset.img
+      obj.path = '/pages/food/info?from_openid=' + app.globalData.userInfo.open_id + '&id=' + dataset.id
+    }
+    return obj
   },
   selectTab:function(e){
       let tp = e.currentTarget.dataset.tp;

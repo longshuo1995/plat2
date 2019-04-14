@@ -119,30 +119,30 @@ const conf = {
     })
   },
   //添加搜索记录并搜索
-  setSearchStorage: function () {
-    var that = this;
-    if (that.data.searchInput != '') {
-      //将搜索记录更新到缓存
-      var searchData = that.data.sercherStorage;
-      for (var j = 0; j < searchData.length; j++) {
-        if (searchData[j] == that.data.searchInput) {
-          searchData.splice(j, 1)
-        }
-      }
-      //将搜索值放入历史记录中,只能放前6条
-      if (searchData.length < 6) {
-        searchData.unshift(that.data.searchInput)
-      }
-      else {
-        searchData.pop()//删掉旧的时间最早的第一条
-        searchData.unshift(that.data.searchInput)
-      }
-      wx.setStorageSync('searchData', searchData);
-      that.setData({ sercherStorage: searchData, goods: [] })
-      //请求搜索
-      that.toSearch()
-    }
-  },
+  // setSearchStorage: function () {
+  //   var that = this;
+  //   if (that.data.searchInput != '') {
+  //     //将搜索记录更新到缓存
+  //     var searchData = that.data.sercherStorage;
+  //     for (var j = 0; j < searchData.length; j++) {
+  //       if (searchData[j] == that.data.searchInput) {
+  //         searchData.splice(j, 1)
+  //       }
+  //     }
+  //     //将搜索值放入历史记录中,只能放前6条
+  //     if (searchData.length < 6) {
+  //       searchData.unshift(that.data.searchInput)
+  //     }
+  //     else {
+  //       searchData.pop()//删掉旧的时间最早的第一条
+  //       searchData.unshift(that.data.searchInput)
+  //     }
+  //     wx.setStorageSync('searchData', searchData);
+  //     that.setData({ sercherStorage: searchData, goods: [] })
+  //     //请求搜索
+  //     that.toSearch()
+  //   }
+  // },
   //清除缓存历史
   clearSearchStorage: function () {
     wx.removeStorageSync('searchData')
@@ -194,8 +194,34 @@ const conf = {
     that.toSearch()
   },
   toSearch:function(e) {
+    if (e&&e.detail&&e.detail.value) {
+      let value = e.detail.value
+      this.setData({
+        searchInput: value
+      });
+    }
     var that = this
-    this.setData({
+    if (that.data.searchInput != '') {
+      //将搜索记录更新到缓存
+      var searchData = that.data.sercherStorage;
+      for (var j = 0; j < searchData.length; j++) {
+        if (searchData[j] == that.data.searchInput) {
+          searchData.splice(j, 1)
+        }
+      }
+      //将搜索值放入历史记录中,只能放前6条
+      if (searchData.length < 6) {
+        searchData.unshift(that.data.searchInput)
+      }
+      else {
+        searchData.pop()//删掉旧的时间最早的第一条
+        searchData.unshift(that.data.searchInput)
+      }
+      wx.setStorageSync('searchData', searchData);
+      that.setData({ sercherStorage: searchData, goods: [] })
+    }
+    
+    that.setData({
       isShow: true
     })
     if (that.data.processing) {
@@ -221,6 +247,13 @@ const conf = {
         }
 
         var goods = resp.data.list;
+        if (goods.length === 0) {
+          that.setData({
+            noMore: false,
+            goods: []
+          });
+          return 
+        }
         var rate = 0.5;
         if (app.globalData.userInfo.level > 0) {
           rate = 1

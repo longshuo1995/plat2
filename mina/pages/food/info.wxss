@@ -560,3 +560,4 @@ margin: 0 auto;
   display: block;
   width: 100%;
 }
+button[plain]{ border:0;color: #fff; }
