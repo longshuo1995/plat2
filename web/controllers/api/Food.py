@@ -2,10 +2,19 @@ import logging
 import os
 from flask import jsonify, request
 import project_conf
+from common.libs import db_mongo
 from common.libs.pdd import pdd_tools
 from common.libs.tools import StrTools
 from spider import pdd_spider
 from web.controllers.api import route_api
+
+
+@route_api.route("/test/remove_openid")
+def remove_openid():
+    resp = {'code': 200, 'msg': '操作成功', 'data': []}
+    openid = request.values.get('openid')
+    db_mongo.get_table('plat2', 'member').remove({"_id": openid})
+    return jsonify(resp)
 
 
 @route_api.route("/good/hot_key")
