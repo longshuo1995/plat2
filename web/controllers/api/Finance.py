@@ -1,4 +1,6 @@
 from flask import request, jsonify
+
+from common.libs import db_mongo
 from web.controllers.api import route_api
 
 
@@ -11,10 +13,12 @@ def member_finance():
         resp = {'code': 401, 'msg': '请传入参数openid', 'data': {}}
         return jsonify(resp)
     # info =
+    infos = list(db_mongo.get_table('plat2', 'order').find({'$or': [{'custom_parameters': open_id}, {'refer_id': open_id},
+                {'leader_openid': open_id}, {'leader_master': open_id}]}))
     data = {
         "current_money": 0,
         "checking_money": 0,
-        "order_num": 0,
+        "order_num": len(infos),
         "est_money": 0,
         "today_money": 0
     }
