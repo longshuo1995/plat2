@@ -207,10 +207,61 @@ const conf = {
       return;
     }
     that.setData({
+      processing: true,
       p: that.data.p + 1,
       show_model: false
     })
-    that.toSearch()
+    wx.request({
+      url: app.buildUrl("/good/search"),
+      header: app.getRequestHeader(),
+      data: {
+        opt_id: 0,
+        mix_kw: that.data.searchInput,
+        page: that.data.p,
+        sort_type: that.data.tp
+      },
+      success: function (res) {
+        var resp = res.data;
+        if (resp.code != 200) {
+          that.setData({
+            processing: false
+          });
+          app.alert({ "content": resp.msg });
+          return;
+        }
+
+        var goods = resp.data.list;
+        if (goods.length === 0) {
+          that.setData({
+            processing: false,
+            noMore: false
+          });
+          return
+        }
+        var rate = 0.5;
+        if (app.globalData.userInfo.level > 0) {
+          rate = 1
+        }
+        for (var i = 0; i < goods.length; i++) {
+          goods[i]['row_price'] = (goods[i]['row_price'] / 100).toFixed(2)
+          goods[i]['coupon_discount'] = (goods[i]['coupon_discount'] / 100).toFixed(2)
+          goods[i]['min_price'] = (goods[i]['min_price'] / 100).toFixed(2)
+          goods[i]['promotion'] = (rate * goods[i]['promotion_rate'] / 1000 * goods[i]['min_price']).toFixed(2)
+        }
+        that.setData({
+          goods: that.data.goods.concat(goods),
+          p: that.data.p + 1,
+          processing: false,
+          show_model: true
+        });
+
+        if (resp.data.has_more == 0) {
+          that.setData({
+            noMore: false
+          });
+        }
+      }
+    });
   },
   toSearch:function(e) {
     if (e&&e.detail&&e.detail.value) {

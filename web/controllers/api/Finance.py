@@ -10,6 +10,7 @@ def member_finance():
     if not open_id:
         resp = {'code': 401, 'msg': '请传入参数openid', 'data': {}}
         return jsonify(resp)
+    # info =
     data = {
         "current_money": 0,
         "checking_money": 0,

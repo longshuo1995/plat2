@@ -48,21 +48,21 @@ Page({
       },
     }
     var that = this
-    if (options.from == 'button') {
-      let datas = `【拼多多】优惠券${that.data.info.coupon_discount}元\n 原价￥${that.data.info.row_price} 券后价￥${that.data.info.min_price}`
-      obj.title = datas
-    }
+    let datas = `【拼多多】优惠券${that.data.info.coupon_discount}元\n 原价￥${that.data.info.row_price} 券后价￥${that.data.info.min_price}`
+    obj.title = datas
     return obj
     },
   onLoad: function (options) {
+      console.log(options)
     if (options.from_openid){
       app.globalData.refer_openid = options.from_openid
+      console.log(app.globalData.refer_openid)
     }
     var that = this;
     var cache_path = '/pages/food/info?id=' + options.id;
     
     app.globalData.cache = cache_path;
-    // app.pre_load();
+    app.pre_load();
     that.setData({
       goods_id: options.id
     })
