@@ -46,7 +46,7 @@ def group_member():
             query = {'leader_master': open_id, '_id': {'$ne': open_id}}
         items = db_mongo.get_table('plat2', 'member').find(query).skip(pages*pages_per_page).limit(pages_per_page)
         l = list(items)
-        print(l)
+        print(len(l))
         for item in l:
             group_list.append({
                 'tp_name': '会员',
