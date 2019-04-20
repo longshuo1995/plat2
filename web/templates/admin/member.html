@@ -8,9 +8,11 @@
     <form>
         <input type="text" name="mix_kw"><br>
         {% for user in data.user_info %}
-            <img src="{{ user.icon_url }}">
-            <a href="/admin/user_info?open_id={{ user.open_id }}">{{ user.nick_name }}</a>
-            <input type="checkbox" name="userinfo" value="{{ user.open_id }}"><br>
+            <p>
+                <img src="{{ user.icon_url }}">
+                <a href="/admin/user_info?open_id={{ user.open_id }}">{{ user.nick_name }}</a>
+                <input type="checkbox" name="userinfo" value="{{ user.open_id }}">
+            </p>
         {% endfor %}
         <input type="radio" name="update" value="-1">删除用户
         <input type="radio" name="update" value="0">设为团员
