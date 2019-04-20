@@ -73,14 +73,13 @@ def admin_member_upgrade():
     if username != 'qiyupingtuan' and password != 'd665e0369613cdcaddd4d268b3bcfb90':
         return redirect('/admin/login')
     if update >= 0:
-        p = {'$set': {'level': update}}
-        print(p)
         db_mongo.get_table('plat2', 'member').update({'_id': {'$in': users}}, {'$set': {'level': update}})
     elif update == -1:
         db_mongo.get_table('plat2', 'member').remove({'_id': {'$in': users}})
     return redirect('/admin/member')
 
 
-
-
-
+@route_admin.route('/user_info', methods=['POST'])
+def admin_user_info():
+    info = db_mongo.get_table('plat2', 'member')
+    return render_template('admin/member_info.html', data=info)
