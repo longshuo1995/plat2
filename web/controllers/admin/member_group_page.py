@@ -11,7 +11,7 @@ def admin_login():
     elif request.method == 'POST':
         req = request.form
         username = req.get('username')
-        password = req.get('passwd')
+        password = req.get('password')
         logging.log(logging.ERROR, username)
         logging.log(logging.ERROR, password)
         if username == 'qiyupingtuan' and password == 'd665e0369613cdcaddd4d268b3bcfb90':
