@@ -3,8 +3,8 @@ import www
 import logging
 from application import app, manager
 
-logging.basicConfig(level=logging.DEBUG, filename='/data/www/Order/log/run_log.log',
-                    filemode='a', format='%(asctime)s~%(pathname)s~%(lineno)d~%(levelname)s~%(message)s')
+# logging.basicConfig(level=logging.DEBUG, filename='/data/www/Order/log/run_log.log',
+#                     filemode='a', format='%(asctime)s~%(pathname)s~%(lineno)d~%(levelname)s~%(message)s')
 
 manager.add_command("runserver", Server(host="0.0.0.0", port=app.config['SERVER_PORT'], use_debugger=app.config['DEBUG']))
 
