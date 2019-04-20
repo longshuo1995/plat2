@@ -139,7 +139,7 @@ def calc_top_promotion(offset_time):
             'nick_name': mem_info['nick_name'],
             'icon': mem_info['icon_url'],
             'title': title,
-            'value': float(self_promotion[idx])
+            'value': round(float(self_promotion[idx]), 2)
         }
         self_file.write('%s\n' % json.dumps(temp))
 

@@ -55,17 +55,31 @@ def hot_goods():
 @route_api.route('/member/hot_member', methods=['GET', 'POST'])
 def hot_member():
     req = request.values
-    print(req)
     tp = req.get('tp', 0)
-    pages = req.get('pages')
-    team_index = req.get('team_index')
-    resp = {'code': 200, 'msg': '成功', 'data': []}
+    pages = int(req.get('pages'), 0)
 
+    resp = {'code': 200, 'msg': '成功', 'data': []}
+    if pages > 1:
+        return resp
+
+    team_index = int(req.get('team_index', 0))
     tp = int(tp)
     if tp == 0:
-        file_name = os.path.join(project_conf.project_path, 'asserts', 'group_promotion')
+        # 佣金排行
+        if team_index == 0:
+            # 个人榜
+            file_name = os.path.join(project_conf.project_path, 'asserts', 'self_promotion')
+        else:
+            # 团队榜
+            file_name = os.path.join(project_conf.project_path, 'asserts', 'group_promotion')
     else:
-        file_name = os.path.join(project_conf.project_path, 'asserts', 'group_member')
+        # 粉丝排行
+        if team_index == 0:
+            # 个人榜
+            file_name = os.path.join(project_conf.project_path, 'asserts', 'self_member')
+        else:
+            # 团队榜
+            file_name = os.path.join(project_conf.project_path, 'asserts', 'group_member')
 
     for line in [i for i in open(file_name)]:
         jo = json.loads(line)
