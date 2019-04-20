@@ -15,6 +15,8 @@ def group_member():
     resp = {'code': 200, 'msg': '成功', 'data': group_list}
     group_id = int(req.get('group_id', 0))
     open_id = req.get('open_id', '')
+    pages = int(req.get('pages', 0))
+    pages_per_page = 50
     if group_id == 0:
         info = db_mongo.get_table('plat2', 'member').find_one({"_id": open_id})
         if info['leader_openid']:
@@ -25,7 +27,7 @@ def group_member():
                     'user_img': teacher_info['icon_url'],
                     'user_name': teacher_info['nick_name'],
                 })
-        if info['refer_id'] and info['refer_id'] != open_id:
+        if info['refer_id'] and info['refer_id'] != open_id and info['refer_id'] != info['leader_openid']:
             teacher_info = db_mongo.get_table('plat2', 'member').find_one({"_id": info['refer_id']})
             if teacher_info:
                 group_list.append({
@@ -35,12 +37,12 @@ def group_member():
                 })
     else:
         if group_id == 1:
-            query = {'refer_id': open_id, '_id': {'$ne': open_id}}
+            query = {'refer_id': open_id, '_id': {'$ne': open_id}, 'leader_openid': {'$ne': open_id}}
         elif group_id == 2:
             query = {'leader_openid': open_id}
         elif group_id == 3:
             query = {'leader_master': open_id, '_id': {'$ne': open_id}}
-        items = db_mongo.get_table('plat2', 'member').find(query)
+        items = db_mongo.get_table('plat2', 'member').find(query).skip(pages*pages_per_page).limit(pages_per_page)
         for item in items:
             group_list.append({
                 'tp_name': '会员',
