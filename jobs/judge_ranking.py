@@ -59,7 +59,11 @@ def calc_top_user(offset_time):
     # 计算粉丝数
     df = pd.DataFrame(items)
     self_mem = df['refer_id'][df['refer_id'] != ''][df['refer_id'] != df['_id']].value_counts()
+    self_mem = self_mem.sort_values(ascending=False)
+
     group_mem = df['leader_openid'][df['leader_openid'] != ''][df['leader_openid'] != df['_id']].value_counts()
+    group_mem = group_mem.sort_values(ascending=False)
+    
     self_file_nm = os.path.join(project_conf.assert_path, project_conf.fengyun_range_pg['self']['member'])
     self_file = open(self_file_nm, 'w')
     group_file_nm = os.path.join(project_conf.assert_path, project_conf.fengyun_range_pg['group']['member'])
