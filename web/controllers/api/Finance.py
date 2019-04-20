@@ -20,7 +20,7 @@ def member_finance():
     # 计算佣金
     df = DataFrame(infos)
     # 自己
-    p1 = df[df['custom_parameters'] == open_id]['total_promotion'].sum() * project_conf.rate_conf['refer_rate']
+    p1 = df[df['custom_parameters'] == open_id]['total_promotion'].sum() * project_conf.rate_conf['self_rate']
     # 老师
     p2 = df[df['refer_id'] == open_id]['total_promotion'].sum() * project_conf.rate_conf['refer_rate']
     # 团长
