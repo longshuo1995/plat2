@@ -48,8 +48,3 @@ def group_member():
                 'user_name': item['nick_name'],
             })
     return jsonify(resp)
-
-
-
-
-

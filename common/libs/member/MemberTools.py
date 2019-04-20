@@ -8,12 +8,14 @@ leader_master,
 '''
 
 
-def upgrade(open_id):
+def upgrade(open_id, set_leader_master=False):
     tb = db_mongo.get_table('plat2', 'member')
     info = tb.find_one({'_id': open_id})
-    leader_master = info['leader_openid']
-    if leader_master == open_id:
-        leader_master = leader_master['leader_master']
+    if set_leader_master:
+        leader_master = info['leader_openid']
+        if leader_master == open_id:
+            leader_master = ''
+
     tb.update({'_id': open_id}, {'$set': {'level': 1, 'leader_openid': open_id,
                                           'refer_id': open_id, 'leader_master': leader_master}})
     tb.update({'refer_openid': open_id}, {'$set': {'leader_openid': open_id, 'leader_master': leader_master}})
