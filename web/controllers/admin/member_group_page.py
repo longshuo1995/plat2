@@ -37,7 +37,7 @@ def admin_member():
     username = request.cookies.get('username')
     password = request.cookies.get('password')
     if username != 'qiyupingtuan' and password != 'd665e0369613cdcaddd4d268b3bcfb90':
-        return render_template('admin/login.html')
+        return redirect('/admin/login')
     req = request.values
     pages = int(req.get('pages', 0))
     mix_kw = req.get('mix_kw', '').strip()
@@ -51,7 +51,26 @@ def admin_member():
 
     data = {
         'user_info': user_info,
-        'pg_count': math.ceil(count/10)
+        'pg_count': math.ceil(count/10)-1,
     }
     return render_template('admin/member.html', data=data)
+
+
+@route_admin.route('/member_upgrade', methods=['POST'])
+def admin_member_upgrade():
+    req = request.form
+    users = req.get('userinfo')
+    update = int(req.get('update', -2))
+    username = request.cookies.get('username')
+    password = request.cookies.get('password')
+    if username != 'qiyupingtuan' and password != 'd665e0369613cdcaddd4d268b3bcfb90':
+        return redirect('/admin/login')
+    # if update >= 0:
+    print(users)
+    print(update)
+    return redirect('/admin/member')
+
+
+
+
 

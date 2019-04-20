@@ -7,9 +7,9 @@
 <body>
     <form>
         <input type="text" name="mix_kw">
-        <input type="submit" value="提交">
+        <input type="submit" value="搜索">
     </form>
-    <form action="/admin/member_upgrade">
+    <form action="/admin/member_upgrade" method="post">
         {% for user in data.user_info %}
             <p>
                 <img style="height: 50px" src="{{ user.icon_url }}">
@@ -18,12 +18,13 @@
             </p>
         {% endfor %}
         最后一页:<a href="/admin/member?pages={{ data.pg_count }}">{{ data.pg_count }}</a>
+        <br>
         <input type="radio" name="update" value="-1">删除用户
         <input type="radio" name="update" value="0">设为团员
         <input type="radio" name="update" value="1">设为团长
         <input type="radio" name="update" value="2">拉黑成员
         <br>
-
+        <input type="submit" value="确认操作">
     </form>
 {#    {% for pg in pages %}#}
 {#        <a href="/admin/member?pg={{ pg }}">{{ pg }}</a>#}
