@@ -110,6 +110,10 @@ def calc_top_promotion(offset_time):
     if not l:
         return
     df = pd.DataFrame(l)
+
+    # 失效订单排除
+    df = df[df['order_status'] != 4]
+
     # 个人佣金
     custom_promotion = df[df['custom_parameters'] != '']['total_promotion'].groupby(df['custom_parameters']).sum()
     custom_promotion = custom_promotion * project_conf.rate_conf['self_rate']
