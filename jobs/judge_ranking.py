@@ -105,7 +105,10 @@ def calc_top_promotion(offset_time):
     door_time = c_time - offset_time
     # m
     items = db_mongo.get_table('plat2', 'order').find(
-        {'order_create_time': {'$gt': door_time}})
+        {
+            'order_create_time': {'$gt': door_time},
+            'order_status': {'$ne': 4}
+         })
     l = list(items)
     if not l:
         return
@@ -115,7 +118,7 @@ def calc_top_promotion(offset_time):
     df = df[df['order_status'] != 4]
 
     # 个人佣金
-    custom_promotion = df[df['custom_parameters'] != '']['total_promotion'].groupby(df['custom_parameters']).sum()
+    custom_promotion = df['total_promotion'].groupby(df['custom_parameters']).sum()
     custom_promotion = custom_promotion * project_conf.rate_conf['self_rate']
 
     # 老师佣金

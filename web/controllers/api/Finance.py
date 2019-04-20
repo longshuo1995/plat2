@@ -15,8 +15,12 @@ def member_finance():
         resp = {'code': 401, 'msg': '请传入参数openid', 'data': {}}
         return jsonify(resp)
     # info =
-    infos = list(db_mongo.get_table('plat2', 'order').find({'$or': [{'custom_parameters': open_id}, {'refer_id': open_id},
-                {'leader_openid': open_id}, {'leader_master': open_id}]}))
+    infos = list(db_mongo.get_table('plat2', 'order').find(
+        {
+
+            'order_status': {'$ne': 4},
+            '$or': [{'custom_parameters': open_id}, {'refer_id': open_id},{'leader_openid': open_id}, {'leader_master': open_id}]
+        }))
     # 计算佣金
     df = DataFrame(infos)
     # 自己
