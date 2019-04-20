@@ -138,9 +138,11 @@ def calc_top_promotion(offset_time):
         mem_info = tb_mem.find_one({'_id': idx})
         if not mem_info:
             continue
+        name = mem_info['nick_name']
+        name = name if len(name) <= 6 else name[:3] + '...' + name[-3:]
         temp = {
             'id': idx,
-            'nick_name': mem_info['nick_name'],
+            'nick_name':  name,
             'icon': mem_info['icon_url'],
             'title': title,
             'value': round(float(self_promotion[idx]), 2)
@@ -151,9 +153,11 @@ def calc_top_promotion(offset_time):
         mem_info = tb_mem.find_one({'_id': idx})
         if not mem_info:
             continue
+        name = mem_info['nick_name']
+        name = name if len(name) <= 6 else name[:3] + '...' + name[-3:]
         temp = {
             'id': idx,
-            'nick_name': mem_info['nick_name'],
+            'nick_name': name,
             'icon': mem_info['icon_url'],
             'title': title,
             'value': round(float(group_promotion[idx]), 2)
