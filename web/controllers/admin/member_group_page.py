@@ -58,9 +58,12 @@ def admin_member():
     user_info = list(query_result.skip(pages*user_count_per_page).limit(user_count_per_page))
     for user in user_info:
         user['level'] = mp_level[user['level']]
+    max_count = math.ceil(count/10)-1
     data = {
         'user_info': user_info,
-        'pg_count': math.ceil(count/10)-1,
+        'before_pg': '?mix_kw=%s&pages=%s' % (mix_kw, pages-1 if pages > 0 else pages),
+        'next_pg': '?mix_kw=%s&pages=%s' % (mix_kw, pages+1 if pages < max_count else pages),
+        'pg_count': max_count,
     }
     return render_template('admin/member.html', data=data)
 

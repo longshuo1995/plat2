@@ -18,6 +18,8 @@
                 <input type="checkbox" name="userinfo" value="{{ user.open_id }}">
             </p>
         {% endfor %}
+        <a href="{{ data.before_pg }}">上一页</a>
+        <a href="{{ data.next_pg }}">下一页</a>
         最后一页:<a href="/admin/member?pages={{ data.pg_count }}">{{ data.pg_count }}</a>
         <br>
         <input type="radio" name="update" value="-1">删除用户

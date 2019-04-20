@@ -9,13 +9,14 @@ def good_share(open_id):
     }
     access_token = MemberService.get_access_token()
     print(access_token)
-    path = 'pages/index/index?from_openid=%s' % open_id
+    path = 'pages/food/index'
     url = "https://api.weixin.qq.com/wxa/getwxacodeunlimit?access_token=%s" % access_token
     data = {
-        'scene': 'from_openid=1'
+        'page': path,
+        'scene': 'from_openid=111'
     }
-    content = requests.post(url, headers=headers, json=data).content
-    with open('艾艾.jpg', 'wb') as f:
+    content = requests.post(url, headers=headers, json=data, verify=False).content
+    with open('from_1.jpg', 'wb') as f:
         print(content)
         f.write(content)
 
