@@ -19,8 +19,8 @@ def admin_login():
         logging.log(logging.ERROR, password)
         if username == 'qiyupingtuan' and password == 'd665e0369613cdcaddd4d268b3bcfb90':
             resp = make_response(redirect('/admin/list'))
-            resp.set_cookie('username', req.get('usename'))
-            resp.set_cookie('password', req.get('password'))
+            resp.set_cookie('username', username)
+            resp.set_cookie('password', password)
             return resp
     return render_template('admin/login.html')
 
