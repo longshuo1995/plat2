@@ -25,7 +25,7 @@ def admin_list():
 
 
 @route_admin.route('/member')
-def admin_list():
+def admin_member():
     username = request.cookies.get('username')
     password = request.cookies.get('password')
 
