@@ -42,9 +42,9 @@ def admin_member():
     if mix_kw:
         query['nick_name'] = re.compile(mix_kw)
 
-    user_info = list(db_mongo.get_table('plat2', 'member').find(query, {'open_id': 1, 'nick_name': 1, '_id': 0})
+    user_info = list(db_mongo.get_table('plat2', 'member').
+                     find(query, {'open_id': 1, 'nick_name': 1, 'icon_url': 1, '_id': 0})
                      .skip(pages*user_count_per_page).limit(user_count_per_page))
-    print(user_info)
     if username == 'qiyupingtuan' and password == 'd665e0369613cdcaddd4d268b3bcfb90':
         data = {
             'user_info': user_info
