@@ -3,7 +3,7 @@ from flask import request, render_template, redirect, make_response
 from web.controllers.admin import route_admin
 
 
-@route_admin.route('/login')
+@route_admin.route('/login', methods=['GET', 'POST'])
 def admin_login():
     if request.method == 'GET':
         return render_template('admin/login.html')
