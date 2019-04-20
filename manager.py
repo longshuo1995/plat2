@@ -11,7 +11,8 @@ manager.add_command("runserver", Server(host="0.0.0.0", port=app.config['SERVER_
 
 def main():
     app.logger.error(app.config['SERVER_PORT'])
-    manager.run()
+    # manager.run()
+    app.run(host="0.0.0.0", port=8812, use_debugger=app.config['DEBUG'])
 
 
 if __name__ == '__main__':
