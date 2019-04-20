@@ -50,6 +50,7 @@ def judge_local(offset_time, file_nm):
     out_file.close()
 
 
+# 粉丝计算
 def calc_top_user(offset_time):
     c_time = int(time.time())
     door_time = c_time - offset_time
@@ -57,9 +58,8 @@ def calc_top_user(offset_time):
         {'create_time': {'$gt': door_time}})
     # 计算粉丝数
     df = pd.DataFrame(items)
-    self_mem = df['refer_id'][df['refer_id'] != ''].value_counts()
-    group_mem = df['leader_openid'][df['leader_openid'] != ''].value_counts()
-    group_mem = group_mem.add(self_mem, fill_value=0)
+    self_mem = df['refer_id'][df['refer_id'] != ''][df['refer_id'] != df['_id']].value_counts()
+    group_mem = df['leader_openid'][df['leader_openid'] != ''][df['leader_openid'] != df['_id']].value_counts()
     self_file_nm = os.path.join(project_conf.assert_path, project_conf.fengyun_range_pg['self']['member'])
     self_file = open(self_file_nm, 'w')
     group_file_nm = os.path.join(project_conf.assert_path, project_conf.fengyun_range_pg['group']['member'])
