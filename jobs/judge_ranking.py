@@ -95,6 +95,7 @@ def calc_top_user(offset_time):
     group_file.close()
 
 
+# 佣金排行榜计算
 def calc_top_promotion(offset_time):
     c_time = int(time.time())
     door_time = c_time - offset_time
@@ -105,16 +106,24 @@ def calc_top_promotion(offset_time):
     if not l:
         return
     df = pd.DataFrame(l)
+    # 个人佣金
     custom_promotion = df[df['custom_parameters'] != '']['total_promotion'].groupby(df['custom_parameters']).sum()
     custom_promotion = custom_promotion * project_conf.rate_conf['self_rate']
+
+    # 老师佣金
     refer_promotion = df[df['refer_id'] != '']['total_promotion'].groupby(df['refer_id']).sum()
     refer_promotion = refer_promotion * project_conf.rate_conf['refer_rate']
-    leader_promotion = df[df['leader_openid'] != '']['total_promotion'].groupby(df['leader_openid']).sum()
+
+    # 团长佣金
+    leader_promotion = df[df['leader_openid'] != ''][df['leader_openid'] != df['refer_id']]['total_promotion'].groupby(df['leader_openid']).sum()
     leader_promotion = leader_promotion * project_conf.rate_conf['leader_rate']
     # relation_promotion = df[df['leader_master'] != '']['total_promotion'].groupby(df['leader_master']).sum()
 
+    # 个人榜（个人+老师）
     self_promotion = custom_promotion.add(refer_promotion, fill_value=0)
-    group_promotion = self_promotion.add(leader_promotion, fill_value=0)
+    self_promotion = self_promotion.sort_values(ascending=False)
+
+    group_promotion = leader_promotion
     self_file_nm = os.path.join(project_conf.assert_path, project_conf.fengyun_range_pg['self']['promotion'])
     self_file = open(self_file_nm, 'w')
     group_file_nm = os.path.join(project_conf.assert_path, project_conf.fengyun_range_pg['group']['promotion'])
@@ -151,8 +160,8 @@ def calc_top_promotion(offset_time):
 
 
 if __name__ == '__main__':
-    # calc_top_promotion(14 * project_conf.seconds_per_day)
-    # calc_top_user(7 * project_conf.seconds_per_day)
+    calc_top_promotion(14 * project_conf.seconds_per_day)
+    calc_top_user(7 * project_conf.seconds_per_day)
     for item in project_conf.qiyu_range_pg:
         judge_local(item[0], item[1])
 
