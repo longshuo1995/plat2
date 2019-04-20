@@ -6,7 +6,10 @@
 </head>
 <body>
     <form>
-        <input type="text" name="mix_kw"><br>
+        <input type="text" name="mix_kw">
+        <input type="submit" value="提交">
+    </form>
+    <form action="/admin/member_upgrade">
         {% for user in data.user_info %}
             <p>
                 <img style="height: 50px" src="{{ user.icon_url }}">
@@ -19,7 +22,6 @@
         <input type="radio" name="update" value="1">设为团长
         <input type="radio" name="update" value="2">拉黑成员
         <br>
-        <input type="submit" value="提交">
     </form>
 {#    {% for pg in pages %}#}
 {#        <a href="/admin/member?pg={{ pg }}">{{ pg }}</a>#}
