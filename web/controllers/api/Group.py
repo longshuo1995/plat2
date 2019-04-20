@@ -44,7 +44,8 @@ def group_member():
             query = {'leader_openid': open_id, 'refer_id': {'$ne': open_id}}
         elif group_id == 3:
             query = {'leader_master': open_id, '_id': {'$ne': open_id}}
-        items = db_mongo.get_table('plat2', 'member').find(query).skip(pages*pages_per_page).limit(pages_per_page)
+        items = db_mongo.get_table('plat2', 'member').find(query)
+            # .skip(pages*pages_per_page).limit(pages_per_page)
         l = list(items)
         print(len(l))
         for item in l:
