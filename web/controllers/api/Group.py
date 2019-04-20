@@ -16,10 +16,6 @@ def group_member():
     group_id = int(req.get('group_id', 0))
     open_id = req.get('open_id', '')
     pages = int(req.get('pages', 0))
-    print('*' * 11)
-    print('*' * 11)
-    print('*' * 11)
-    print(req)
     pages_per_page = 50
     if group_id == 0:
         info = db_mongo.get_table('plat2', 'member').find_one({"_id": open_id})
@@ -40,10 +36,12 @@ def group_member():
                     'user_name': teacher_info['nick_name'],
                 })
     else:
+        # 直属团员
         if group_id == 1:
-            query = {'refer_id': open_id, '_id': {'$ne': open_id}, 'leader_openid': {'$ne': open_id}}
+            query = {'refer_id': open_id, '_id': {'$ne': open_id}}
+        # 间接团员
         elif group_id == 2:
-            query = {'leader_openid': open_id}
+            query = {'leader_openid': open_id, 'refer_id': {'$ne': open_id}}
         elif group_id == 3:
             query = {'leader_master': open_id, '_id': {'$ne': open_id}}
         items = db_mongo.get_table('plat2', 'member').find(query).skip(pages*pages_per_page).limit(pages_per_page)
