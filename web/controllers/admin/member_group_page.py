@@ -1,3 +1,4 @@
+import math
 import re
 
 from flask import request, render_template, redirect, make_response
@@ -35,6 +36,8 @@ def admin_member():
     user_count_per_page = 10
     username = request.cookies.get('username')
     password = request.cookies.get('password')
+    if username != 'qiyupingtuan' and password != 'd665e0369613cdcaddd4d268b3bcfb90':
+        return render_template('admin/login.html')
     req = request.values
     pages = int(req.get('pages', 0))
     mix_kw = req.get('mix_kw', '').strip()
@@ -42,14 +45,13 @@ def admin_member():
     if mix_kw:
         query['nick_name'] = re.compile(mix_kw)
 
-    user_info = list(db_mongo.get_table('plat2', 'member').
-                     find(query, {'open_id': 1, 'nick_name': 1, 'icon_url': 1, '_id': 0})
-                     .skip(pages*user_count_per_page).limit(user_count_per_page))
-    if username == 'qiyupingtuan' and password == 'd665e0369613cdcaddd4d268b3bcfb90':
-        data = {
-            'user_info': user_info
-        }
-        return render_template('admin/member.html', data=data)
-    return render_template('admin/login.html')
+    query_result = db_mongo.get_table('plat2', 'member').find(query, {'open_id': 1, 'nick_name': 1, 'icon_url': 1, '_id': 0})
+    count = query_result.count()
+    user_info = list(query_result.skip(pages*user_count_per_page).limit(user_count_per_page))
 
+    data = {
+        'user_info': user_info,
+        'pg_count': math.ceil(count/10)
+    }
+    return render_template('admin/member.html', data=data)
 
