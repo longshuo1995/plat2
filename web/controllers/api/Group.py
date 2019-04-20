@@ -47,8 +47,9 @@ def group_member():
         elif group_id == 3:
             query = {'leader_master': open_id, '_id': {'$ne': open_id}}
         items = db_mongo.get_table('plat2', 'member').find(query).skip(pages*pages_per_page).limit(pages_per_page)
-        print(len(list(items)))
-        for item in items:
+        l = list(items)
+        print(l)
+        for item in l:
             group_list.append({
                 'tp_name': '会员',
                 'user_img': item['icon_url'],
