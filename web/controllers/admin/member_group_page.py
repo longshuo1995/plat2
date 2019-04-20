@@ -59,7 +59,7 @@ def admin_member():
 @route_admin.route('/member_upgrade', methods=['POST'])
 def admin_member_upgrade():
     req = request.form
-    users = req.get('userinfo')
+    users = req.getlist('userinfo')
     update = int(req.get('update', -2))
     username = request.cookies.get('username')
     password = request.cookies.get('password')
