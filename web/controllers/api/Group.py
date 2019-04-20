@@ -37,7 +37,7 @@ def group_member():
         if group_id == 1:
             query = {'refer_id': open_id, '_id': {'$ne': open_id}}
         elif group_id == 2:
-            query = {'leader_openid': open_id, '_id': {'$ne': open_id}}
+            query = {'leader_openid': open_id}
         elif group_id == 3:
             query = {'leader_master': open_id, '_id': {'$ne': open_id}}
         items = db_mongo.get_table('plat2', 'member').find(query)

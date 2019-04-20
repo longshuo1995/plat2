@@ -63,7 +63,7 @@ def calc_top_user(offset_time):
 
     group_mem = df['leader_openid'][df['leader_openid'] != ''][df['leader_openid'] != df['_id']].value_counts()
     group_mem = group_mem.sort_values(ascending=False)
-    
+
     self_file_nm = os.path.join(project_conf.assert_path, project_conf.fengyun_range_pg['self']['member'])
     self_file = open(self_file_nm, 'w')
     group_file_nm = os.path.join(project_conf.assert_path, project_conf.fengyun_range_pg['group']['member'])
@@ -156,7 +156,7 @@ def calc_top_promotion(offset_time):
             'nick_name': mem_info['nick_name'],
             'icon': mem_info['icon_url'],
             'title': title,
-            'value': float(group_promotion[idx])
+            'value': round(float(group_promotion[idx]), 2)
         }
         group_file.write('%s\n' % json.dumps(temp))
     self_file.close()
