@@ -6,10 +6,10 @@
 </head>
 <body>
     <form>
-        <input type="text" name="search"><br>
-        {% for user in users %}
-            <a href="/admin/user_info?openid={{ user.openid }}">{{ user.nick_name }}</a>
-            <input type="checkbox" name="userinfo" value="{{ user.openid }}"><br>
+        <input type="text" name="mix_kw"><br>
+        {% for user in data.users %}
+            <a href="/admin/user_info?open_id={{ user.open_id }}">{{ user.nick_name }}</a>
+            <input type="checkbox" name="userinfo" value="{{ user.open_id }}"><br>
         {% endfor %}
         <input type="radio" name="update" value="-1">删除用户
         <input type="radio" name="update" value="0">设为团员
@@ -18,8 +18,8 @@
         <br>
         <input type="submit" value="提交">
     </form>
-    {% for pg in pages %}
-        <a href="/admin/member?pg={{ pg }}">{{ pg }}</a>
-    {% endfor %}
+{#    {% for pg in pages %}#}
+{#        <a href="/admin/member?pg={{ pg }}">{{ pg }}</a>#}
+{#    {% endfor %}#}
 </body>
 </html>
