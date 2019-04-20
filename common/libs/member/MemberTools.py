@@ -19,4 +19,6 @@ def upgrade(open_id):
     tb.update({'refer_openid': open_id}, {'$set': {'leader_openid': open_id, 'leader_master': leader_master}})
 
 
-upgrade('ohl4g5USDznFdyo9qVFmZQcOn-6Q')
+if __name__ == '__main__':
+    # tb = db_mongo.get_table('plat2', 'member').find({'refer_openid': })
+    upgrade('ohl4g5USDznFdyo9qVFmZQcOn-6Q')
