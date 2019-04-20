@@ -6,6 +6,7 @@ from flask import request, render_template, redirect, make_response
 import logging
 
 from common.libs import db_mongo
+from common.libs.member import MemberTools
 from web.controllers.admin import route_admin
 
 
@@ -73,7 +74,10 @@ def admin_member_upgrade():
     password = request.cookies.get('password')
     if username != 'qiyupingtuan' and password != 'd665e0369613cdcaddd4d268b3bcfb90':
         return redirect('/admin/login')
-    if update >= 0:
+    if update == 1:
+        for use in users:
+            MemberTools.upgrade(use)
+    elif update >= 0:
         db_mongo.get_table('plat2', 'member').update({'_id': {'$in': users}}, {'$set': {'level': update}})
     elif update == -1:
         db_mongo.get_table('plat2', 'member').remove({'_id': {'$in': users}})
