@@ -1,4 +1,5 @@
 from flask import request, render_template, redirect, make_response
+import logging
 
 from web.controllers.admin import route_admin
 
@@ -9,7 +10,7 @@ def admin_login():
         return render_template('admin/login.html')
     elif request.method == 'POST':
         req = request.form
-        username = req.get('usename')
+        username = req.get('username')
         password = req.get('password')
         if username == 'qiyupingtuan' and password == 'd665e0369613cdcaddd4d268b3bcfb90':
             resp = make_response(redirect('/admin/list'))
