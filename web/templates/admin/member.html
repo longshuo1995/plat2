@@ -14,6 +14,7 @@
             <p>
                 <img style="height: 50px" src="{{ user.icon_url }}">
                 <a href="/admin/user_info?open_id={{ user.open_id }}">{{ user.nick_name }}</a>
+                {{ user.level }}
                 <input type="checkbox" name="userinfo" value="{{ user.open_id }}">
             </p>
         {% endfor %}

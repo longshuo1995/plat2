@@ -33,6 +33,11 @@ def admin_list():
 
 @route_admin.route('/member')
 def admin_member():
+    mp_level = {
+        0: '团员',
+        1: '团长',
+        2: '拉黑'
+    }
     user_count_per_page = 10
     username = request.cookies.get('username')
     password = request.cookies.get('password')
@@ -45,10 +50,12 @@ def admin_member():
     if mix_kw:
         query['nick_name'] = re.compile(mix_kw)
 
-    query_result = db_mongo.get_table('plat2', 'member').find(query, {'open_id': 1, 'nick_name': 1, 'icon_url': 1, '_id': 0})
+    query_result = db_mongo.get_table('plat2', 'member').find(query, {'open_id': 1, 'nick_name': 1, 'icon_url': 1,
+                                                                      'level': 1, '_id': 0})
     count = query_result.count()
     user_info = list(query_result.skip(pages*user_count_per_page).limit(user_count_per_page))
-
+    for user in user_info:
+        user['level'] = mp_level[user['level']]
     data = {
         'user_info': user_info,
         'pg_count': math.ceil(count/10)-1,
