@@ -1,3 +1,4 @@
+import json
 import math
 import re
 
@@ -82,4 +83,7 @@ def admin_member_upgrade():
 @route_admin.route('/user_info', methods=['GET', 'POST'])
 def admin_user_info():
     info = db_mongo.get_table('plat2', 'member')
-    return render_template('admin/member_info.html', data=info)
+    data = {
+        'info': json.dumps(info)
+    }
+    return render_template('admin/member_info.html', data=data)
