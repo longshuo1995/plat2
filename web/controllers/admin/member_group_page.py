@@ -79,7 +79,7 @@ def admin_member_upgrade():
     return redirect('/admin/member')
 
 
-@route_admin.route('/user_info', methods=['POST'])
+@route_admin.route('/user_info', methods=['GET', 'POST'])
 def admin_user_info():
     info = db_mongo.get_table('plat2', 'member')
     return render_template('admin/member_info.html', data=info)
