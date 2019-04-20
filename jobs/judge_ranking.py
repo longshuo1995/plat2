@@ -122,7 +122,7 @@ def calc_top_promotion(offset_time):
     refer_promotion = df[df['refer_id'] != '']['total_promotion'].groupby(df['refer_id']).sum()
     refer_promotion = refer_promotion * project_conf.rate_conf['refer_rate']
     # 团长+老师为同一人的佣金
-    leader_refer_promotion = df[df['refer_id'] != df['leader_opendi']]['total_promotion'].groupby(df['refer_id']).sum()
+    leader_refer_promotion = df[df['refer_id'] == df['leader_opendi']]['total_promotion'].groupby(df['refer_id']).sum()
     leader_refer_promotion = leader_refer_promotion * project_conf.rate_conf['leader_rate']
     refer_promotion = refer_promotion.add(leader_refer_promotion, fill_value=0)
 
