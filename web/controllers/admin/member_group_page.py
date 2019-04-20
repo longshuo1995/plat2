@@ -37,7 +37,6 @@ def admin_member():
     password = request.cookies.get('password')
     req = request.values
     pages = int(req.get('pages', 0))
-
     mix_kw = req.get('mix_kw', '').strip()
     query = {}
     if mix_kw:
@@ -45,6 +44,7 @@ def admin_member():
 
     user_info = list(db_mongo.get_table('plat2', 'member').find(query, {'open_id': 1, 'nick_name': 1, '_id': 0})
                      .skip(pages*user_count_per_page).limit(user_count_per_page))
+    print(user_info)
     if username == 'qiyupingtuan' and password == 'd665e0369613cdcaddd4d268b3bcfb90':
         data = {
             'user_info': user_info
