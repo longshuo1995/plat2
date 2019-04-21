@@ -117,6 +117,9 @@ def calc_top_promotion(offset_time):
     # 个人佣金
     custom_promotion = df['total_promotion'].groupby(df['custom_parameters']).sum()
     custom_promotion = custom_promotion * project_conf.rate_conf['self_rate']
+    print('len_custom_promotion')
+    print('len_custom_promotion')
+    print(len(custom_promotion))
 
     # 老师佣金
     refer_promotion = df[df['refer_id'] != ''][df['refer_id'] != df['leader_openid']]['total_promotion'].groupby(df['refer_id']).sum()
