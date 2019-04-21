@@ -26,10 +26,11 @@ def upgrade(open_id, set_leader_master=False):
 # 递归计算(member_id的所有下级...   都更新为leader_id的团员)
 def upgrade_leader(member_id, leader_id):
     # 所有子级
-    member_items = db_mongo.get_table('plat2', 'member').find({'refer_id': member_id},
+    member_items = db_mongo.get_table('plat2', 'member').find({'refer_id': member_id, '_id': {'$ne': member_id}},
                                                               {'open_id': 1})
     db_mongo.get_table('plat2', 'member').update({'refer_id': member_id}, {'$set': {'leader_openid': leader_id}})
     for item in member_items:
+        print(1111)
         upgrade_leader(item['open_id'], leader_id)
 
 
