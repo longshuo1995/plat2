@@ -22,6 +22,7 @@ def group_member():
     pages_per_page = 50
     if group_id == 0:
         info = db_mongo.get_table('plat2', 'member').find_one({"_id": open_id})
+        resp['data']['count'] = len(info)
 
         if info['leader_openid']:
             teacher_info = db_mongo.get_table('plat2', 'member').find_one({"_id": info['leader_openid']})
@@ -52,7 +53,10 @@ def group_member():
             query = {'leader_openid': open_id, 'refer_id': {'$ne': open_id}}
         elif group_id == 3:
             query = {'leader_master': open_id, '_id': {'$ne': open_id}}
-        items = db_mongo.get_table('plat2', 'member').find(query).skip(pages*pages_per_page).limit(pages_per_page)
+        info = db_mongo.get_table('plat2', 'member').find(query)
+
+        resp['data']['count'] = len(info)
+        items = info.skip(pages*pages_per_page).limit(pages_per_page)
         l = list(items)
         for item in l:
             group_list.append({
