@@ -17,9 +17,9 @@ def member_finance():
     # info =
     infos = list(db_mongo.get_table('plat2', 'order').find(
         {
-
             'order_status': {'$ne': 4},
-            '$or': [{'custom_parameters': open_id}, {'refer_id': open_id},{'leader_openid': open_id}, {'leader_master': open_id}]
+            '$or': [{'custom_parameters': open_id}, {'refer_id': open_id},
+                    {'leader_openid': open_id}, {'leader_master': open_id}]
         }))
     # 计算佣金
     df = DataFrame(infos)
