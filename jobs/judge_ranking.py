@@ -28,7 +28,7 @@ def judge_local(offset_time, file_nm):
     value_count = s.value_counts()
     path_nm = os.path.join(project_conf.project_path, 'asserts', file_nm)
     out_file = open(path_nm, 'w')
-    for good_id in value_count.index:
+    for good_id in value_count.index[:50]:
         # info 不走缓存， 走搜索
         info = pdd_tools.search_good_detail(good_id, 'xx')
         dt = info.get('goods_promotion_url_generate_response', {}).get('goods_promotion_url_list', [{}])[0]
@@ -70,7 +70,7 @@ def calc_top_user(offset_time):
     group_file = open(group_file_nm, 'w')
     tb_mem = db_mongo.get_table('plat2', 'member')
     title = '粉丝'
-    for idx in self_mem.index:
+    for idx in self_mem.index[:20]:
         mem_info = tb_mem.find_one({'_id': idx})
         if not mem_info:
             continue
@@ -82,7 +82,7 @@ def calc_top_user(offset_time):
             'value': int(self_mem[idx])
         }
         self_file.write('%s\n' % json.dumps(temp))
-    for idx in group_mem.index:
+    for idx in group_mem.index[:20]:
         mem_info = tb_mem.find_one({'_id': idx})
         if not mem_info:
             continue
@@ -143,7 +143,7 @@ def calc_top_promotion(offset_time):
     group_file = open(group_file_nm, 'w')
     tb_mem = db_mongo.get_table('plat2', 'member')
     title = '分享赚'
-    for idx in self_promotion.index:
+    for idx in self_promotion.index[:20]:
         mem_info = tb_mem.find_one({'_id': idx})
         if not mem_info:
             continue
@@ -158,7 +158,7 @@ def calc_top_promotion(offset_time):
         }
         self_file.write('%s\n' % json.dumps(temp))
 
-    for idx in group_promotion.index:
+    for idx in group_promotion.index[:20]:
         mem_info = tb_mem.find_one({'_id': idx})
         if not mem_info:
             continue
@@ -179,6 +179,6 @@ def calc_top_promotion(offset_time):
 if __name__ == '__main__':
     calc_top_promotion(30 * project_conf.seconds_per_day)
     calc_top_user(30 * project_conf.seconds_per_day)
-    for item in project_conf.qiyu_range_pg:
-        judge_local(item[0], item[1])
+    # for item in project_conf.qiyu_range_pg:
+    #     judge_local(item[0], item[1])
 
