@@ -28,7 +28,7 @@ def upgrade_leader(member_id, leader_id):
     # 所有子级
     member_items = db_mongo.get_table('plat2', 'member').find({'refer_id': member_id},
                                                               {'open_id': 1})
-    db_mongo.get_table('plat2', 'member').update({'refer_id': member_id, 'leader_openid': leader_id})
+    db_mongo.get_table('plat2', 'member').update({'$set': {'refer_id': member_id, 'leader_openid': leader_id}})
     for item in member_items:
         upgrade_leader(item['open_id'], leader_id)
 

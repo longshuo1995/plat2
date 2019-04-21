@@ -12,6 +12,8 @@ DAY_SECONDS = 24*60*60
 
 # db.order.find({'order_create_time': {'$gt': 1550977586}});
 
+top_count = 20
+
 
 def judge_local(offset_time, file_nm):
     c_time = int(time.time())
@@ -135,19 +137,9 @@ def calc_top_promotion(offset_time):
     # relation_promotion = df[df['leader_master'] != '']['total_promotion'].groupby(df['leader_master']).sum()
 
     # 个人榜（个人+老师）
-    print('len_custom_promotion')
-    print('len_custom_promotion')
-    print(len(custom_promotion))
-    print('refer_promotion')
-    print('refer_promotion')
-    print(len(refer_promotion))
     self_promotion = custom_promotion.add(refer_promotion, fill_value=0)
     self_promotion = self_promotion.sort_values(ascending=False)
 
-    print('self_promotion')
-    print('self_promotion')
-    print(len(self_promotion))
-    print(len(self_promotion))
 
     self_file_nm = os.path.join(project_conf.assert_path, project_conf.fengyun_range_pg['self']['promotion'])
     self_file = open(self_file_nm, 'w')
@@ -155,7 +147,7 @@ def calc_top_promotion(offset_time):
     group_file = open(group_file_nm, 'w')
     tb_mem = db_mongo.get_table('plat2', 'member')
     title = '分享赚'
-    for idx in self_promotion.index[:20]:
+    for idx in self_promotion.index[:top_count+1]:
         mem_info = tb_mem.find_one({'_id': idx})
         if not mem_info:
             continue
@@ -170,7 +162,7 @@ def calc_top_promotion(offset_time):
         }
         self_file.write('%s\n' % json.dumps(temp))
 
-    for idx in group_promotion.index[:20]:
+    for idx in group_promotion.index[:top_count+1]:
         mem_info = tb_mem.find_one({'_id': idx})
         if not mem_info:
             continue
