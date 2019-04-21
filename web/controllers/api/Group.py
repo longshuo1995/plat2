@@ -22,7 +22,6 @@ def group_member():
     pages_per_page = 50
     if group_id == 0:
         info = db_mongo.get_table('plat2', 'member').find_one({"_id": open_id})
-        resp['data']['count'] = info.count()
 
         if info['leader_openid']:
             teacher_info = db_mongo.get_table('plat2', 'member').find_one({"_id": info['leader_openid']})
@@ -44,6 +43,8 @@ def group_member():
                     'we_code': teacher_info.get('we_code', ''),
                     'phone_num': teacher_info.get('phone_num', '')
                 })
+
+        resp['data']['count'] = len(group_list)
     else:
         # 直属团员
         if group_id == 1:
