@@ -1,5 +1,7 @@
 import logging
 import os
+import time
+
 from flask import jsonify, request
 import project_conf
 from common.libs import db_mongo
@@ -97,8 +99,12 @@ def get_pdd_url():
     req = request.values
     good_id = req.get('goods_id')
     open_id = req.get('open_id')
-    res = pdd_tools.search_good_detail(good_id, open_id)
-    dt = res.get('goods_promotion_url_generate_response', {}).get('goods_promotion_url_list', [{}])[0]
+    print(time.time())
+    if open_id == 'undefined':
+        dt = None
+    else:
+        res = pdd_tools.search_good_detail(good_id, open_id)
+        dt = res.get('goods_promotion_url_generate_response', {}).get('goods_promotion_url_list', [{}])[0]
     if dt:
         pdd_url = dt['we_app_info']['page_path']
         app_id = dt['we_app_info']['app_id']
