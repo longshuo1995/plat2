@@ -12,14 +12,17 @@ from web.controllers.api import route_api
 def group_member():
     req = request.values
     group_list = []
-    resp = {'code': 200, 'msg': '成功', 'data': group_list}
+    resp = {'code': 200, 'msg': '成功', 'data': {}}
+    resp['data']['member'] = group_list
     group_id = int(req.get('group_id', 0))
     open_id = req.get('open_id', '')
+    open_id = 'ohl4g5USDznFdyo9qVFmZQcOn-6Q'
     pages = int(req.get('pages', 0))
     pages = 0
     pages_per_page = 50
     if group_id == 0:
         info = db_mongo.get_table('plat2', 'member').find_one({"_id": open_id})
+
         if info['leader_openid']:
             teacher_info = db_mongo.get_table('plat2', 'member').find_one({"_id": info['leader_openid']})
             if teacher_info:
@@ -27,6 +30,8 @@ def group_member():
                     'tp_name': '团长',
                     'user_img': teacher_info['icon_url'],
                     'user_name': teacher_info['nick_name'],
+                    'we_code': teacher_info.get('we_code', ''),
+                    'phone_num': teacher_info.get('phone_num', '')
                 })
         if info['refer_id'] and info['refer_id'] != open_id and info['refer_id'] != info['leader_openid']:
             teacher_info = db_mongo.get_table('plat2', 'member').find_one({"_id": info['refer_id']})
@@ -35,6 +40,8 @@ def group_member():
                     'tp_name': '老师',
                     'user_img': teacher_info['icon_url'],
                     'user_name': teacher_info['nick_name'],
+                    'we_code': teacher_info.get('we_code', ''),
+                    'phone_num': teacher_info.get('phone_num', '')
                 })
     else:
         # 直属团员
@@ -47,11 +54,12 @@ def group_member():
             query = {'leader_master': open_id, '_id': {'$ne': open_id}}
         items = db_mongo.get_table('plat2', 'member').find(query).skip(pages*pages_per_page).limit(pages_per_page)
         l = list(items)
-        print(len(l))
         for item in l:
             group_list.append({
                 'tp_name': '会员',
                 'user_img': item['icon_url'],
                 'user_name': item['nick_name'],
+                'we_code': item.get('we_code', ''),
+                'phone_num': item.get('phone_num', '')
             })
     return jsonify(resp)
