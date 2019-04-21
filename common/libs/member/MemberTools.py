@@ -19,7 +19,7 @@ def upgrade(open_id, set_leader_master=False):
 
     tb.update({'_id': open_id}, {'$set': {'level': 1, 'leader_openid': open_id,
                                           'refer_id': open_id, 'leader_master': leader_master}})
-    tb.update({'refer_openid': open_id}, {'$set': {'leader_openid': open_id, 'leader_master': leader_master}})
+    tb.update({'refer_id': open_id}, {'$set': {'leader_openid': open_id, 'leader_master': leader_master}})
 
 
 if __name__ == '__main__':

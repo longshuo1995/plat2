@@ -15,12 +15,7 @@ def group_member():
     resp = {'code': 200, 'msg': '成功', 'data': {}}
     resp['data']['member'] = group_list
     gp = req.get('group_id', 0)
-    print('*' * 11)
-    print('*' * 11)
-    print('*' * 11)
-    print(gp)
-    group_id = int(req.get('group_id', 0))
-
+    group_id = int(gp.strip()) if gp else 0
     open_id = req.get('open_id', '')
     open_id = 'ohl4g5USDznFdyo9qVFmZQcOn-6Q'
     pages = int(req.get('pages', 0))
