@@ -34,8 +34,6 @@ def upgrade_leader(member_id, leader_id):
         upgrade_leader(item['open_id'], leader_id)
 
 
-
-
 if __name__ == '__main__':
     # tb = db_mongo.get_table('plat2', 'member').find({'refer_openid': })
     upgrade('ohl4g5USDznFdyo9qVFmZQcOn-6Q')
