@@ -144,6 +144,11 @@ def calc_top_promotion(offset_time):
     self_promotion = custom_promotion.add(refer_promotion, fill_value=0)
     self_promotion = self_promotion.sort_values(ascending=False)
 
+    print('self_promotion')
+    print('self_promotion')
+    print(len(self_promotion))
+    print(len(self_promotion))
+
     self_file_nm = os.path.join(project_conf.assert_path, project_conf.fengyun_range_pg['self']['promotion'])
     self_file = open(self_file_nm, 'w')
     group_file_nm = os.path.join(project_conf.assert_path, project_conf.fengyun_range_pg['group']['promotion'])
