@@ -129,7 +129,7 @@ def calc_top_promotion(offset_time):
 
     # 团长佣金
     leader_promotion = df[df['leader_openid'] != '']['total_promotion'].groupby(df['leader_openid']).sum()
-    leader_promotion = leader_promotion * project_conf.rate_conf['leader_rate']
+    leader_promotion = leader_promotion * project_conf
     group_promotion = leader_promotion.sort_values(ascending=False)
     # relation_promotion = df[df['leader_master'] != '']['total_promotion'].groupby(df['leader_master']).sum()
 
