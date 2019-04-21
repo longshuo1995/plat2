@@ -18,6 +18,8 @@ def my_order():
     order_list = []
     for info in infos:
         member_info = db_mongo.get_table('plat2', 'member').find_one({'_id': info['custom_parameters']})
+        if not member_info:
+            continue
         rate = 0
         if info['custom_parameters'] == open_id:
             rate += project_conf.rate_conf['self_rate']
