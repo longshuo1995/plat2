@@ -23,13 +23,16 @@ def member_finance():
         }))
     # 计算佣金
     df = DataFrame(infos)
-    # 自己
-    p1 = df[df['custom_parameters'] == open_id]['total_promotion'].sum() * project_conf.rate_conf['self_rate']
-    # 老师
-    p2 = df[df['refer_id'] == open_id]['total_promotion'].sum() * project_conf.rate_conf['refer_rate']
-    # 团长
-    p3 = df[df['leader_openid'] == open_id]['total_promotion'].sum() * project_conf.rate_conf['leader_rate']
-    total_promotion = round(sum([p1, p2, p3]), 2)
+    if infos:
+        # 自己
+        p1 = df[df['custom_parameters'] == open_id]['total_promotion'].sum() * project_conf.rate_conf['self_rate']
+        # 老师
+        p2 = df[df['refer_id'] == open_id]['total_promotion'].sum() * project_conf.rate_conf['refer_rate']
+        # 团长
+        p3 = df[df['leader_openid'] == open_id]['total_promotion'].sum() * project_conf.rate_conf['leader_rate']
+        total_promotion = round(sum([p1, p2, p3]), 2)
+    else:
+        total_promotion = 0
     data = {
         "current_money": 0,
         "checking_money": 0,
