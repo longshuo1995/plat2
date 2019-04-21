@@ -117,13 +117,12 @@ def calc_top_promotion(offset_time):
     # 个人佣金
     custom_promotion = df['total_promotion'].groupby(df['custom_parameters']).sum()
     custom_promotion = custom_promotion * project_conf.rate_conf['self_rate']
-    print('len_custom_promotion')
-    print('len_custom_promotion')
-    print(len(custom_promotion))
+
 
     # 老师佣金
     refer_promotion = df[df['refer_id'] != ''][df['refer_id'] != df['leader_openid']]['total_promotion'].groupby(df['refer_id']).sum()
     refer_promotion = refer_promotion * project_conf.rate_conf['refer_rate']
+
     # 团长+老师为同一人的佣金
     leader_refer_promotion = df[df['refer_id'] != ''][df['refer_id'] == df['leader_openid']]['total_promotion'].groupby(df['refer_id']).sum()
     leader_refer_promotion = leader_refer_promotion * (project_conf.rate_conf['leader_rate'] +
@@ -136,6 +135,12 @@ def calc_top_promotion(offset_time):
     # relation_promotion = df[df['leader_master'] != '']['total_promotion'].groupby(df['leader_master']).sum()
 
     # 个人榜（个人+老师）
+    print('len_custom_promotion')
+    print('len_custom_promotion')
+    print(len(custom_promotion))
+    print('refer_promotion')
+    print('refer_promotion')
+    print(len(refer_promotion))
     self_promotion = custom_promotion.add(refer_promotion, fill_value=0)
     self_promotion = self_promotion.sort_values(ascending=False)
 
