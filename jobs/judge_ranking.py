@@ -142,7 +142,7 @@ def calc_top_promotion(offset_time):
     group_file = open(group_file_nm, 'w')
     tb_mem = db_mongo.get_table('plat2', 'member')
     title = '分享赚'
-    for idx in self_promotion.index[:20]:
+    for idx in self_promotion.index:
         mem_info = tb_mem.find_one({'_id': idx})
         if not mem_info:
             continue
