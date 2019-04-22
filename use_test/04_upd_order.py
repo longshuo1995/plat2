@@ -3,7 +3,7 @@ from common.libs import db_mongo
 items = db_mongo.get_table('plat2', 'order').find()
 for item in items:
     open_id = item['custom_parameters']
-    info = db_mongo.get_table('plat2', 'order').find_one({'_id': open_id})
+    info = db_mongo.get_table('plat2', 'member').find_one({'_id': open_id})
     if not info:
         print(item)
         continue
