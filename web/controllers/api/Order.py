@@ -40,7 +40,7 @@ def my_order():
             'self_money': round(info.get('order_amount')*info.get('promotion_rate')*rate/100000, 2),
         }
         order_list.append(temp)
-
+    order_list.reverse()
     resp['data']['order_list'] = order_list
     return jsonify(resp)
 
