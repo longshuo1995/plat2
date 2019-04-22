@@ -9,7 +9,7 @@ leader_master,
 
 
 def upgrade(open_id, set_leader_master=False):
-    tb = db_mongo.get_table('plat2', 'member_back')
+    tb = db_mongo.get_table('plat2', 'member')
     info = tb.find_one({'_id': open_id})
     leader_master = ''
     if set_leader_master:
@@ -26,9 +26,9 @@ def upgrade(open_id, set_leader_master=False):
 # 递归计算(member_id的所有下级...   都更新为leader_id的团员)
 def upgrade_leader(member_id, leader_id):
     # 所有子级
-    member_items = db_mongo.get_table('plat2', 'member_back').find({'refer_id': member_id, '_id': {'$ne': member_id}},
+    member_items = db_mongo.get_table('plat2', 'member').find({'refer_id': member_id, '_id': {'$ne': member_id}},
                                                               {'open_id': 1})
-    db_mongo.get_table('plat2', 'member_back').update_many({'refer_id': member_id}, {'$set': {'leader_openid': leader_id}})
+    db_mongo.get_table('plat2', 'member').update_many({'refer_id': member_id}, {'$set': {'leader_openid': leader_id}})
     for item in member_items:
         upgrade_leader(item['open_id'], leader_id)
 
