@@ -36,7 +36,7 @@ def upgrade_leader(member_id, leader_id):
 # def upgrade_order():
 
 if __name__ == '__main__':
-    # items = db_mongo.get_table('plat2', 'member').find({'level': 1})
-    # for item in items:
-    #     upgrade(item['open_id'])
-    upgrade('ohl4g5cpaQ2bYaQe8esGz9xVbAxk')
+    items = db_mongo.get_table('plat2', 'member').find({'level': 1})
+    for item in items:
+        upgrade(item['open_id'])
+    # upgrade('ohl4g5cpaQ2bYaQe8esGz9xVbAxk')
