@@ -17,9 +17,9 @@ def group_member():
     gp = req.get('group_id', 0)
     group_id = int(gp.strip()) if gp else 0
     open_id = req.get('open_id', '')
-    open_id = 'ohl4g5USDznFdyo9qVFmZQcOn-6Q'
+    # open_id = 'ohl4g5USDznFdyo9qVFmZQcOn-6Q'
     pages = int(req.get('pages', 0))
-    pages = 0
+    # pages = 0
     pages_per_page = 50
     if group_id == 0:
         info = db_mongo.get_table('plat2', 'member').find_one({"_id": open_id})
