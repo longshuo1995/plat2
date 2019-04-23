@@ -70,7 +70,7 @@ def group_member():
 
     temp = []
     for item in group_list:
-        item['user_name'] = item['user_name'] if len(item['user_name']) > 6 else item['user_name'][:3]+'...'+item['user_name'][-3:]
+        item['user_name'] = item['user_name'] if len(item['user_name']) < 6 else item['user_name'][:3]+'...'+item['user_name'][-3:]
         temp.append(item)
 
     resp['data']['member'] = temp
