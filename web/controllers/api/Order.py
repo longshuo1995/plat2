@@ -42,6 +42,7 @@ def my_order():
             'pay_money': info.get('order_amount')/100,
             'order_status': info['order_status'],
             'goods_id': info['goods_id'],
+            'percent_rate': str(int(rate*100)) + '%',
             'self_money': round(info.get('order_amount')*info.get('promotion_rate')*rate/100000, 2),
         }
         order_list.append(temp)
