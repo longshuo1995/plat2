@@ -17,7 +17,6 @@ def my_order():
     query = {'$or': [{'custom_parameters': open_id}, {'refer_id': open_id}, {'leader_openid': open_id}, {'leader_master': open_id}]}
     if status:
         query['order_status'] = status
-    print(query)
     infos = db_mongo.get_table('plat2', 'order').find(query)
     order_list = []
     for info in infos:
@@ -41,6 +40,7 @@ def my_order():
             'goods_name': info.get('goods_name', ''),
             'goods_thumbnail_url': info.get('goods_thumbnail_url', ''),
             'pay_money': info.get('order_amount')/100,
+            'order_status':info['order_status'],
             'self_money': round(info.get('order_amount')*info.get('promotion_rate')*rate/100000, 2),
         }
         order_list.append(temp)
