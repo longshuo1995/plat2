@@ -11,7 +11,7 @@ from web.controllers.api import route_api
 def my_order():
     resp = {'code': 200, 'msg': '操作成功~', 'data': {}}
     req = request.values
-    status = int(req['status']) if 'status' in req else 0
+    status = int(req['status'], 0)
     open_id = req.get('openid')
     open_id = 'ohl4g5USDznFdyo9qVFmZQcOn-6Q'
     query = {'$or': [{'custom_parameters': open_id}, {'refer_id': open_id}, {'leader_openid': open_id}, {'leader_master': open_id}]}
