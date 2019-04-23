@@ -17,7 +17,7 @@ def my_order():
     query = {'$or': [{'custom_parameters': open_id}, {'refer_id': open_id}, {'leader_openid': open_id}, {'leader_master': open_id}]}
     if status:
         query['status'] = status
-    infos = db_mongo.get_table('plat2', 'order').find()
+    infos = db_mongo.get_table('plat2', 'order').find(query)
     order_list = []
     for info in infos:
         member_info = db_mongo.get_table('plat2', 'member').find_one({'_id': info['custom_parameters']})
