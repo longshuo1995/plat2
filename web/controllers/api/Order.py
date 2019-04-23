@@ -13,8 +13,10 @@ def my_order():
     req = request.values
     status = int(req['status']) if 'status' in req else 0
     open_id = req.get('openid')
-    infos = db_mongo.get_table('plat2', 'order').find({'$or': [{'custom_parameters': open_id}, {'refer_id': open_id},
-                {'leader_openid': open_id}, {'leader_master': open_id}]})
+    open_id = 'ohl4g5USDznFdyo9qVFmZQcOn-6Q'
+    infos = db_mongo.get_table('plat2', 'order').find({'$or': [{'custom_parameters': open_id}, {'refer_id': open_id}, {'leader_openid': open_id}, {'leader_master': open_id}],
+                                                       'order_status': status
+                                                       })
     order_list = []
     for info in infos:
         member_info = db_mongo.get_table('plat2', 'member').find_one({'_id': info['custom_parameters']})
