@@ -13,7 +13,6 @@ def group_member():
     req = request.values
     group_list = []
     resp = {'code': 200, 'msg': '成功', 'data': {}}
-    resp['data']['member'] = group_list
     gp = req.get('group_id', 0)
     group_id = int(gp.strip()) if gp else 0
     open_id = req.get('open_id', '')
@@ -69,5 +68,10 @@ def group_member():
                 'phone_num': item.get('phone_num', '')
             })
 
-    # resp['data'] = group_list
+    temp = []
+    for item in group_list:
+        item['user_name'] = item['user_name'] if len(item['user_name']) > 6 else item['user_name'][:3]+'...'+item['user_name'][-3:]
+        temp.append(item)
+
+    resp['data']['member'] = temp
     return jsonify(resp)
