@@ -14,9 +14,10 @@ def my_order():
     status = int(req['status']) if 'status' in req else 0
     open_id = req.get('openid')
     open_id = 'ohl4g5USDznFdyo9qVFmZQcOn-6Q'
-    infos = db_mongo.get_table('plat2', 'order').find({'$or': [{'custom_parameters': open_id}, {'refer_id': open_id}, {'leader_openid': open_id}, {'leader_master': open_id}],
-                                                       'order_status': status
-                                                       })
+    query = {'$or': [{'custom_parameters': open_id}, {'refer_id': open_id}, {'leader_openid': open_id}, {'leader_master': open_id}]}
+    if status:
+        query['status'] = status
+    infos = db_mongo.get_table('plat2', 'order').find()
     order_list = []
     for info in infos:
         member_info = db_mongo.get_table('plat2', 'member').find_one({'_id': info['custom_parameters']})
