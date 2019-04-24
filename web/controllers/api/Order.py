@@ -23,7 +23,7 @@ def my_order():
         query['order_status'] = status
     if mix_kw:
         query['mix_kw'] = re.compile(mix_kw)
-    infos = db_mongo.get_table('plat2', 'order').find(query).sort({'order_create_time': -1}).skip(pages * count_per_page).limit(count_per_page)
+    infos = db_mongo.get_table('plat2', 'order').find(query).sort(('order_create_time', -1)).skip(pages * count_per_page).limit(count_per_page)
     order_list = []
     for info in infos:
         member_info = db_mongo.get_table('plat2', 'member').find_one({'_id': info['custom_parameters']})
@@ -52,7 +52,6 @@ def my_order():
             'self_money': round(info.get('order_amount')*info.get('promotion_rate')*rate/100000, 2),
         }
         order_list.append(temp)
-    order_list.reverse()
     resp['data']['order_list'] = order_list
     return jsonify(resp)
 
