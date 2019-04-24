@@ -78,7 +78,7 @@ def upd_msg():
     print(upd_sql)
     upd = {'open_id': open_id}, {'$set': upd_sql}
     print(upd)
-    db_mongo.get_table('plat2', 'member').update(upd)
+    db_mongo.get_table('plat2', 'member').update({'open_id': open_id}, {'$set': upd_sql})
     return resp
 
 
