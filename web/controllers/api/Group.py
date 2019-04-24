@@ -1,4 +1,5 @@
 import json
+import re
 import time
 
 from flask import request, jsonify
@@ -56,7 +57,7 @@ def group_member():
         elif group_id == 3:
             query = {'leader_master': open_id, '_id': {'$ne': open_id}}
         if mix_kw:
-            query['nick_name'] = mix_kw
+            query['nick_name'] = re.compile(mix_kw)
         info = db_mongo.get_table('plat2', 'member').find(query)
 
         resp['data']['count'] = info.count()
