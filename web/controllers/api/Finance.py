@@ -7,7 +7,7 @@ from web.controllers.api import route_api
 
 
 @route_api.route('/finance/draw', methods=['GET', 'POST'])
-def member_finance():
+def finance_draw():
     req = request.values
     draw_count = req.get('draw_count', 0)
     open_id = req.get('open_id', 0)
