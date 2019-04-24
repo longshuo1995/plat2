@@ -76,7 +76,9 @@ def upd_msg():
     if phone_num:
         upd_sql['phone_num'] = phone_num
     print(upd_sql)
-    db_mongo.get_table('plat2', 'member').update({'open_id': open_id}, {'$set': upd_sql})
+    upd = {'open_id': open_id}, {'$set': upd_sql}
+    print(upd)
+    db_mongo.get_table('plat2', 'member').update(upd)
     return resp
 
 
