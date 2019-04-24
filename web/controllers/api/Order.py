@@ -9,15 +9,17 @@ from web.controllers.api import route_api
 
 @route_api.route('/my/order', methods=['GET', 'POST'])
 def my_order():
+    count_per_page = 10
     resp = {'code': 200, 'msg': '操作成功~', 'data': {}}
     req = request.values
     status = int(req['status'], 0)
     open_id = req.get('openid')
+    pages = int(req.get('pages'), 0)
     # open_id = 'ohl4g5USDznFdyo9qVFmZQcOn-6Q'
     query = {'$or': [{'custom_parameters': open_id}, {'refer_id': open_id}, {'leader_openid': open_id}, {'leader_master': open_id}]}
     if status:
         query['order_status'] = status
-    infos = db_mongo.get_table('plat2', 'order').find(query)
+    infos = db_mongo.get_table('plat2', 'order').find(query).skip(pages * count_per_page).limit(count_per_page)
     order_list = []
     for info in infos:
         member_info = db_mongo.get_table('plat2', 'member').find_one({'_id': info['custom_parameters']})
