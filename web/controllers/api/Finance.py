@@ -6,6 +6,17 @@ from common.libs import db_mongo
 from web.controllers.api import route_api
 
 
+@route_api.route('/finance/draw', methods=['GET', 'POST'])
+def member_finance():
+    req = request.values
+    draw_count = req.get('draw_count', 0)
+    resp = {'code': 200, 'msg': '成功', 'data': {}}
+    if not draw_count:
+        resp = {'code': 500, 'msg': '请输入正确提现金额', 'data': {}}
+    return jsonify(resp)
+
+
+
 @route_api.route('/member/finance', methods=['GET', 'POST'])
 def member_finance():
     req = request.values
