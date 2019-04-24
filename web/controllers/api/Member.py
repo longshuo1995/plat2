@@ -53,6 +53,32 @@ def login():
         return json.dumps(resp)
 
 
+@route_api.route('/member/upd_msg', methods=['GET', 'POST'])
+def upd_msg():
+    req = request.values
+    resp = {'code': 200, 'msg': '成功', 'data': {}}
+    open_id = req.get('open_id')
+    if not open_id:
+        resp['code'] = 500
+        resp['msg'] = '需要open_id'
+    upd_sql = {}
+    icon_url = req.get('icon_url')
+    if icon_url and icon_url.find('http') > -1:
+        upd_sql['icon_url'] = icon_url
+
+    nick_name = req.get('nick_name')
+    if nick_name:
+        upd_sql['nick_name'] = nick_name
+    we_code = req.get('we_code')
+    if we_code:
+        upd_sql['we_code'] = we_code
+    phone_num = req.get('phone_num')
+    if phone_num:
+        upd_sql['phone_num'] = phone_num
+    db_mongo.get_table('plat2', 'member').update({'open_id': open_id}, {'$set': upd_sql})
+    return resp
+
+
 @route_api.route('/member/check-reg', methods=['GET', 'POST'])
 def checkReg():
     req = request.values

@@ -100,5 +100,3 @@ if __name__ == '__main__':
     # print(res)
     # res = opt_get('0')
     # print(res)
-
-
