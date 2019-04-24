@@ -14,6 +14,7 @@ def group_member():
     group_list = []
     resp = {'code': 200, 'msg': '成功', 'data': {}}
     gp = req.get('group_id', 0)
+    mix_kw = req.get('mix_kw', '').strip()
     group_id = int(gp.strip()) if gp else 0
     open_id = req.get('open_id', '')
     # open_id = 'ohl4g5USDznFdyo9qVFmZQcOn-6Q'
@@ -54,6 +55,8 @@ def group_member():
             query = {'leader_openid': open_id, 'refer_id': {'$ne': open_id}}
         elif group_id == 3:
             query = {'leader_master': open_id, '_id': {'$ne': open_id}}
+        if mix_kw:
+            query['nick_name'] = mix_kw
         info = db_mongo.get_table('plat2', 'member').find(query)
 
         resp['data']['count'] = info.count()
