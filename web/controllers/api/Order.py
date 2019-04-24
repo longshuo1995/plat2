@@ -22,7 +22,7 @@ def my_order():
     if status:
         query['order_status'] = status
     if mix_kw:
-        query['mix_kw'] = re.compile(mix_kw)
+        query['goods_name'] = re.compile(mix_kw)
     infos = db_mongo.get_table('plat2', 'order').find(query).sort('order_create_time', -1).skip(pages * count_per_page).limit(count_per_page)
     order_list = []
     for info in infos:
