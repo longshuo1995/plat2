@@ -10,11 +10,13 @@ from web.controllers.api import route_api
 def member_finance():
     req = request.values
     draw_count = req.get('draw_count', 0)
+    open_id = req.get('open_id', 0)
     resp = {'code': 200, 'msg': '成功', 'data': {}}
     if not draw_count:
         resp = {'code': 500, 'msg': '请输入正确提现金额', 'data': {}}
+    if not open_id:
+        resp = {'code': 500, 'msg': '请传入open_id', 'data': {}}
     return jsonify(resp)
-
 
 
 @route_api.route('/member/finance', methods=['GET', 'POST'])
