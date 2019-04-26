@@ -72,7 +72,7 @@ def calc_top_user(offset_time):
     group_file = open(group_file_nm, 'w')
     tb_mem = db_mongo.get_table('plat2', 'member')
     title = '粉丝'
-    for idx in self_mem.index[:20]:
+    for idx in self_mem.index[:top_count]:
         mem_info = tb_mem.find_one({'_id': idx})
         if not mem_info:
             continue
@@ -84,7 +84,7 @@ def calc_top_user(offset_time):
             'value': int(self_mem[idx])
         }
         self_file.write('%s\n' % json.dumps(temp))
-    for idx in group_mem.index[:20]:
+    for idx in group_mem.index[:top_count]:
         mem_info = tb_mem.find_one({'_id': idx})
         if not mem_info:
             continue
@@ -147,7 +147,7 @@ def calc_top_promotion(offset_time):
     group_file = open(group_file_nm, 'w')
     tb_mem = db_mongo.get_table('plat2', 'member')
     title = '分享赚'
-    for idx in self_promotion.index[:top_count+1]:
+    for idx in self_promotion.index[:top_count]:
         mem_info = tb_mem.find_one({'_id': idx})
         if not mem_info:
             continue
@@ -162,7 +162,7 @@ def calc_top_promotion(offset_time):
         }
         self_file.write('%s\n' % json.dumps(temp))
 
-    for idx in group_promotion.index[:top_count+1]:
+    for idx in group_promotion.index[:top_count]:
         mem_info = tb_mem.find_one({'_id': idx})
         if not mem_info:
             continue
@@ -178,6 +178,8 @@ def calc_top_promotion(offset_time):
         group_file.write('%s\n' % json.dumps(temp))
     self_file.close()
     group_file.close()
+
+
 
 
 if __name__ == '__main__':
