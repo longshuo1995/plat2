@@ -11,7 +11,7 @@ def update_db_by_order(order_sn):
     upd['_id'] = order_sn
     row = tb.find_one({'_id': order_sn})
     open_id = upd['custom_parameters']
-    user_info = db_mongo.get_table('plat2', 'member').find_one({'_id': open_id})
+    user_info = db_mongo.get_table('plat2', 'member').find_one({'open_id': open_id})
     upd["refer_id"] = user_info.get('refer_id', '')
     upd["leader_openid"] = user_info.get("leader_openid", '')
     upd["leader_master"] = user_info.get("leader_master", '')

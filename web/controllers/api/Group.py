@@ -23,10 +23,10 @@ def group_member():
     # pages = 0
     pages_per_page = 50
     if group_id == 0:
-        info = db_mongo.get_table('plat2', 'member').find_one({"_id": open_id})
+        info = db_mongo.get_table('plat2', 'member').find_one({"open_id": open_id})
 
         if info['leader_openid']:
-            teacher_info = db_mongo.get_table('plat2', 'member').find_one({"_id": info['leader_openid']})
+            teacher_info = db_mongo.get_table('plat2', 'member').find_one({"open_id": info['leader_openid']})
             if teacher_info:
                 group_list.append({
                     'tp_name': '团长',
@@ -36,7 +36,7 @@ def group_member():
                     'phone_num': teacher_info.get('phone_num', '')
                 })
         if info['refer_id'] and info['refer_id'] != open_id and info['refer_id'] != info['leader_openid']:
-            teacher_info = db_mongo.get_table('plat2', 'member').find_one({"_id": info['refer_id']})
+            teacher_info = db_mongo.get_table('plat2', 'member').find_one({"open_id": info['refer_id']})
             if teacher_info:
                 group_list.append({
                     'tp_name': '老师',
@@ -55,7 +55,7 @@ def group_member():
         elif group_id == 2:
             query = {'leader_openid': open_id, 'refer_id': {'$ne': open_id}}
         elif group_id == 3:
-            query = {'leader_master': open_id, '_id': {'$ne': open_id}}
+            query = {'leader_master': open_id, 'open_id': {'$ne': open_id}}
         if mix_kw:
             query['nick_name'] = re.compile(mix_kw)
         info = db_mongo.get_table('plat2', 'member').find(query)

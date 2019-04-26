@@ -60,7 +60,7 @@ def calc_top_user(offset_time):
         {'create_time': {'$gt': door_time}})
     # 计算粉丝数
     df = pd.DataFrame(items)
-    self_mem = df['refer_id'][df['refer_id'] != ''][df['refer_id'] != df['_id']].value_counts()
+    self_mem = df['refer_id'][df['refer_id'] != ''][df['refer_id'] != df['open_id']].value_counts()
     self_mem = self_mem.sort_values(ascending=False)
 
     group_mem = df['leader_openid'][df['leader_openid'] != ''][df['leader_openid'] != df['_id']].value_counts()
