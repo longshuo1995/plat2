@@ -72,7 +72,7 @@ def foodSearch():
         # 高佣 价格过滤
         if sort_tp == 2 and min_price < 100:
             continue
-        sale_count = item.get('sold_quantity', 0)
+        sale_count = item.get('sales_tip', 0)
 
         temp_data = {
             'promotion_rate': promotion_rate,
@@ -130,7 +130,7 @@ def get_pdd_url():
             'coupon_discount': discount,
             'min_price': row_price-discount,
             'row_price': row_price,
-            'sold_quantity': good_detail.get('sold_quantity', 0),
+            'sold_quantity': good_detail.get('sales_tip', 0),
             'coupon_start_time': StrTools.convert_time(good_detail.get('coupon_start_time', 0), fmt='%m-%d'),
             'coupon_end_time': StrTools.convert_time(good_detail.get('coupon_end_time', 0), fmt='%m-%d'),
             'coupon_total_quantity': StrTools.null_convert(good_detail.get('coupon_total_quantity', 5000), True),

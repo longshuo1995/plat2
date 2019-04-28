@@ -32,7 +32,7 @@ def hot_goods():
                 'row_price': item['min_group_price'],
                 'min_price': item['min_group_price'] - item['coupon_discount'],
                 'discount': item['coupon_discount'],
-                'sold_quantity': item['sold_quantity'],
+                'sold_quantity': item['sales_tip'],
                 'promotion_rate': item['promotion_rate'],
             }
             resp['data'].append(temp)

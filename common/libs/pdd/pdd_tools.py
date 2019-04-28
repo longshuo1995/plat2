@@ -16,6 +16,7 @@ def calc_sign(params):
     for item in items:
         sign += '%s%s' % (item[0], item[1])
     sign += base_setting.PDD_APP['client_secret']
+    print(sign)
     md5_sign = StrTools.get_md5(sign)
     return md5_sign
 
@@ -92,11 +93,15 @@ def hot_goods_range(sort_type=1, offset=0, limit=50):
 
 
 if __name__ == '__main__':
-    res = hot_goods_range(sort_type=1, offset=0, limit=50)
-    print(res)
+    # res = hot_goods_range(sort_type=1, offset=0, limit=50)
+    # print(res)
     # res = order_search('1553556662', '1553643062')
     # print(res)
     # res = search_order_by_sn('190324-270806221493150')
     # print(res)
-    # res = opt_get('0')
-    # print(res)
+    res = opt_get('0')
+    print(res)
+
+'''
+85469664828093b810ee83b363895f03297f2ae6client_ide46a7a383d3d480a913107fac24d04cadata_typeJSONkeyword包包opt_id0page3page_size50sort_type0timestamp1556329022typepdd.ddk.goods.search85469664828093b810ee83b363895f03297f2ae6
+'''
