@@ -16,7 +16,6 @@ def calc_sign(params):
     for item in items:
         sign += '%s%s' % (item[0], item[1])
     sign += base_setting.PDD_APP['client_secret']
-    print(sign)
     md5_sign = StrTools.get_md5(sign)
     return md5_sign
 
@@ -28,7 +27,6 @@ def pdd_request(added_params):
         "client_id": base_setting.PDD_APP['client_id'],
     }
     params = dict(base_params, **added_params)
-    print(params)
     params['sign'] = calc_sign(params)
     jo = requests.post(api_url, data=params, verify=False).json()
     return jo
@@ -99,7 +97,7 @@ if __name__ == '__main__':
     # print(res)
     # res = search_order_by_sn('190324-270806221493150')
     # print(res)
-    res = opt_get('0')
+    res = search_good_detail('6869428690', '0')
     print(res)
 
 '''
