@@ -99,7 +99,6 @@ def get_pdd_url():
     req = request.values
     good_id = req.get('goods_id')
     open_id = req.get('open_id')
-    print(time.time())
     if open_id == 'undefined':
         dt = None
     else:
@@ -179,6 +178,21 @@ def reviews_get():
     if not good_id:
         resp['code'] = '401'
         resp['msg'] = '请传入good_id'
+        return jsonify(resp)
     jo = pdd_spider.get_reviews(good_id, page)
     resp['data'] = jo.get('data', [])
     return jsonify(resp)
+
+
+@route_api.route("/good/find_goods")
+def get_find_goods():
+    PAGER_PER_COUNT = 50
+    resp = {'code': 200, 'msg': '操作成功', 'data': []}
+    req = request.values
+    page = int(req.get('page', 0))
+    data = db_mongo.get_table('plat2', 'find_goods').find().sort({'_id': -1}).skip(PAGER_PER_COUNT * page).limit(PAGER_PER_COUNT)
+    for i in data:
+        i.pop('_id')
+    resp['data'] = data
+    return jsonify(resp)
+
