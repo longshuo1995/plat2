@@ -193,5 +193,9 @@ def get_find_goods():
     data = list(db_mongo.get_table('plat2', 'find_goods').find().skip(PAGER_PER_COUNT * page).limit(PAGER_PER_COUNT))
     for i in data:
         i.pop('_id')
+        if not i.get('nick_name'):
+            i['nick_name'] = '小编推荐'
+        if not i.get('icon_url'):
+            i['icon_url'] = 'https://aishangnet.club/static/mina_pic/QIYU.png'
     resp['data'] = data
     return jsonify(resp)
