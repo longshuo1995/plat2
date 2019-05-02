@@ -63,7 +63,7 @@ def calc_top_user(offset_time):
     self_mem = df['refer_id'][df['refer_id'] != ''][df['refer_id'] != df['open_id']].value_counts()
     self_mem = self_mem.sort_values(ascending=False)
 
-    group_mem = df['leader_openid'][df['leader_openid'] != ''][df['leader_openid'] != df['_id']].value_counts()
+    group_mem = df['leader_openid'][df['leader_openid'] != ''][df['leader_openid'] != df['open_id']].value_counts()
     group_mem = group_mem.sort_values(ascending=False)
 
     self_file_nm = os.path.join(project_conf.assert_path, project_conf.fengyun_range_pg['self']['member'])
@@ -73,7 +73,7 @@ def calc_top_user(offset_time):
     tb_mem = db_mongo.get_table('plat2', 'member')
     title = '粉丝'
     for idx in self_mem.index[:top_count]:
-        mem_info = tb_mem.find_one({'_id': idx})
+        mem_info = tb_mem.find_one({'open_id': idx})
         if not mem_info:
             continue
         temp = {
@@ -85,7 +85,7 @@ def calc_top_user(offset_time):
         }
         self_file.write('%s\n' % json.dumps(temp))
     for idx in group_mem.index[:top_count]:
-        mem_info = tb_mem.find_one({'_id': idx})
+        mem_info = tb_mem.find_one({'open_id': idx})
         if not mem_info:
             continue
         temp = {
@@ -148,7 +148,7 @@ def calc_top_promotion(offset_time):
     tb_mem = db_mongo.get_table('plat2', 'member')
     title = '分享赚'
     for idx in self_promotion.index[:top_count]:
-        mem_info = tb_mem.find_one({'_id': idx})
+        mem_info = tb_mem.find_one({'open_id': idx})
         if not mem_info:
             continue
         name = mem_info['nick_name']
@@ -163,7 +163,7 @@ def calc_top_promotion(offset_time):
         self_file.write('%s\n' % json.dumps(temp))
 
     for idx in group_promotion.index[:top_count]:
-        mem_info = tb_mem.find_one({'_id': idx})
+        mem_info = tb_mem.find_one({'open_id': idx})
         if not mem_info:
             continue
         name = mem_info['nick_name']

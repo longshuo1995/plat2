@@ -92,7 +92,7 @@ def admin_user_info():
     open_id = request.values.get('open_id')
     info = {}
     if open_id:
-        info = db_mongo.get_table('plat2', 'member').find_one({'_id': open_id})
+        info = db_mongo.get_table('plat2', 'member').find_one({'open_id': open_id})
     data = {
         'info': json.dumps(info)
     }

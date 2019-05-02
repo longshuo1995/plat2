@@ -26,7 +26,7 @@ def my_order():
     infos = db_mongo.get_table('plat2', 'order').find(query).sort('order_create_time', -1).skip(pages * count_per_page).limit(count_per_page)
     order_list = []
     for info in infos:
-        member_info = db_mongo.get_table('plat2', 'member').find_one({'_id': info['custom_parameters']})
+        member_info = db_mongo.get_table('plat2', 'member').find_one({'open_id': info['custom_parameters']})
         if not member_info:
             continue
         rate = 0
