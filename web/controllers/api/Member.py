@@ -22,7 +22,7 @@ def login():
     if info:
         resp['code'] = -1
         resp['msg'] = '已经绑定'
-        info.pop('_id')
+        # info.pop('_id')
         resp['data'] = info
         return jsonify(resp)
     else:
@@ -34,7 +34,8 @@ def login():
             if not refer_obj:
                 refer_obj = {}
         info = {
-                "_id": openid, "open_id": openid,
+                "_id": db_mongo.getNextValue('member'),
+                "open_id": openid,
                 "nick_name": req.get('nickName', ''),
                 "icon_url": req.get('avatarUrl', ''),
                 'gender': req.get('gender', ''), 'language': req.get('language', ''),
