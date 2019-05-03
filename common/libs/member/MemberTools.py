@@ -10,7 +10,7 @@ leader_master,
 
 def upgrade(open_id, set_leader_master=False):
     tb = db_mongo.get_table('plat2', 'member')
-    info = tb.find_one({'_id': open_id})
+    info = tb.find_one({'open_id': open_id})
     leader_master = ''
     if set_leader_master:
         leader_master = info['leader_openid']

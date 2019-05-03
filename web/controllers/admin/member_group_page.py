@@ -81,9 +81,9 @@ def admin_member_upgrade():
         for use in users:
             MemberTools.upgrade(use)
     elif update >= 0:
-        db_mongo.get_table('plat2', 'member').update({'_id': {'$in': users}}, {'$set': {'level': update}})
+        db_mongo.get_table('plat2', 'member').update({'open_id': {'$in': users}}, {'$set': {'level': update}})
     elif update == -1:
-        db_mongo.get_table('plat2', 'member').remove({'_id': {'$in': users}})
+        db_mongo.get_table('plat2', 'member').remove({'open_id': {'$in': users}})
     return redirect('/admin/member')
 
 
