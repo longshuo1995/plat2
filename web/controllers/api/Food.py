@@ -7,6 +7,7 @@ import project_conf
 from common.libs import db_mongo
 from common.libs.pdd import pdd_tools
 from common.libs.tools import StrTools
+from common.libs.we_tools import we_code
 from spider import pdd_spider
 from web.controllers.api import route_api
 
@@ -198,4 +199,18 @@ def get_find_goods():
         if not i.get('icon_url'):
             i['icon_url'] = 'https://aishangnet.club/static/mina_pic/QIYU.png'
     resp['data'] = data
+    return jsonify(resp)
+
+
+@route_api.route("/good/get_we_code")
+def get_we_code():
+    resp = {'code': 200, 'msg': '操作成功', 'data': {}}
+    req = request.values
+    g_id = int(req.get('goods_id', 0))
+    m_id = int(req.get('m_id', 0))
+    if not g_id or not m_id:
+        resp['code'] = 500
+        resp['msg'] = '需要参数goods_id 和  m_id'
+        return jsonify(resp)
+    resp['data']['we_code_url'] = we_code.good_share(g_id, m_id)
     return jsonify(resp)

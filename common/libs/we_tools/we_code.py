@@ -23,11 +23,3 @@ def good_share(goods_id, _id):
     with open(file_path, 'wb') as f:
         f.write(content)
     return img_url
-
-
-# open_id = 'ohl4g5aJa1RVoZzZl7lAohgKXNT8'
-res = good_share(6869428690, 1348)
-print(res)
-
-
-
