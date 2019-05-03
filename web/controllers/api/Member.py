@@ -18,7 +18,7 @@ def login():
         resp['msg'] = "需要code"
         return jsonify(resp)
     openid = MemberService.getWechatOpenId(req['code'])
-    info = db_mongo.get_table('plat2', 'member').find_one({"_id": openid})
+    info = db_mongo.get_table('plat2', 'member').find_one({"open_id": openid})
     if info:
         resp['code'] = -1
         resp['msg'] = '已经绑定'
@@ -30,7 +30,7 @@ def login():
         refer_obj = {}
         if refer_id:
             refer_obj = db_mongo.get_table('plat2', 'member').\
-                find_one({"_id": refer_id}, {'leader_openid': 1, 'leader_master': 1})
+                find_one({"open_id": refer_id}, {'leader_openid': 1, 'leader_master': 1})
             if not refer_obj:
                 refer_obj = {}
         info = {
@@ -49,7 +49,6 @@ def login():
                 "level": 0,
         }
         db_mongo.get_table('plat2', 'member').insert_one(info)
-        info.pop('_id')
         resp['data'] = info
         return json.dumps(resp)
 
