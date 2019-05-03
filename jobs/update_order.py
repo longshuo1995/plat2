@@ -35,7 +35,7 @@ def start_update_order(time_interval=60):
                 {'order_status': item['order_status'], 'order_status_desc': item['order_status_desc']}})
         else:
             open_id = item['custom_parameters']
-            user_info = db_mongo.get_table('plat2', 'member').find_one({'_id': open_id})
+            user_info = db_mongo.get_table('plat2', 'member').find_one({'open_id': open_id})
             if not user_info:
                 user_info = {}
             upd = StrTools.filter_map(item)
