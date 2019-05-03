@@ -1,13 +1,18 @@
-import pandas as pd
-
+# 1.查找昨天新注册的用户  &&  leader_id为 空    refer_id为空
+# 2.向上查找该用户的团长。
 from common.libs import db_mongo
 
-items = db_mongo.get_table('plat2', 'member').find()
-df = pd.DataFrame(items)
-items = df['open_id'].sum()
-for item in items.index:
-    if int(items[item]) > 1:
+items = list(db_mongo.get_table('plat2', 'member').find({'create_time': 1556759914}))
+print(len(items))
+for item in items:
+    if item['refer_id'] == '':
+        print('refer_id is null')
         print(item)
-        print(items[item])
+    if item['leader_openid'] == '':
+        print('leader_id is null')
+        print(item)
+
+
+
 
 
