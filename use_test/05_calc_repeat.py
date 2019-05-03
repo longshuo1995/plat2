@@ -2,7 +2,7 @@
 # 2.向上查找该用户的团长。
 from common.libs import db_mongo
 
-items = list(db_mongo.get_table('plat2', 'member').find({'create_time': 1556759914}))
+items = list(db_mongo.get_table('plat2', 'member').find({'create_time': {'$gt': 1556759914}}))
 print(len(items))
 for item in items:
     if item['refer_id'] == '':
