@@ -4,13 +4,25 @@ from common.libs import db_mongo
 
 items = list(db_mongo.get_table('plat2', 'member').find({'create_time': {'$gt': 1556759914}}))
 print(len(items))
+
+
+def get_leader_id(open_id):
+    if not open_id:
+        return ''
+    info = db_mongo.get_table('plat2', 'member').find_one({'open_id': open_id})
+    leader_id = info['leader_openid']
+    if not leader_id:
+        leader_id = get_leader_id(info['refer_id'])
+    return leader_id
+
+
 for item in items:
     if item['refer_id'] == '':
-        print('refer_id is null')
+        print('*' * 11)
         print(item)
-    if item['leader_openid'] == '':
-        print('leader_id is null')
-        print(item)
+        leader_id = get_leader_id(item['open_id'])
+        print(leader_id)
+
 
 
 
