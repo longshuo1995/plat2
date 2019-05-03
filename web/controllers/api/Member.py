@@ -83,7 +83,6 @@ def upd_msg():
 def checkReg():
     req = request.values
     resp = {'code': 200, 'msg': '成功', 'data': {}}
-    app.logger.info(req)
     if not req.get('code'):
         resp['code'] = -1
         resp['msg'] = "需要code"
@@ -99,3 +98,17 @@ def checkReg():
     return jsonify(resp)
 
 
+@route_api.route('/member/search_openid', methods=['GET', 'POST'])
+def search_openid():
+    req = request.values
+    resp = {'code': 200, 'msg': '成功', 'data': {}}
+    _id = req.get('_id')
+    if not _id:
+        resp = {'code': 500, 'msg': '需要_id参数', 'data': {}}
+        return jsonify(resp)
+    info = db_mongo.get_table('plat2', 'member').find_one({'_id': _id})
+    if not info:
+        resp = {'code': 500, 'msg': '未查询到该id', 'data': {}}
+        return jsonify(resp)
+    resp['data']['open_id'] = info['open_id']
+    return jsonify(resp)
