@@ -17,14 +17,9 @@ def get_leader_id(open_id):
 
 
 for item in items:
-    if item['refer_id'] == '':
+    if item['leader_openid'] == '':
         print('*' * 11)
         print(item)
         leader_id = get_leader_id(item['open_id'])
-        print(leader_id)
-
-
-
-
-
+        db_mongo.get_table('plat2', 'member').update({'_id': item['open_id']}, {'$set': {'leader_openid': leader_id}})
 
