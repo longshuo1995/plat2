@@ -14,5 +14,5 @@ def getWechatOpenId(code):
 def get_access_token():
     url = 'https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=%s&secret=%s' % \
               (base_setting.MINA_APP['appid'], base_setting.MINA_APP['appkey'])
-    jo = requests.get(url).json()
+    jo = requests.get(url, verify=False).json()
     return jo['access_token']

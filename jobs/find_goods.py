@@ -30,6 +30,7 @@ def update_goods():
             'create_time': create_time,
             'promotion_rate': promotion_rate,
             'imgurls': [i['img'] for i in good['banners']],
+            'mobile_short_url': gd['mobile_short_url']
         }
         tb.insert_one(temp)
 
