@@ -8,7 +8,7 @@ from common.libs.tools import StrTools
 def start_update_order(time_interval=60):
     # db.order.find({'order_status': {$in: [1, 2]}});
     current_time = (time.time() // time_interval) * time_interval
-    before_time = current_time - time_interval
+    before_time = current_time - (time_interval * 2)
     temp = {}
     for i in range(10):
         msg = 'update order exception'
