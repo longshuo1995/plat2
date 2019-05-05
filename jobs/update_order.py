@@ -24,9 +24,9 @@ def start_update_order(time_interval=60):
             StrTools.write_log('error_update_order', 'success...%s' % temp)
             break
     order_items = l.get('order_list_get_response', {}).get('order_list', [])
-    print(order_items)
     tbl = db_mongo.get_table('plat2', 'order')
     for item in order_items:
+        print(item)
         item['_id'] = item['order_sn']
         old_order = tbl.find_one({'_id': item['_id']})
         if old_order:
@@ -47,5 +47,5 @@ def start_update_order(time_interval=60):
 
 
 if __name__ == '__main__':
-    start_update_order()
+    start_update_order(30*60)
 

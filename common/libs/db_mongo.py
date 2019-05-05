@@ -20,6 +20,8 @@ def get_db(db_name):
 
 
 def get_table(db_name, table_name):
+    if db_name == 'plat2':
+        db_name = 'plat2'
     key = "mongo_table_%s__%s" % (db_name, table_name)
     if not cache_client.get(key):
         cache_client[key] = get_db(db_name).get_collection(table_name)
