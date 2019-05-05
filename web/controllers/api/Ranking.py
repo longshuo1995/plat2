@@ -60,7 +60,7 @@ def hot_member():
 
     resp = {'code': 200, 'msg': '成功', 'data': []}
     if pages > 1:
-        return resp
+        return jsonify(resp)
 
     team_index = int(req.get('team_index', 0))
     tp = int(tp)
