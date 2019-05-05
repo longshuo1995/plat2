@@ -158,7 +158,7 @@ def calc_top_promotion(offset_time):
             'nick_name':  name,
             'icon': mem_info['icon_url'],
             'title': title,
-            'value': round(float(self_promotion[idx]), 2)
+            'value': '%.02f' % float(self_promotion[idx])
         }
         self_file.write('%s\n' % json.dumps(temp))
 
@@ -173,7 +173,7 @@ def calc_top_promotion(offset_time):
             'nick_name': name,
             'icon': mem_info['icon_url'],
             'title': title,
-            'value': round(float(group_promotion[idx]), 2)
+            'value': '%.02f' % float(group_promotion[idx])
         }
         group_file.write('%s\n' % json.dumps(temp))
     self_file.close()
