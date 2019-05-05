@@ -1,3 +1,5 @@
+import time
+
 import requests
 
 from common.libs import db_mongo
@@ -8,11 +10,13 @@ def update_goods():
     url = 'https://duoke678.com/pdd/config/getDKGoodsStoreByType?type=5&role=3&pageNum=1'
     jo = requests.get(url).json()
     tb = db_mongo.get_table('plat2', 'find_goods')
-    for good in jo['storeGoodsList']:
+    items = jo['storeGoodsList']
+    items.reverse()
+    for good in items:
         goods_id = good['goods_id']
         create_time = good['suggestTime']
         if tb.find_one({'create_time': create_time}):
-            break
+            continue
         good_detail = pdd_tools.search_good_detail(goods_id, 'create_find')
         gd = good_detail['goods_promotion_url_generate_response']['goods_promotion_url_list'][0]
         gdd = gd['goods_detail']
@@ -20,6 +24,7 @@ def update_goods():
         coupon_discount = gdd['coupon_discount']
         promotion_rate = gdd['promotion_rate']
         temp = {
+            'insert_time': int(time.time()),
             'desc': good['desc'],
             'goods_id': gdd['goods_id'],
             'goods_thumbnail_url': gdd['goods_thumbnail_url'],

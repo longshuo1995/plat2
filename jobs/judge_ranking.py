@@ -160,7 +160,7 @@ def calc_top_promotion(offset_time):
             'title': title,
             'value': '%.02f' % float(self_promotion[idx])
         }
-        
+
         self_file.write('%s\n' % json.dumps(temp))
 
     for idx in group_promotion.index[:top_count]:
@@ -181,11 +181,9 @@ def calc_top_promotion(offset_time):
     group_file.close()
 
 
-
-
 if __name__ == '__main__':
     calc_top_promotion(30 * project_conf.seconds_per_day)
     calc_top_user(30 * project_conf.seconds_per_day)
-    # for item in project_conf.qiyu_range_pg:
-    #     judge_local(item[0], item[1])
+    for item in project_conf.qiyu_range_pg:
+        judge_local(item[0], item[1])
 
