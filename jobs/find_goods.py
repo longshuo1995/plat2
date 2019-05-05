@@ -12,11 +12,13 @@ def update_goods():
     tb = db_mongo.get_table('plat2', 'find_goods')
     items = jo['storeGoodsList']
     items.reverse()
+    inserted = False
     for good in items:
         goods_id = good['goods_id']
         create_time = good['suggestTime']
         if tb.find_one({'create_time': create_time}):
             continue
+        inserted = True
         good_detail = pdd_tools.search_good_detail(goods_id, 'create_find')
         gd = good_detail['goods_promotion_url_generate_response']['goods_promotion_url_list'][0]
         gdd = gd['goods_detail']
@@ -38,7 +40,15 @@ def update_goods():
             'mobile_short_url': gd['mobile_short_url']
         }
         tb.insert_one(temp)
+    return inserted
+
+
+def start():
+    for i in range(10):
+        if update_goods():
+            break
+        time.sleep(10)
 
 
 if __name__ == '__main__':
-    update_goods()
+    start()
