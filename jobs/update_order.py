@@ -30,7 +30,7 @@ def start_update_order(time_interval=60):
         item['_id'] = item['order_sn']
         old_order = tbl.find_one({'_id': item['_id']})
         if old_order:
-            if old_order['order_status'] != item.get('order_status'):
+            if old_order.get('order_status') != item['order_status']:
                 tbl.update({'_id': item['_id']}, {'$set':
                 {'order_status': item['order_status'], 'order_status_desc': item['order_status_desc']}})
         else:
