@@ -160,6 +160,7 @@ def calc_top_promotion(offset_time):
             'title': title,
             'value': '%.02f' % float(self_promotion[idx])
         }
+        
         self_file.write('%s\n' % json.dumps(temp))
 
     for idx in group_promotion.index[:top_count]:
