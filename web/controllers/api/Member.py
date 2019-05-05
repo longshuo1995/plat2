@@ -90,7 +90,6 @@ def checkReg():
     openid = MemberService.getWechatOpenId(req['code'])
     info = db_mongo.get_table('plat2', 'member').find_one({"open_id": openid})
     if info:
-        info.pop('_id')
         resp['data'] = info
         resp['is_register'] = True
     else:

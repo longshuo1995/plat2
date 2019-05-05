@@ -47,7 +47,7 @@ def start():
     for i in range(10):
         if update_goods():
             break
-        time.sleep(10)
+        time.sleep(60)
 
 
 if __name__ == '__main__':
