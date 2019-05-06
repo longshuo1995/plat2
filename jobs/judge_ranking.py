@@ -76,9 +76,11 @@ def calc_top_user(offset_time):
         mem_info = tb_mem.find_one({'open_id': idx})
         if not mem_info:
             continue
+        name = mem_info['nick_name']
+        name = name if len(name) <= 6 else name[:3] + '...' + name[-3:]
         temp = {
             'id': idx,
-            'nick_name': mem_info['nick_name'],
+            'nick_name': name,
             'icon': mem_info['icon_url'],
             'title': title,
             'value': int(self_mem[idx])
@@ -88,9 +90,12 @@ def calc_top_user(offset_time):
         mem_info = tb_mem.find_one({'open_id': idx})
         if not mem_info:
             continue
+
+        name = mem_info['nick_name']
+        name = name if len(name) <= 6 else name[:3] + '...' + name[-3:]
         temp = {
             'id': idx,
-            'nick_name': mem_info['nick_name'],
+            'nick_name': name,
             'icon': mem_info['icon_url'],
             'title': title,
             'value': int(group_mem[idx])
