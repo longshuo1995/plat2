@@ -191,8 +191,8 @@ def get_find_goods():
     resp = {'code': 200, 'msg': '操作成功', 'data': []}
     req = request.values
     page = int(req.get('page', 0))
-    
-    data = list(db_mongo.get_table('plat2', 'find_goods').find().sort({'_id': -1}).skip(PAGER_PER_COUNT * page).limit(PAGER_PER_COUNT))
+
+    data = list(db_mongo.get_table('plat2', 'find_goods').find().skip(PAGER_PER_COUNT * page).limit(PAGER_PER_COUNT))
     for i in data:
         i.pop('_id')
         if not i.get('nick_name'):
