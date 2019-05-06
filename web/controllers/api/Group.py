@@ -18,7 +18,7 @@ def group_member():
     mix_kw = req.get('mix_kw', '').strip()
     group_id = int(gp.strip()) if gp else 0
     open_id = req.get('open_id', '')
-    # open_id = 'ohl4g5USDznFdyo9qVFmZQcOn-6Q'
+    open_id = 'ohl4g5USDznFdyo9qVFmZQcOn-6Q'
     pages = int(req.get('pages', 0))
     # pages = 0
     pages_per_page = 50
