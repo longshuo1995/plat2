@@ -8,19 +8,16 @@ App({
         });
 
         if(this.globalData.userInfo && this.globalData.userInfo.open_id){
-            console.log('step 1')
             return
         }
         this.globalData.userInfo = wx.getStorageSync('userInfo');
         if(this.globalData.userInfo && this.globalData.userInfo.open_id){
-            console.log('ready goToIndex');
             this.goToIndex();
             if(!this.globalData.is_update_userinfo){
                 this.update_userinfo();
                 this.globalData.is_update_userinfo=true
             }
         }else{
-            console.log('ready goToLogin');
             this.goToLogin();
             this.globalData.is_update_userinfo=true
         }
@@ -28,14 +25,10 @@ App({
             this.globalData.promotion_rate=1
         }
     },
-    data:{
-        'test': 'test'
-    },
     update_userinfo:function(){
          var that = this;
          wx.login({
              fail:function(res){
-                 console.log(res)
              },
              success:function( res ){
                  wx.request({
@@ -48,7 +41,6 @@ App({
                     },
                     success:function( res ){
                         var resp = res.data;
-                        console.log(resp);
                         if(resp.is_register){
                             that.globalData.userInfo = resp.data;
                             wx.setStorageSync('userInfo', that.globalData.userInfo)
