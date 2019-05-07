@@ -91,6 +91,7 @@ def decry_phone():
         resp['msg'] = "需要code, iv, encryptedData三个参数"
         return jsonify(resp)
     resp['data']['phone_num'] = MemberService.decry_phone_num(code, encryptedData, iv)
+    return jsonify(resp)
 
 
 @route_api.route('/member/check-reg', methods=['GET', 'POST'])
