@@ -1,12 +1,17 @@
 from common.libs.member import MemberService
+from config import base_setting
+from use_test.decry.WXBizDataCrypt import WXBizDataCrypt
 
 
-def decry(encry_data, iv):
-    pass
+def decry(session_key, encry_data, iv):
+    pc = WXBizDataCrypt(base_setting.MINA_APP['appid'], session_key)
+    return pc.decrypt(encry_data, iv).get('phoneNumber')
 
 
 if __name__ == '__main__':
-    encry_data = "LKNQ8jmeDHP098WV7rudjyyWzWBEUFhwh2wYfBxIuHPy2kEDO83YvsbTi6u5QcTL4zVpfjwt5eCY8duajx5n2I7VYP28f3zCbRRzV3pBoEMs2ayV3pJgnOJwGe8w890wQR2ZEjvF/djpNDWq6LVM2xFfSt7P2WbjHgJL/6D3PyAYgQ8CjiQDczt2DkNePnUeMbVoNO9ybY2D7JOwRbN8lg=="
-    iv = "KFvmwlWeH4z5bKXHt4yI+A=="
-    code = "033wpnYD1PbjO50fT6VD1XqkYD1wpnY-"
-    MemberService.getWechatOpenId(code)
+
+    sessionKey = '9vqAPkPNt7mHAcud1BX8Ew=='
+    encryptedData = "039q2RdTyi+y1ldPz8KLGZTlREN3EbqmoAGL8Px0rJeQL52MWShNxpkc309EjGtDtSRN8z3dcNNtAVB5z6sw9+ulIYlvx02rucevahLaGPTqkmLyCF4pYm3FVedrnuDUb5Dpox9dlW75K48MiKPwzdgkFySuDPxGVJuaDNTINfWaovc8JzbS07bWIdK+WpMhcFClFj9x+GJOR590X64DOw=="
+    iv = "SpdFl3nkbfsRtlpcjLBWSg=="
+    res = decry(sessionKey, encryptedData, iv)
+    print(res)
