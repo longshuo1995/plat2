@@ -6,7 +6,6 @@ import urllib.parse
 
 
 def good_share(goods_id, _id):
-    print(11111)
     headers = {
         "Content-Type": "application/json"
     }
@@ -25,10 +24,10 @@ def good_share(goods_id, _id):
         'm_id': _id
     }
     u_scene = urllib.parse.urlencode(scene)
-    print(u_scene)
     data = {
         'page': path,
-        'scene': u_scene
+        'scene': u_scene,
+        'width': 100
     }
     content = requests.post(url, headers=headers, json=data, verify=False).content
     with open(file_path, 'wb') as f:
