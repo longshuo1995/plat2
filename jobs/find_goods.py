@@ -27,7 +27,7 @@ def update_goods():
         promotion_rate = gdd['promotion_rate']
         temp = {
             'insert_time': int(time.time()),
-            'desc': good['desc'],
+            'desc': good['desc'].replace('多客', '奇遇'),
             'goods_id': gdd['goods_id'],
             'goods_thumbnail_url': gdd['goods_thumbnail_url'],
             'goods_name': gdd['goods_name'],
