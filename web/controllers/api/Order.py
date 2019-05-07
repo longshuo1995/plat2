@@ -10,7 +10,7 @@ from web.controllers.api import route_api
 
 @route_api.route('/my/order', methods=['GET', 'POST'])
 def my_order():
-    count_per_page = 10
+    count_per_page = 50
     resp = {'code': 200, 'msg': '操作成功~', 'data': {}}
     req = request.values
     status = int(req['status'], 0)
