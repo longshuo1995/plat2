@@ -79,6 +79,20 @@ def upd_msg():
     return jsonify(resp)
 
 
+@route_api.route('/member/decry_phone', methods=['GET', 'POST'])
+def decry_phone():
+    req = request.values
+    resp = {'code': 200, 'msg': '成功', 'data': {}}
+    code = req.get('code')
+    iv = req.get('iv')
+    encryptedData = req.get('encryptedData')
+    if not (code and iv and encryptedData):
+        resp['code'] = 500
+        resp['msg'] = "需要code, iv, encryptedData三个参数"
+        return jsonify(resp)
+    resp['data']['phone_num'] = MemberService.decry_phone_num(code, encryptedData, iv)
+
+
 @route_api.route('/member/check-reg', methods=['GET', 'POST'])
 def checkReg():
     req = request.values
