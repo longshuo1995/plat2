@@ -9,8 +9,8 @@ def decry(session_key, encry_data, iv):
 
 
 if __name__ == '__main__':
-    sessionKey = '9vqAPkPNt7mHAcud1BX8Ew=='
-    encryptedData = "039q2RdTyi+y1ldPz8KLGZTlREN3EbqmoAGL8Px0rJeQL52MWShNxpkc309EjGtDtSRN8z3dcNNtAVB5z6sw9+ulIYlvx02rucevahLaGPTqkmLyCF4pYm3FVedrnuDUb5Dpox9dlW75K48MiKPwzdgkFySuDPxGVJuaDNTINfWaovc8JzbS07bWIdK+WpMhcFClFj9x+GJOR590X64DOw=="
-    iv = "SpdFl3nkbfsRtlpcjLBWSg=="
-    res = decry(sessionKey, encryptedData, iv)
+    code = '033nAtiU1dGt2Y02sJiU1c6CiU1nAtiv'
+    encryptedData = "0opeS0j1OLVcSen9sRRttlyPNb1vYpOoa6OZLVZBjUU++sR7V1t1GvQ1vMB7S0gXjfm7IGKwwafV9tS54i3cmCIaE9NFnTfU/bxAuVEYDyKYg7vPaCoaed+JHOIP0Bp07hk26sEPFQl5Do4PNdBQfbOzJJQzuLDTJe80ng4GZEgSRoO/azs2vAqQqfp8A3ISYexqHbSzd7Em4bFs33g8xQ=="
+    iv = "tDAKn77bUb4NIQymYfm25g=="
+    res = MemberService.decry_phone_num(code, encryptedData, iv)
     print(res)

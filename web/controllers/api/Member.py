@@ -126,3 +126,7 @@ def search_openid():
         return jsonify(resp)
     resp['data']['open_id'] = info['open_id']
     return jsonify(resp)
+
+'''
+https://wenku.baidu.com/search?word=%D7%CA%B8%F1%BF%BC%CA%D4%20%B9%AB%CE%F1%D4%B1%BF%BC%CA%D4&lm=2&od=0&page=search&sort_type=0&type=sort_click&org=0
+'''
