@@ -142,7 +142,13 @@ def calc_top_promotion(offset_time):
     # relation_promotion = df[df['leader_master'] != '']['total_promotion'].groupby(df['leader_master']).sum()
 
     # 个人榜（个人+老师）
-    self_promotion = custom_promotion.add(refer_promotion, fill_value=0)
+
+    # 个人榜 再加上 间接粉丝
+    indirect = df[df['leader_openid'] != ''][df['leader_openid'] != df['refer_id']]['total_promotion'].groupby(df['leader_openid']).sum()
+    indirect_promotion = indirect*project_conf.rate_conf['leader_rate']
+    self_promotion = custom_promotion.add(indirect_promotion, fill_value=0)
+    self_promotion = self_promotion.add(indirect, fill_value=0)
+
     self_promotion = self_promotion.sort_values(ascending=False)
 
 

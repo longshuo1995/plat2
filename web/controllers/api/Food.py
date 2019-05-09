@@ -111,7 +111,6 @@ def get_pdd_url():
         good_detail = dt.get('goods_detail', {})
         promotion_rate = good_detail.get('promotion_rate', 0)
         promotion_rate = promotion_rate if promotion_rate else 0
-
         row_price = good_detail.get('min_group_price', 0)
         discount = good_detail.get('coupon_discount', 0)
         resp['data'] = {
@@ -215,3 +214,8 @@ def get_we_code():
         return jsonify(resp)
     resp['data']['we_code_url'] = we_code.good_share(g_id, m_id)
     return jsonify(resp)
+
+'''
+1.删除获取手机号
+3.订单价格属于自己  修改
+'''
