@@ -55,7 +55,8 @@ def member_finance():
     # 计算佣金
     if infos:
         df = DataFrame(infos)
-        today_start_time = ((int(time.time()) // judge_ranking.DAY_SECONDS) * judge_ranking.DAY_SECONDS) - 28800
+        # today_start_time = ((int(time.time()) // (judge_ranking.DAY_SECONDS)) * judge_ranking.DAY_SECONDS) - 28800
+        today_start_time = ((int(time.time()) // (24*60*60)) * 24*60*60) - 28800
         infos_today = df[df['order_create_time'] > today_start_time]
         total_promotion = calc_self_promotion(df, open_id)
         today_money = calc_self_promotion(infos_today, open_id)
