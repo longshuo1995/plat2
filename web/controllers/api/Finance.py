@@ -15,7 +15,7 @@ def finance_draw():
     draw_count = float(req.get('draw_count', 0))
     open_id = req.get('open_id', 0)
     resp = {'code': 200, 'msg': '成功', 'data': {}}
-    if draw_count > 99 or draw_count < 10:
+    if draw_count < 10:
         resp = {'code': 500, 'msg': '请输入正确提现金额', 'data': {}}
         return jsonify(resp)
     if not draw_count:
@@ -63,7 +63,7 @@ def member_finance():
         total_promotion = 0
         today_money = 0
     data = {
-        "current_money": 99,
+        "current_money": 0,
         "checking_money": 0,
         "order_num": len(infos),
         "est_money": total_promotion,
