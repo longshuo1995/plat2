@@ -57,7 +57,7 @@ def member_finance():
         df = DataFrame(infos)
         today_start_time = ((int(time.time()) // judge_ranking.DAY_SECONDS) * judge_ranking.DAY_SECONDS) - 28800
         infos_today = df[df['order_create_time'] > today_start_time]
-        total_promotion = calc_self_promotion(infos_today, open_id)
+        total_promotion = calc_self_promotion(infos, open_id)
         today_money = calc_self_promotion(infos_today, open_id)
     else:
         total_promotion = 0
