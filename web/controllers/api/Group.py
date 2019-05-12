@@ -58,11 +58,12 @@ def group_member():
             query = {'leader_master': open_id, 'open_id': {'$ne': open_id}}
         if mix_kw:
             query['nick_name'] = re.compile(mix_kw)
-        info = db_mongo.get_table('plat2', 'member').find(query).sort('_id', -1)
+        info = db_mongo.get_table('plat2', 'member').find(query)
 
         resp['data']['count'] = info.count()
         items = info.skip(pages*pages_per_page).limit(pages_per_page)
         l = list(items)
+        l.reverse()
         for item in l:
             group_list.append({
                 'tp_name': '会员',
