@@ -122,7 +122,7 @@ def calc_top_promotion(offset_time):
     df = pd.DataFrame(l)
 
     # 其它佣金
-    other_promotion = df[df['other_promotion'] == 1]['other_promotion'].groupby(df['']).sum()
+    other_promotion = df[df['other_promotion'] == 1]['other_promotion'].groupby(df['leader_openid']).sum()
 
     # 个人佣金
     custom_promotion = df['total_promotion'].groupby(df['custom_parameters']).sum()
