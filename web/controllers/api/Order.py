@@ -30,15 +30,24 @@ def my_order():
         if not member_info:
             continue
         rate = 0
+
+        # 额外奖励
+        other_promotion = 0
+
         if info['custom_parameters'] == open_id:
             rate += project_conf.rate_conf['self_rate']
         if info.get('refer_id') == open_id:
             rate += project_conf.rate_conf['refer_rate']
         if info.get('leader_openid') == open_id:
             rate += project_conf.rate_conf['leader_rate']
+            other_promotion = info['other_promotion']
         if info.get('leader_master') == open_id:
             rate += project_conf.rate_conf['relation_rate']
+        self_money = round(info.get('order_amount')*info.get('promotion_rate')*rate/100000, 2)
+        if other_promotion:
+            self_money = '%s+%s' % (self_money, other_promotion)
         temp = {
+
             'order_sn': info['_id'],
             'own_icon': member_info.get('icon_url'),
             'own_name': member_info.get('nick_name', ''),
@@ -49,7 +58,7 @@ def my_order():
             'order_status': info.get('order_status', 0),
             'goods_id': info['goods_id'],
             'percent_rate': str(int(rate*100)) + '%',
-            'self_money': round(info.get('order_amount')*info.get('promotion_rate')*rate/100000, 2),
+            'self_money': self_money,
         }
         order_list.append(temp)
     resp['data']['order_list'] = order_list

@@ -26,7 +26,6 @@ def start_update_order(time_interval=60):
     order_items = l.get('order_list_get_response', {}).get('order_list', [])
     tbl = db_mongo.get_table('plat2', 'order')
     for item in order_items:
-        print(item)
         item['_id'] = item['order_sn']
         old_order = tbl.find_one({'_id': item['_id']})
         if old_order:
@@ -38,7 +37,15 @@ def start_update_order(time_interval=60):
             user_info = db_mongo.get_table('plat2', 'member').find_one({'open_id': open_id})
             if not user_info:
                 user_info = {}
+
+            # 查询是否有优惠购买记录 and 价格大于1元
+
             upd = StrTools.filter_map(item)
+            if upd['order_amount'] > 100:
+                history = db_mongo.get_table('plat2', 'order').find_one({'custom_parameters': open_id, 'other_promotion': 1})
+                if not history:
+                    upd['other_promotion'] = 1
+
             upd["refer_id"] = user_info.get('refer_id', '')
             upd["leader_openid"] = user_info.get("leader_openid", '')
             upd["leader_master"] = user_info.get("leader_master", '')
