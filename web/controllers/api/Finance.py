@@ -34,7 +34,10 @@ def calc_self_promotion(df, open_id):
     # 团长
     p3 = df[df['leader_openid'] == open_id]['total_promotion'].sum() * project_conf.rate_conf['leader_rate']
     # 额外奖金
-    other_promotion = df[df['leader_openid'] == open_id][df['other_promotion'] == 1]['other_promotion'].sum()
+    try:
+        other_promotion = df[df['leader_openid'] == open_id][df['other_promotion'] == 1]['other_promotion'].sum()
+    except:
+        other_promotion = 0
     total_promotion = round(sum([p1, p2, p3, other_promotion]), 2)
     return total_promotion
 
