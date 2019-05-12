@@ -121,6 +121,9 @@ def calc_top_promotion(offset_time):
         return
     df = pd.DataFrame(l)
 
+    # 其它佣金
+    other_promotion = df[df['other_promotion'] == 1]['other_promotion'].groupby(df['']).sum()
+
     # 个人佣金
     custom_promotion = df['total_promotion'].groupby(df['custom_parameters']).sum()
     custom_promotion = custom_promotion * project_conf.rate_conf['self_rate']
@@ -137,7 +140,8 @@ def calc_top_promotion(offset_time):
     refer_promotion = refer_promotion.add(leader_refer_promotion, fill_value=0)
 
     # 团长佣金
-    leader_promotion = df[df['leader_openid'] != '']['total_promotion'].groupby(df['leader_openid']).sum()
+    leader_promotion = df[df['leader_openid'] != 'leader_openid']['total_promotion'].groupby(df['leader_openid']).sum()
+    leader_promotion = leader_promotion.add(other_promotion, fill_value=0)
     group_promotion = leader_promotion.sort_values(ascending=False)
     # relation_promotion = df[df['leader_master'] != '']['total_promotion'].groupby(df['leader_master']).sum()
 
@@ -148,9 +152,10 @@ def calc_top_promotion(offset_time):
     indirect_promotion = indirect*project_conf.rate_conf['leader_rate']
     self_promotion = refer_promotion.add(custom_promotion, fill_value=0)
     self_promotion = self_promotion.add(indirect_promotion, fill_value=0)
+    # 增加 补贴计算
+    self_promotion = self_promotion.add(other_promotion, fill_value=0)
 
     self_promotion = self_promotion.sort_values(ascending=False)
-
 
     self_file_nm = os.path.join(project_conf.assert_path, project_conf.fengyun_range_pg['self']['promotion'])
     self_file = open(self_file_nm, 'w')

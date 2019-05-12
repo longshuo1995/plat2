@@ -45,9 +45,8 @@ def my_order():
             rate += project_conf.rate_conf['relation_rate']
         self_money = round(info.get('order_amount')*info.get('promotion_rate')*rate/100000, 2)
         if other_promotion:
-            self_money = '%s+%s' % (self_money, other_promotion)
+            self_money = '%s+%s首单' % (self_money, other_promotion)
         temp = {
-
             'order_sn': info['_id'],
             'own_icon': member_info.get('icon_url'),
             'own_name': member_info.get('nick_name', ''),
