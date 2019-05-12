@@ -40,7 +40,7 @@ def my_order():
             rate += project_conf.rate_conf['refer_rate']
         if info.get('leader_openid') == open_id:
             rate += project_conf.rate_conf['leader_rate']
-            other_promotion = info['other_promotion']
+            other_promotion = info.get('other_promotion', 0)
         if info.get('leader_master') == open_id:
             rate += project_conf.rate_conf['relation_rate']
         self_money = round(info.get('order_amount')*info.get('promotion_rate')*rate/100000, 2)
