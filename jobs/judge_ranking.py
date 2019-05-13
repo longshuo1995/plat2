@@ -178,11 +178,14 @@ def calc_top_promotion(offset_time):
         }
 
         self_file.write('%s\n' % json.dumps(temp))
-
-    for idx in group_promotion.index[:top_count]:
+    s_count = 0
+    for idx in group_promotion.index:
         mem_info = tb_mem.find_one({'open_id': idx})
         if not mem_info:
             continue
+        if s_count >= 20:
+            break
+        s_count += 1
         name = mem_info['nick_name']
         name = name if len(name) <= 6 else name[:3] + '...' + name[-3:]
         temp = {

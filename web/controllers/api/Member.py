@@ -40,8 +40,6 @@ def login():
                 "icon_url": req.get('avatarUrl', ''),
                 'gender': req.get('gender', ''), 'language': req.get('language', ''),
                 'country': req.get('country', ''), 'province': req.get('province', ''), 'city': req.get('city', ''),
-                # "count_vip1": 0, "count_vip2": 0, "count_group": 0,
-                # "earn_vip1": 0, "earn_vip2": 0, "earn_group": 0,
                 "refer_id": refer_id,
                 "leader_openid": refer_obj.get('leader_openid', ''),
                 "leader_master": refer_obj.get('leader_master', ''),
