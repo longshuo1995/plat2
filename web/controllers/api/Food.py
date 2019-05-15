@@ -45,6 +45,34 @@ def foodIndex():
     return jsonify(resp)
 
 
+@route_api.route("/good/mall_good")
+def mall_good():
+    req = request.values
+    page_size = 10
+    page_number = int(req.get('page', 1))
+    res = pdd_tools.mall_good(page_size=page_size, p=page_number)
+    data_food_list = []
+    for item in res['goods_info_list_response']['goods_list']:
+        promotion_rate = item.get('promotion_rate', 0)
+        quan_price = item.get('coupon_discount', 0)
+        quan_price = quan_price if quan_price else 0
+        row_price = item.get('min_group_price', 0)
+        min_price = row_price-quan_price
+        sale_count = item.get('sales_tip', 0)
+
+        temp_data = {
+            'promotion_rate': promotion_rate,
+            'goods_id': item['goods_id'],
+            'goods_name': item['goods_name'],
+            'row_price': row_price,
+            'min_price': min_price,
+            'coupon_discount': quan_price,
+            'goods_thumbnail_url': item['goods_thumbnail_url'],
+            'sold_quantity': sale_count
+        }
+        data_food_list.append(temp_data)
+
+
 @route_api.route("/good/search")
 def foodSearch():
     page_size = 50

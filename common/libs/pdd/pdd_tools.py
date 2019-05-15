@@ -32,6 +32,16 @@ def pdd_request(added_params):
     return jo
 
 
+def mall_good(mall_id, page_size, p):
+    added_params = {
+        "type": "pdd.ddk.mall.goods.list.get",
+        'page_number': p,
+        "mall_id": mall_id,
+        "page_size": page_size
+    }
+    return pdd_request(added_params)
+
+
 def opt_get(parent_opt_id=0):
     added_params = {
         "type": "pdd.goods.opt.get",
@@ -103,3 +113,6 @@ if __name__ == '__main__':
 '''
 85469664828093b810ee83b363895f03297f2ae6client_ide46a7a383d3d480a913107fac24d04cadata_typeJSONkeyword包包opt_id0page3page_size50sort_type0timestamp1556329022typepdd.ddk.goods.search85469664828093b810ee83b363895f03297f2ae6
 '''
+
+res = mall_good('955517893', 10, 1)
+print(res)
