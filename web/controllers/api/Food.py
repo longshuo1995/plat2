@@ -50,7 +50,8 @@ def mall_good():
     req = request.values
     page_size = 10
     page_number = int(req.get('page', 1))
-    res = pdd_tools.mall_good(page_size=page_size, p=page_number)
+    mall_id = int(req.get('mall_id ', 1))
+    res = pdd_tools.mall_good(mall_id=mall_id, page_size=page_size, p=page_number)
     data_food_list = []
     for item in res['goods_info_list_response']['goods_list']:
         promotion_rate = item.get('promotion_rate', 0)
