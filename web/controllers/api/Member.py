@@ -137,3 +137,19 @@ def upgrade_msg():
     resp['data']['num_count'] = refer_count
     resp['data']['eff_num_count'] = order_count
     return jsonify(resp)
+
+
+@route_api.route('/member/upgrade_leader', methods=['GET', 'POST'])
+def upgrade_msg():
+    req = request.values
+    resp = {'code': 200, 'msg': '成功', 'data': {}}
+    open_id = req.get('open_id', '')
+
+    refer_count = db_mongo.get_table('plat2', 'member').find({'refer_id': open_id}).count()
+    orders = db_mongo.get_table('plat2', 'order').find({'refer_id': open_id})
+    order_count = len(set([i['refer_id'] for i in orders]))
+    if refer_count >= 50 and order_count >= 30:
+        resp['msg'] = "恭喜升级成功"
+    else:
+        resp['msg'] = "不满足升级条件~再接再厉"
+    return jsonify(resp)
