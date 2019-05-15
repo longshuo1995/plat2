@@ -51,9 +51,9 @@ def mall_good():
     resp = {'code': 200, 'msg': '操作成功', 'data': []}
     page_size = 10
     page_number = int(req.get('page', 1))
-    mall_id = int(req.get('mall_id ', 0))
+    mall_id = req.get('mall_id')
     if not mall_id:
-        resp['code'] = 500
+        resp['code'] = 401
         resp['msg'] = "缺少必须参数mall_id"
         return jsonify(resp)
     res = pdd_tools.mall_good(mall_id=mall_id, page_size=page_size, p=page_number)
