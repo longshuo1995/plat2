@@ -125,6 +125,15 @@ def search_openid():
     resp['data']['open_id'] = info['open_id']
     return jsonify(resp)
 
-'''
-https://wenku.baidu.com/search?word=%D7%CA%B8%F1%BF%BC%CA%D4%20%B9%AB%CE%F1%D4%B1%BF%BC%CA%D4&lm=2&od=0&page=search&sort_type=0&type=sort_click&org=0
-'''
+
+@route_api.route('/member/upgrade_msg', methods=['GET', 'POST'])
+def upgrade_msg():
+    req = request.values
+    resp = {'code': 200, 'msg': '成功', 'data': {}}
+    open_id = req.get('open_id', '')
+    refer_count = db_mongo.get_table('plat2', 'member').find({'refer_id': open_id}).count()
+    orders = db_mongo.get_table('plat2', 'order').find({'refer_id': open_id})
+    order_count = len(set([i['refer_id'] for i in orders]))
+    resp['data']['num_count'] = refer_count
+    resp['data']['eff_num_count'] = order_count
+    return jsonify(resp)
