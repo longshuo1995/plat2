@@ -50,7 +50,7 @@ def group_member():
     else:
         # 直属团员
         if group_id == 1:
-            query = {'refer_id': open_id, '_id': {'$ne': open_id}}
+            query = {'refer_id': open_id, 'open_id': {'$ne': open_id}}
         # 间接团员
         elif group_id == 2:
             query = {'leader_openid': open_id, 'refer_id': {'$ne': open_id}}
