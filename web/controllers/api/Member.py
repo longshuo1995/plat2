@@ -114,11 +114,11 @@ def checkReg():
 def search_openid():
     req = request.values
     resp = {'code': 200, 'msg': '成功', 'data': {}}
-    _id = req.get('_id')
+    _id = req.get('_id', 0)
     if not _id:
         resp = {'code': 500, 'msg': '需要_id参数', 'data': {}}
         return jsonify(resp)
-    info = db_mongo.get_table('plat2', 'member').find_one({'_id': _id})
+    info = db_mongo.get_table('plat2', 'member').find_one({'_id': int(_id)})
     if not info:
         resp = {'code': 500, 'msg': '未查询到该id', 'data': {}}
         return jsonify(resp)
