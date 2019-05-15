@@ -140,7 +140,7 @@ def upgrade_msg():
 
 
 @route_api.route('/member/upgrade_leader', methods=['GET', 'POST'])
-def upgrade_msg():
+def upgrade_leader():
     req = request.values
     resp = {'code': 200, 'msg': '成功', 'data': {}}
     open_id = req.get('open_id', '')
