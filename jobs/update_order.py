@@ -50,6 +50,7 @@ def start_update_order(time_interval=60):
             upd["leader_openid"] = user_info.get("leader_openid", '')
             upd["leader_master"] = user_info.get("leader_master", '')
             upd["total_promotion"] = round(item['promotion_rate'] * item['order_amount'] / 100000, 2)
+            upd['create_time'] = StrTools.convert_time(int(item['order_create_time']), '%Y-%m-%d %H:%M')
             tbl.insert_one(upd)
 
 
