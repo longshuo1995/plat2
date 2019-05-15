@@ -29,7 +29,7 @@ def group_member():
             teacher_info = db_mongo.get_table('plat2', 'member').find_one({"open_id": info['leader_openid']})
             if teacher_info:
                 group_list.append({
-                    'tp_name': '团长',
+                    'tp_name': '奇遇团长',
                     'user_img': teacher_info['icon_url'],
                     'user_name': teacher_info['nick_name'],
                     'we_code': teacher_info.get('we_code', ''),
@@ -61,11 +61,9 @@ def group_member():
         info = db_mongo.get_table('plat2', 'member').find(query).sort('_id', -1)
         resp['data']['count'] = info.count()
         items = info.skip(pages*pages_per_page).limit(pages_per_page)
-        l = list(items)
-        l.reverse()
-        for item in l:
+        for item in items:
             group_list.append({
-                'tp_name': '会员',
+                'tp_name': '奇遇会员',
                 'user_img': item['icon_url'],
                 'user_name': item['nick_name'],
                 'we_code': item.get('we_code', ''),
