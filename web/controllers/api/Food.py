@@ -48,9 +48,14 @@ def foodIndex():
 @route_api.route("/good/mall_good")
 def mall_good():
     req = request.values
+    resp = {'code': 200, 'msg': '操作成功', 'data': []}
     page_size = 10
     page_number = int(req.get('page', 1))
-    mall_id = int(req.get('mall_id ', 1))
+    mall_id = int(req.get('mall_id ', 0))
+    if not mall_id:
+        resp['code'] = 500
+        resp['msg'] = "缺少必须参数mall_id"
+        return jsonify(resp)
     res = pdd_tools.mall_good(mall_id=mall_id, page_size=page_size, p=page_number)
     data_food_list = []
     for item in res['goods_info_list_response']['goods_list']:
@@ -72,6 +77,8 @@ def mall_good():
             'sold_quantity': sale_count
         }
         data_food_list.append(temp_data)
+    resp['data'] = data_food_list
+    return jsonify(resp)
 
 
 @route_api.route("/good/search")
