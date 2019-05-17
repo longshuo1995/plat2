@@ -131,6 +131,7 @@ def upgrade_msg():
     req = request.values
     resp = {'code': 200, 'msg': '成功', 'data': {}}
     open_id = req.get('open_id', '')
+    open_id = 'ohl4g5USDznFdyo9qVFmZQcOn-6Q'
     refer_count = db_mongo.get_table('plat2', 'member').find({'refer_id': open_id}).count()
     orders = db_mongo.get_table('plat2', 'order').find({'refer_id': open_id})
     order_count = len(set([i['refer_id'] for i in orders]))
