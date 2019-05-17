@@ -59,19 +59,20 @@ def banner_list():
 @route_api.route('/good/banner_detail_get', methods=['GET', 'POST'])
 def banner_detail():
     req = request.values
-    resp = {'code': 200, 'msg': '成功', 'data': []}
+    resp = {'code': 200, 'msg': '成功', 'data': {}}
     uniq_id = req.get('uniq_id')
     if not uniq_id:
         resp['code'] = 500
         resp['msg'] = '需要参数uniq_id'
         return jsonify(resp)
-    dt = db_mongo.get_table('plat2', 'banner_goods').find_one({'uniq_id', uniq_id}, {'_id': 0, 'goods_list': 1})
+    dt = db_mongo.get_table('plat2', 'banner_goods').find_one({'uniq_id': uniq_id}, {'_id': 0, 'goods_list': 1, 'title': 1})
     if not dt:
         resp['code'] = 500
         resp['msg'] = '服务器错误，未找到该数据'
         return jsonify(resp)
     goods_list = json.dumps(dt['goods_list'])
-    resp['data'] = goods_list
+    resp['data']['data_list'] = goods_list
+    resp['data']['title'] = dt['title']
     return jsonify(resp)
 
 
