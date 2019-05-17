@@ -38,19 +38,20 @@ def start_update_order(time_interval=60):
             if not user_info:
                 user_info = {}
 
-            # 查询是否有优惠购买记录 and 价格大于1元
 
             upd = StrTools.filter_map(item)
-            if upd['order_amount'] > 100:
-                history = db_mongo.get_table('plat2', 'order').find_one({'custom_parameters': open_id, 'other_promotion': 1})
-                if not history:
-                    upd['other_promotion'] = 1
-
             upd["refer_id"] = user_info.get('refer_id', '')
             upd["leader_openid"] = user_info.get("leader_openid", '')
             upd["leader_master"] = user_info.get("leader_master", '')
             upd["total_promotion"] = round(item['promotion_rate'] * item['order_amount'] / 100000, 2)
             upd['create_time'] = StrTools.convert_time(int(item['order_create_time']), '%Y-%m-%d %H:%M')
+
+            # 查询是否有优惠购买记录 and 价格大于1元
+            if upd['total_promotion'] > 1:
+                history = db_mongo.get_table('plat2', 'order').find_one({'custom_parameters': open_id, 'other_promotion': 1})
+                if not history:
+                    upd['other_promotion'] = 1
+
             tbl.insert_one(upd)
 
 
