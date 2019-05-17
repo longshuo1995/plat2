@@ -56,8 +56,8 @@ def banner_list():
     return jsonify(resp)
 
 
-@route_api.route('/good/detail_get', methods=['GET', 'POST'])
-def banner_list():
+@route_api.route('/good/banner_detail_get', methods=['GET', 'POST'])
+def banner_detail():
     req = request.values
     resp = {'code': 200, 'msg': '成功', 'data': []}
     uniq_id = req.get('uniq_id')
