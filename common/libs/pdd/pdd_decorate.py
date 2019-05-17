@@ -1,3 +1,5 @@
+import time
+
 from common.libs import db_mongo
 from common.libs.pdd import pdd_tools
 
@@ -19,3 +21,23 @@ def update_db_by_order(order_sn):
         tb.update({'_id': order_sn}, upd)
     else:
         tb.insert_one(upd)
+
+
+def search_good_detail(goods_id, custom_parames=''):
+    good_detail = pdd_tools.search_good_detail(goods_id, 'create_find')
+    gd = good_detail['goods_promotion_url_generate_response']['goods_promotion_url_list'][0]
+    gdd = gd['goods_detail']
+    row_price = gdd['min_group_price']
+    coupon_discount = gdd['coupon_discount']
+    promotion_rate = gdd['promotion_rate']
+    temp = {
+        'goods_id': gdd['goods_id'],
+        'goods_thumbnail_url': gdd['goods_thumbnail_url'],
+        'goods_name': gdd['goods_name'],
+        'row_price': row_price,
+        'coupon_discount': coupon_discount,
+        'min_price': row_price - coupon_discount,
+        'promotion_rate': promotion_rate,
+        'mobile_short_url': gd['mobile_short_url']
+    }
+    return temp

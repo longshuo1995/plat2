@@ -37,3 +37,14 @@ def convert_time(timestamp, fmt):
         timestamp = int(time.time())
     st = time.localtime(timestamp)
     return time.strftime(fmt, st)
+
+
+def reconvert_time(sst, fmt):
+    time_array = time.strptime(sst, fmt)
+    timestamp = int(time.mktime(time_array))
+    return timestamp
+
+
+if __name__ == '__main__':
+    ts = reconvert_time('2020-05-01 00:00:00', '%Y-%m-%d %H:%M:%S')
+    print(ts)
