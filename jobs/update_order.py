@@ -47,7 +47,7 @@ def start_update_order(time_interval=60):
             upd['create_time'] = StrTools.convert_time(int(item['order_create_time']), '%Y-%m-%d %H:%M')
 
             # 查询是否有优惠购买记录 and 价格大于1元
-            if upd['total_promotion'] > 1:
+            if upd['total_promotion'] >= 1:
                 history = db_mongo.get_table('plat2', 'order').find_one({'custom_parameters': open_id, 'other_promotion': 1})
                 if not history:
                     upd['other_promotion'] = 1
