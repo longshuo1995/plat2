@@ -51,4 +51,3 @@ def get_banner_list():
 
 
 get_banner_list()
-

@@ -24,7 +24,7 @@ def update_db_by_order(order_sn):
 
 
 def search_good_detail(goods_id, custom_parames=''):
-    good_detail = pdd_tools.search_good_detail(goods_id, 'create_find')
+    good_detail = pdd_tools.search_good_detail(goods_id, custom_parames)
     gd = good_detail['goods_promotion_url_generate_response']['goods_promotion_url_list'][0]
     gdd = gd['goods_detail']
     row_price = gdd['min_group_price']

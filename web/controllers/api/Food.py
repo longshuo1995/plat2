@@ -1,3 +1,4 @@
+import json
 import logging
 import os
 import time
@@ -42,6 +43,35 @@ def foodIndex():
             'banner_detail_url': 'https://aishangnet.club/static/index_img_detail/%s' % img_name,
         })
     resp['data'] = data
+    return jsonify(resp)
+
+
+@route_api.route('/good/banner_list', methods=['GET', 'POST'])
+def banner_list():
+    tb = db_mongo.get_table('plat2', 'banner_goods')
+    timestamp = int(time.time())
+    items = list(tb.find({'begin_time': {'$lt': timestamp}, 'end_time': {'$gt': timestamp}},
+                    {'banner_url': 1, 'uniq_id': 1, '_id': -1}).sort('_id', -1).limit(5))
+    resp = {'code': 200, 'msg': '成功', 'data': items}
+    return jsonify(resp)
+
+
+@route_api.route('/good/detail_get', methods=['GET', 'POST'])
+def banner_list():
+    req = request.values
+    resp = {'code': 200, 'msg': '成功', 'data': []}
+    uniq_id = req.get('uniq_id')
+    if not uniq_id:
+        resp['code'] = 500
+        resp['msg'] = '需要参数uniq_id'
+        return jsonify(resp)
+    dt = db_mongo.get_table('plat2', 'banner_goods').find_one({'uniq_id', uniq_id}, {'_id': -1, 'goods_list': 1})
+    if not dt:
+        resp['code'] = 500
+        resp['msg'] = '服务器错误，未找到该数据'
+        return jsonify(resp)
+    goods_list = json.dumps(dt['goods_list'])
+    resp['data'] = goods_list
     return jsonify(resp)
 
 
