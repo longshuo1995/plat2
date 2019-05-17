@@ -55,6 +55,7 @@ def my_order():
             'goods_thumbnail_url': info.get('goods_thumbnail_url', ''),
             'pay_money': info.get('order_amount')/100,
             'order_status': info.get('order_status', 0),
+            'create_time': info.get('create_time', ''),
             'goods_id': info['goods_id'],
             'percent_rate': str(int(rate*100)) + '%',
             'self_money': self_money,
