@@ -65,7 +65,7 @@ def banner_detail():
         resp['code'] = 500
         resp['msg'] = '需要参数uniq_id'
         return jsonify(resp)
-    dt = db_mongo.get_table('plat2', 'banner_goods').find_one({'uniq_id', uniq_id}, {'_id': -1, 'goods_list': 1})
+    dt = db_mongo.get_table('plat2', 'banner_goods').find_one({'uniq_id', uniq_id}, {'_id': 0, 'goods_list': 1})
     if not dt:
         resp['code'] = 500
         resp['msg'] = '服务器错误，未找到该数据'
