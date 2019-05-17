@@ -51,7 +51,7 @@ def banner_list():
     tb = db_mongo.get_table('plat2', 'banner_goods')
     timestamp = int(time.time())
     items = list(tb.find({'begin_time': {'$lt': timestamp}, 'end_time': {'$gt': timestamp}},
-                    {'banner_url': 1, 'uniq_id': 1, '_id': -1}).sort('_id', -1).limit(5))
+                    {'banner_url': 1, 'uniq_id': 1, '_id': 0}).sort('_id', -1).limit(5))
     resp = {'code': 200, 'msg': '成功', 'data': items}
     return jsonify(resp)
 
