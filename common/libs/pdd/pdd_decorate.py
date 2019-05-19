@@ -31,6 +31,7 @@ def search_good_detail(goods_id, custom_parames=''):
     coupon_discount = gdd['coupon_discount']
     promotion_rate = gdd['promotion_rate']
     temp = {
+        'sold_quantity': gdd.get('sales_tip', 0),
         'goods_id': gdd['goods_id'],
         'goods_thumbnail_url': gdd['goods_thumbnail_url'],
         'goods_name': gdd['goods_name'],
