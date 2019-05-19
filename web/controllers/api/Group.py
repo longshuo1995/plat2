@@ -21,7 +21,7 @@ def group_member():
     # open_id = 'ohl4g5USDznFdyo9qVFmZQcOn-6Q'
     pages = int(req.get('pages', 0))
     # pages = 0
-    pages_per_page = 50
+    pages_per_page = 10
     if group_id == 0:
         info = db_mongo.get_table('plat2', 'member').find_one({"open_id": open_id})
 
