@@ -4,7 +4,7 @@ import time
 from flask import request, jsonify
 from application import app
 from common.libs import db_mongo
-from common.libs.member import MemberService
+from common.libs.member import MemberService, MemberTools
 from web.controllers.api import route_api
 
 
@@ -134,8 +134,8 @@ def upgrade_msg():
     refer_count = db_mongo.get_table('plat2', 'member').find({'refer_id': open_id}).count()
     orders = db_mongo.get_table('plat2', 'order').find({'refer_id': open_id})
     order_count = len(set([i['custom_parameters'] for i in orders]))
-    resp['data']['num_count'] = refer_count
-    resp['data']['eff_num_count'] = order_count
+    resp['data']['num_count'] = refer_count if refer_count < 50 else 50
+    resp['data']['eff_num_count'] = order_count if order_count < 30 else 30
     return jsonify(resp)
 
 
@@ -144,11 +144,15 @@ def upgrade_leader():
     req = request.values
     resp = {'code': 200, 'msg': '成功', 'data': {}}
     open_id = req.get('open_id', '')
-
+    m_info = db_mongo.get_table('plat2', 'member').find_one({'open_id': open_id})
+    if m_info['level'] == 1:
+        resp['msg'] = "已经是团长了~"
+        return jsonify(resp)
     refer_count = db_mongo.get_table('plat2', 'member').find({'refer_id': open_id}).count()
     orders = db_mongo.get_table('plat2', 'order').find({'refer_id': open_id})
     order_count = len(set([i['custom_parameters'] for i in orders]))
     if refer_count >= 50 and order_count >= 30:
+        MemberTools.upgrade(open_id, set_leader_master=True)
         resp['msg'] = "恭喜升级成功"
     else:
         resp['msg'] = "不满足升级条件~再接再厉"
