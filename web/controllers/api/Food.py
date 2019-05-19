@@ -253,7 +253,7 @@ def reviews_get():
 
 @route_api.route("/good/find_goods")
 def get_find_goods():
-    PAGER_PER_COUNT = 50
+    PAGER_PER_COUNT = 10
     resp = {'code': 200, 'msg': '操作成功', 'data': []}
     req = request.values
     page = int(req.get('page', 0))
