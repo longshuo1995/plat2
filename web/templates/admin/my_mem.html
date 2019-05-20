@@ -5,10 +5,7 @@
     <title>成员检查</title>
 </head>
 <body>
-    <form>
-        <input type="text" name="mix_kw">
-        <input type="submit" value="搜索">
-    </form>
+
     <form action="/admin/member_upgrade" method="post">
         {% for user in data.user_info %}
             <p>
