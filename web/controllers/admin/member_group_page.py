@@ -7,6 +7,7 @@ import logging
 
 from common.libs import db_mongo
 from common.libs.member import MemberTools
+from common.libs.tools import StrTools, ODTools
 from web.controllers.admin import route_admin
 
 
@@ -90,10 +91,16 @@ def admin_member_upgrade():
 @route_admin.route('/user_info', methods=['GET', 'POST'])
 def admin_user_info():
     open_id = request.values.get('open_id')
-    info = {}
+    data = {}
     if open_id:
         info = db_mongo.get_table('plat2', 'member').find_one({'open_id': open_id})
-    data = {
-        'info': json.dumps(info)
-    }
+        data['nick_name'] = info['nick_name']
+        data['icon_url'] = info['icon_url']
+        refer_id = info['refer_id']
+        leader_open_id = info['leader_openid']
+        data['refer_msg'] = MemberTools.get_msg(refer_id)
+        data['leader_msg'] = MemberTools.get_msg(leader_open_id)
+        data['create_time'] = StrTools.convert_time(info['create_time'], '%Y-%m-%d %H:%M:%S')
+        data['od'] = ODTools.get_order_msg(open_id)
+
     return render_template('admin/member_info.html', data=data)

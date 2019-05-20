@@ -33,7 +33,19 @@ def upgrade_leader(member_id, leader_id):
         upgrade_leader(item['open_id'], leader_id)
 
 
-# def upgrade_order():
+def get_msg(open_id):
+    if not open_id:
+        return {}
+    info = db_mongo.get_table('plat2', 'member').find_one({'open_id': open_id})
+    if info:
+        resp = {
+            'open_id': open_id,
+            'nick_name': info['nick_name'],
+            'icon_url': info['icon_url']
+        }
+        return resp
+    return {}
+
 
 if __name__ == '__main__':
     items = db_mongo.get_table('plat2', 'member').find({'level': 1})
