@@ -96,6 +96,7 @@ def admin_user_info():
         info = db_mongo.get_table('plat2', 'member').find_one({'open_id': open_id})
         data['nick_name'] = info['nick_name']
         data['icon_url'] = info['icon_url']
+        data['open_id'] = info['open_id']
         refer_id = info['refer_id']
         leader_open_id = info['leader_openid']
         data['refer_msg'] = MemberTools.get_msg(refer_id)
