@@ -124,5 +124,6 @@ def admin_user_my_mem():
     max_count = math.ceil(count/10)-1
     data['before_pg'] ='/admin/my_mem?pages=%s&open_id=%s&is_refer=%s' % (pages-1 if pages > 0 else 0, open_id, is_refer)
     data['next_pg'] = '/admin/my_mem?pages=%s&open_id=%s&is_refer=%s' % (pages+1 if pages < max_count else max_count, open_id, is_refer)
-    data['pg_count'] = '/admin/my_mem?pages=%s&open_id=%s&is_refer=%s' % (max_count, open_id, is_refer)
+    data['pg_count'] = max_count
+    data['pg_last'] = '/admin/my_mem?pages=%s&open_id=%s&is_refer=%s' % (max_count, open_id, is_refer)
     return render_template('admin/my_mem.html', data=data)
