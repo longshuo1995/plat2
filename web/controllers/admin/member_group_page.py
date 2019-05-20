@@ -81,6 +81,9 @@ def admin_member_upgrade():
     if update == 1:
         for use in users:
             MemberTools.upgrade(use)
+    elif update == 3:
+        for use in users:
+            MemberTools.upgrade(use, set_leader_master=True)
     elif update >= 0:
         db_mongo.get_table('plat2', 'member').update({'open_id': {'$in': users}}, {'$set': {'level': update}})
     elif update == -1:
