@@ -113,7 +113,7 @@ def admin_user_info():
 def admin_user_my_mem():
     open_id = request.values.get('open_id')
     is_refer = int(request.values.get('is_refer', 1))
-    pages = int(request.values.get('is_refer', 0))
+    pages = int(request.values.get('pages', 0))
     data = {}
     if is_refer:
         info = MemberTools.get_refer_msg(open_id, pages=pages)
@@ -122,7 +122,7 @@ def admin_user_my_mem():
     data['user_info'] = info['mebs']
     count = info['count']
     max_count = math.ceil(count/10)-1
-    data['before_pg'] = pages-1 if pages > 0 else 0
-    data['next_pg'] = pages+1 if pages < max_count else max_count
-    data['pg_count'] = max_count
+    data['before_pg'] ='/admin/member?pages=%s&open_id=%s&is_refer=%s' % (pages-1 if pages > 0 else 0, open_id, is_refer)
+    data['next_pg'] = '/admin/member?pages=%s&open_id=%s&is_refer=%s' % (pages+1 if pages < max_count else max_count, open_id, is_refer)
+    data['pg_count'] = '/admin/member?pages=%s&open_id=%s&is_refer=%s' % (max_count, open_id, is_refer)
     return render_template('admin/my_mem.html', data=data)
