@@ -5,6 +5,34 @@
     <title>详情</title>
 </head>
 <body>
-    {{ data }}
+    <p>
+            <img style="height: 50px" src="{{ data.icon_url }}">
+            {{ data.nick_name }}
+    </p>
+    <p>
+        create_time: data.create_time
+    </p>
+    <p>
+        refer:
+        <img style="height: 50px" src="{{ data.refer_msg.icon_url }}">
+        <a href="/admin/user_info?open_id={{ data.refer_msg.open_id }}">{{ data.refer_msg.nick_name }}</a>
+    </p>
+    <p>
+        leader:
+        <img style="height: 50px" src="{{ data.leader_msg.icon_url }}">
+        <a href="/admin/user_info?open_id={{ data.leader_msg.open_id }}">{{ data.leader.nick_name }}</a>
+    </p>
+
+    <p>
+        <a href="/admin/user_info?open_id={{ data.leader_msg.open_id }}">order_count:{{ data.od.count }}</a>
+    </p>
+
+    <p>
+        <a href="/admin/user_info?open_id={{ data.leader_msg.open_id }}">below_refer:{{ data.below_refer.count }}</a>
+    </p>
+    
+    <p>
+        <a href="/admin/user_info?open_id={{ data.leader_msg.open_id }}">below_indirect:{{ data.below_indirect.count }}</a>
+    </p>
 </body>
 </html>
