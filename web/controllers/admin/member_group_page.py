@@ -103,6 +103,25 @@ def admin_user_info():
         data['create_time'] = StrTools.convert_time(info['create_time'], '%Y-%m-%d %H:%M:%S')
         data['od'] = ODTools.get_order_msg(open_id)
         data['below_refer'] = MemberTools.get_refer_msg(open_id)
-        data['below_indirect'] = MemberTools.get_refer_msg(open_id)
+        data['below_indirect'] = MemberTools.get_indirect_msg(open_id)
 
     return render_template('admin/member_info.html', data=data)
+
+
+@route_admin.route('/my_mem', methods=['GET', 'POST'])
+def admin_user_my_mem():
+    open_id = request.values.get('open_id')
+    is_refer = int(request.values.get('is_refer', 1))
+    pages = int(request.values.get('is_refer', 0))
+    data = {}
+    if is_refer:
+        info = MemberTools.get_refer_msg(open_id, pages=pages)
+    else:
+        info = MemberTools.get_indirect_msg(open_id, pages=pages)
+    data['user_info'] = info['mebs']
+    count = info['count']
+    max_count = math.ceil(count/10)-1
+    data['before_pg'] = pages-1 if pages > 0 else 0
+    data['next_pg'] = pages+1 if pages < max_count else max_count
+    data['pg_count'] = max_count
+    return render_template('admin/my_mem.html', data=data)
