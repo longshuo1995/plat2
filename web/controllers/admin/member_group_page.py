@@ -102,5 +102,7 @@ def admin_user_info():
         data['leader_msg'] = MemberTools.get_msg(leader_open_id)
         data['create_time'] = StrTools.convert_time(info['create_time'], '%Y-%m-%d %H:%M:%S')
         data['od'] = ODTools.get_order_msg(open_id)
+        data['below_refer'] = MemberTools.get_refer_msg(open_id)
+        data['below_indirect'] = MemberTools.get_refer_msg(open_id)
 
     return render_template('admin/member_info.html', data=data)

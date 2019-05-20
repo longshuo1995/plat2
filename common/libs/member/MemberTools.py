@@ -47,6 +47,26 @@ def get_msg(open_id):
     return {}
 
 
+def get_refer_msg(open_id, pages=0):
+    info = db_mongo.get_table('plat2', 'member').find({'refer_id': open_id, 'open_id': {'$ne', open_id}})
+    count_per_page = 10
+    resp = {
+        'count': info.count(),
+        'mebs': list(info.sort('_id', -1).skip(pages*count_per_page).limit(count_per_page))
+    }
+    return resp
+
+
+def get_indirect_msg(open_id, pages=0):
+    info = db_mongo.get_table('plat2', 'member').find({'leader_openid': open_id, 'refer_id': {'$ne', open_id}})
+    count_per_page = 10
+    resp = {
+        'count': info.count(),
+        'mebs': list(info.sort('_id', -1).skip(pages*count_per_page).limit(count_per_page))
+    }
+    return resp
+
+
 if __name__ == '__main__':
     items = db_mongo.get_table('plat2', 'member').find({'level': 1})
     for item in items:
