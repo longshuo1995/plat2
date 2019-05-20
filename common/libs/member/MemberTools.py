@@ -48,7 +48,7 @@ def get_msg(open_id):
 
 
 def get_refer_msg(open_id, pages=0):
-    info = db_mongo.get_table('plat2', 'member').find({'refer_id': open_id, 'open_id': {'$ne', open_id}})
+    info = db_mongo.get_table('plat2', 'member').find({'refer_id': open_id, 'open_id': {'$ne': open_id}})
     count_per_page = 10
     resp = {
         'count': info.count(),
@@ -58,7 +58,7 @@ def get_refer_msg(open_id, pages=0):
 
 
 def get_indirect_msg(open_id, pages=0):
-    info = db_mongo.get_table('plat2', 'member').find({'leader_openid': open_id, 'refer_id': {'$ne', open_id}})
+    info = db_mongo.get_table('plat2', 'member').find({'leader_openid': open_id, 'refer_id': {'$ne': open_id}})
     count_per_page = 10
     resp = {
         'count': info.count(),
