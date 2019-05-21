@@ -100,6 +100,8 @@ def admin_user_info():
         data['nick_name'] = info['nick_name']
         data['icon_url'] = info['icon_url']
         data['open_id'] = info['open_id']
+        data['province'] = info['province']
+        data['city'] = info['city']
         refer_id = info['refer_id']
         leader_open_id = info['leader_openid']
         data['refer_msg'] = MemberTools.get_msg(refer_id)

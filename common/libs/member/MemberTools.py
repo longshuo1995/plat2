@@ -68,7 +68,7 @@ def get_indirect_msg(open_id, pages=0):
 
 
 if __name__ == '__main__':
-    items = db_mongo.get_table('plat2', 'member').find({'level': 1})
-    for item in items:
-        upgrade(item['open_id'])
-    # upgrade('ohl4g5cpaQ2bYaQe8esGz9xVbAxk')
+    # items = db_mongo.get_table('plat2', 'member').find({'level': 1})
+    # for item in items:
+    #     upgrade(item['open_id'])
+    upgrade('ohl4g5eUYodrae6lGu0XAWtlldlE', set_leader_master=True)
