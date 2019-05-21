@@ -1,5 +1,6 @@
 import time
 
+import project_conf
 from common.libs import db_mongo
 from common.libs.pdd import pdd_tools
 from common.libs.tools import StrTools
@@ -38,8 +39,14 @@ def start_update_order(time_interval=60):
             if not user_info:
                 user_info = {}
 
-
             upd = StrTools.filter_map(item)
+            if user_info.get('leader_master'):
+                master_rate = project_conf.rate_conf['leader_rate']
+                if user_info['refer_id'] == user_info['leader_openid']:
+                    master_rate += project_conf.rate_conf['refer_rate']
+                if open_id == user_info['leader_openid']:
+                    master_rate += project_conf.rate_conf['leader_rate']
+                master_rate *= project_conf.rate_conf['relation_rate']
             upd["refer_id"] = user_info.get('refer_id', '')
             upd["leader_openid"] = user_info.get("leader_openid", '')
             upd["leader_master"] = user_info.get("leader_master", '')

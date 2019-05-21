@@ -13,6 +13,7 @@ from web.controllers.api import route_api
 def finance_draw():
     req = request.values
     draw_count = float(req.get('draw_count', 0))
+    print(req)
     open_id = req.get('open_id', 0)
     resp = {'code': 200, 'msg': '成功', 'data': {}}
     if draw_count < 10:
