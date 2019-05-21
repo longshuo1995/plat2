@@ -33,8 +33,10 @@ def login():
                 find_one({"open_id": refer_id}, {'leader_openid': 1, 'leader_master': 1})
             if not refer_obj:
                 refer_obj = {}
+        ip = request.remote_addr
         info = {
                 "_id": db_mongo.getNextValue('member'),
+                "ip": ip,
                 "open_id": openid,
                 "nick_name": req.get('nickName', ''),
                 "icon_url": req.get('avatarUrl', ''),
