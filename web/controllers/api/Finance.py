@@ -71,7 +71,7 @@ def member_finance():
         total_promotion = 0
         today_money = 0
     data = {
-        "current_money": 0,
+        "current_money": 100,
         "checking_money": 0,
         "order_num": len(infos),
         "est_money": total_promotion,
