@@ -71,7 +71,7 @@ def member_finance():
     else:
         total_promotion = 0
         today_money = 0
-    finance_info = db_mongo.get_table('plat2', 'order').find_one({'open_id': open_id})
+    finance_info = db_mongo.get_table('plat2', 'finance').find_one({'open_id': open_id})
     if not finance_info:
         finance_info = {}
     data = {
