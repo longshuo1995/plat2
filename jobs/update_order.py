@@ -27,7 +27,6 @@ def start_update_order(time_interval=60):
     order_items = l.get('order_list_get_response', {}).get('order_list', [])
     tbl = db_mongo.get_table('plat2', 'order')
     for item in order_items:
-        print(item)
         item['_id'] = item['order_sn']
         old_order = tbl.find_one({'_id': item['_id']})
         if old_order and old_order.get('order_status') == 6:
@@ -38,6 +37,9 @@ def start_update_order(time_interval=60):
                 # js判断
                 if item['order_status'] in (3, 5, 6) and old_order.get('order_status') not in (3, 5, 6):
                     m_p = ODTools.get_promotion_msg([item])
+                    item['order_status'] = 6
+                    item['order_status_desc'] = '审核通过'
+                    ODTools.upd_finance(m_p)
                 tbl.update({'_id': item['_id']}, {'$set':
                 {'order_status': item['order_status'], 'order_status_desc': item['order_status_desc']}})
 
