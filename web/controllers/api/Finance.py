@@ -13,8 +13,13 @@ from web.controllers.api import route_api
 def finance_draw():
     req = request.values
     draw_count = float(req.get('draw_count', 0))
-    print(req)
     open_id = req.get('open_id', 0)
+    upd = {
+        'open_id': open_id,
+        'draw_count': draw_count,
+        'status': 0
+    }
+    db_mongo.get_table('plat2', 'draw').insert_one(upd)
     resp = {'code': 200, 'msg': '成功', 'data': {}}
     if draw_count < 10:
         resp = {'code': 500, 'msg': '请输入正确提现金额', 'data': {}}

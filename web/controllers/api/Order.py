@@ -32,7 +32,6 @@ def my_order():
         if not member_info:
             continue
         rate = 0
-
         # 额外奖励
         other_promotion = 0
 
