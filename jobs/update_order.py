@@ -3,7 +3,7 @@ import time
 import project_conf
 from common.libs import db_mongo
 from common.libs.pdd import pdd_tools
-from common.libs.tools import StrTools
+from common.libs.tools import StrTools, ODTools
 
 
 def start_update_order(time_interval=60):
@@ -29,14 +29,18 @@ def start_update_order(time_interval=60):
     for item in order_items:
         item['_id'] = item['order_sn']
         old_order = tbl.find_one({'_id': item['_id']})
+        if old_order.get('order_status') == 6:
+            # 结s商品
+            continue
         if old_order:
             if old_order.get('order_status') != item['order_status']:
-                tbl.update({'_id': item['_id']}, {'$set':
-                {'order_status': item['order_status'], 'order_status_desc': item['order_status_desc']}})
                 # js判断
                 if item['order_status'] in (3, 5, 6) and old_order.get('order_status') not in (3, 5, 6):
-                    pass
+                    m_p = ODTools.get_promotion_msg([item])
 
+
+                tbl.update({'_id': item['_id']}, {'$set':
+                {'order_status': item['order_status'], 'order_status_desc': item['order_status_desc']}})
 
 
         else:

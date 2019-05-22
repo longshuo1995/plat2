@@ -24,3 +24,15 @@ def get_promotion_msg(od_items):
         StrTools.add_value(m_p, item['leader_openid'], item['total_promotion']*project_conf.rate_conf['leader_rate'])
         StrTools.add_value(m_p, item['leader_master'], item.get('master_promotion', 0))
     return m_p
+
+
+def upd_finance(m_p):
+    tb_finance = db_mongo.get_table('plat2', 'finance')
+    for item in m_p.items():
+        finance_info = tb_finance.find_one({'open_id': item[0]})
+        if not finance_info:
+            finance_info = {'open_id': item[0], 'finance': item[1]}
+            tb_finance.insert_one(finance_info)
+        else:
+            fin = finance_info['finance'] + item[1]
+            tb_finance.update({'_id': finance_info['_id']}, {'$set': {'finance': fin}})
