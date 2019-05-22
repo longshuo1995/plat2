@@ -28,13 +28,14 @@ def start_update_order(time_interval=60, before_time=0, current_time=0, is_corre
             break
     order_items = l.get('order_list_get_response', {}).get('order_list', [])
     tbl = db_mongo.get_table('plat2', 'order')
+    if not is_correct:
+        return
     for item in order_items:
         _id = item['order_sn']
         old_order = tbl.find_one({'_id': _id})
-        if old_order and old_order.get('order_status') == 6:
+        if not old_order:
             # 结s商品
-            if not is_correct:
-                continue
+
             open_id = item['custom_parameters']
             user_info = db_mongo.get_table('plat2', 'member').find_one({'open_id': open_id})
             if not user_info:
