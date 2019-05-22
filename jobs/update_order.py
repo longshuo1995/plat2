@@ -6,10 +6,12 @@ from common.libs.pdd import pdd_tools
 from common.libs.tools import StrTools, ODTools
 
 
-def start_update_order(time_interval=60):
+def start_update_order(time_interval=60, before_time=0, current_time=0, is_correct=False):
     # db.order.find({'order_status': {$in: [1, 2]}});
-    current_time = (time.time() // time_interval) * time_interval
-    before_time = current_time - (time_interval * 2)
+    if not current_time:
+        current_time = (time.time() // time_interval) * time_interval
+    if not before_time:
+        before_time = current_time - (time_interval * 2)
     temp = {}
     for i in range(10):
         msg = 'update order exception'
@@ -27,10 +29,26 @@ def start_update_order(time_interval=60):
     order_items = l.get('order_list_get_response', {}).get('order_list', [])
     tbl = db_mongo.get_table('plat2', 'order')
     for item in order_items:
-        item['_id'] = item['order_sn']
         old_order = tbl.find_one({'_id': item['_id']})
         if old_order and old_order.get('order_status') == 6:
             # 结s商品
+            if not is_correct:
+                continue
+            open_id = item['custom_parameters']
+            user_info = db_mongo.get_table('plat2', 'member').find_one({'open_id': open_id})
+            if not user_info:
+                user_info = {}
+
+            upd = StrTools.filter_map(item)
+            upd['order_status_desc'] = '审核通过'
+            upd["refer_id"] = user_info.get('refer_id', '')
+            upd["leader_openid"] = user_info.get("leader_openid", '')
+            upd["leader_master"] = user_info.get("leader_master", '')
+            upd["total_promotion"] = round(item['promotion_rate'] * item['order_amount'] / 100000, 2)
+
+            upd['create_time'] = StrTools.convert_time(int(item['order_create_time']), '%Y-%m-%d %H:%M')
+
+            tbl.update({'_id': item['order_sn']}, upd)
             continue
         if old_order:
             if old_order.get('order_status') != item['order_status']:
