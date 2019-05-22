@@ -20,7 +20,7 @@ PDD_APP = {
 }
 show_every_page = 10
 p_id = '8475051_56582557'
-
+zs_duo_id = '8475051'
 '''
 爆款
 '''

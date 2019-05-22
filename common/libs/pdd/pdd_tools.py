@@ -25,6 +25,7 @@ def pdd_request(added_params):
         "data_type": "JSON",
         "timestamp": int(time.time()),
         "client_id": base_setting.PDD_APP['client_id'],
+        # "client_id": '8176931',
     }
     params = dict(base_params, **added_params)
     params['sign'] = calc_sign(params)
@@ -68,7 +69,8 @@ def search_good_detail(good_id, custom_parameters):
         'p_id': base_setting.p_id,
         'goods_id_list': '["%s"]' % good_id,
         'custom_parameters': custom_parameters,
-        'generate_we_app': 'true'
+        'generate_we_app': 'true',
+        'zs_duo_id': base_setting.zs_duo_id
     }
     return pdd_request(added_params)
 
@@ -107,7 +109,7 @@ if __name__ == '__main__':
     # print(res)
     # res = search_order_by_sn('190324-270806221493150')
     # print(res)
-    res = search_good_detail('6869428690', '0')
+    res = search_good_detail('6364838400', '0')
     print(res)
 
 '''
