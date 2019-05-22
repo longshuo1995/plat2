@@ -16,6 +16,8 @@ def start_update_order(time_interval=60, before_time=0, current_time=0, is_corre
     for i in range(10):
         msg = 'update order exception'
         try:
+            print(before_time)
+            print(current_time)
             l = pdd_tools.order_search(int(before_time), int(current_time))
             temp = l.get('order_list_get_response', {})
         except Exception as e:
