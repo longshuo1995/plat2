@@ -101,6 +101,7 @@ def admin_user_info():
         data['icon_url'] = info['icon_url']
         data['open_id'] = info['open_id']
         data['province'] = info['province']
+        data['ip_addr'] = info.get('ip_addr', '')
         data['city'] = info['city']
         refer_id = info['refer_id']
         leader_open_id = info['leader_openid']
