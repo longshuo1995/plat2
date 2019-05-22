@@ -17,6 +17,8 @@ def finance_draw():
     upd = {
         'open_id': open_id,
         'draw_count': draw_count,
+        'name': req.get('name', ''),
+        'alinum': req.get('alinum', ''),
         'status': 0
     }
     db_mongo.get_table('plat2', 'draw').insert_one(upd)
