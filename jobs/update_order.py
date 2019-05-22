@@ -33,7 +33,7 @@ def start_update_order(time_interval=60, before_time=0, current_time=0, is_corre
     for item in order_items:
         _id = item['order_sn']
         old_order = tbl.find_one({'_id': _id})
-        if not old_order:
+        if item['order_status'] in [3, 5]:
             # 结s商品
 
             open_id = item['custom_parameters']
@@ -47,10 +47,13 @@ def start_update_order(time_interval=60, before_time=0, current_time=0, is_corre
             upd["leader_openid"] = user_info.get("leader_openid", '')
             upd["leader_master"] = user_info.get("leader_master", '')
             upd["total_promotion"] = round(item['promotion_rate'] * item['order_amount'] / 100000, 2)
-
+            upd['order_status'] = 6
             upd['create_time'] = StrTools.convert_time(int(item['order_create_time']), '%Y-%m-%d %H:%M')
-
-            tbl.update({'_id': item['order_sn']}, upd)
+            if not old_order:
+                upd['_id'] = item['order_sn']
+                tbl.insert_one(upd)
+            else:
+                tbl.update({'_id': item['order_sn']}, upd)
             continue
         if old_order:
             if old_order.get('order_status') != item['order_status']:
