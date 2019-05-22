@@ -16,15 +16,14 @@ def insert_od(start_time, end_time):
     global ct
     l = pdd_tools.order_search(int(start_time), int(end_time))
     order_items = l.get('order_list_get_response', {}).get('order_list', [])
-    c = 0
     for item in order_items:
         open_id = item['custom_parameters']
         if item['order_sn'] in crawled_id:
             continue
-        crawled_id.add(item['order_sn'])
         if item.get('order_status') in [3, 5]:
             ct += 1
             continue
+        crawled_id.add(item['order_sn'])
         user_info = db_mongo.get_table('plat2', 'member').find_one({'open_id': open_id})
         if not user_info:
             user_info = {}
