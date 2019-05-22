@@ -35,6 +35,7 @@ def start_update_order(time_interval=60):
                 {'order_status': item['order_status'], 'order_status_desc': item['order_status_desc']}})
                 # js判断
                 if item['order_status'] in (3, 5, 6) and old_order.get('order_status') not in (3, 5, 6):
+                    pass
 
 
 
