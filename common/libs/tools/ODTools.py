@@ -31,8 +31,8 @@ def upd_finance(m_p):
     for item in m_p.items():
         finance_info = tb_finance.find_one({'open_id': item[0]})
         if not finance_info:
-            finance_info = {'open_id': item[0], 'finance': item[1]}
+            finance_info = {'open_id': item[0], 'finance': round(item[1], 2)}
             tb_finance.insert_one(finance_info)
         else:
-            fin = finance_info['finance'] + item[1]
+            fin = round(finance_info['finance'] + item[1], 2)
             tb_finance.update({'_id': finance_info['_id']}, {'$set': {'finance': fin}})
