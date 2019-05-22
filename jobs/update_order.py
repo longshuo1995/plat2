@@ -33,6 +33,7 @@ def start_update_order(time_interval=60, before_time=0, current_time=0, is_corre
     for item in order_items:
         _id = item['order_sn']
         old_order = tbl.find_one({'_id': _id})
+        print(item['order_status'])
         if item['order_status'] in [3, 5]:
             # 结s商品
 
