@@ -6,18 +6,14 @@ from common.libs.pdd import pdd_tools
 from common.libs.tools import StrTools, ODTools
 
 
-def start_update_order(time_interval=60, before_time=0, current_time=0, is_correct=False):
+def start_update_order(time_interval=60):
     # db.order.find({'order_status': {$in: [1, 2]}});
-    if not current_time:
-        current_time = (time.time() // time_interval) * time_interval
-    if not before_time:
-        before_time = current_time - (time_interval * 2)
+    current_time = (time.time() // time_interval) * time_interval
+    before_time = current_time - (time_interval * 2)
     temp = {}
     for i in range(10):
         msg = 'update order exception'
         try:
-            print(before_time)
-            print(current_time)
             l = pdd_tools.order_search(int(before_time), int(current_time))
             temp = l.get('order_list_get_response', {})
         except Exception as e:
@@ -30,34 +26,33 @@ def start_update_order(time_interval=60, before_time=0, current_time=0, is_corre
             break
     order_items = l.get('order_list_get_response', {}).get('order_list', [])
     tbl = db_mongo.get_table('plat2', 'order')
-    if not is_correct:
-        return
     for item in order_items:
-        _id = item['order_sn']
-        print(_id)
-        old_order = tbl.find_one({'_id': _id})
-        print(item['order_status'])
-        if item['order_status'] in [3, 5]:
+        item['_id'] = item['order_sn']
+        old_order = tbl.find_one({'_id': item['_id']})
+        if old_order and old_order.get('order_status') == 6:
             # 结s商品
-
+            continue
             open_id = item['custom_parameters']
             user_info = db_mongo.get_table('plat2', 'member').find_one({'open_id': open_id})
             if not user_info:
                 user_info = {}
 
             upd = StrTools.filter_map(item)
-            upd['order_status_desc'] = '审核通过'
+            master_rate = 0
             upd["refer_id"] = user_info.get('refer_id', '')
             upd["leader_openid"] = user_info.get("leader_openid", '')
             upd["leader_master"] = user_info.get("leader_master", '')
             upd["total_promotion"] = round(item['promotion_rate'] * item['order_amount'] / 100000, 2)
-            upd['order_status'] = 6
+
             upd['create_time'] = StrTools.convert_time(int(item['order_create_time']), '%Y-%m-%d %H:%M')
-            if not old_order:
-                upd['_id'] = item['order_sn']
-                tbl.insert_one(upd)
-            else:
-                tbl.update({'_id': item['order_sn']}, upd)
+
+            # 查询是否有优惠购买记录 and 价格大于1元
+            if upd['total_promotion'] >= 1:
+                history = db_mongo.get_table('plat2', 'order').find_one({'custom_parameters': open_id, 'other_promotion': 1})
+                if not history:
+                    upd['other_promotion'] = 1
+
+            tbl.insert_one(upd)
             continue
         if old_order:
             if old_order.get('order_status') != item['order_status']:
