@@ -33,6 +33,11 @@ def start_update_order(time_interval=60):
             if old_order.get('order_status') != item['order_status']:
                 tbl.update({'_id': item['_id']}, {'$set':
                 {'order_status': item['order_status'], 'order_status_desc': item['order_status_desc']}})
+                # js判断
+                if item['order_status'] in (3, 5, 6) and old_order.get('order_status') not in (3, 5, 6):
+
+
+
         else:
             open_id = item['custom_parameters']
             user_info = db_mongo.get_table('plat2', 'member').find_one({'open_id': open_id})
@@ -40,6 +45,7 @@ def start_update_order(time_interval=60):
                 user_info = {}
 
             upd = StrTools.filter_map(item)
+            master_rate = 0
             if user_info.get('leader_master'):
                 master_rate = project_conf.rate_conf['leader_rate']
                 if user_info['refer_id'] == user_info['leader_openid']:
@@ -47,10 +53,14 @@ def start_update_order(time_interval=60):
                 if open_id == user_info['leader_openid']:
                     master_rate += project_conf.rate_conf['leader_rate']
                 master_rate *= project_conf.rate_conf['relation_rate']
+
             upd["refer_id"] = user_info.get('refer_id', '')
             upd["leader_openid"] = user_info.get("leader_openid", '')
             upd["leader_master"] = user_info.get("leader_master", '')
             upd["total_promotion"] = round(item['promotion_rate'] * item['order_amount'] / 100000, 2)
+
+            upd['master_promotion'] = round(master_rate * upd['total_promotion'], 2)
+
             upd['create_time'] = StrTools.convert_time(int(item['order_create_time']), '%Y-%m-%d %H:%M')
 
             # 查询是否有优惠购买记录 and 价格大于1元

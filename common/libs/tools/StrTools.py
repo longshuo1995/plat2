@@ -11,6 +11,11 @@ def get_md5(source):
     return m.hexdigest().upper()
 
 
+def add_value(m, key, value):
+    m.setdefault(key, 0)
+    m[key] = m[key] + value
+
+
 def filter_map(m):
     resp = {}
     for key in m.keys():
@@ -46,5 +51,7 @@ def reconvert_time(sst, fmt):
 
 
 if __name__ == '__main__':
-    ts = reconvert_time('2020-05-01 00:00:00', '%Y-%m-%d %H:%M:%S')
-    print(ts)
+    a = {'a': 3, 'b': 1}
+    add_value(a, 'c', 10)
+    add_value(a, 'a', 4)
+    print(a)

@@ -1,4 +1,6 @@
+import project_conf
 from common.libs import db_mongo
+from common.libs.tools import StrTools
 
 
 def get_order_msg(open_id, pages=0):
@@ -12,3 +14,13 @@ def get_order_msg(open_id, pages=0):
         'ods': infos
     }
     return data
+
+
+def get_promotion_msg(od_items):
+    m_p = {}
+    for item in od_items:
+        StrTools.add_value(m_p, item['custom_parameters'], item['total_promotion']*project_conf.rate_conf['self_rate'])
+        StrTools.add_value(m_p, item['refer_id'], item['total_promotion']*project_conf.rate_conf['refer_rate'])
+        StrTools.add_value(m_p, item['leader_openid'], item['total_promotion']*project_conf.rate_conf['leader_rate'])
+        StrTools.add_value(m_p, item['leader_master'], item['master_promotion'])
+    return m_p
