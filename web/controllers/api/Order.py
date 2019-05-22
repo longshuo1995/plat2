@@ -20,6 +20,8 @@ def my_order():
     # open_id = 'ohl4g5USDznFdyo9qVFmZQcOn-6Q'
     query = {'$or': [{'custom_parameters': open_id}, {'refer_id': open_id}, {'leader_openid': open_id}, {'leader_master': open_id}]}
     if status:
+        if status == 3:
+            status = 6
         query['order_status'] = status
     if mix_kw:
         query['goods_name'] = re.compile(mix_kw)

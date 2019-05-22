@@ -66,7 +66,7 @@ def member_finance():
         today_start_time = now_time - now_time % 86400 + time.timezone
         infos_today = df[df['order_create_time'] > today_start_time]
         total_promotion_df = df[df['order_status'] != 6]
-        total_promotion = calc_self_promotion(df, open_id)
+        total_promotion = calc_self_promotion(total_promotion_df, open_id)
         today_money = calc_self_promotion(infos_today, open_id)
     else:
         total_promotion = 0
