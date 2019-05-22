@@ -1,5 +1,6 @@
 import re
 import requests
+from lxml import etree
 
 pattern_place = re.compile('<dd>(.*?)<a')
 
@@ -15,10 +16,13 @@ def start_crawl(ip_addr):
        'accept-language': 'zh-CN,zh;q=0.9,en;q=0.8',
     }
     res = requests.get(url, headers=headers).text
-    items = res.splitlines()
-    for idx, item in enumerate(items):
-        if item.find('来自') > 0:
-            gp = pattern_place.search(items[idx+1])
-            if gp:
-                return gp.group(1)
+    xhtml = etree.HTML(res)
+    items = xhtml.xpath('//span[@class="Whwtdhalf w50-0"]/text()')
+    if items:
+        return items[-1]
+    # for idx, item in enumerate(items):
+    #     if item.find('来自') > 0:
+    #         gp = pattern_place.search(items[idx+1])
+    #         if gp:
+    #             print(gp.group(1))
     return ''
