@@ -29,7 +29,8 @@ def start_update_order(time_interval=60, before_time=0, current_time=0, is_corre
     order_items = l.get('order_list_get_response', {}).get('order_list', [])
     tbl = db_mongo.get_table('plat2', 'order')
     for item in order_items:
-        old_order = tbl.find_one({'_id': item['_id']})
+        _id = item['order_sn']
+        old_order = tbl.find_one({'_id': _id})
         if old_order and old_order.get('order_status') == 6:
             # 结s商品
             if not is_correct:
