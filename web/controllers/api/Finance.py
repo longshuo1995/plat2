@@ -65,14 +65,18 @@ def member_finance():
         now_time = int(time.time())
         today_start_time = now_time - now_time % 86400 + time.timezone
         infos_today = df[df['order_create_time'] > today_start_time]
+        total_promotion_df = df[df['order_status'] != 6]
         total_promotion = calc_self_promotion(df, open_id)
         today_money = calc_self_promotion(infos_today, open_id)
     else:
         total_promotion = 0
         today_money = 0
+    finance_info = db_mongo.get_table('plat2', 'order').find_one({'open_id': open_id})
+    if not finance_info:
+        finance_info = {}
     data = {
-        "current_money": 0,
-        "checking_money": 0,
+        "current_money": finance_info.get('finance', 0),
+        "checking_money": finance_info.get('checking', 0),
         "order_num": len(infos),
         "est_money": total_promotion,
         "today_money": today_money

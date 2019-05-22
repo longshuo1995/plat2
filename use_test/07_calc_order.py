@@ -20,8 +20,7 @@ def insert_od(start_time, end_time):
         open_id = item['custom_parameters']
         if item['order_sn'] in crawled_id:
             continue
-        if item.get('order_status') in [3, 5]:
-            ct += 1
+        if item.get('order_status') not in [3, 5]:
             continue
         crawled_id.add(item['order_sn'])
         user_info = db_mongo.get_table('plat2', 'member').find_one({'open_id': open_id})
@@ -29,6 +28,9 @@ def insert_od(start_time, end_time):
             user_info = {}
         upd = StrTools.filter_map(item)
         upd['_id'] = upd['order_sn']
+        info = db_mongo.get_table('plat2', 'order').find_one({'_id': upd['_id']})
+        if info:
+            continue
         upd["refer_id"] = user_info.get('refer_id', '')
         upd["leader_openid"] = user_info.get("leader_openid", '')
         upd["leader_master"] = user_info.get("leader_master", '')
@@ -36,7 +38,8 @@ def insert_od(start_time, end_time):
         upd['create_time'] = StrTools.convert_time(int(item['order_create_time']), '%Y-%m-%d %H:%M')
         upd['order_status'] = 6
         upd['order_status_desc'] = '审核通过'
-        db_mongo.get_table('plat2', 'order').insert_one(upd)
+        print(upd)
+        # db_mongo.get_table('plat2', 'order').insert_one(upd)
 
 
 while start_tm < tm:
