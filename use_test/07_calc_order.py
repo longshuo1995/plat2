@@ -28,6 +28,7 @@ def insert_od(start_time, end_time):
         if not user_info:
             user_info = {}
         upd = StrTools.filter_map(item)
+        upd['_id'] = upd['order_sn']
         upd["refer_id"] = user_info.get('refer_id', '')
         upd["leader_openid"] = user_info.get("leader_openid", '')
         upd["leader_master"] = user_info.get("leader_master", '')
@@ -35,6 +36,7 @@ def insert_od(start_time, end_time):
         upd['create_time'] = StrTools.convert_time(int(item['order_create_time']), '%Y-%m-%d %H:%M')
         upd['order_status'] = 6
         upd['order_status_desc'] = '审核通过'
+        db_mongo.get_table('plat2', 'order').insert_one(upd)
 
 
 while start_tm < tm:
