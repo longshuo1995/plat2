@@ -29,7 +29,7 @@ def start_update_order(time_interval=60):
     for item in order_items:
         item['_id'] = item['order_sn']
         old_order = tbl.find_one({'_id': item['_id']})
-        if old_order.get('order_status') == 6:
+        if old_order and old_order.get('order_status') == 6:
             # 结s商品
             continue
         if old_order:
@@ -37,7 +37,6 @@ def start_update_order(time_interval=60):
                 # js判断
                 if item['order_status'] in (3, 5, 6) and old_order.get('order_status') not in (3, 5, 6):
                     m_p = ODTools.get_promotion_msg([item])
-
 
                 tbl.update({'_id': item['_id']}, {'$set':
                 {'order_status': item['order_status'], 'order_status_desc': item['order_status_desc']}})
