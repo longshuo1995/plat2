@@ -33,6 +33,8 @@ def insert_od(start_time, end_time):
         upd["leader_master"] = user_info.get("leader_master", '')
         upd["total_promotion"] = round(item['promotion_rate'] * item['order_amount'] / 100000, 2)
         upd['create_time'] = StrTools.convert_time(int(item['order_create_time']), '%Y-%m-%d %H:%M')
+        upd['order_status'] = 6
+        upd['order_status_desc'] = '审核通过'
 
 
 while start_tm < tm:
