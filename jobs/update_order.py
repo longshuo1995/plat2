@@ -19,7 +19,7 @@ def start_update_order(time_interval=60):
         time.sleep(1)
     os.system('touch %s' % lock_name)
     temp = {}
-    for i in range(10):
+    for i in range(2):
         msg = 'update order exception'
         try:
             l = pdd_tools.order_search(int(before_time), int(current_time))
