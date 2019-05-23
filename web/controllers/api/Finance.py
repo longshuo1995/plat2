@@ -16,9 +16,8 @@ def finance_draw():
     open_id = req.get('open_id', 0)
     info = db_mongo.get_table('plat2', 'draw').find_one({'open_id': open_id, 'status': {'$in': [0, 1]}})
     if info:
-        if draw_count < 10:
-            resp = {'code': 500, 'msg': '当前有一笔提现正在进行, 请等待处理完成后再提现', 'data': {}}
-            return jsonify(resp)
+        resp = {'code': 500, 'msg': '当前有一笔提现正在进行, 请等待处理完成后再提现', 'data': {}}
+        return jsonify(resp)
 
     upd = {
         'open_id': open_id,

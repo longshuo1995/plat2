@@ -86,6 +86,9 @@ def start_update_order(time_interval=60):
             tbl.insert_one(upd)
 
 
+'''
+db.finance.update({open_id: 'ohl4g5USDznFdyo9qVFmZQcOn-6Q'}, $set: {finance: 15}})
+'''
 def lock_status():
     items = db_mongo.get_table('plat2', 'draw').find({'status': 0})
     for item in items:
