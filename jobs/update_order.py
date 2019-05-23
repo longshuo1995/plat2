@@ -13,43 +13,36 @@ lock_name = os.path.join(project_conf.assert_path, 'lock_finance')
 def start_update_order(time_interval=60):
     # db.order.find({'order_status': {$in: [1, 2]}});
     current_time = (time.time() // time_interval) * time_interval
-    before_time = current_time - (time_interval * 2)
-    # 创建锁文件
-    while os.path.exists(lock_name):
+    start_time = current_time - (time_interval * 2)
+    msg = 'update order exception'
+    l = pdd_tools.order_search(start_time, int(current_time))
+    temp = l.get('order_list_get_response', {})
+
+    if not temp:
         time.sleep(1)
-    os.system('touch %s' % lock_name)
-    temp = {}
-    for i in range(2):
-        msg = 'update order exception'
-        try:
-            l = pdd_tools.order_search(int(before_time), int(current_time))
-            temp = l.get('order_list_get_response', {})
-        except Exception as e:
-            msg = e
-        if not temp:
-            time.sleep(1)
-            StrTools.write_log('error_update_order', '%s' % msg)
-        else:
-            StrTools.write_log('error_update_order', 'success...%s' % temp)
+        StrTools.write_log('error_update_order', '%s' % msg)
+    else:
+        StrTools.write_log('error_update_order', 'success...%s' % temp)
     order_items = l.get('order_list_get_response', {}).get('order_list', [])
+    print(len(order_items))
     tbl = db_mongo.get_table('plat2', 'order')
     for item in order_items:
         item['_id'] = item['order_sn']
+        print(item['_id'])
         old_order = tbl.find_one({'_id': item['_id']})
         if old_order and old_order.get('order_status') == 6:
-            # 结s商品
             continue
         if old_order:
+            print('have old_order')
             if old_order.get('order_status') != item['order_status']:
-                # js判断
                 if item['order_status'] in (3, 5, 6) and old_order.get('order_status') not in (3, 5, 6):
+                    print('have no jiesuan')
                     m_p = ODTools.get_promotion_msg([old_order])
                     item['order_status'] = 6
                     item['order_status_desc'] = '审核通过'
                     ODTools.upd_finance(m_p)
                 tbl.update({'_id': item['_id']}, {'$set':
                 {'order_status': item['order_status'], 'order_status_desc': item['order_status_desc']}})
-
         else:
             open_id = item['custom_parameters']
             user_info = db_mongo.get_table('plat2', 'member').find_one({'open_id': open_id})
@@ -82,6 +75,8 @@ def start_update_order(time_interval=60):
                     upd['other_promotion'] = 1
 
             tbl.insert_one(upd)
+
+
 
 
 '''
