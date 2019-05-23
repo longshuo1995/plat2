@@ -14,17 +14,14 @@ def start_update_order(time_interval=60):
     # db.order.find({'order_status': {$in: [1, 2]}});
     current_time = (time.time() // time_interval) * time_interval
     start_time = current_time - (time_interval * 2)
-    msg = 'update order exception'
     l = pdd_tools.order_search(start_time, int(current_time))
     temp = l.get('order_list_get_response', {})
-
+    print(temp)
     if not temp:
         time.sleep(1)
-        StrTools.write_log('error_update_order', '%s' % msg)
     else:
         StrTools.write_log('error_update_order', 'success...%s' % temp)
     order_items = l.get('order_list_get_response', {}).get('order_list', [])
-    print(len(order_items))
     tbl = db_mongo.get_table('plat2', 'order')
     for item in order_items:
         item['_id'] = item['order_sn']
@@ -103,6 +100,6 @@ def lock_status():
 
 
 if __name__ == '__main__':
-    start_update_order()
+    start_update_order(60*60)
     lock_status()
 

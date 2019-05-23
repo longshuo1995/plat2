@@ -84,6 +84,10 @@ def search_order_by_sn(order_sn):
 
 
 def order_search(start_time, end_time):
+    start_time = int(start_time)
+    end_time = int(end_time)
+    print(start_time)
+    print(end_time)
     added_params = {
         "type": "pdd.ddk.order.list.increment.get",
         'start_update_time': start_time,
