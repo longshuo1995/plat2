@@ -31,7 +31,6 @@ def start_update_order(time_interval=60):
             StrTools.write_log('error_update_order', '%s' % msg)
         else:
             StrTools.write_log('error_update_order', 'success...%s' % temp)
-            break
     order_items = l.get('order_list_get_response', {}).get('order_list', [])
     tbl = db_mongo.get_table('plat2', 'order')
     for item in order_items:
@@ -50,7 +49,6 @@ def start_update_order(time_interval=60):
                     ODTools.upd_finance(m_p)
                 tbl.update({'_id': item['_id']}, {'$set':
                 {'order_status': item['order_status'], 'order_status_desc': item['order_status_desc']}})
-
 
         else:
             open_id = item['custom_parameters']

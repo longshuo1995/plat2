@@ -6,30 +6,25 @@ from common.libs.pdd import pdd_tools
 from common.libs.tools import StrTools, ODTools
 
 
-def start_update_order(time_interval=60):
+def start_update_order():
     # db.order.find({'order_status': {$in: [1, 2]}});
     current_time = time.time()
-    before_time = current_time - 60*60
-    # 创建锁文件
 
-    temp = {}
-    for i in range(10):
-        msg = 'update order exception'
-        try:
-            l = pdd_tools.order_search(int(before_time), int(current_time))
-            temp = l.get('order_list_get_response', {})
-        except Exception as e:
-            msg = e
-        if not temp:
-            time.sleep(1)
-            StrTools.write_log('error_update_order', '%s' % msg)
-        else:
-            StrTools.write_log('error_update_order', 'success...%s' % temp)
-            break
+    msg = 'update order exception'
+    l = pdd_tools.order_search(1558578039, int(current_time))
+    temp = l.get('order_list_get_response', {})
+
+    if not temp:
+        time.sleep(1)
+        StrTools.write_log('error_update_order', '%s' % msg)
+    else:
+        StrTools.write_log('error_update_order', 'success...%s' % temp)
     order_items = l.get('order_list_get_response', {}).get('order_list', [])
+    print(len(order_items))
     tbl = db_mongo.get_table('plat2', 'order')
     for item in order_items:
         item['_id'] = item['order_sn']
+        print(item['_id'])
         old_order = tbl.find_one({'_id': item['_id']})
         if old_order and old_order.get('order_status') == 6:
             continue
@@ -78,4 +73,4 @@ def start_update_order(time_interval=60):
             tbl.insert_one(upd)
 
 
-start_update_order(time_interval=30*60)
+start_update_order()
