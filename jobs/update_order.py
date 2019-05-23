@@ -1,3 +1,4 @@
+import os
 import time
 
 import project_conf
@@ -6,10 +7,17 @@ from common.libs.pdd import pdd_tools
 from common.libs.tools import StrTools, ODTools
 
 
+lock_name = os.path.join(project_conf.assert_path, 'lock_finance')
+
+
 def start_update_order(time_interval=60):
     # db.order.find({'order_status': {$in: [1, 2]}});
     current_time = (time.time() // time_interval) * time_interval
     before_time = current_time - (time_interval * 2)
+    # 创建锁文件
+    while os.path.exists(lock_name):
+        time.sleep(1)
+    os.system('touch %s' % lock_name)
     temp = {}
     for i in range(10):
         msg = 'update order exception'
@@ -78,6 +86,27 @@ def start_update_order(time_interval=60):
             tbl.insert_one(upd)
 
 
+def lock_status():
+    items = db_mongo.get_table('plat2', 'draw').find({'status': 0})
+    for item in items:
+        draw_count = item.get('draw_count', 0)
+        open_id = item.get('open_id', '')
+        # 加锁
+        db_mongo.get_table('plat2', 'draw').update_one({'_id': item['_id']}, {'$set': {'status': 1}})
+        if not open_id:
+            continue
+        # 冻结finance表
+        info = db_mongo.get_table('plat2', 'finance').find_one({'open_id': open_id})
+        if draw_count >= info.get('finance', 0):
+            finance_remain = info.get('finance', 0) - draw_count
+            checking = info.get('checking', 0) + draw_count
+            db_mongo.get_table('plat2', 'finance').update_one({'open_id': open_id},
+                                          {'$set': {'finance': finance_remain, 'checking': checking}})
+
+    os.system('rm -rf %s' % lock_name)
+
+
 if __name__ == '__main__':
     start_update_order()
+    lock_status()
 
