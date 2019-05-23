@@ -60,6 +60,10 @@ def member_finance():
     req = request.values
     resp = {'code': 200, 'msg': '成功', 'data': {}}
     open_id = req.get('openid')
+    to_lock_mn = 0
+    to_lock_draw = db_mongo.get_table('plat2', 'draw').find_one({'open_id': open_id, 'status': 0})
+    if to_lock_draw:
+        to_lock_mn = to_lock_draw.get('draw_count', 0)
     if not open_id:
         resp = {'code': 401, 'msg': '请传入参数openid', 'data': {}}
         return jsonify(resp)
@@ -86,9 +90,11 @@ def member_finance():
     finance_info = db_mongo.get_table('plat2', 'finance').find_one({'open_id': open_id})
     if not finance_info:
         finance_info = {}
+    current_money = round(finance_info.get('finance', 0)-to_lock_mn, 2)
+    current_money = 0 if current_money < 0 else current_money
     data = {
-        "current_money": finance_info.get('finance', 0),
-        "checking_money": finance_info.get('checking', 0),
+        "current_money": current_money,
+        "checking_money": round(finance_info.get('checking', 0)+to_lock_mn, 2),
         "order_num": len(infos),
         "est_money": total_promotion,
         "today_money": today_money
