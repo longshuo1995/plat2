@@ -20,17 +20,20 @@ def upgrade(open_id, set_leader_master=False):
     tb.update({'open_id': open_id}, {'$set': {'level': 1, 'leader_openid': open_id,
                                           'refer_id': open_id, 'leader_master': leader_master}})
     # tb.update({'refer_id': open_id}, {'$set': {'leader_openid': open_id, 'leader_master': leader_master}})
-    upgrade_leader(open_id, open_id)
+    upgrade_leader(open_id, open_id, leader_master, set_leader_master)
 
 
-# 递归计算(member_id的所有下级...   都更新为leader_id的团员)
-def upgrade_leader(member_id, leader_id):
+def upgrade_leader(member_id, leader_id, leader_master, set_leader_master):
     # 所有子级
     member_items = db_mongo.get_table('plat2', 'member').find({'refer_id': member_id, 'open_id': {'$ne': member_id}},
                                                               {'open_id': 1})
-    db_mongo.get_table('plat2', 'member').update_many({'refer_id': member_id}, {'$set': {'leader_openid': leader_id}})
+    upd = {'leader_openid': leader_id}
+    if set_leader_master:
+        upd['leader_master'] = leader_master
+
+    db_mongo.get_table('plat2', 'member').update_many({'refer_id': member_id}, {'$set': upd})
     for item in member_items:
-        upgrade_leader(item['open_id'], leader_id)
+        upgrade_leader(item['open_id'], leader_id, leader_master, set_leader_master)
 
 
 def get_msg(open_id):

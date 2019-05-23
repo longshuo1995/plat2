@@ -23,6 +23,7 @@ def get_promotion_msg(od_items):
         StrTools.add_value(m_p, item['refer_id'], item['total_promotion']*project_conf.rate_conf['refer_rate'])
         StrTools.add_value(m_p, item['leader_openid'], item['total_promotion']*project_conf.rate_conf['leader_rate'])
         StrTools.add_value(m_p, item['leader_master'], item.get('master_promotion', 0))
+        StrTools.add_value(m_p, item['leader_openid'], item.get('other_promotion', 0))
     return m_p
 
 
