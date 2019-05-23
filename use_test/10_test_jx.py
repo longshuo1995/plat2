@@ -8,8 +8,8 @@ from common.libs.tools import StrTools, ODTools
 
 def start_update_order(time_interval=60):
     # db.order.find({'order_status': {$in: [1, 2]}});
-    current_time = (time.time() // time_interval) * time_interval
-    before_time = current_time - (time_interval * 2)
+    current_time = time.time()
+    before_time = current_time - 60*60
     # 创建锁文件
 
     temp = {}
@@ -41,14 +41,12 @@ def start_update_order(time_interval=60):
             if old_order.get('order_status') != item['order_status']:
                 if item['order_status'] in (3, 5, 6) and old_order.get('order_status') not in (3, 5, 6):
                     print('have no jiesuan')
-                    m_p = ODTools.get_promotion_msg([item])
+                    m_p = ODTools.get_promotion_msg([old_order])
                     item['order_status'] = 6
                     item['order_status_desc'] = '审核通过'
                     ODTools.upd_finance(m_p)
                 tbl.update({'_id': item['_id']}, {'$set':
                 {'order_status': item['order_status'], 'order_status_desc': item['order_status_desc']}})
-
-
         else:
             open_id = item['custom_parameters']
             user_info = db_mongo.get_table('plat2', 'member').find_one({'open_id': open_id})

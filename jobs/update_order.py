@@ -44,7 +44,7 @@ def start_update_order(time_interval=60):
             if old_order.get('order_status') != item['order_status']:
                 # js判断
                 if item['order_status'] in (3, 5, 6) and old_order.get('order_status') not in (3, 5, 6):
-                    m_p = ODTools.get_promotion_msg([item])
+                    m_p = ODTools.get_promotion_msg([old_order])
                     item['order_status'] = 6
                     item['order_status_desc'] = '审核通过'
                     ODTools.upd_finance(m_p)
