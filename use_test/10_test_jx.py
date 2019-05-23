@@ -30,9 +30,6 @@ def start_update_order(time_interval=60):
     tbl = db_mongo.get_table('plat2', 'order')
     for item in order_items:
         item['_id'] = item['order_sn']
-        if item['_id'] != '190504-650988421951343':
-            print(item['order_sn'])
-            continue
         old_order = tbl.find_one({'_id': item['_id']})
         if old_order and old_order.get('order_status') == 6:
             continue
