@@ -32,3 +32,14 @@ def getNextValue(key_name):
     ret = get_table('plat2', 'counters').find_and_modify({"_id": key_name}, {"$inc": {"req": 1}}, safe=True, new=True)
     new = ret["req"]
     return int(new)
+
+
+'''
+建立索引
+1.查看索引:
+db.memeber.getIndexes()
+2.建立索引
+db.memeber.ensureIndex({xxx: 1, unique: true})
+3.删除索引
+db.COLLECTION_NAME.dropIndex("INDEX-NAME")
+'''
