@@ -91,7 +91,7 @@ def member_finance():
     if not finance_info:
         finance_info = {}
     current_money = round(finance_info.get('finance', 0)-to_lock_mn, 2)
-    current_money = 0 if current_money < 0 else current_money
+    # current_money = 0 if current_money < 0 else current_money
     data = {
         "current_money": current_money,
         "checking_money": round(finance_info.get('checking', 0)+to_lock_mn, 2),
