@@ -94,10 +94,17 @@ def member_finance():
         finance_info = {}
     current_money = round((finance_info.get('finance', 0)-to_lock_mn)/100, 2)
     # current_money = 0 if current_money < 0 else current_money
+    od_count = db_mongo.get_table('plat2', 'order').find(
+        {
+            'order_status': {'$in': [1, 2, 4, 6]},
+            '$or': [{'custom_parameters': open_id}, {'refer_id': open_id},
+                    {'leader_openid': open_id}, {'leader_master': open_id}]
+        }
+    ).count()
     data = {
         "current_money": current_money,
         "checking_money": round((finance_info.get('checking', 0)+to_lock_mn)/100, 2),
-        "order_num": len(infos),
+        "order_num": od_count,
         "est_money": total_promotion,
         "today_money": today_money
     }
