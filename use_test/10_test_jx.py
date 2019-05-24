@@ -11,7 +11,7 @@ def start_update_order():
     current_time = time.time()
 
     msg = 'update order exception'
-    l = pdd_tools.order_search(1558664071, int(current_time))
+    l = pdd_tools.order_search(1558679431, int(current_time))
     temp = l.get('order_list_get_response', {})
 
     if not temp:
@@ -20,11 +20,12 @@ def start_update_order():
     else:
         StrTools.write_log('error_update_order', 'success...%s' % temp)
     order_items = l.get('order_list_get_response', {}).get('order_list', [])
-    print(len(order_items))
     tbl = db_mongo.get_table('plat2', 'order')
     for item in order_items:
         item['_id'] = item['order_sn']
         print(item['_id'])
+        if item['_id'] != '190423-488221246673047':
+            continue
         old_order = tbl.find_one({'_id': item['_id']})
         if old_order and old_order.get('order_status') == 6:
             continue
