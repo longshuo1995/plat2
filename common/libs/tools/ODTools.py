@@ -19,11 +19,11 @@ def get_order_msg(open_id, pages=0):
 def get_promotion_msg(od_items):
     m_p = {}
     for item in od_items:
-        StrTools.add_value(m_p, item['custom_parameters'], item['total_promotion']*project_conf.rate_conf['self_rate'])
-        StrTools.add_value(m_p, item['refer_id'], item['total_promotion']*project_conf.rate_conf['refer_rate'])
-        StrTools.add_value(m_p, item['leader_openid'], item['total_promotion']*project_conf.rate_conf['leader_rate'])
-        StrTools.add_value(m_p, item['leader_master'], item.get('master_promotion', 0))
-        StrTools.add_value(m_p, item['leader_openid'], item.get('other_promotion', 0))
+        StrTools.add_value(m_p, item['custom_parameters'], int(item['total_promotion']*project_conf.rate_conf['self_rate']*100))
+        StrTools.add_value(m_p, item['refer_id'], int(item['total_promotion']*project_conf.rate_conf['refer_rate']*100))
+        StrTools.add_value(m_p, item['leader_openid'], int(item['total_promotion']*project_conf.rate_conf['leader_rate']*100))
+        StrTools.add_value(m_p, item['leader_master'], int(item.get('master_promotion', 0)*100))
+        StrTools.add_value(m_p, item['leader_openid'], int(item.get('other_promotion', 0)*100))
     return m_p
 
 
@@ -32,8 +32,8 @@ def upd_finance(m_p):
     for item in m_p.items():
         finance_info = tb_finance.find_one({'open_id': item[0]})
         if not finance_info:
-            finance_info = {'open_id': item[0], 'finance': round(item[1], 2)}
+            finance_info = {'open_id': item[0], 'finance': item[1]}
             tb_finance.insert_one(finance_info)
         else:
-            fin = round(finance_info['finance'] + item[1], 2)
+            fin = (finance_info['finance'] + item[1])
             tb_finance.update({'_id': finance_info['_id']}, {'$set': {'finance': fin}})

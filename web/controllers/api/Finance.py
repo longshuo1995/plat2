@@ -21,7 +21,7 @@ def finance_draw():
 
     upd = {
         'open_id': open_id,
-        'draw_count': draw_count,
+        'draw_count': int(draw_count*100),
         'name': req.get('name', ''),
         'alinum': req.get('alinum', ''),
         'status': 0
@@ -92,11 +92,11 @@ def member_finance():
     finance_info = db_mongo.get_table('plat2', 'finance').find_one({'open_id': open_id})
     if not finance_info:
         finance_info = {}
-    current_money = round(finance_info.get('finance', 0)-to_lock_mn, 2)
+    current_money = round((finance_info.get('finance', 0)-to_lock_mn)/100, 2)
     # current_money = 0 if current_money < 0 else current_money
     data = {
         "current_money": current_money,
-        "checking_money": round(finance_info.get('checking', 0)+to_lock_mn, 2),
+        "checking_money": round((finance_info.get('checking', 0)+to_lock_mn)/100, 2),
         "order_num": len(infos),
         "est_money": total_promotion,
         "today_money": today_money

@@ -29,8 +29,8 @@ print('最新 fn ', f)
 items = db_mongo.get_table('plat2_bak', 'finance').find()
 f1 = 0
 for i in items:
-    f += i['finance']
-    f += i.get('checking', 0)
+    f1 += i['finance']
+    f1 += i.get('checking', 0)
 print('备份 fn', f1)
 print('finance差', f - f1)
 
