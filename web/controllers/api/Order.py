@@ -8,7 +8,6 @@ from common.libs import db_mongo
 from web.controllers.api import route_api
 
 
-
 @route_api.route('/my/order', methods=['GET', 'POST'])
 def my_order():
     count_per_page = 50

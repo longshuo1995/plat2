@@ -5,7 +5,7 @@ from web.controllers.static import route_static
 from web.controllers.user.User import route_user
 from web.controllers.api import route_api, Food, Member, Ranking, Order, Group, Finance
 from web.controllers.good import route_good, EditGood
-from web.controllers.admin import route_admin, member_group_page
+from web.controllers.admin import route_admin, member_group_page, order_page
 
 
 app.register_blueprint(route_index, url_prefix='/')
