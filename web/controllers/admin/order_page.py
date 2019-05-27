@@ -32,7 +32,7 @@ def admin_order():
         data['icon_url'] = info.get('icon_url', '')
 
     od = db_mongo.get_table('plat2', 'order').find(query)
-    od = od.sort('time', -1)
+    od = od.sort('time', 1)
     count = od.count()
     order_list = list(od.skip(pages*order_count_per_page).limit(order_count_per_page))
 
