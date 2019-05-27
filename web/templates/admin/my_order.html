@@ -12,6 +12,19 @@
         {% for gd in data.order_list %}
             <p>
                 <img style="height: 50px" src="{{ gd.goods_thumbnail_url }}">
+                {{ gd.goods_name }}
+            </p>
+            <p>
+                price: {{ gd.goods_price/100 }}
+                promotion: {{ gd.total_promotion }}
+                status: {{ gd.order_status_desc }}
+                create_time: {{ gd.create_time }}
+            </p>
+            <p>
+                o1: {{ gd.nick_open_id }} <br>
+                o2: {{ gd.nick_refer_id }}
+                o3: {{ gd.nick_leader_openid }}
+                o4: {{ gd.nick_leader_master }}
             </p>
         {% endfor %}
         <a href="{{ data.before_page }}">上一页</a>
