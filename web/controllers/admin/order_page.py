@@ -45,7 +45,7 @@ def admin_order():
             info = db_mongo.get_table('plat2', 'member').find_one({'open_id': open_id})
             if not info:
                 info = {}
-            id_nick_map[open_id] = (info.get('nick_name'), '/admin/user_info?open_id=%s' % info.get('open_id', ''))
+            id_nick_map[open_id] = (info.get('nick_name'), '/admin/user_info?open_id=%s' % open_id)
         return id_nick_map[open_id]
     for item in order_list:
         item['nick_open_id'], item['h_open_id'] = query_nick_name(item['custom_parameters'])
