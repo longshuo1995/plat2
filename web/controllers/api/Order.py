@@ -17,7 +17,7 @@ def my_order():
     open_id = req.get('openid')
     pages = int(req.get('pages'), 0)
     mix_kw = req.get('mix_kw', '').strip()
-    open_id = 'ohl4g5fIjiqFutNkYHCsJ9OZ4aSY'
+    # open_id = 'ohl4g5fIjiqFutNkYHCsJ9OZ4aSY'
     query = {'$or': [{'custom_parameters': open_id}, {'refer_id': open_id}, {'leader_openid': open_id}, {'leader_master': open_id}]}
     if status:
         if status == 3:

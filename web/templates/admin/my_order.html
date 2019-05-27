@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>订单检查</title>
+</head>
+<body>
+    <form>
+        <input type="text" name="mix_kw">
+        <input type="submit" value="搜索">
+    </form>
+        {% for gd in data.order_list %}
+            <p>
+                <img style="height: 50px" src="{{ gd.goods_thumbnail_url }}">
+            </p>
+        {% endfor %}
+        <a href="{{ data.before_page }}">上一页</a>
+        <a href="{{ data.after_page }}">下一页</a>
+        最后一页:<a href="{{ data.last_page }}">{{ data.max_count }}</a>
+        <br>
+</body>
+</html>
