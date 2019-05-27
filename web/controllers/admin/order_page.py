@@ -12,11 +12,11 @@ def admin_order():
     order_count_per_page = 10
     username = request.cookies.get('username')
     password = request.cookies.get('password')
-    open_id = request.cookies.get('open_id', '')
     if username != 'qiyupingtuan' and password != 'd665e0369613cdcaddd4d268b3bcfb90':
         return redirect('/admin/login')
     req = request.values
     pages = int(req.get('pages', 0))
+    open_id = req.get('open_id', '')
     mix_kw = req.get('mix_kw', '').strip()
     query = {}
     data = {
