@@ -96,7 +96,6 @@ def member_finance():
     # current_money = 0 if current_money < 0 else current_money
     od_count = db_mongo.get_table('plat2', 'order').find(
         {
-            'order_status': {'$in': [1, 2, 4, 6]},
             '$or': [{'custom_parameters': open_id}, {'refer_id': open_id},
                     {'leader_openid': open_id}, {'leader_master': open_id}]
         }

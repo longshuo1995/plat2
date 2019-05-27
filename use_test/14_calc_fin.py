@@ -8,7 +8,7 @@ print('最新 所有 o 6', c)
 
 
 #
-items = db_mongo.get_table('plat2_bak', 'order').find({'order_status': 6})
+items = db_mongo.get_table('plat2_0524', 'order').find({'order_status': 6})
 c1 = 0
 for i in items:
     c1 += i['total_promotion']
@@ -26,7 +26,7 @@ for i in items:
     #     print('checking..', i.get('checking', 0))
 print('最新 fn ', f)
 
-items = db_mongo.get_table('plat2_bak', 'finance').find()
+items = db_mongo.get_table('plat2_0524', 'finance').find()
 f1 = 0
 for i in items:
     f1 += i['finance']
