@@ -21,11 +21,12 @@
                 create_time: {{ gd.create_time }}
             </p>
             <p>
-                o1: {{ gd.nick_open_id }} <br>
-                o2: {{ gd.nick_refer_id }}
-                o3: {{ gd.nick_leader_openid }}
-                o4: {{ gd.nick_leader_master }}
+                购买: {{ gd.nick_open_id }} <br>
+                老师: {{ gd.nick_refer_id }}<br>
+                团长: {{ gd.nick_leader_openid }}<br>
+                关联团长: {{ gd.nick_leader_master }}<br>
             </p>
+            ----------------------------------------
         {% endfor %}
         <a href="{{ data.before_page }}">上一页</a>
         <a href="{{ data.after_page }}">下一页</a>
