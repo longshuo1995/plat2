@@ -16,10 +16,10 @@
                 {{ gd.goods_name }}
             </p>
             <p>
-                price: {{ gd.goods_price/100 }}
-                promotion: {{ gd.total_promotion }}
-                status: {{ gd.order_status_desc }}
-                create_time: {{ gd.create_time }}
+                付款: {{ gd.order_amount/100 }}
+                总佣金: {{ gd.total_promotion }}
+                订单状态: {{ gd.order_status_desc }}
+                付款时间: {{ gd.create_time }}
             </p>
             <p>
                 购买: <a href="{{ gd.h_open_id }}">{{ gd.nick_open_id }}</a> <br>
