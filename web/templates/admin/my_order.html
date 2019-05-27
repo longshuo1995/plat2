@@ -5,14 +5,14 @@
     <title>订单检查</title>
 </head>
 <body>
-    <h1>data.nick_name</h1>
+    <h1>{{ data.nick_name }}</h1>
     <form>
         <input type="text" name="mix_kw">
         <input type="submit" value="搜索">
     </form>
         {% for gd in data.order_list %}
             <p>
-                <img style="height: 50px" src="{{ gd.goods_thumbnail_url }}">
+                <img style="height: 150px" src="{{ gd.goods_thumbnail_url }}">
                 {{ gd.goods_name }}
             </p>
             <p>
@@ -22,10 +22,10 @@
                 create_time: {{ gd.create_time }}
             </p>
             <p>
-                购买: {{ gd.nick_open_id }} <br>
-                老师: {{ gd.nick_refer_id }}<br>
-                团长: {{ gd.nick_leader_openid }}<br>
-                关联团长: {{ gd.nick_leader_master }}<br>
+                购买: <a href="{{ gd.h_open_id }}">{{ gd.nick_open_id }}</a> <br>
+                老师: <a href="{{ gd.h_open_id }}">{{ gd.nick_refer_id }}</a><br>
+                团长: <a href="{{ gd.h_open_id }}">{{ gd.nick_leader_openid }}</a><br>
+                关联团长: <a href="{{ gd.h_open_id }}">{{ gd.nick_leader_master }}</a><br>
             </p>
             ----------------------------------------<br>
         {% endfor %}

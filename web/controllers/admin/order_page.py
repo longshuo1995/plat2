@@ -39,19 +39,19 @@ def admin_order():
 
     def query_nick_name(open_id):
         if not open_id:
-            return ''
+            return ('', '')
         nick_name = id_nick_map.get(open_id, '')
         if not nick_name:
             info = db_mongo.get_table('plat2', 'member').find_one({'open_id': open_id})
             if not info:
                 info = {}
-            id_nick_map[open_id] = info.get('nick_name')
+            id_nick_map[open_id] = (info.get('nick_name'), '/admin/order?open_id=%s' % open_id)
         return id_nick_map[open_id]
     for item in order_list:
-        item['nick_open_id'] = query_nick_name(item['custom_parameters'])
-        item['nick_refer_id'] = query_nick_name(item['refer_id'])
-        item['nick_leader_openid'] = query_nick_name(item['leader_openid'])
-        item['nick_leader_master'] = query_nick_name(item['leader_master'])
+        item['nick_open_id'], item['h_open_id'] = query_nick_name(item['custom_parameters'])
+        item['nick_refer_id'], item['h_refer_id'] = query_nick_name(item['refer_id'])
+        item['nick_leader_openid'], item['h_leader_openid'] = query_nick_name(item['leader_openid'])
+        item['nick_leader_master'], item['h_leader_master'] = query_nick_name(item['leader_master'])
 
     max_count = math.ceil(count/10)-1
     before_page = pages - 1
