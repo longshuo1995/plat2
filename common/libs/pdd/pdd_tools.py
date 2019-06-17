@@ -70,7 +70,7 @@ def search_good_detail(good_id, custom_parameters):
         'goods_id_list': '["%s"]' % good_id,
         'custom_parameters': custom_parameters,
         'generate_we_app': 'true',
-        'zs_duo_id': base_setting.zs_duo_id
+        # 'zs_duo_id': base_setting.zs_duo_id
     }
     return pdd_request(added_params)
 
@@ -113,7 +113,7 @@ if __name__ == '__main__':
     # print(res)
     # res = search_order_by_sn('190324-270806221493150')
     # print(res)
-    res = search_good_detail('6364838400', '0')
+    res = search_good_detail('2714877164', '0')
     print(res)
 
 '''
