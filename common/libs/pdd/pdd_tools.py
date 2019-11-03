@@ -106,6 +106,17 @@ def hot_goods_range(sort_type=1, offset=0, limit=50):
     return pdd_request(added_params)
 
 
+def get_detail2(good_id):
+    added_params = {
+        "type": "pdd.ddk.goods.detail",
+        'goods_id_list': '["%s"]' % good_id,
+    }
+    r = pdd_request(added_params)
+    res = r.get('goods_detail_response', {}).get('goods_details', [{}])[0]
+    return res
+
+
+
 if __name__ == '__main__':
     # res = hot_goods_range(sort_type=1, offset=0, limit=50)
     # print(res)
@@ -113,8 +124,12 @@ if __name__ == '__main__':
     # print(res)
     # res = search_order_by_sn('190324-270806221493150')
     # print(res)
-    res = search_good_detail('2714877164', '0')
+    # res = search_good_detail('2714877164', '0')
+    res = get_detail2('2714877164')
     print(res)
+
+
+
 
 '''
 85469664828093b810ee83b363895f03297f2ae6client_ide46a7a383d3d480a913107fac24d04cadata_typeJSONkeyword包包opt_id0page3page_size50sort_type0timestamp1556329022typepdd.ddk.goods.search85469664828093b810ee83b363895f03297f2ae6

@@ -175,7 +175,8 @@ def get_pdd_url():
     if dt:
         pdd_url = dt['we_app_info']['page_path']
         app_id = dt['we_app_info']['app_id']
-        good_detail = dt.get('goods_detail', {})
+        # good_detail = dt.get('goods_detail', {})
+        good_detail = pdd_tools.get_detail2(good_id)
         promotion_rate = good_detail.get('promotion_rate', 0)
         promotion_rate = promotion_rate if promotion_rate else 0
         row_price = good_detail.get('min_group_price', 0)
